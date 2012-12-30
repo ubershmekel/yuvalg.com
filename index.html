@@ -24,6 +24,10 @@
 			border-radius: 3px;
 			border-top: 1px solid #eee;
 		}
+        #myCanvas {
+            position: absolute;
+            z-index:-100;
+        }
 	</style>
 	
 	<link rel="shortcut icon" href="key_y.png" />
@@ -49,10 +53,11 @@
 			</div>
 		</div>
 	</div>
+    <canvas id="myCanvas" resize="true"></canvas>
 	<div class="container">
 <!-- Start Generated -->
 	<div class="span4 main_link">
-		<a href="http://uberpython.wordpress.com/"><h2>uberpython</h2></a>
+		<a href="http://yuvalg.com/blog/"><h2>blog</h2></a>
 		<p>Programming blog</p>
 	</div>
 
@@ -98,7 +103,49 @@
 <!-- End Generated -->
 	</div>
 	
-	<script src="http:////cdnjs.cloudflare.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.1/bootstrap.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/paper.js/0.22/paper.js"></script>
+    <script type="text/paperscript" canvas="myCanvas">
+// Adapted from the following Processing example:
+// http://processing.org/learning/topics/follow3.html
+
+var path = new Path();
+path.style = {
+    strokeColor: '#1414EB',
+    strokeWidth: 20,
+    strokeCap: 'round'
+};
+path.opacity = 0.3
+
+var size = 25;
+var segments = path.segments;
+var start = view.center / [10, 1];
+for (var i = 0; i < size; i++)
+    path.add(start + new Point(i * 100, 0));
+
+function onMouseMove(event) {
+    var halfWay = (event.point + segments[0].point * 8) / 9
+    segments[0].point = halfWay;
+    for (var i = 0; i < size - 1; i++) {
+        var nextSegment = segments[i + 1];
+        var position = path.segments[i].point;
+        var angle = (position - nextSegment.point).angle;
+        var vector = new Point({ angle: angle, length: 35 });
+        nextSegment.point = position - vector;
+    }
+    path.smooth();
+}
+
+function onMouseDown(event) {
+    path.fullySelected = true;
+    path.strokeColor = '#e08285';
+}
+
+function onMouseUp(event) {
+    path.selected = false;
+    path.strokeColor = '#1414eb';
+}
+    </script>
 </body>
 </html>
