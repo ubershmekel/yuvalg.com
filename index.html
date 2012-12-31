@@ -259,32 +259,78 @@
     // Adapted from the following Processing example:
     // http://processing.org/learning/topics/follow3.html
 
-    var path = new Path();
-    path.style = {
-      strokeColor: '#1414EB',
+    var chain = [];
+    var path;
+    var styleSnake = {
+      strokeColor: '#1414eb',
       strokeWidth: 20,
       strokeCap: 'round'
     };
-    path.opacity = 0.3
 
-    var size = 25;
-    var segments = path.segments;
+    var styleLight = {
+      strokeColor: '#e4e41b',
+      fillColor: '#f0f02',
+      strokeWidth: 5,
+      strokeCap: 'round'
+    };
+
+    var size = 20;
     var start = view.center / [10, 1];
     for (var i = 0; i < size; i++) {
+      path = new Path();
+      path.style = styleSnake;
+      path.opacity = 0.3
       path.add(start + new Point(i * 100, 0));
+      path.add(start + new Point((i + 1) * 100, 0));
+      chain.push(path)
+    }
+
+    var lightCount = 6;
+    var lights = [];
+    var spacing = 200;
+    var lightWidth = 100;
+    var lightHeight = 200;
+    start = view.center / [10, 1];
+    start.y = view.bounds.bottom
+    console.log(start)
+    for (var i = 0; i < lightCount; i++) {
+      path = new Path();
+      path.style = styleLight;
+      path.opacity = 0.3
+      path.add(start + new Point(i * spacing, 0));
+      path.add(start + new Point((i + 1) * lightWidth, -lightHeight));
+      path.add(start + new Point((i - 1) * lightWidth, -lightHeight));
+      path.closed = true;
+      lights.push(path)
     }
 
     function onMouseMove(event) {
-      var halfWay = (event.point + segments[0].point * 8) / 9
-      segments[0].point = halfWay;
+      var head = chain[0].segments[0];
+      var halfWay = (event.point + head.point * 8) / 9
+      head.point = halfWay;
+      chain[0].segments[1]
+      var nextSegment;
       for (var i = 0; i < size - 1; i++) {
-        var nextSegment = segments[i + 1];
-        var position = path.segments[i].point;
+        nextSegment = chain[i + 1].segments[0];
+        var position = chain[i].segments[0].point;
         var angle = (position - nextSegment.point).angle;
         var vector = new Point({ angle: angle, length: 35 });
+        chain[i].segments[1].point = nextSegment.point
         nextSegment.point = position - vector;
       }
-      path.smooth();
+      chain[size - 1].segments[1].point = nextSegment.point
+      //path.smooth();
+      
+      for (var i = 0; i < lightCount; i++) {
+        var base = lights[i].segments[0]
+        var tipA = lights[i].segments[1]
+        var tipB = lights[i].segments[2]
+        var angle = (base.point - head.point).angle + 90;
+        var focus = base.point + (head.point - base.point) * 0.7
+        var lightSpot = new Point({ angle: angle, length: lightWidth })
+        tipA.point = focus - lightSpot;
+        tipB.point = focus + lightSpot;
+      }
     }
 
     function onMouseDown(event) {
