@@ -1,151 +1,301 @@
-﻿<html>
+<!DOCTYPE html>
+
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
-	<title>Yuval Greenfield</title>
-	<meta name="Description" content="Some stuff made by Yuval" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<!--meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"-->
-	<style>
-		/* this needs to come before bootstrap css so it reacts  correctly
-			and doesn't create a gap above the navbar on small windows */
-		body {
-			padding-top: 50px;
-		}
-	</style>
-	<link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap-combined.min.css" rel="stylesheet" />
-	<style>
-		body {
-			background-color:#eee;
-			min-width: 240px;
-		}
-		.main_link {
-			background-color: #fff;
-			padding: 10px;
-			border: 1px solid #ddd;
-			border-radius: 3px;
-			border-top: 1px solid #eee;
-		}
-        #myCanvas {
-            position: absolute;
-            z-index:-100;
-        }
-	</style>
-	
-	<link rel="shortcut icon" href="key_y.png" />
-	
-	<script type="text/javascript">
-	  var _gaq = _gaq || [];
-	  _gaq.push(['_setAccount', 'UA-4533496-16']);
-	  _gaq.push(['_trackPageview']);
+  <meta charset="utf-8" />
 
-	  (function() {
-	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  })();
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
 
-	</script>
+  <title>Yuval Greenfield</title>
+
+  <!-- Included CSS Files (Uncompressed) -->
+  <!--
+  <link rel="stylesheet" href="stylesheets/foundation.css">
+  -->
+  
+  <!-- Included CSS Files (Compressed) -->
+  <link rel="stylesheet" href="stylesheets/foundation.min.css">
+  <link rel="stylesheet" href="stylesheets/app.css">
+  <style>
+    body {
+      background-color: #F2F2F2;
+    }
+    .panel {
+      background-color: #FFF;
+    }
+    .panel:hover {
+      background-color: #EEF;
+    }
+    #myCanvas {
+      position: absolute;
+      z-index:-100;
+    }
+  </style>
+
+  <script src="javascripts/modernizr.foundation.js"></script>
+  <link rel="shortcut icon" href="key_y.png" />
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4533496-16']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
 </head>
 <body>
-	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container">
-				<a href="mailto:ubershmekel@gmail.com" class="brand">Yuval Greenfield</a>
-			</div>
-		</div>
-	</div>
-    <canvas id="myCanvas" resize="true"></canvas>
-	<div class="container">
-<!-- Start Generated -->
-	<div class="span4 main_link">
-		<a href="http://yuvalg.com/blog/"><h2>blog</h2></a>
-		<p>Programming blog</p>
-	</div>
+  <canvas id="myCanvas" resize="true"></canvas>
+  <!-- Header and Nav -->
 
-	<div class="span4 main_link">
-		<a href="https://play.google.com/store/apps/developer?id=Andluck"><h2>andluck</h2></a>
-		<p>Android development</p>
-	</div>
+  <nav class="top-bar">
+    <ul>
+      <!-- Title Area -->
+      <li class="name">
+        <h1>
+          <a href="mailto:ubershmekel@gmail.com" class="brand">Yuval Greenfield</a>
+        </h1>
+      </li>
+      <!--li class="toggle-topbar"><a href="#"></a></li-->
+    </ul>
+  </nav>
 
-	<div class="span4 main_link">
-		<a href="http://redditp.com"><h2>redditp</h2></a>
-		<p>Turning any subreddit into a slideshow</p>
-	</div>
 
-	<div class="span4 main_link">
-		<a href="http://python3wos.appspot.com"><h2>Python3WOS</h2></a>
-		<p>Waiting for python packages to migrate from 2 to 3</p>
-	</div>
+  <!-- End Header and Nav -->
 
-	<div class="span4 main_link">
-		<a href="http://toplessproductions.com"><h2>Top Less Productions</h2></a>
-		<p>Making movies in 48 hours</p>
-	</div>
+  <!-- Main Grid Section -->
 
-	<div class="span4 main_link">
-		<a href="https://github.com/ubershmekel/"><h2>github</h2></a>
-		<p>Various open source stuff</p>
-	</div>
+  <div class="row">
+    <div class="six columns">
+      <a href="http://yuvalg.com/blog/">
+        <div class="panel">
+          <h5>blog</h5>
+          <p>Programming blog</p>
+        </div>
+      </a>
+    </div>
 
-	<div class="span4 main_link">
-		<a href="http://code.google.com/u/ubershmekel/"><h2>google code</h2></a>
-		<p>Various open source stuff</p>
-	</div>
+    <div class="six columns">
+      <a href="https://play.google.com/store/apps/developer?id=Andluck">
+        <div class="panel">
+          <h5>andluck</h5>
+          <p>Android development</p>
+        </div>
+      </a>
+    </div>
+  </div>
 
-	<div class="span4 main_link">
-		<a href="https://bitbucket.org/ubershmekel"><h2>bitbucket</h2></a>
-		<p>Various open source stuff</p>
-	</div>
+  <div class="row">
+    <div class="six columns">
+      <a href="http://redditp.com">
+        <div class="panel">
+          <h5>redditp</h5>
+          <p>Turning any subreddit into a slideshow</p>
+        </div>
+      </a>
+    </div>
 
-	<div class="span4 main_link">
-		<a href="http://toplessproductions.com/pendulum/"><h2>Pendulum Waves</h2></a>
-		<p>A webgl experiment</p>
-	</div>
-<!-- End Generated -->
-	</div>
-	
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.1.1/bootstrap.min.js"></script>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/paper.js/0.22/paper.js"></script>
-    <script type="text/paperscript" canvas="myCanvas">
-// Adapted from the following Processing example:
-// http://processing.org/learning/topics/follow3.html
+    <div class="six columns">
+      <a href="http://python3wos.appspot.com">
+        <div class="panel">
+          <h5>Python3WOS</h5>
+          <p>Waiting for python packages to migrate from 2 to 3</p>
+        </div>
+      </a>
+    </div>
+  </div>
 
-var path = new Path();
-path.style = {
-    strokeColor: '#1414EB',
-    strokeWidth: 20,
-    strokeCap: 'round'
-};
-path.opacity = 0.3
+  <div class="row">
+    <div class="six columns">
+      <a href="http://toplessproductions.com">
+        <div class="panel">
+          <h5>Top Less Productions</h5>
+          <p>Making movies in 48 hours</p>
+        </div>
+      </a>
+    </div>
 
-var size = 25;
-var segments = path.segments;
-var start = view.center / [10, 1];
-for (var i = 0; i < size; i++)
-    path.add(start + new Point(i * 100, 0));
+    <div class="six columns">
+      <a href="https://github.com/ubershmekel/">
+        <div class="panel">
+          <h5>github</h5>
+          <p>Various open source stuff</p>
+        </div>
+      </a>
+    </div>
+  </div>
 
-function onMouseMove(event) {
-    var halfWay = (event.point + segments[0].point * 8) / 9
-    segments[0].point = halfWay;
-    for (var i = 0; i < size - 1; i++) {
+  <div class="row">
+    <div class="six columns">
+      <a href="http://code.google.com/u/ubershmekel/">
+        <div class="panel">
+          <h5>google code</h5>
+          <p>Various open source stuff</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="six columns">
+      <a href="https://bitbucket.org/ubershmekel">
+        <div class="panel">
+          <h5>bitbucket</h5>
+          <p>Various open source stuff</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="six columns">
+      <a href="http://toplessproductions.com/pendulum/">
+        <div class="panel">
+          <h5>Pendulum Waves</h5>
+          <p>A webgl experiment</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+
+  <!-- End Grid Section -->
+
+
+
+  <!-- Footer -->
+
+  <footer class="row">
+    <div class="twelve columns">
+      <hr />
+      <div class="row">
+        <div class="six columns">
+          <p>&copy; Copyright no one at all. Go to town.</p>
+        </div>
+        <div class="six columns">
+          <ul class="link-list right">
+            <li><a href="mailto:ubershmekel@gmail.com" class="brand">Yuval Greenfield</a></li>
+            <!--li><a href="#">Section 2</a></li>
+            <li><a href="#">Section 3</a></li>
+            <li><a href="#">Section 4</a></li-->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Included JS Files (Uncompressed) -->
+  <!--
+  
+  <script src="javascripts/jquery.js"></script>
+  
+  <script src="javascripts/jquery.foundation.mediaQueryToggle.js"></script>
+  
+  <script src="javascripts/jquery.foundation.forms.js"></script>
+  
+  <script src="javascripts/jquery.foundation.reveal.js"></script>
+  
+  <script src="javascripts/jquery.foundation.orbit.js"></script>
+  
+  <script src="javascripts/jquery.foundation.navigation.js"></script>
+  
+  <script src="javascripts/jquery.foundation.buttons.js"></script>
+  
+  <script src="javascripts/jquery.foundation.tabs.js"></script>
+  
+  <script src="javascripts/jquery.foundation.tooltips.js"></script>
+  
+  <script src="javascripts/jquery.foundation.accordion.js"></script>
+  
+  <script src="javascripts/jquery.placeholder.js"></script>
+  
+  <script src="javascripts/jquery.foundation.alerts.js"></script>
+  
+  <script src="javascripts/jquery.foundation.topbar.js"></script>
+  
+  <script src="javascripts/jquery.foundation.joyride.js"></script>
+  
+  <script src="javascripts/jquery.foundation.clearing.js"></script>
+  
+  <script src="javascripts/jquery.foundation.magellan.js"></script>
+  
+  -->
+  
+  <!-- Included JS Files (Compressed) -->
+  <script src="javascripts/jquery.js"></script>
+  <script src="javascripts/foundation.min.js"></script>
+  
+  <!-- Initialize JS Plugins -->
+  <script src="javascripts/app.js"></script>
+
+
+  <script>
+    var ie = false;
+  </script>
+  <!--[if IE8]>
+    <script>
+      ie = true;
+    </script>
+  <![endif]-->
+  <script>
+    function loadScript(sScriptSrc) {
+      var oHead = document.getElementsByTagName("head")[0];
+      var oScript = document.createElement('script');
+      oScript.type = 'text/javascript';
+      oScript.src = sScriptSrc;
+      oHead.appendChild(oScript);
+    }
+    if(!ie) {
+      loadScript('http://cdnjs.cloudflare.com/ajax/libs/paper.js/0.22/paper.js');
+    }
+  </script>
+  <script type="text/paperscript" canvas="myCanvas">
+    // Adapted from the following Processing example:
+    // http://processing.org/learning/topics/follow3.html
+
+    var path = new Path();
+    path.style = {
+      strokeColor: '#1414EB',
+      strokeWidth: 20,
+      strokeCap: 'round'
+    };
+    path.opacity = 0.3
+
+    var size = 25;
+    var segments = path.segments;
+    var start = view.center / [10, 1];
+    for (var i = 0; i < size; i++) {
+      path.add(start + new Point(i * 100, 0));
+    }
+
+    function onMouseMove(event) {
+      var halfWay = (event.point + segments[0].point * 8) / 9
+      segments[0].point = halfWay;
+      for (var i = 0; i < size - 1; i++) {
         var nextSegment = segments[i + 1];
         var position = path.segments[i].point;
         var angle = (position - nextSegment.point).angle;
         var vector = new Point({ angle: angle, length: 35 });
         nextSegment.point = position - vector;
+      }
+      path.smooth();
     }
-    path.smooth();
-}
 
-function onMouseDown(event) {
-    path.fullySelected = true;
-    path.strokeColor = '#e08285';
-}
+    function onMouseDown(event) {
+      path.fullySelected = true;
+      path.strokeColor = '#e08285';
+    }
 
-function onMouseUp(event) {
-    path.selected = false;
-    path.strokeColor = '#1414eb';
-}
-    </script>
+    function onMouseUp(event) {
+      path.selected = false;
+      path.strokeColor = '#1414eb';
+    }
+  </script>
 </body>
 </html>
