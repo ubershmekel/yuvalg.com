@@ -25,12 +25,34 @@
     body {
       background-color: #F2F2F2;
     }
+
+    .panel h5 {
+      color: #08C;
+    }
+    
+    .panel p {
+      color: #666;
+    }
+    
     .panel {
       background-color: #FFF;
+      border: 1px solid #DDD;
+      border-radius: 3px;
+      border-top: 1px solid #EEE;
     }
+    
     .panel:hover {
-      background-color: #EEF;
+      background-color: #000;
+      border-right: 4px solid #777;
+     -moz-box-shadow: 0px 4px 0px #ccc; /* Firefox 3.6 and earlier */
+     -webkit-box-shadow: 0px 4px 0px #ccc; /* Safari and Chrome */
+      box-shadow: 0px 4px 0px #ccc;
+      -webkit-transition: background-color 0.5s ease-in-out;
+      -moz-transition: background-color 0.5s ease-in-out;
+      -o-transition: background-color 0.5s ease-in-out;
+      transition: background-color 0.5s ease-in-out;
     }
+    
     #myCanvas {
       position: absolute;
       z-index:-100;
@@ -259,78 +281,179 @@
     // Adapted from the following Processing example:
     // http://processing.org/learning/topics/follow3.html
 
+    function onKeyUp(event) {
+        // When a key is released, set the content of the text item:
+        if (event.key == 'l' || event.key == 'L') {
+            if (isAnimationStarted) {
+                animationStop();
+            } else {
+                animationInit();
+            }
+        }
+    }
+    
+    var isAnimationStarted = false;
+    var path = null;
+    var snakeLinkCount = 20;
     var chain = [];
-    var path;
-    var styleSnake = {
-      strokeColor: '#1414eb',
-      strokeWidth: 20,
-      strokeCap: 'round'
-    };
-
-    var styleLight = {
-      strokeColor: '#e4e41b',
-      fillColor: '#f0f02',
-      strokeWidth: 5,
-      strokeCap: 'round'
-    };
-
-    var size = 20;
-    var start = view.center / [10, 1];
-    for (var i = 0; i < size; i++) {
-      path = new Path();
-      path.style = styleSnake;
-      path.opacity = 0.3
-      path.add(start + new Point(i * 100, 0));
-      path.add(start + new Point((i + 1) * 100, 0));
-      chain.push(path)
-    }
-
-    var lightCount = 6;
+    var snake = new Path();
     var lights = [];
-    var spacing = 200;
     var lightWidth = 100;
-    var lightHeight = 200;
-    start = view.center / [10, 1];
-    start.y = view.bounds.bottom
-    console.log(start)
-    for (var i = 0; i < lightCount; i++) {
-      path = new Path();
-      path.style = styleLight;
-      path.opacity = 0.3
-      path.add(start + new Point(i * spacing, 0));
-      path.add(start + new Point((i + 1) * lightWidth, -lightHeight));
-      path.add(start + new Point((i - 1) * lightWidth, -lightHeight));
-      path.closed = true;
-      lights.push(path)
-    }
+    var lightCount = 6;
+    
+    function animationInit() {
+        isAnimationStarted = true;
+        
+        $('body').css({"background-color": "#000"});
+        $('.six').css({opacity:0.6})
+        
+        initStars();
+        
+        var styleSnake = {
+          strokeColor: '#6464fb',
+          strokeWidth: 20,
+          strokeCap: 'round'
+        };
 
-    function onMouseMove(event) {
-      var head = chain[0].segments[0];
-      var halfWay = (event.point + head.point * 8) / 9
-      head.point = halfWay;
-      chain[0].segments[1]
-      var nextSegment;
-      for (var i = 0; i < size - 1; i++) {
-        nextSegment = chain[i + 1].segments[0];
-        var position = chain[i].segments[0].point;
-        var angle = (position - nextSegment.point).angle;
-        var vector = new Point({ angle: angle, length: 35 });
-        chain[i].segments[1].point = nextSegment.point
-        nextSegment.point = position - vector;
+        var styleLight = {
+          strokeColor: '#e4e41b',
+          fillColor: '#f0f02',
+          strokeWidth: 5,
+          strokeCap: 'round'
+        };
+
+        var start = view.center / [10, 1];
+        snake.style = styleSnake;
+        snake.opacity = 0.7
+        for (var i = 0; i < snakeLinkCount; i++) {
+          snake.add(start + new Point(i * 100, 0));
+        }
+
+        var spacing = 200;
+        var lightHeight = 200;
+        start = view.center / [10, 1];
+        start.y = view.bounds.bottom
+
+        for (var i = 0; i < lightCount; i++) {
+          path = new Path();
+          path.style = styleLight;
+          path.opacity = 0.3
+          path.add(start + new Point(i * spacing, 0));
+          path.add(start + new Point((i + 1) * lightWidth, -lightHeight));
+          path.add(start + new Point((i - 1) * lightWidth, -lightHeight));
+          path.closed = true;
+          lights.push(path)
+        }
+    }
+    
+    
+    var starCount = 30;
+    var stars = [];
+    var initStars = function() {
+        // Create a symbol, which we will use to place instances of later:
+        var path = new Path.Circle(new Point(0, 0), 5);
+        path.style = {
+            fillColor: 'white',
+            strokeColor: 'black'
+        };
+
+        var symbol = new Symbol(path);
+
+        // Place the instances of the symbol:
+        for (var i = 0; i < starCount; i++) {
+            // The center position is a random point in the view:
+            var center = Point.random() * view.size;
+            var placed = symbol.place(center);
+            placed.scale(i / starCount + 0.01);
+            placed.data = {};
+            placed.data.vector = new Point({
+                angle: Math.random() * 360,
+                length : (i / starCount) * Math.random() / 5
+            });
+            stars.push(placed);
+        }
+    };
+    
+    var keepInView = function(item) {
+        var position = item.position;
+        var viewBounds = view.bounds;
+        if (position.isInside(viewBounds))
+            return;
+        var itemBounds = item.bounds;
+        if (position.x > viewBounds.width + 5) {
+            position.x = -item.bounds.width;
+        }
+
+        if (position.x < -itemBounds.width - 5) {
+            position.x = viewBounds.width;
+        }
+
+        if (position.y > viewBounds.height + 5) {
+            position.y = -itemBounds.height;
+        }
+
+        if (position.y < -itemBounds.height - 5) {
+            position.y = viewBounds.height
+        }
+    }
+    
+    var moveStars = function(vector) {
+        // Run through the active layer's children list and change
+        // the position of the placed symbols:
+        var layer = project.activeLayer;
+        for (var i = 0; i < stars.length; i++) {
+            var item = stars[i];
+            var size = item.bounds.size;
+            var length = vector.length / 10.0 * size.width / 10.0;
+            item.position += vector.normalize(length) + item.data.vector;
+            keepInView(item);
+        }
+    };
+    
+
+    var target = null;
+    function onFrame(event) {
+      if (target == null) {
+        return;
       }
-      chain[size - 1].segments[1].point = nextSegment.point
-      //path.smooth();
+      if (path == null) {
+        return;
+      }
+      
+      var starsVector = (view.center - position) / 80.0;
+      moveStars(starsVector * 3);
+      
+      var head = snake.segments[0];
+      var halfWay = (target + head.point * 8) / 9
+      head.point = halfWay;
+      var nextSegment;
+
+      for (var i = 0; i < snakeLinkCount - 1; i++) {
+        nextSegment = snake.segments[i + 1];
+        var thisSegment = snake.segments[i]
+        var position = thisSegment.point;
+        var angle = (position - nextSegment.point);
+        angle.length = 35
+        nextSegment.point = position - angle;
+      }
+      //chain[snakeLinkCount - 1].segments[1].point = nextSegment.point
+      snake.smooth();
       
       for (var i = 0; i < lightCount; i++) {
         var base = lights[i].segments[0]
         var tipA = lights[i].segments[1]
         var tipB = lights[i].segments[2]
-        var angle = (base.point - head.point).angle + 90;
+        var angle = (base.point - head.point);
+        angle.angle = angle.angle + 90;
+        angle.length = lightWidth;
         var focus = base.point + (head.point - base.point) * 0.7
-        var lightSpot = new Point({ angle: angle, length: lightWidth })
-        tipA.point = focus - lightSpot;
-        tipB.point = focus + lightSpot;
+        tipA.point = focus - angle;
+        tipB.point = focus + angle;
+        lights[i].smooth()
       }
+    }
+    function onMouseMove(event) {
+      target = event.point;
     }
 
     function onMouseDown(event) {
