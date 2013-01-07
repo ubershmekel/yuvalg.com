@@ -19,11 +19,19 @@
   -->
   
   <!-- Included CSS Files (Compressed) -->
-  <link rel="stylesheet" href="stylesheets/foundation.min.css">
-  <link rel="stylesheet" href="stylesheets/app.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation/3.2.2/stylesheets/foundation.min.css">
+  <!--link rel="stylesheet" href="stylesheets/app.css"-->
   <style>
     body {
       background-color: #F2F2F2;
+    }
+    
+    a.brand {
+      color: #08c;
+    }
+    
+    a.brand:hover {
+      color: #fa3 !important;
     }
 
     .panel h5 {
@@ -41,16 +49,20 @@
       border-top: 1px solid #EEE;
     }
     
+    .panel:hover > p {
+        color: #f90;
+    }
+    
     .panel:hover {
       background-color: #000;
       border-right: 4px solid #777;
      -moz-box-shadow: 0px 4px 0px #ccc; /* Firefox 3.6 and earlier */
      -webkit-box-shadow: 0px 4px 0px #ccc; /* Safari and Chrome */
       box-shadow: 0px 4px 0px #ccc;
-      -webkit-transition: background-color 0.5s ease-in-out;
-      -moz-transition: background-color 0.5s ease-in-out;
-      -o-transition: background-color 0.5s ease-in-out;
-      transition: background-color 0.5s ease-in-out;
+      -webkit-transition: background-color 0.25s ease-in-out;
+      -moz-transition: background-color 0.25s ease-in-out;
+      -o-transition: background-color 0.25s ease-in-out;
+      transition: background-color 0.25s ease-in-out;
     }
     
     #myCanvas {
@@ -250,11 +262,11 @@
   -->
   
   <!-- Included JS Files (Compressed) -->
-  <script src="javascripts/jquery.js"></script>
-  <script src="javascripts/foundation.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/3.2.2/javascripts/foundation.min.js "></script>
   
-  <!-- Initialize JS Plugins -->
-  <script src="javascripts/app.js"></script>
+  <!-- Initialize JS Plugins 
+  <script src="javascripts/app.js"></script>-->
 
 
   <script>
@@ -265,32 +277,9 @@
       ie = true;
     </script>
   <![endif]-->
-  <script>
-    function loadScript(sScriptSrc) {
-      var oHead = document.getElementsByTagName("head")[0];
-      var oScript = document.createElement('script');
-      oScript.type = 'text/javascript';
-      oScript.src = sScriptSrc;
-      oHead.appendChild(oScript);
-    }
-    if(!ie) {
-      loadScript('http://cdnjs.cloudflare.com/ajax/libs/paper.js/0.22/paper.js');
-    }
-  </script>
   <script type="text/paperscript" canvas="myCanvas">
     // Adapted from the following Processing example:
     // http://processing.org/learning/topics/follow3.html
-
-    function onKeyUp(event) {
-        // When a key is released, set the content of the text item:
-        if (event.key == 'l' || event.key == 'L') {
-            if (isAnimationStarted) {
-                animationStop();
-            } else {
-                animationInit();
-            }
-        }
-    }
     
     var isAnimationStarted = false;
     var path = null;
@@ -300,12 +289,9 @@
     var lights = [];
     var lightWidth = 100;
     var lightCount = 6;
-    
+
     function animationInit() {
         isAnimationStarted = true;
-        
-        $('body').css({"background-color": "#000"});
-        $('.six').css({opacity:0.6})
         
         initStars();
         
@@ -465,6 +451,40 @@
       path.selected = false;
       path.strokeColor = '#1414eb';
     }
+    
+    animationInit();
+    
+  </script>
+  <script>
+    function loadScript(sScriptSrc) {
+      var oHead = document.getElementsByTagName("head")[0];
+      var oScript = document.createElement('script');
+      oScript.type = 'text/javascript';
+      oScript.src = sScriptSrc;
+      oHead.appendChild(oScript);
+    }
+    
+    var loadedPaper = false;
+    $(function() {
+        $('body').keyup(function(event) {
+            if (event.which == 76) { // "L"
+                if( (!ie) && (!loadedPaper) ) {
+                   // paperjs crashes IE 8 :(
+                   /*loadedPaper = true;
+                   $.getScript('http://cdnjs.cloudflare.com/ajax/libs/paper.js/0.22/paper.js', function() {
+                $('body').css({"background-color": "#000"});
+                $('.six').css({opacity:0.6})
+                   var canvas = document.getElementById('myCanvas');
+                   // Create an empty project and a view for the canvas:
+                   paper.setup(canvas);
+                   paper.view.draw();
+                   });*/
+                }
+            }
+        });
+        var er = function() {$.getScript('http://cdnjs.cloudflare.com/ajax/libs/paper.js/0.22/paper.js')}
+        setTimeout(er, 1000);
+    });
   </script>
 </body>
 </html>
