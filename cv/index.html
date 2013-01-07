@@ -70,6 +70,10 @@
         border-top: 1px solid #EEE;
     }
     
+    .mobile_content {
+        width: 768px;
+    }
+    
     .shadow {
 	    -moz-box-shadow: 3px 3px 4px #000;
 	    -webkit-box-shadow: 3px 3px 4px #000;
@@ -128,7 +132,7 @@
         margin-bottom: 10px;
     }
     p, li {
-        margin-bottom: 10px;   
+        margin-bottom: 10px;
     }
     
     </style>
@@ -145,11 +149,9 @@
           var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
     </script>
-    <script>
-    </script>
 </head>
 <body>
-<div class="content shadow">
+<div id="content" class="content shadow">
     <h1>Yuval Greenfield</h1>
     <ul>
         <!-- http://en.wikipedia.org/wiki/ISO_8601#Calendar_dates YYYY-MM-DD -->
@@ -195,5 +197,10 @@
     <p>Israeli Scouts guide and head of many pole construction projects (leading teams of 10-20 people) during 2000-2002.</p>
     <p>Singing, guitar, piano and musical composition.</p>
 </div>
+    <script>
+        if(window.screen.availWidth < 768) {
+            document.getElementById("content").className += ' mobile_content'
+        }
+    </script>
 </body>
 </html>
