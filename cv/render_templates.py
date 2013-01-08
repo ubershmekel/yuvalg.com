@@ -1,6 +1,9 @@
 #!/usr/bin/python
 
 import jinja2
+import os
+
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 copies = [
     {
