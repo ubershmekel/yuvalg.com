@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Are you lost?</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation/3.2.2/stylesheets/foundation.min.css">
+    <style>
+    body {
+        background-color: #F2F2F2;
+    }
+
+    a.brand {
+        color: #08c;
+    }
+
+    a.brand:hover {
+        color: #fa3 !important;
+    }
+
+    .panel h5 {
+        color: #08C;
+    }
+
+    .panel p {
+        color: #666;
+    }
+
+    .panel {
+        background-color: #FFF;
+        border: 1px solid #DDD;
+        border-radius: 3px;
+        border-top: 1px solid #EEE;
+    }
+
+    .panel:hover > p {;
+    }
+
+    .panel:hover {
+        border-right: 4px solid #777;
+        -moz-box-shadow: 0px 4px 0px #ccc; /* Firefox 3.6 and earlier */
+        -webkit-box-shadow: 0px 4px 0px #ccc; /* Safari and Chrome */
+        box-shadow: 0px 4px 0px #ccc;
+        background: #ffffff; /* Old browsers */
+        background: -moz-linear-gradient(top, #ffffff 0%, #ffffaa 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#ffffaa)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top,    #ffffff 0%,#ffffaa 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top,    #ffffff 0%,#ffffaa 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top,    #ffffff 0%,#ffffaa 100%); /* IE10+ */
+        background: linear-gradient(to bottom,    #ffffff 0%,#ffffaa 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffaa',GradientType=0 ); /* IE6-9 */
+    }
+
+    #myCanvas {
+        position: absolute;
+        z-index: -100;
+    }
+    
+    .slides_right {
+        position: relative;
+        left: 0px;
+        -webkit-transition: left 5s ease-in-out;
+        -moz-transition: left 5s ease-in-out;
+        -o-transition: left 5s ease-in-out;
+        transition: left 5s ease-in-out;
+    }
+    
+    .slides_right:hover {
+        left: 50%;
+        -webkit-transition: left 5s ease-in-out;
+        -moz-transition: left 5s ease-in-out;
+        -o-transition: left 5s ease-in-out;
+        transition: left 5s ease-in-out;
+    }
+    
+    </style>
+
+    <link rel="shortcut icon" href="/key_y.png" />
+
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-4533496-16']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+</head>
+<body>
+    <!-- Main Grid Section -->
+    <h1 class="slides_right">Are you lost?
+    </h1>
+    
+    <div class="row">
+        <div class="six columns">
+            <a href="http://yuvalg.com/">
+                <div class="panel">
+                    <h5>404 - page not found</h5>
+                    <p>What exactly were you looking for?</p>
+                </div>
+            </a>
+        </div>
+
+    </div>
+    <!-- End Grid Section -->
+
+
+
+    <!-- Footer -->
+
+    <footer class="row">
+        <div class="twelve columns">
+            <hr />
+            <div class="row">
+                <div class="six columns">
+                    <p>&copy; Copyright no one at all. Go to town.</p>
+                </div>
+                <div class="six columns">
+                    <ul class="link-list right">
+                        <li><a href="mailto:ubershmekel@gmail.com" class="brand">Yuval Greenfield</a></li>
+                        <!--li><a href="#">Section 2</a></li>
+                        <li><a href="#">Section 3</a></li>
+                        <li><a href="#">Section 4</a></li-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Included JS Files (Compressed) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/3.2.2/javascripts/foundation.min.js "></script>
+</body>
+</html>
