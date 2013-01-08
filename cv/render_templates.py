@@ -12,6 +12,11 @@ copies = [
         'logo': 'dropbox.png',
     },
     {
+        'name': 'twitch',
+        'id': 'gubk',
+        'logo': 'twitch.png',
+    },
+    {
         'name': 'blizzard',
         'id': 'rohc',
         'logo': 'blizzard.gif',
