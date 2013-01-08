@@ -30,6 +30,8 @@
 
     -->
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no" />
     <title>yuvalg/cv</title>
     <style>
     /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -174,6 +176,7 @@
         })();
     </script>
 </head>
+
 <body>
 <div id="content" class="content shadow">
     <img src="gubk_twitch.png" class="target_logo" title="cv for twitch" style=""/>
@@ -222,9 +225,15 @@
     <p>Israeli Scouts guide and head of many pole construction projects (leading teams of 10-20 people) during 2000-2002.</p>
     <p>Singing, guitar, piano and musical composition.</p>
 </div>
+
     <script>
-        if(window.screen.availWidth < 768) {
-            document.getElementById("content").className += ' mobile_content'
+        var availWidth = window.screen.availWidth;
+        if(availWidth < 768) {
+            if(400 < availWidth) {
+                document.getElementById("content").style.width = availWidth + "px";
+            } else {
+                document.getElementById("content").style.width = "500px";
+            }
         }
     </script>
 </body>
