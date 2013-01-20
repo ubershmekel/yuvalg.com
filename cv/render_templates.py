@@ -26,7 +26,13 @@ copies = [
         'name': 'riot',
         'id': 'keok',
         'logo': '',
-        'logo_style': 'background-color: black;',
+        'logo_style': '',
+    },
+    {
+        'name': 'reddit',
+        'id': 'nlcs',
+        'logo': '',
+        'logo_style': '',
     }
 ]
 

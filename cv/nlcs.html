@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+    
+    Welcome!
+    
+    What is it exactly that you're looking for?
+    
+    I'll summarize the tech-side of this page for you:
+
+        * An html template parsed and rendered by python and jinja2
+        * Meyerweb css reset
+        * Google analytics
+        * Apache on a webfaction VPS
+        
+        
+        
+        
+        
+
+
+
+
+    You expect some reward for your curiosity? Fine...
+    
+    Here's my reddit username: http://www.reddit.com/user/ubershmekel?sort=top
+    And a pic of wife, daughter and I: http://goo.gl/uTupS
+
+    -->
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no" />
+    <title>yuvalg/cv</title>
+    <style>
+    /* http://meyerweb.com/eric/tools/css/reset/ 
+       v2.0 | 20110126
+       License: none (public domain)
+    */
+
+    html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    b, u, i, center,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, embed, 
+    figure, figcaption, footer, header, hgroup, 
+    menu, nav, output, ruby, section, summary,
+    time, mark, audio, video {
+	    margin: 0;
+	    padding: 0;
+	    border: 0;
+	    font-size: 100%;
+	    font: inherit;
+	    vertical-align: baseline;
+    }
+    /* HTML5 display-role reset for older browsers */
+    article, aside, details, figcaption, figure, 
+    footer, header, hgroup, menu, nav, section {
+	    display: block;
+    }
+    body {
+	    line-height: 1;
+	    background-image: url(noise.png);
+	    background-repeat: repeat;
+    }
+    ol, ul {
+	    list-style: none;
+    }
+    blockquote, q {
+	    quotes: none;
+    }
+    blockquote:before, blockquote:after,
+    q:before, q:after {
+	    content: '';
+	    content: none;
+    }
+    table {
+	    border-collapse: collapse;
+	    border-spacing: 0;
+    }
+
+    /*** DONE WITH MEYERWEB RESET ***/
+    
+    body {
+        padding: 10px;
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+        background-color: #eee;
+    }
+    
+    .content {
+        max-width: 1024px;
+        min-width: 400px;
+        background-color: #fff;
+        margin: auto;
+        padding: 10px;
+        border: 1px solid #DDD;
+        border-radius: 3px;
+        border-top: 1px solid #EEE;
+    }
+    
+    .mobile_content {
+        width: 500px;
+    }
+    
+    .shadow {
+	    -moz-box-shadow: 3px 3px 4px #000;
+	    -webkit-box-shadow: 3px 3px 4px #000;
+	    box-shadow: 3px 3px 4px #000;
+	    /* For IE 8 */
+	    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+	    /* For IE 5.5 - 7 */
+	    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+    }
+    
+    .label {
+        font-weight: bold;
+        color: #999;
+    }
+    
+    a {
+        text-decoration: none;
+        color: #00c;
+    }
+    
+    a:hover {
+        text-decoration: underline;
+    }
+    
+    h1 {
+        font-size: 200%;
+        font-weight: bold;
+        margin-bottom: 0.2em;
+        border-bottom: 2px dotted #999;
+        text-align: center;
+        clear: both;
+    }
+    
+    h2 {
+        font-size: 150%;
+        color: #aaa;
+        font-weight: bold;
+    }
+    
+    ul {
+        margin-bottom: 10px;
+    }
+    p, li {
+        margin-bottom: 10px;
+        background-image: url(/blank.png); /* fix for annoying android browser auto-fit */
+    }
+    
+    .target_logo {
+        float: right;
+    }
+    
+    strong {
+        font-weight: bold;
+    }
+    
+    .code_site {
+        float: left;
+        margin: 0 4px 0 0;
+    }
+    
+    .code_site:hover {
+	    -moz-box-shadow: 3px 3px 4px #000;
+	    -webkit-box-shadow: 3px 3px 4px #000;
+	    box-shadow: 3px 3px 4px #000;
+	    /* For IE 8 */
+	    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+	    /* For IE 5.5 - 7 */
+	    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+    }
+    </style>
+    
+    <link rel="shortcut icon" href="/key_y.png" />
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-4533496-16']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+</head>
+
+<body>
+<div id="content" class="content shadow">
+    <!---->
+    
+    <a href="https://code.google.com/u/ubershmekel" class="code_site" title="google code"><img src="googlecode.png" /></a>
+    <a href="https://bitbucket.org/ubershmekel" class="code_site" title="bitbucket"><img src="bitbucket.png" /></a>
+    <a href="https://github.com/ubershmekel" class="code_site" title="github"><img src="github.png" /></a>
+    
+    <h1>Yuval Greenfield</h1>
+    <ul>
+        <!-- http://en.wikipedia.org/wiki/ISO_8601#Calendar_dates YYYY-MM-DD -->
+        <li><span class="label">Date of birth</span> 1984-02-15</li>
+        <!-- Does it matter where I was born? li><span class="label">Place of birth</span> Tel-Aviv, Israel</li-->
+        <li><span class="label">Address</span> Bavli 21, Tel Aviv, Israel</li>
+        <li><span class="label">Phone</span> <a href="callto:+972544472274">+972544472274</a></li>
+        <li><span class="label">Email</span> <a href="mailto:yuvalgreenfield@gmail.com">yuvalgreenfield@gmail.com</a></li>
+        <li><span class="label">Status</span> Married+1</li>
+    </ul>
+    
+    <h1>Highlights</h1>
+    <ul>
+        <li>Graduate of <a href="http://en.wikipedia.org/wiki/Talpiot_program" title="Highly exclusive program training 40 cadets, selected from a pool of  5,000 candidates, to become technological leaders in the security sector. The Program includes a B.Sc. degree, and wide-ranging military training. Talpiot is like having a Rhodes scholarship, a presidential fellowship, and a Harvard M.B.A. rolled into one. (Forbes, 1998)">Talpiot, elite R&amp;D leadership program</a> of the Israeli Air Force, with BSc in Physics and Mathematics.</li>
+        <li>18 years of programming experience, 7 of which for a living.</li>
+        <li>Excellent communication and leadership skills. Highly creative, deep awareness to usability and aesthetics. A fast learner and a team player.</li>
+        <li>Hebrew and English at a native level (Elementary, Middle &amp; High school in US).</li>
+    </ul>
+    
+    <h1>Professional Experience and Military Service</h1>
+    <h2>2011 - 2013</h2>
+    <p>R&amp;D Lead at Parasight LTD, a medical device startup. Responsible for the patient and image database architecture, parasite detection algorithm structure, and propietary laser cut blood film research and design. Developing a platform for machine learning and image processing mainly using Python, Orange Canvas, Inkscape, Postgres, C, GTK and Weka.</p>
+    <h2>2005 - 2011</h2>
+    <p>Military service at a special technological software unit. Programming mainly in Python and C/C++ Windows API but also in: PHP, Javascript, Java, Bash, C#, JScript, VBScript, Assembly x86, HTML, MySQL, SQLite.</p>
+    <p>Initiated, built and managed training programs for dozens of beginner and advanced 
+    programmers.</p>
+    <p>Administration and development of web apps on Windows and Linux environments.</p>
+    <h2>2002 - 2005</h2>
+    <p>Military service, studies and training at the Talpiot program.</p>
+    
+    <h1>Education</h1>
+    <h2>2002 - 2005</h2>
+    <p>BSc in Physics and Mathematics during the service and training within Talpiot program at the <a href="http://en.wikipedia.org/wiki/Hebrew_University_of_Jerusalem">Hebrew University of Jerusalem</a>.</p>
+
+    <h1>Programming as a Hobby</h1>
+    <h2>2006 - 2013</h2>
+    <p>I maintain a <a href="http://yuvalg.com/blog">python blog</a> and several open source projects. Developed many webapps such as <a href="http://redditp.com">redditp</a>, the <a href="http://python3wos.appspot.com">Python 3 Wall of Superpowers</a>, a Flex 
+    <a href="http://toplessproductions.com/biotet/">game</a>, a few Android <a href="https://play.google.com/store/apps/developer?id=Andluck">apps</a> and a <a href="http://yuvalg.com/traitsim/">simulation</a>.</p>
+    <h2>1994 - 2006</h2>
+    <p>I started programming QBasic on DOS and Windows 3.11 environments. Since then I've written simulations, games and graphics libraries as a hobby or for school with many tools and languages.</p>
+    <h1>Other Hobbies</h1>
+    <p>Team leader, producer, editor and post-production of <a href="http://toplessproductions.com/">award winning short films</a>, leading 20-25 production crew members.</p>
+    <p>Israeli Scouts guide and head of many pole construction projects (leading teams of 10-20 people) during 2000-2002.</p>
+    <p>StarCraft, singing, guitar, piano and musical composition.</p>
+</div>
+
+    <script>
+        var availWidth = window.screen.availWidth;
+        if(availWidth < 768) {
+            if(400 < availWidth) {
+                document.getElementsByTagName("body")[0].style.width = availWidth + "px";
+            } else {
+                document.getElementById("content").style.width = "500px";
+            }
+        }
+    </script>
+</body>
+</html>
