@@ -21,6 +21,12 @@ copies = [
         'id': 'rohc',
         'logo': 'blizzard.gif',
         'logo_style': 'background-color: black;',
+    },
+    {
+        'name': 'riot',
+        'id': 'keok',
+        'logo': '',
+        'logo_style': 'background-color: black;',
     }
 ]
 
