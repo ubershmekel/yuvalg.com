@@ -33,7 +33,13 @@ copies = [
         'id': 'nlcs',
         'logo': '',
         'logo_style': '',
-    }
+    },
+    {
+        'name': 'blizz_ibb',
+        'id': 'knsz',
+        'logo': '',
+        'logo_style': '',
+    },
 ]
 
 html = open('secret_template.html', 'rb').read()
