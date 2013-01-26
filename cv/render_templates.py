@@ -46,6 +46,12 @@ copies = [
         'logo_style': '',
     },
     {
+        'name': 'twit_blizz_ibb',
+        'id': 'taei',
+        'logo': '',
+        'logo_style': '',
+    },
+    {
         'name': 'facebook', # NOT USED YET
         'id': 'oyau',
         'logo': '',
