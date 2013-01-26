@@ -7,6 +7,11 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 copies = [
     {
+        'name': 'generic',
+        'id': 'generic',
+        'logo': '',
+    },
+    {
         'name': 'dropbox',
         'id': 'bcvo',
         'logo': 'dropbox.png',
@@ -29,7 +34,7 @@ copies = [
         'logo_style': '',
     },
     {
-        'name': 'reddit',
+        'name': 'reddit', # NOT USED YET
         'id': 'nlcs',
         'logo': '',
         'logo_style': '',
@@ -37,6 +42,12 @@ copies = [
     {
         'name': 'blizz_ibb',
         'id': 'knsz',
+        'logo': '',
+        'logo_style': '',
+    },
+    {
+        'name': 'facebook', # NOT USED YET
+        'id': 'oyau',
         'logo': '',
         'logo_style': '',
     },
