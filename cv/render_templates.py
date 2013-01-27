@@ -57,6 +57,12 @@ copies = [
         'logo': '',
         'logo_style': '',
     },
+    {
+        'name': 'telltalegames',
+        'id': 'iwba',
+        'logo': '',
+        'logo_style': '',
+    },
 ]
 
 html = open('secret_template.html', 'rb').read()
