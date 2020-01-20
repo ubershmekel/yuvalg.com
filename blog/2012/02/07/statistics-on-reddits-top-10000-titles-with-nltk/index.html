@@ -1,0 +1,214 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>Statistics on reddit's top 10,000 titles with NLTK</title>
+   <link rel="shortcut icon" href="/key_y.png" />
+   <meta name="author" content="Yuval Greenfield" />
+   <link href="http://feeds.feedburner.com/yuvalg/blog" rel="alternate" title="your title" type="application/atom+xml" />
+
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="http://yuvalg.com/blog/assets/themes/tom/css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="http://yuvalg.com/blog/assets/themes/tom/css/screen.css" type="text/css" media="screen, projection" />
+
+   <!-- Typekit 
+   <script type="text/javascript" src="http://use.typekit.com/jpd0pfm.js"></script>
+   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>-->
+</head>
+<body>
+
+  <div class="site">
+    <div class="title">
+      <ul class="nav">
+        <li>
+            <a id="brand" href="http://yuvalg.com/blog">yuvalg/blog</a>
+        </li>
+        
+        
+
+
+  
+    
+      
+      	
+      	<li><a href="http://yuvalg.com/blog/categories.html">categories</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="http://yuvalg.com/blog/tags.html">tags</a></li>
+      	
+      
+    
+  
+
+
+
+      </ul>
+      <!--a class="extra" href="http://yuvalg.com/blog/archive.html">Archive</a>
+      <a class="extra" href="http://yuvalg.com/blog">Pages</a>
+      <a class="extra" href="http://yuvalg.com/blog/categories.html">categories</a>
+      <a class="extra" href="http://yuvalg.com/blog/tags.html">tags</a-->
+    </div>
+  
+    
+
+<div class="post">
+  <h1>Statistics on reddit's top 10,000 titles with NLTK</h1>
+  <p class="meta">
+    07 February 2012 
+    
+  </p>
+  Drawing inspiration from this blog post on <a title="Are Your Titles Irresistibly Click Worthy &amp; Viral?!" href="http://www.seomoz.org/blog/are-your-titles-irresistibly-click-worthy-viral">title virality</a> I wanted to investigate what makes these top 10,000 titles the best of their breed. Which are the best superlatives? Who/what's the most popular subject? Let's start with some statistics:
+<ul>
+	<li>On Feb. 03, 14:10:45 (UTC) the all-time top 10,000 submissions on reddit (/r/all) had a total of 82,751,429 upvotes and 62,655,532 downvotes (56.9% liked it).</li>
+	<li>5.2 years between the <a href="http://www.reddit.com/r/reddit.com/comments/oi65/poll_vote_up_if_you_are_male_ down_if_you_are/">oldest </a>and <a href="http://www.reddit.com/r/pics/comments/p8mo1/if_you_didnt_realize_how_large_wha les_were_already/">newest</a> submission</li>
+	<li>8,331,382 comments. That's about 833 comments per submission.</li>
+	<li>The <a title="test link" href="http://www.reddit.com/r/pics/comments/92dd8/test_post_please_ignore/">#1 post</a> has 26,758 - 4,882 = 21,876 points</li>
+	<li>The <a title="dog oscar" href="http://www.reddit.com/r/funny/comments/opfm2/this_dog_deserves_an_oscar/">#10,000</a> post has 15,166 - 13,679 = 1,487 points</li>
+	<li>And now some graphs....</li>
+</ul>
+<div></div>
+<h2>Adjectives - reddit loves "new", "old", "good" and "right"</h2>
+<ul>
+	<li><a href="http://www.reddit.com/r/fffffffuuuuuuuuuuuu/comments/kio1p/president_obamas_n ew_campaign_poster/">President Obama's <strong>new</strong> campaign poster</a></li>
+	<li><a href="http://www.reddit.com/r/trees/comments/g38r1/upvoting_everything_just_to_see_ the_new/">Upvoting everything just to see the <strong>new</strong> pineapples :D</a></li>
+	<li><a href="http://www.reddit.com/r/programming/comments/aouv5/new_approach_to_china/"><strong>New</strong> approach to China</a></li>
+</ul>
+<div><a href="http://imgur.com/cAcoj.png"><img class="alignnone" title="Adjectives" src="http://imgur.com/cAcoj.png" alt="Adjectives" width="1387" height="689" /></a></div>
+<div></div>
+<h2></h2>
+<h2>Top Adjective, Superlative - "Best" is the best</h2>
+<ul>
+	<li><a href="http://www.reddit.com/r/reddit.com/comments/k7y1j/ricky_gervais_has_an_idea_that _would_not_only/">Ricky Gervais has an idea that would not only make the Golden Globes watchable, it would make it the <strong>best</strong> show of the year</a></li>
+	<li><a href="http://www.reddit.com/r/pics/comments/bicy4/best_picture_of_a_dog_getting_hit_in _the_crotch/"><strong>Best</strong> picture of a dog getting hit in the crotch with a tennis ball you will see all day. Yup that's my dog.</a></li>
+	<li><a href="http://www.reddit.com/r/funny/comments/9vzvc/csi_modern_computer_technology_at_i ts_best/">CSI: Modern computer technology at its <strong>best</strong>.</a></li>
+</ul>
+<a href="http://imgur.com/lCGMN.png"><img class="alignnone" title="adjective superlative" src="http://imgur.com/lCGMN.png" alt="" width="849" height="429" /></a>
+<h2></h2>
+<h2>Questions reddit loves how?</h2>
+<ul>
+	<li><a href="http://www.reddit.com/r/reddit.com/comments/9ed3b/dear_old_people_we_dont_want_t o_kill_you_youre/">Dear Old People. We don't want to kill you. You're our parents and grandparents and we love you. But if you throw a cranky fit and keep us from getting decent, affordable health care, you can figure out <strong>how</strong> to work your own goddamn PCs and cable boxes and remote controls from now on.</a></li>
+	<li><a href="http://www.reddit.com/r/funny/comments/em01h/how_i_got_an_uncooperative_ebay_buy er_to_pay_for/"><strong>How</strong> I got an uncooperative eBay buyer to pay for her purchase. Was it unethical?</a></li>
+	<li><a href="http://www.reddit.com/r/funny/comments/av84c/how_to_report_the_news/"><strong>How</strong> to report the News</a></li>
+</ul>
+<a href="http://imgur.com/5zn7H.png"><img class="alignnone  wp-image-556" title="Questions" src="http://imgur.com/5zn7H.png" alt="Questions" width="777" height="489" /></a>
+<h2></h2>
+<h2>What's reddit talking about? People.</h2>
+<ul>
+	<li><a href="http://www.reddit.com/r/politics/comments/aseuv/supreme_court_ruling_comes_down_ corporations_are/">Supreme Court ruling comes down - Corporations are <strong>people</strong> with free speech and the protected right to bribe politicians. Let's not even pretend anymore folks, democracy in America is dead.</a></li>
+	<li><a href="http://www.reddit.com/r/politics/comments/atbsv/we_the_people_of_the_united_stat es_of_america/">We, the <strong>People</strong> of the United States of America, reject the U.S. Supreme Court's ruling in Citizens United, and move to amend our Constitution to firmly establish that money is not speech, and that human beings, not corporations, are persons entitled to constitutional rights.</a></li>
+	<li><a href="http://www.reddit.com/r/funny/comments/atewe/14_out_of_14_people_found_this_revi ew_helpful_pic/">14 out of 14 <strong>people</strong> found this review helpful (PIC)</a></li>
+</ul>
+<a href="http://imgur.com/NzhHW.png"><img class="alignnone" title="Noun plural common" src="http://imgur.com/NzhHW.png" alt="" width="797" height="501" /></a>
+<h2></h2>
+<h2>Or news, the president, man...</h2>
+<ul>
+	<li><a href="http://www.reddit.com/r/science/comments/djexe/this_is_a_news_website_article_ab out_a_scientific/">This is a news website article about a scientific finding</a></li>
+	<li><a href="http://www.reddit.com/r/technology/comments/ngd4r/i_work_in_news_this_is_how_you _stop_sopa/">I work in News. This is how you stop SOPA.</a></li>
+	<li><a href="http://www.reddit.com/r/pics/comments/8vbpn/can_we_all_agree_that_this_is_not_an _accident/">Can we all agree, that this is NOT an accident? Fuck you, Fox News. [pic]</a></li>
+</ul>
+<h2><a href="http://imgur.com/leIfB.png"><img class="alignnone" title="noun singular common titles" src="http://imgur.com/leIfB.png" alt="" width="1111" height="507" /></a></h2>
+<h2></h2>
+<h2>Reddit appreciates personal content about you, this, it and I.</h2>
+<ul>
+	<li><a href="http://www.reddit.com/r/funny/comments/97jht/i_hate_my_job/">I hate my job...</a></li>
+	<li><a href="http://www.reddit.com/r/reddit.com/comments/9mvs6/reddit_i_dont_give_a_damn_abou t_your_aunt_uncle/">Reddit, I don't give a damn about your aunt, uncle, boyfriend, girlfriend, boss or toothless rabies infested dog who reads Reddit. Less personal crap and more a rticles please.</a></li>
+	<li><a href="http://www.reddit.com/r/politics/comments/d7ntl/ive_had_a_vision_and_i_cant_shak e_it_colbert/">I've had a vision and I can't shake it: Colbert needs to hold a satirical rally in DC.</a></li>
+	<li><a href="http://www.reddit.com/r/pics/comments/h4cv1/im_the_only_caucasian_in_my_part_of_ town_i_found/">I'm the only Caucasian in my part of town. I found this note on my windshield today...</a></li>
+</ul>
+<a href="http://imgur.com/yl4vw.png"><img class="alignnone" title="pronouns" src="http://imgur.com/yl4vw.png" alt="" width="891" height="503" /></a>
+<h2></h2>
+<h2>Even NLTK doesn't understand these...</h2>
+I'm pretty sure you don't need example links for these...
+
+<a href="http://imgur.com/1Xjzs.png"><img class="alignnone" title="failed to parse" src="http://imgur.com/1Xjzs.png" alt="" width="1135" height="491" /></a>
+<h2></h2>
+<h2>The top 10,000 seem to come mostly from 17:00 UTC and rarely from around 12:00 UTC</h2>
+This isn't exactly the probability of succeeding to hit the front page as it's not clear at what time submission count is highest. But it's something.
+
+<a href="http://uberpython.files.wordpress.com/2012/02/when-to-submit.png"><img class="alignnone size-full wp-image-562" title="When to submit" src="http://uberpython.files.wordpress.com/2012/02/when-to-submit.png" alt="" width="584" height="457" /></a>
+<h2></h2>
+<h2>An apology</h2>
+This is my first time using NLTK and though I'm ok at coding I most certainly have no idea how to parse natural language. Here's hoping this was somewhat insightful.
+
+<img class=" alignnone" title="I have no idea what I'm doing" src="http://i.imgur.com/uaXjq.jpg" alt="I have no idea what I'm doing" width="500" height="282" />
+<div>
+<h2>More graphs and data</h2>
+<ul>
+	<li><a title="NLTK Reddit Graphs" href="http://imgur.com/a/ao2PH">Imgur album with a total of 11 more bar graphs</a></li>
+	<li><a title="Top Reddit NLTK parsing of top post titles" href="https://github.com/ubershmekel/topreddit">The source code to continue parsing the data yourself</a></li>
+</ul>
+</div>
+<h2>Appendix</h2>
+<ul>
+	<li><a title="Python reddit api" href="https://github.com/mellort/reddit_api/">Python Reddit API</a></li>
+	<li><a title="Python Natural Language Toolkit" href="http://www.nltk.org/">Python Natural Language Toolkit</a></li>
+	<li><a href="http://stackoverflow.com/questions/526469/practical-examples-of-nltk-use">http://stackoverflow.com/questions/526469/practical-examples-of-nltk-use</a></li>
+</ul>
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>13 Aug 2013</span> &raquo; <a href="http://yuvalg.com/blog/2013/08/13/d3js-shape-projections">Shape Projections with D3.js</a></li>
+    
+      <li><span>07 Aug 2013</span> &raquo; <a href="http://yuvalg.com/blog/2013/08/07/learning-some-lua">Learning Some Lua</a></li>
+    
+      <li><span>16 Oct 2012</span> &raquo; <a href="http://yuvalg.com/blog/2012/10/16/dominant-misconceptions-of-recessive-genes">Dominant misconceptions of recessive genes</a></li>
+    
+  </ul>
+</div>
+
+
+
+
+  <script>
+var idcomments_acct = '123abc';
+var idcomments_post_id;
+var idcomments_post_url;
+</script>
+<script type="text/javascript" src="http://www.intensedebate.com/js/genericLinkWrapperV2.js"></script>
+
+
+
+
+
+
+  
+    <div class="footer">
+      <div class="contact">
+        <p>
+          Yuval Greenfield<br />
+          Arts and bits<br />
+          <a href='mailto:ubershmekel@gmail.com'>ubershmekel@gmail.com</a>
+        </p>
+      </div>
+      <div class="contact">
+        <p>
+          <a href="http://yuvalg.com/">yuvalg.com/</a><br />
+          <a href="http://github.com/ubershmekel/">github.com/ubershmekel</a><br />
+          <a href="http://twitter.com/ubershmekel/">twitter.com/ubershmekel</a><br />
+        </p>
+      </div>
+      <div class="rss">
+        <a href="http://feeds.feedburner.com/yuvalg/blog">
+          <img src="http://yuvalg.com/blog/assets/themes/tom/images/rss.png" alt="Subscribe to RSS Feed" />
+        </a>
+      </div>
+    </div>
+  </div>
+  <!--a href="http://github.com/ubershmekel"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a-->
+
+  
+</body>
+</html>
+

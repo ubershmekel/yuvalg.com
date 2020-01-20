@@ -1,0 +1,165 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>Why I'm not leaving Python for Go</title>
+   <link rel="shortcut icon" href="/key_y.png" />
+   <meta name="author" content="Yuval Greenfield" />
+   <link href="http://feeds.feedburner.com/yuvalg/blog" rel="alternate" title="your title" type="application/atom+xml" />
+
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="http://yuvalg.com/blog/assets/themes/tom/css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="http://yuvalg.com/blog/assets/themes/tom/css/screen.css" type="text/css" media="screen, projection" />
+
+   <!-- Typekit 
+   <script type="text/javascript" src="http://use.typekit.com/jpd0pfm.js"></script>
+   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>-->
+</head>
+<body>
+
+  <div class="site">
+    <div class="title">
+      <ul class="nav">
+        <li>
+            <a id="brand" href="http://yuvalg.com/blog">yuvalg/blog</a>
+        </li>
+        
+        
+
+
+  
+    
+      
+      	
+      	<li><a href="http://yuvalg.com/blog/categories.html">categories</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="http://yuvalg.com/blog/tags.html">tags</a></li>
+      	
+      
+    
+  
+
+
+
+      </ul>
+      <!--a class="extra" href="http://yuvalg.com/blog/archive.html">Archive</a>
+      <a class="extra" href="http://yuvalg.com/blog">Pages</a>
+      <a class="extra" href="http://yuvalg.com/blog/categories.html">categories</a>
+      <a class="extra" href="http://yuvalg.com/blog/tags.html">tags</a-->
+    </div>
+  
+    
+
+<div class="post">
+  <h1>Why I'm not leaving Python for Go</h1>
+  <p class="meta">
+    23 September 2012 
+    
+  </p>
+  First of all, Go seems like a great language. It has an <a title="Tutorial of go" href="http://tour.golang.org/">excellent tutorial</a> which I joyfully went through and found:
+<ul>
+	<li>Go is Fast.</li>
+	<li>Concurrent by design.</li>
+	<li>Typed (important for JIT and IDE's) but not cumbersome and ugly like C or C++'s <a title="C spiral parsing" href="http://c-faq.com/decl/spiral.anderson.html">spirals</a>.</li>
+	<li>Duck-type-esque interfaces.</li>
+	<li>The <a title="defer" href="http://golang.org/doc/effective_go.html#defer">defer</a> mechanism is really nifty.</li>
+</ul>
+But there's one problem I can't live with. Which is a shame as I was eager to make the leap of faith in the name of concurrency. That problem is <strong>errors are handled in return values</strong>. 70's style.
+<h2>Verbose and repetitive error handling</h2>
+The <a title="Error handling" href="http://blog.golang.org/2011/07/error-handling-and-go.html">designers of go consider this a virtue</a>.
+<blockquote>In Go, error handling is important. The language's design and conventions encourage you to explicitly check for errors where they occur (as distinct from the convention in other languages of throwing exceptions and sometimes catching them). In some cases this makes Go code <strong>verbose</strong>, but fortunately there are some techniques you can use to minimize <strong>repetitive</strong> error handling.</blockquote>
+This is one of the things I can't stand in C. <strong>Every single line requires an if statement </strong>to prevent programs from doing crazy things. This is an official, canonical example from the aforementioned link with perhaps "minimal repetitive error handling":
+<pre>    if err := datastore.Get(c, key, record); err != nil {
+        return &amp;appError{err, "Record not found", 404}
+    }
+    if err := viewTemplate.Execute(w, record); err != nil {
+        return &amp;appError{err, "Can't display record", 500}
+    }</pre>
+The correct way to call a function in Go is to wrap it in an if statement. Even <a title="Println error" href="http://golang.org/pkg/fmt/#Println">Println</a> returns an error value that I'm sure most on the planet will never check. Which brings me to...
+<h2>Errors passing silently - ticking time bombs to go</h2>
+To quote Tim Peters:
+<blockquote>Errors should never pass silently
+Unless explicitly silenced</blockquote>
+Go isn't just stuck with verbose and repetitive error handling. It also makes it easy and tempting to ignore errors. In the following program we would trigger the doomsday device even if we failed protecting the presidential staff.
+<pre>func main() {
+    http.Get("http://www.nuke.gov/seal_presidential_bunker")
+    http.Get("http://www.nuke.gov/trigger_doomsday_device")
+}</pre>
+What a shame. Oops.
+
+<address>In theory we could require the programmer never ignore returned errors. By static analysis or convention. In practice it'd be a pain worth enduring only in the most error critical programming tasks. Perhaps that's Go's purpose.</address>
+<h2>panic/recover</h2>
+Panic and recover aren't good enough as long as the standard library rarely uses them. Why is an array out of bounds any more cause for panic than a bad format string or a broken connection? Go wanted to avoid exceptions entirely but realizing they can't - a few exceptions were tacked on here and there, leaving me confused as to which error happens when.
+<h2>Perhaps another time</h2>
+So I say this with much regret because Go has a lot of amazing ideas and features, but without modern error handling - I'm not <strong>go</strong>ing.
+
+I'm still waiting for that open source, concurrent, <a title="quad core code shape benchmarks" href="http://shootout.alioth.debian.org/u64q/code-used-time-used-shapes.php">bottom left language</a> to come along. Any suggestions are more than welcome.
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>13 Aug 2013</span> &raquo; <a href="http://yuvalg.com/blog/2013/08/13/d3js-shape-projections">Shape Projections with D3.js</a></li>
+    
+      <li><span>07 Aug 2013</span> &raquo; <a href="http://yuvalg.com/blog/2013/08/07/learning-some-lua">Learning Some Lua</a></li>
+    
+      <li><span>16 Oct 2012</span> &raquo; <a href="http://yuvalg.com/blog/2012/10/16/dominant-misconceptions-of-recessive-genes">Dominant misconceptions of recessive genes</a></li>
+    
+  </ul>
+</div>
+
+
+
+
+  <script>
+var idcomments_acct = '123abc';
+var idcomments_post_id;
+var idcomments_post_url;
+</script>
+<script type="text/javascript" src="http://www.intensedebate.com/js/genericLinkWrapperV2.js"></script>
+
+
+
+
+
+
+  
+    <div class="footer">
+      <div class="contact">
+        <p>
+          Yuval Greenfield<br />
+          Arts and bits<br />
+          <a href='mailto:ubershmekel@gmail.com'>ubershmekel@gmail.com</a>
+        </p>
+      </div>
+      <div class="contact">
+        <p>
+          <a href="http://yuvalg.com/">yuvalg.com/</a><br />
+          <a href="http://github.com/ubershmekel/">github.com/ubershmekel</a><br />
+          <a href="http://twitter.com/ubershmekel/">twitter.com/ubershmekel</a><br />
+        </p>
+      </div>
+      <div class="rss">
+        <a href="http://feeds.feedburner.com/yuvalg/blog">
+          <img src="http://yuvalg.com/blog/assets/themes/tom/images/rss.png" alt="Subscribe to RSS Feed" />
+        </a>
+      </div>
+    </div>
+  </div>
+  <!--a href="http://github.com/ubershmekel"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a-->
+
+  
+</body>
+</html>
+

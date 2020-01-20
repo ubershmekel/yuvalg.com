@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ <title>yuvalg/blog argparse</title>
+ <link href="http://yuvalg.com/tag/argparse.html" rel="self"/>
+ <link href="http://yuvalg.com/tag/argparse.html"/>
+ <updated>2013-08-13T16:58:22+00:00</updated>
+ <id>http://yuvalg.com/tag/argparse.html</id>
+ <author>
+   <name>Yuval Greenfield</name>
+ </author>
+ 
+ <entry>
+   <title>Standard library granularity in python, argparse vs getopt</title>
+   <link href="http://yuvalg.com/2009/09/28/standard-library-granularity-in-python-argparse-vs-getopt"/>
+   <updated>2009-09-28T20:45:13+00:00</updated>
+   <id>http://yuvalg.com/2009/09/28/standard-library-granularity-in-python-argparse-vs-getopt</id>
+   <content type="html">Is it ok that python has 2 modules for option parsing, 3-4 xml packages, 3 HTTPServer modules, etc? This issue hit me when contemplating the deprecation of getopt as a part of the inclusion of argparse. Whenever I want to parse xml/html I get overwhelmed by the options in the std-lib. I remember myself annoyed and confused by getopt/optparse both showing me 2 different ways of doing something so similar. As a newcomer to python, I wanted python to show me the right way of doing things.
+
+So following that line of thought, getopt is the ugly way of doing option parsing. It imitates an option parsing flow that came from the old C days (and thus unpythonic), making it very attractive for people familiar with getopt/xgetopt. So what's more important: easy learning curve or enforcing best practices?
+
+I wanted to see how ugly getopt code looks so using &lt;a title=&quot;pretty nice code searching&quot; href=&quot;http://www.google.com/codesearch?hl=en&quot;&gt;google code search&lt;/a&gt; I found a few real life usage examples.
+
+getopt sample code, or &lt;a title=&quot;getopt usage&quot; href=&quot;http://www.google.com/codesearch?hl=en&amp;amp;q=getopt+%22import+getopt%22+file:\.py$&quot;&gt;check out the search results yourself&lt;/a&gt;:
+&lt;ul&gt;
+	&lt;li&gt;&lt;a title=&quot;nice usage of getopt&quot; href=&quot;http://www.google.com/codesearch/p?hl=en&amp;amp;sa=N&amp;amp;cd=6&amp;amp;ct=rc#_hWFOhGz9lE/mezzo/scons/sconsign.py&amp;amp;q=getopt%20%22import%20getopt%22%20file:%5C.py$&amp;amp;l=264&quot;&gt;a very clean and complete usage of getopt, with a help string.&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a title=&quot;from http://openfmi.net/ a switch emulated with ifs&quot; href=&quot;http://www.google.com/codesearch/p?hl=en&amp;amp;sa=N&amp;amp;cd=1&amp;amp;ct=rc#2A-6s48EZNk/plugins/scmsvn/cgi-bin/viewcvs.cgi/*checkout*/pytodo/pytodo.py%3Fcontent-type%3Dtext%252Fplain&amp;amp;rev%3D16&amp;amp;root%3Dpytodo&amp;amp;q=import%20getopt%20file:%5C*.py&amp;amp;l=12&quot;&gt;a switch emulated with if's&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a title=&quot;switch&quot; href=&quot;http://www.google.com/codesearch/p?hl=en&amp;amp;sa=N&amp;amp;cd=2&amp;amp;ct=rc#jAG3XMYHpWA/ver/*checkout*/pyslide%3Frev%3D13&amp;amp;amp;root%3Dpyslide&amp;amp;q=import%20getopt%20file:%5C*.py&amp;amp;l=43&quot;&gt;a switch emulated with elif's&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a title=&quot;switch and elif&quot; href=&quot;http://www.google.com/codesearch/p?hl=en&amp;amp;sa=N&amp;amp;cd=3&amp;amp;ct=rc#BuJNSIcfuQo/cgi-bin/viewcvs.cgi/*checkout*/pykota/trunk/pykota/tool.py%3Fcontent-type%3Dtext%252Fplain&amp;amp;amp;rev%3D328&amp;amp;q=getopt%20%22import%20getopt%22%20file:%5C*.py&amp;amp;l=256&quot;&gt;another switch the elif's &lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a title=&quot;short and easy&quot; href=&quot;http://www.google.com/codesearch/p?hl=en&amp;amp;sa=N&amp;amp;cd=2&amp;amp;ct=rc#4Wqoij9clTg/docs/pythfilter.py&amp;amp;q=getopt%20%22import%20getopt%22%20file:%5C.py$&amp;amp;l=632&quot;&gt;and another switch&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+optparse sample code:
+&lt;ul&gt;
+	&lt;li&gt;&lt;a href=&quot;http://www.google.com/codesearch/p?hl=en&amp;amp;sa=N&amp;amp;cd=3&amp;amp;ct=rc#4K6RW7rvMW0/Zope-3.1.0b1/Dependencies/zope.app-Zope-3.1.0b1/zope.app/testing/dochttp.py&amp;amp;q=optparse%20%22import%20optparse%22%20file:%5C.py$&amp;amp;l=33&quot;&gt;options are parsed and then used like a regular dict&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;http://www.google.com/codesearch/p?hl=en&amp;amp;sa=N&amp;amp;cd=13&amp;amp;ct=rc#E_RiYu-BgrU/moin-1.5.8/MoinMoin/script/_util.py&amp;amp;q=optparse%20%22import%20optparse%22%20file:%5C.py$&amp;amp;l=52&quot;&gt;options are parsed and then used like a regular dict as part of a class&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+At first I thought the learning curve thing was important, but in the end, getopt is a very unpythonic module that I would rather not see any of my colleagues use at all, except for rare cases where an awful lot of flexibility is needed. For example, getopt could be an easy way to implement optparse, or a completely different alternative. For example &lt;a title=&quot;pyopt - python 3 option parsing decorator&quot; href=&quot;http://code.google.com/p/pyopt/&quot;&gt;pyopt &lt;/a&gt;uses getopt in such a way. So IMHO getopt should be in the std-lib, but the documentation should have a very big sign saying &quot;use the awesome optparse/argparse, this is a very simple parser with barely any of the features you probably need&quot;.</content>
+ </entry>
+ 
+</feed>

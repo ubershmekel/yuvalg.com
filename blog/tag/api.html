@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ <title>yuvalg/blog api</title>
+ <link href="http://yuvalg.com/tag/api.html" rel="self"/>
+ <link href="http://yuvalg.com/tag/api.html"/>
+ <updated>2013-08-13T16:58:22+00:00</updated>
+ <id>http://yuvalg.com/tag/api.html</id>
+ <author>
+   <name>Yuval Greenfield</name>
+ </author>
+ 
+ <entry>
+   <title>Android api quirk number 5</title>
+   <link href="http://yuvalg.com/2011/11/19/android-api-quirk-number-5"/>
+   <updated>2011-11-19T02:52:04+00:00</updated>
+   <id>http://yuvalg.com/2011/11/19/android-api-quirk-number-5</id>
+   <content type="html">Wow this is silly.
+
+public void drawRect(float left, float top, float right, float bottom, Paint paint)
+
+Usually it doesn't matter if top is higher than bottom. Either way a rectangle is drawn.
+
+UNLESS, top is outside of the screen. Then no rectangle is drawn at all.
+
+So you can have rectangles that are partially visible, but only if their top is greater than their bottom.
+
+ZOMG that was a hard bug to figure out....</content>
+ </entry>
+ 
+</feed>

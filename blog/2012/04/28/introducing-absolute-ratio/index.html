@@ -1,0 +1,194 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>Introducing Absolute Ratio</title>
+   <link rel="shortcut icon" href="/key_y.png" />
+   <meta name="author" content="Yuval Greenfield" />
+   <link href="http://feeds.feedburner.com/yuvalg/blog" rel="alternate" title="your title" type="application/atom+xml" />
+
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="http://yuvalg.com/blog/assets/themes/tom/css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="http://yuvalg.com/blog/assets/themes/tom/css/screen.css" type="text/css" media="screen, projection" />
+
+   <!-- Typekit 
+   <script type="text/javascript" src="http://use.typekit.com/jpd0pfm.js"></script>
+   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>-->
+</head>
+<body>
+
+  <div class="site">
+    <div class="title">
+      <ul class="nav">
+        <li>
+            <a id="brand" href="http://yuvalg.com/blog">yuvalg/blog</a>
+        </li>
+        
+        
+
+
+  
+    
+      
+      	
+      	<li><a href="http://yuvalg.com/blog/categories.html">categories</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="http://yuvalg.com/blog/tags.html">tags</a></li>
+      	
+      
+    
+  
+
+
+
+      </ul>
+      <!--a class="extra" href="http://yuvalg.com/blog/archive.html">Archive</a>
+      <a class="extra" href="http://yuvalg.com/blog">Pages</a>
+      <a class="extra" href="http://yuvalg.com/blog/categories.html">categories</a>
+      <a class="extra" href="http://yuvalg.com/blog/tags.html">tags</a-->
+    </div>
+  
+    
+
+<div class="post">
+  <h1>Introducing Absolute Ratio</h1>
+  <p class="meta">
+    28 April 2012 
+    
+  </p>
+  Let's define the <strong>absolute ratio</strong> for positive numbers:
+
+<img class=" alignnone" title="Absolute Ratio" src="http://i.imgur.com/TvspG.gif" alt="abs_ratio(x) = 1 / x when x &lt; 1, otherwise: x" width="89" height="55" />
+
+When x is smaller than 1 return 1 / x, otherwise return x. Here are a few example values:
+<table>
+<tbody>
+<tr>
+<th>x</th>
+<th>abs_ratio(x)</th>
+</tr>
+<tr>
+<td>0.5</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>0.2</td>
+<td>5</td>
+</tr>
+<tr>
+<td>5</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+And a graph:
+
+<img class="alignnone" title="Absolute Ratio Graph" src="http://i.imgur.com/5OE27.gif" alt="Absolute Ratio Graph" width="300" height="196" />
+
+Another spelling for the same operator would take 2 positive numbers and give their absolute ratio:
+
+<img class="alignnone" title="Absolute ratio with two variables definition" src="http://i.imgur.com/iOCZY.png" alt="" width="511" height="160" />
+
+And a graph:
+
+<a href="http://imgur.com/a/YjoZA"><img class="alignnone" title="Absolute ratio in 3D" src="http://i.imgur.com/3PIjD.png" alt="Absolute ratio in 3D" width="489" height="369" /></a>
+<h2>Use case examples</h2>
+<ul>
+	<li>Music and audio - an octave of a frequency F is 2F. More generally a harmony of a frequency F is N*F where N is a natural number. To decide if one frequency is a harmony of another we just need to get their absolute ratio and see if it's whole. E.g. if abs_ratio(F1, F2) == 2 they're octaves. If abs_ratio(F1, F2) is whole - they're harmonies.</li>
+	<li>Computer vision - to match shapes that have similar dimensions e.g. their width is only 10% larger or smaller. We don't care which is the bigger or smaller, we just want to know if 0.91 &lt; W1 / W2 &lt; 1.1 which may be easier to pronounce as abs_ratio(W1, W2) &lt; 1.1</li>
+	<li>Real life - when we see 2 comparable objects we're more likely to say one is "three times the other" vs "one third the other". Either way in our brains both statements mean the same concept. We think in absolute ratios.</li>
+	<li>General case - When you want to know if X is K times bigger than Y or vice versa and you don't care which is the bigger one.</li>
+</ul>
+<h2>Interesting Properties</h2>
+<div>
+<ul>
+	<li>abs_ratio(Y / X) == abs_ratio(X / Y)</li>
+	<li>log(abs_ratio(X)) = abs(log(X))</li>
+	<li>log(abs_ratio(Y / X)) = abs(log(Y / X)) = abs(log(Y) - log(X))</li>
+	<li>You can see from the above that absolute ratio is somewhat of an absolute value for log-space.</li>
+</ul>
+<h2>What's next for absolute ratio</h2>
+</div>
+<ul>
+	<li>I'd love to hear more use cases and relevant contexts.</li>
+	<li>What would be the written symbol or notation?</li>
+	<li>How can we get this operator famous enough to be of use to mainstream minds?</li>
+	<li>About negative numbers and zero - right now that's undefined as I don't see a use case for that domain.</li>
+	<li>For some code and graphs in python checkout <a href="https://github.com/ubershmekel/abs_ratio">https://github.com/ubershmekel/abs_ratio</a></li>
+</ul>
+EDIT - I'm growing to like the binary form of the operator more so from now on let's call it like this in python:
+<pre>def abs_ratio(a, b):
+    return a / b if a &gt; b else b / a</pre>
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>13 Aug 2013</span> &raquo; <a href="http://yuvalg.com/blog/2013/08/13/d3js-shape-projections">Shape Projections with D3.js</a></li>
+    
+      <li><span>07 Aug 2013</span> &raquo; <a href="http://yuvalg.com/blog/2013/08/07/learning-some-lua">Learning Some Lua</a></li>
+    
+      <li><span>16 Oct 2012</span> &raquo; <a href="http://yuvalg.com/blog/2012/10/16/dominant-misconceptions-of-recessive-genes">Dominant misconceptions of recessive genes</a></li>
+    
+  </ul>
+</div>
+
+
+
+
+  <script>
+var idcomments_acct = '123abc';
+var idcomments_post_id;
+var idcomments_post_url;
+</script>
+<script type="text/javascript" src="http://www.intensedebate.com/js/genericLinkWrapperV2.js"></script>
+
+
+
+
+
+
+  
+    <div class="footer">
+      <div class="contact">
+        <p>
+          Yuval Greenfield<br />
+          Arts and bits<br />
+          <a href='mailto:ubershmekel@gmail.com'>ubershmekel@gmail.com</a>
+        </p>
+      </div>
+      <div class="contact">
+        <p>
+          <a href="http://yuvalg.com/">yuvalg.com/</a><br />
+          <a href="http://github.com/ubershmekel/">github.com/ubershmekel</a><br />
+          <a href="http://twitter.com/ubershmekel/">twitter.com/ubershmekel</a><br />
+        </p>
+      </div>
+      <div class="rss">
+        <a href="http://feeds.feedburner.com/yuvalg/blog">
+          <img src="http://yuvalg.com/blog/assets/themes/tom/images/rss.png" alt="Subscribe to RSS Feed" />
+        </a>
+      </div>
+    </div>
+  </div>
+  <!--a href="http://github.com/ubershmekel"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a-->
+
+  
+</body>
+</html>
+

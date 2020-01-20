@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ <title>yuvalg/blog py3k</title>
+ <link href="http://yuvalg.com/tag/py3k.html" rel="self"/>
+ <link href="http://yuvalg.com/tag/py3k.html"/>
+ <updated>2013-08-13T16:58:22+00:00</updated>
+ <id>http://yuvalg.com/tag/py3k.html</id>
+ <author>
+   <name>Yuval Greenfield</name>
+ </author>
+ 
+ <entry>
+   <title>Python 3 Wall of Shame Updates</title>
+   <link href="http://yuvalg.com/2011/12/25/python-3-wall-of-shame-updates"/>
+   <updated>2011-12-25T20:08:25+00:00</updated>
+   <id>http://yuvalg.com/2011/12/25/python-3-wall-of-shame-updates</id>
+   <content type="html">Earlier in December I was approached by Chris McDonough with a reddit pm asking if I could or would implement some kind of behavior regarding a  &quot;Python 2 only&quot; classifier on &lt;a title=&quot;Python 3 WOS&quot; href=&quot;http://python3wos.appspot.com&quot;&gt;the wall of shame&lt;/a&gt;. After some aggressive googling I found the &lt;a href=&quot;http://mail.python.org/pipermail/catalog-sig/2011-December/004077.html&quot;&gt;original discussion in catalog-sig&lt;/a&gt;. The idea was to add a classifier that signified &quot;the authors have no current intention to port this code to Python 3&quot;. By declaring such an intent, Chris explained, a python package should be erased from the wall of shame. Not that I completely understood this intuition but still I tried to somehow apply myself to the effort of improving the WOS. So here's what's new:
+&lt;ul&gt;
+	&lt;li&gt;Packages with the &quot;Programming Language :: Python :: 2 :: Only&quot; trove classifier will have a lock next to their package with a mouse over explaining their intent.&lt;/li&gt;
+	&lt;li&gt;Packages that have an equivalent py3k package are now not erased from the wall but rather show a link to the equivalent package. This rightfully boosts the compatibles count by 4. Note that packages that would doubly boost the count are still erased (eg Jinja is erased because Jinja2 is in the top 200).&lt;/li&gt;
+	&lt;li&gt;Packages that are python 3 compatible but lack the trove classifier won't stay red if brought to my attention. I've always stated the WOS can only be as good as pypi, not better. Hoping that in time PyPI would become more accurate, this move saddens me a bit. To keep a bit of the spirit the artificially green packages have a red triangle signifying the maintainer's lack of trove classifiers (again with a relevant mouse over).&lt;/li&gt;
+	&lt;li&gt;The WOS is now written for python 2.7 and migrated to the HRD, woohoo!&lt;/li&gt;
+&lt;/ul&gt;
+Please  do contact me if there are any more inaccuracies or mistakes. I'm reachable at ubershmekel at gmail and by comments on this blog.
+
+Ps, we're at 57/200, so maybe by this time next year we can have that Python 3 Wall of Superpowers party! Amen to that...</content>
+ </entry>
+ 
+ <entry>
+   <title>The Python 3 Wall of Shame</title>
+   <link href="http://yuvalg.com/2011/02/12/the-python-3-wall-of-shame"/>
+   <updated>2011-02-12T18:23:57+00:00</updated>
+   <id>http://yuvalg.com/2011/02/12/the-python-3-wall-of-shame</id>
+   <content type="html">Here's my attempt at &lt;a href=&quot;http://python3wos.appspot.com&quot;&gt;motivating package maintainers to port to python 3&lt;/a&gt; and you can check out&lt;a href=&quot;http://code.google.com/p/python3wos/&quot;&gt; the code that generates the chart&lt;/a&gt;. I basically scraped PyPI (13,000 webpages) for this info and formatted it into an HTML table which is uploaded to appspot. I added a 'cron' task on my PC to recrawl PyPI every Sunday so the chart stays fresh. When developing the WOS I used &lt;a href=&quot;http://code.google.com/p/filecache/&quot;&gt;filecache &lt;/a&gt;(from the previous blog post) so I could just write the code that parses the crawl as though it just now scraped PyPI while infact everything was cached to disk. Without filecache I would have had to either wait for ages, or write code that stores the scrapes, and reparses them. About 10 lines turn into an import and a decorator, now that's magic.
+
+I hope no one takes offense from this. The situation we're starting at is pretty bad. Only 11 out of the top 100 packages on PyPI are labeled as supporting python3. There are a few glitches (e.g. multiprocessing) where the developers simply haven't yet labeled the package as python 3 compliant.
+
+Once we pass the 50% mark I guess we can change it from &quot;Wall of Shame&quot; to &quot;World of Strength&quot; or something because the subdomain is &quot;wos&quot;.</content>
+ </entry>
+ 
+</feed>

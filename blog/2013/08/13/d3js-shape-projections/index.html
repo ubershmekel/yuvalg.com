@@ -1,0 +1,540 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>Shape Projections with D3.js</title>
+   <link rel="shortcut icon" href="/key_y.png" />
+   <meta name="author" content="Yuval Greenfield" />
+   <link href="http://feeds.feedburner.com/yuvalg/blog" rel="alternate" title="your title" type="application/atom+xml" />
+
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="http://yuvalg.com/blog/assets/themes/tom/css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="http://yuvalg.com/blog/assets/themes/tom/css/screen.css" type="text/css" media="screen, projection" />
+
+   <!-- Typekit 
+   <script type="text/javascript" src="http://use.typekit.com/jpd0pfm.js"></script>
+   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>-->
+</head>
+<body>
+
+  <div class="site">
+    <div class="title">
+      <ul class="nav">
+        <li>
+            <a id="brand" href="http://yuvalg.com/blog">yuvalg/blog</a>
+        </li>
+        
+        
+
+
+  
+    
+      
+      	
+      	<li><a href="http://yuvalg.com/blog/categories.html">categories</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="http://yuvalg.com/blog/tags.html">tags</a></li>
+      	
+      
+    
+  
+
+
+
+      </ul>
+      <!--a class="extra" href="http://yuvalg.com/blog/archive.html">Archive</a>
+      <a class="extra" href="http://yuvalg.com/blog">Pages</a>
+      <a class="extra" href="http://yuvalg.com/blog/categories.html">categories</a>
+      <a class="extra" href="http://yuvalg.com/blog/tags.html">tags</a-->
+    </div>
+  
+    
+
+<div class="post">
+  <h1>Shape Projections with D3.js</h1>
+  <p class="meta">
+    13 August 2013 
+    
+  </p>
+  <!--
+
+Inspired by
+    http://i.minus.com/ibj5yEgfOV3Ums.gif
+    http://www.reddit.com/r/gifs/comments/18s5b4/mathematics/
+
+-->
+<style>
+.circle, .wave {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+.circle {
+  stroke: black;
+}
+#myshape {
+  stroke: black;
+  stroke-width: 1.5px;
+  fill: none;
+}
+.axis {
+  stroke: black;
+  stroke-width: 1px;
+}
+.edge {
+  stroke: #ccc;
+  stroke-width: 1px;
+}
+#xline {
+  stroke: #f00;
+  opacity: 0.5;
+  stroke-width: 2.0px;
+}
+#yline {
+  stroke: #00f;
+  opacity: 0.5;
+  stroke-width: 2.0px;
+}
+#dot {
+  fill: black;
+}
+
+#radius {
+  stroke: #0f0;
+  opacity: 0.5;
+  stroke-width: 2.0px;
+}
+
+.filler {
+  fill: white;
+}
+
+#ywave .wave {
+  stroke: #00f;
+}
+#xwave .wave {
+  stroke: #f00;
+}
+
+label {
+  margin: 1em;
+  display: inline-block;
+}
+</style>
+<body>
+  <h2>d3js shape projections</h2>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/2.10.0/d3.v2.min.js"></script>
+  <!--script src="d3.min.js"></script-->
+  <div id="vis">
+  </div>
+
+  <h3>Shapes</h3>
+  <label><input name="shape" type="radio" id="circle">Circle</label>
+  <label><input name="shape" type="radio" id="square">Square</label>
+  <label><input name="shape" type="radio" id="diamond">Diamond</label>
+  <label><input name="shape" type="radio" id="polarAsin">PolarZigZag</label>
+  <label><input name="shape" type="radio" id="yourFunction"><textarea id="textFunction" rows="2" cols="20">return t/5;</textarea></label>
+  
+  <br />
+  <hr />
+  
+  <!--h3>Speed</h3>
+  <label><input name="speed" type="radio" id="angular">Constant Angular Speed</label>
+  <label><input name="speed" type="radio" id="linear">Constant Linear Speed</label-->
+  
+  <p>
+    The graph needle rotates in constant angular velocity thanks to polar coordinates
+    versions of the shape functions. See the messy code in this html. The PolarZigZag
+    shape is me trying to make a polar coordinates function which has linear
+    projections. I wasn't yet able to design a function that will have
+    this effect on both coordinate projections.
+  </p>
+  <ul>
+      <li>Made by <a href="http://yuvalg.com/blog/">ubershmekel</a></li>
+      <li>Inspired by this <a href="http://www.reddit.com/r/gifs/comments/18s5b4/mathematics/">gif</a></li>
+      <li>Made with <a href="http://d3js.org/">d3js</a>
+  </ul>
+
+
+
+<script>
+
+var INTERVAL = Math.PI / 65.0;
+var INTERVALS_OF_FOUR_CYCLES = Math.ceil(Math.PI * 8 / INTERVAL);
+
+var w = 600, h = 500,
+    x = d3.scale.linear().domain([-2, 10]).range([0, w]),
+    y = x,
+    r = (function(a, b) {
+  return Math.sqrt(a * a + b * b);
+})(x.invert(w), y.invert(h));
+
+var vis = d3.select("#vis").append("svg")
+    .attr("width", w).attr("height", h);
+
+var jaggyCos = function(t) {
+  // we just want to define from 0 to 2*pi
+  var part = (t / Math.PI) % 2.0;
+  if (part < 1.0) {
+    return 2 * (0.5 - part);
+  }
+  if (part < 2.0) {
+    return 2 * (-1.5 + part);
+  }
+  
+  console.log('Error, should be unreachable ' + t + '  -  ' + part);
+  return part;
+};
+
+var jaggySin = function(t) {
+  var part = (t / Math.PI) % 2.0;
+  if (part < 0.5) {
+    return 2 * part;
+  }
+  if (part < 1.5) {
+    return 2 * (1.0 - part);
+  }
+  if (part < 2.0) {
+    return 2 * (-2.0 + part);
+  }
+  
+  console.log('Error, should be unreachable ' + t + '  -  ' + part);
+  //return part;
+};
+
+var sincify = function(t) {
+    // [0, 1] -> [0, 1] like a sin function
+    return (1 + Math.sin(-Math.PI / 2 + t * Math.PI)) / 2;
+}
+
+var squareCos = function(t) {
+  // square Y
+  
+  var part = (t / Math.PI) % 2.0;
+  if (part < 0.25) {
+    return 1.0;
+  }
+  if (part < 0.75) {
+    var segment = (part - 0.25) * 2;
+    return 1.0 - sincify(segment) * 2;
+  }
+  if (part < 1.25) {
+    //var segment = (part - 0.75) * 2;
+    return -1.0;
+  }
+  if (part < 1.75) {
+    var segment = (part - 1.25) * 2;
+    return -1.0 + sincify(segment) * 2;
+  }
+  if (part < 2.0) {
+    return 1.0;
+  }
+  
+  console.log('Error, should be unreachable ' + t + '  -  ' + part);
+  return part;
+}
+var squareSin = function(t) {
+  // X
+  
+  var part = (t / Math.PI) % 2.0;
+  if (part < 0.25) {
+    return 4 * part;
+  }
+  if (part < 0.75) {
+    return 1.0;
+  }
+  if (part < 1.25) {
+    return 1.0 + 4 * (0.75 - part);
+  }
+  if (part < 1.75) {
+    return -1.0;
+  }
+  if (part < 2.0) {
+    return -1.0 + 4 * (part - 1.75);
+  }
+  
+  console.log('Error, should be unreachable ' + t + '  -  ' + part);
+};
+
+
+// Imagine that alpha is from the Y Axis towards the positive X axis
+var xFunc = Math.sin;
+var yFunc = Math.cos;
+//yFunc = Math.acos;
+//xFunc = jaggySin;
+//yFunc = jaggyCos;
+//xFunc = squareSin;
+//yFunc = squareCos;
+
+var polarCircle = function(t) {
+    return 1;
+}
+
+var quarterCircle = Math.PI / 2;
+var eigthCircle = Math.PI / 4;
+var squareDiagonal = Math.sqrt(2) / 2;
+var polarDiamond = function(t) {
+  var part = (t % quarterCircle) - quarterCircle / 2;
+  return squareDiagonal / Math.cos(part);
+}
+
+var polarSquare = function(t) {
+  var part = ((t + eigthCircle) % quarterCircle) - eigthCircle;
+  return 1 / Math.cos(part);
+}
+
+polarAsin = function(t) {
+  if (t % Math.PI > quarterCircle) {
+    t = 2 * quarterCircle - (t % quarterCircle)
+  }
+  var part = (t % quarterCircle) - quarterCircle / 2;
+  return (squareDiagonal / Math.cos(part) + Math.acos(part) * 0.4) * 0.5;
+}
+
+
+
+xPolar = function(polarFunc) {
+    return function(t) {
+        return polarFunc(t) * Math.sin(t)
+    }
+}
+
+yPolar = function(polarFunc) {
+    return function(t) {
+        return polarFunc(t) * Math.cos(t)
+    }
+}
+
+
+var polarFunc;
+polarActive = polarCircle;
+//polarActive = polarSquare;
+polarActive = polarAsin;
+xFunc = xPolar(polarActive);
+yFunc = yPolar(polarActive);
+
+
+
+
+
+var yWave = vis.append("g")
+    .attr("id", "ywave")
+    .attr("width", w)
+    .attr("height", h);
+var yWaveData = [];
+var yPath = yWave.selectAll("path")
+      .data([yWaveData]);
+    yPath.enter().append("path")
+      .attr("class", "wave");
+
+var xWave = vis.append("g")
+    .attr("id", "xwave")
+    .attr("width", w)
+    .attr("height", h);
+var xWaveData = [];
+var xPath = xWave.selectAll("path")
+      .data([xWaveData]);
+    xPath.enter().append("path")
+      .attr("class", "wave");
+
+
+var drawMyShape = function() {
+  vis.select("#myshape").remove();
+  vis.append("g")
+      .attr("id", "myshape")
+      .attr("width", w)
+      .attr("height", h)
+    .selectAll("path")
+      .data([d3.range(0, 2 * Math.PI, INTERVAL)])
+    .enter().append("path")
+      .attr("class", "myshape")
+      .attr("d", d3.svg.line()
+        .x(function(d, i) { return x(xFunc(d)) })
+        .y(function(d) { return y(yFunc(d)) }));
+}
+drawMyShape();
+
+
+var line = function(e, x1, y1, x2, y2) {
+  return e.append("line")
+      .attr("class", "line")
+      .attr("x1", x1)
+      .attr("y1", y1)
+      .attr("x2", x2)
+      .attr("y2", y2);
+}
+var axes = function(cx, cy, cls) {
+  cx = x(cx); cy = y(cy);
+  line(vis, cx, 0, cx, h).attr("class", cls || "line")
+  line(vis, 0, cy, w, cy).attr("class", cls || "line")
+}
+axes(0, 0, "axis");
+axes(1, 1, "edge");
+
+var dotRadius = 5
+
+line(vis, 0, y(0), w, y(0))
+    .attr("id", "xline")
+line(vis, x(0), 0, x(0), h)
+    .attr("id", "yline")
+var radiusLine = line(vis, x(0), y(0), x(0), y(1))
+    .attr("id", "radius")
+vis.append("circle")
+    .attr("class", "circle")
+    .attr("id", "dot")
+    .attr("cx", x(0))
+    .attr("cy", y(0))
+    .attr("r", dotRadius)
+
+var offset = 0;
+var elapsedDelta = 0;
+var elapsedRadians = 0;
+var lastTime = 0;
+var milisecPerRadian = 500;
+d3.timer(function(elapsed) {
+  if (elapsed - lastTime > 500) {
+    console.log('delay of over 0.5 seconds, may be stuttering or tab switch, reset viz progress');
+    // It would have been better if we had a better "user viewing timer"
+    elapsedDelta = elapsed - lastTime + elapsedDelta;
+  }
+  elapsedRadians = (elapsed - elapsedDelta) / milisecPerRadian;
+  offset = elapsedRadians % (2 * Math.PI);
+  lastTime = elapsed;
+  
+  vis.selectAll("#xwave")
+    .attr("transform", "translate(" + x(elapsedRadians - 1) + ",0)")
+  vis.selectAll("#ywave")
+    .attr("transform", "translate(0," + y(elapsedRadians - 1) + ")")
+  var xline = y(yFunc(offset)) - y(0);
+  var yline = x(xFunc(offset)) - x(0);
+  var nowX = x(xFunc(offset));
+  var nowY = y(yFunc(offset));
+
+  yWaveData.push({x: nowX, y: y(-elapsedRadians)});
+  xWaveData.push({x: x(-elapsedRadians), y: nowY});
+  if(yWaveData.length > INTERVALS_OF_FOUR_CYCLES) {
+    yWaveData.shift();
+    xWaveData.shift();
+  }
+  xPath.attr("d", d3.svg.line()
+      .x(function(d) { return d.x })
+      .y(function(d) { return d.y }));
+  yPath.attr("d", d3.svg.line()
+      .x(function(d) { return d.x })
+      .y(function(d) { return d.y }));
+
+  radiusLine.attr("x2", nowX);
+  radiusLine.attr("y2", nowY);
+  vis.selectAll("#dot")
+    .attr("transform", "translate(" + yline + "," + xline + ")")
+  vis.select("#xline")
+    .attr("transform", "translate(0," + xline + ")");
+  vis.select("#yline")
+    .attr("transform", "translate(" + yline + ",0)");
+    
+});
+
+var change = function() {
+  console.log(arguments);
+}
+
+var newPolarFunc = function(func) {
+  polarActive = func;
+  xFunc = xPolar(polarActive);
+  yFunc = yPolar(polarActive);
+  drawMyShape();
+}
+
+d3.selectAll("#circle").on("change", function() { 
+  newPolarFunc(polarCircle);
+});
+
+d3.selectAll("#square").on("change", function() { 
+  newPolarFunc(polarSquare);
+});
+
+d3.selectAll("#diamond").on("change", function() { 
+  newPolarFunc(polarDiamond);
+});
+
+d3.selectAll("#polarAsin").on("change", function() { 
+  newPolarFunc(polarAsin);
+});
+
+d3.selectAll("#yourFunction").on("change", function() { 
+    text = document.getElementById("textFunction").value
+    newPolarFunc(Function("t", text));
+});
+
+
+</script>
+
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>07 Aug 2013</span> &raquo; <a href="http://yuvalg.com/blog/2013/08/07/learning-some-lua">Learning Some Lua</a></li>
+    
+      <li><span>16 Oct 2012</span> &raquo; <a href="http://yuvalg.com/blog/2012/10/16/dominant-misconceptions-of-recessive-genes">Dominant misconceptions of recessive genes</a></li>
+    
+      <li><span>07 Oct 2012</span> &raquo; <a href="http://yuvalg.com/blog/2012/10/07/is-selling-placebos-ethical">Is selling placebos ethical?</a></li>
+    
+  </ul>
+</div>
+
+
+
+
+  <script>
+var idcomments_acct = '123abc';
+var idcomments_post_id;
+var idcomments_post_url;
+</script>
+<script type="text/javascript" src="http://www.intensedebate.com/js/genericLinkWrapperV2.js"></script>
+
+
+
+
+
+
+  
+    <div class="footer">
+      <div class="contact">
+        <p>
+          Yuval Greenfield<br />
+          Arts and bits<br />
+          <a href='mailto:ubershmekel@gmail.com'>ubershmekel@gmail.com</a>
+        </p>
+      </div>
+      <div class="contact">
+        <p>
+          <a href="http://yuvalg.com/">yuvalg.com/</a><br />
+          <a href="http://github.com/ubershmekel/">github.com/ubershmekel</a><br />
+          <a href="http://twitter.com/ubershmekel/">twitter.com/ubershmekel</a><br />
+        </p>
+      </div>
+      <div class="rss">
+        <a href="http://feeds.feedburner.com/yuvalg/blog">
+          <img src="http://yuvalg.com/blog/assets/themes/tom/images/rss.png" alt="Subscribe to RSS Feed" />
+        </a>
+      </div>
+    </div>
+  </div>
+  <!--a href="http://github.com/ubershmekel"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a-->
+
+  
+</body>
+</html>
+

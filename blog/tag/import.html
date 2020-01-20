@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ <title>yuvalg/blog import</title>
+ <link href="http://yuvalg.com/tag/import.html" rel="self"/>
+ <link href="http://yuvalg.com/tag/import.html"/>
+ <updated>2013-08-13T16:58:22+00:00</updated>
+ <id>http://yuvalg.com/tag/import.html</id>
+ <author>
+   <name>Yuval Greenfield</name>
+ </author>
+ 
+ <entry>
+   <title>import - complex or complicated?</title>
+   <link href="http://yuvalg.com/2011/09/01/import-complex-or-complicated"/>
+   <updated>2011-09-01T16:46:24+00:00</updated>
+   <id>http://yuvalg.com/2011/09/01/import-complex-or-complicated</id>
+   <content type="html">In Python, life is really easy when all your .py files are in one directory. The moment you want to organize your code into folders there's a wall of challenges you have to climb. I believe this is an issue that can be alleviated with one small fix.
+
+Here's a comparison of how a developer shares code across a project in C/C++ and Python:
+&lt;table&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;C/C++&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;Python&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Forms&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;#include&amp;nbsp;&amp;lt;from_env_dirs_first&amp;gt;
+#include&amp;nbsp;&quot;from_local_dir_first&quot;
+#include&amp;nbsp;&quot;abs_or_rel_file_system_path&quot;&lt;/td&gt;
+&lt;td&gt;import module
+import module as alias
+from module import var
+from module import *
+from ..package_relative_path import module
+from package.absolute_path import module
+try:
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;import one_thing
+except ImportError:
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;import another as one_thing&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Namespacing&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a title=&quot;JavaScript’s global scope is a public toilet. You can’t avoid going in there but try to limit your contact with surfaces when you do.&quot; href=&quot;http://uberpython.wordpress.com/2009/11/13/javascripts-global-scope-and-google-wave/&quot;&gt;Public toilet&lt;/a&gt; - everything included is global.&lt;/td&gt;
+&lt;td&gt;&quot;Namespaces are one honking great idea -- let's do more of those!&quot;
+Seriously, module encapsulation is fantastic.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Helpful extra knowledge&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Makefiles/vcproj configurations of paths
+#ifdef&lt;/td&gt;
+&lt;td&gt;sys.path
+__all__
+__path__&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Mandatory extra&lt;/strong&gt;
+&lt;strong&gt; knowledge (&quot;Gotchas&quot;)&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;#pragma once (or the equivalent #ifdef)
+certain things aren't allowed in .h files
+please don't use absolute paths&lt;/td&gt;
+&lt;td&gt;__init__.py
+syntax for intra-package imports
+modules intended for use as the main module of a Python application must always use absolute imports.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+Now this isn't an exhaustive list as I want to discuss just a small subset from the above table. Also note that I didn't go into &quot;ctypes&quot;, &quot;#pragma comment(lib...)&quot;, etc. as we're talking about sharing code, not binaries.
+
+For the 6 years of keyboard tapping I've done in C and Python, I never once was confused as to how to access code between directories in C; Python on the other hand has gotten me quite a few times and I always need to rertfm. And I consider myself far more interested and fluent in Python than in C/C++. This may be just a problem with my head, but I'd like to vent either way.
+&lt;h2&gt;Blah, blah, what's the problem?&lt;/h2&gt;
+Skip this section if you've already had experience with said problem, I'm sure it's as painful to read as it was to write.
+
+Python has this really elegant solution for one-folder-mode, &quot;import x&quot; just gives you what you expected, either from the standard library (sys.path, etc) or your local directory. If you have &quot;os.py&quot; in that local directory then you shadow out the standard &quot;import os&quot;. Once you mix directories in there, python is suddenly afraid of shadowing and you can't import things from a folder named &quot;os&quot; unless it has an &quot;__init__.py&quot;. So shadowing here is allowed and there not. If you want to access modules from the outside (dot dot and beyond), then you have to be in a package, use sys.path, os.chdir or maybe &lt;a title=&quot;import_file&quot; href=&quot;http://uberpython.wordpress.com/2011/06/08/a-new-module-import_file/&quot;&gt;implement file-system-imports&lt;/a&gt; on your own.
+
+Personally, I find myself doing this design pattern a lot:
+&lt;ol&gt;
+	&lt;li&gt;The App directory&lt;/li&gt;
+&lt;ol&gt;
+	&lt;li&gt;main_app_entry.py&lt;/li&gt;
+	&lt;li&gt;framework&lt;/li&gt;
+&lt;ol&gt;
+	&lt;li&gt;general_useful_things.py&lt;/li&gt;
+	&lt;li&gt;more_frameworkey_goodness.py&lt;/li&gt;
+&lt;/ol&gt;
+	&lt;li&gt;components&lt;/li&gt;
+&lt;ol&gt;
+	&lt;li&gt;this_solves_a_problem.py&lt;/li&gt;
+	&lt;li&gt;another_tool.py&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/ol&gt;
+&lt;/ol&gt;
+I usually have an &quot;if __name__ == '__main__':&quot; in my modules and there I have some sort of test, utility function, or a train of code-thought not yet organized.
+
+How can another_tool.py access general_useful_things.py? First things first - __init__.py everywhere! After trying a few ways to do the import - &lt;a title=&quot;attempting to import&quot; href=&quot;http://codepad.org/dQo20KGr&quot;&gt;here are a few results&lt;/a&gt;.
+
+So what's needed for another_tool to import general_useful_things:
+&lt;ul&gt;
+	&lt;li&gt;&quot;from framework import general_useful_things&quot; works in another_tool.py if we only use main_app_entry.py, it &lt;strong&gt;does not work&lt;/strong&gt; if we run another_tool.py directly. Does this mean __name__ == &quot;__main__&quot; is a useless feature I should ignore?&lt;/li&gt;
+	&lt;li&gt;Here's the rest of the list of failed attempts:
+&lt;pre&gt;#from app.framework import general_useful_things
+#from .app.framework import general_useful_things
+#from ..framework import general_useful_things
+#from .framework import general_useful_things
+#from . import framework
+#from .. import framework&lt;/pre&gt;
+&lt;/li&gt;
+	&lt;li&gt;And this little recipe works in most cases:
+&lt;pre&gt;SRC_DIR = os.path.dirname(os.path.abspath(__file__))
+os.sys.path.append(os.path.join(SRC_DIR, '..', 'framework'))
+import general_useful_things&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+If you want to tinker around with that example directory structure here you go: &lt;a title=&quot;A simple placeholder package/app&quot; href=&quot;http://dl.dropbox.com/u/440522/importing%20is%20hard.zip&quot;&gt;http://dl.dropbox.com/u/440522/importing%20is%20hard.zip&lt;/a&gt;
+&lt;h2&gt;&lt;span class=&quot;Apple-style-span&quot; style=&quot;font-size:20px;&quot;&gt;Python doesn't have file-system imports&lt;/span&gt;&lt;/h2&gt;
+To summarize my rant - python has this mantra that your import lines should be concise and thus a complex searching import mechanism was built to avoid filesystem-path-like imports. The price we pay for that searching import mechanism is that you really need to learn how to use its implicit kinks and even then it's not that fun to use.
+&lt;h2&gt;The theoretical ideal solution&lt;/h2&gt;
+&quot;import x&quot; always imports from sys.path etc, if you want to import something local you use &quot;import ./local_dir_module&quot;, the forward slash signals the parser and the developer that a file-system import is taking place. &quot;local_dir_module.py&quot; needs to be in the current folder for the above example to work. Just in case it isn't clear, the module &quot;local_dir_module&quot; will be accessed as usual, without the &quot;.py&quot;, dots or slashes. The import statement is the only place where slashes are allowed and the result of the import is a module in the stater's namespace.
+
+That's as explicit, simple, concise and useful as it gets.
+&lt;h2&gt;The practical solution&lt;/h2&gt;
+I don't mind if &quot;import x&quot; still works as it does today, the main point is that now you can do things like &quot;import ../../that_module_from_far_away&quot;. So you can actually keep python 100% backwards compatible and still add this feature.
+
+Concerning the backslash/forwardslash debate - I'm a windows guy and I don't mind using the forward slash for Python, Windows doesn't mind it either (&quot;/&quot; only fails in a few specific scenarios like cmd autocomplete). Another fun fact is you can avoid littering your app with __init__.py if you aren't going to be accessed using that big old search-import-package mechanism.
+
+I realize this whole fiasco might raise the question of absolute path imports, in my opinion these shouldn't be allowed. Absolue includes in C/C++ destroy portability, impose annoying folder structure constraints and they're ever-so tempting at late hours where you don't really want to calculate the amount of &quot;..&quot; needed. For the special cases that might still need this, the instrumentation existing in python and e.g. &lt;a title=&quot;import_file to import python modules from a path&quot; href=&quot;http://uberpython.wordpress.com/2011/06/08/a-new-module-import_file/&quot;&gt;import_file&lt;/a&gt; are enough.
+&lt;h2&gt;The good things about __init__.py&lt;/h2&gt;
+Many packages use __init__.py as a way to organize their API's to the outside world. Your package folder can have tons of scripts and only what you included in __init__.py is exposed when your folder is imported directly (eg &lt;a title=&quot;json in the python standard library&quot; href=&quot;http://hg.python.org/cpython/file/7b83d2c1aad9/Lib/json&quot;&gt;json &lt;/a&gt;in the std-library). So don't take this as an attack on __init__.py, it's just that the import mechanism seems incomplete in my eyes. Just to be a bit specific - package maintainers don't need to do stuff like &quot;import os as _os&quot; to avoid littering their module namespace when they use __init__.py as their API, that's a nice thing to have.
+
+Also, I'd like to hear other justifications as I'm sure more than a few exist.
+&lt;h2&gt;The drawbacks of slashes and file-system-imports&lt;/h2&gt;
+&lt;ol&gt;
+	&lt;li&gt;From a compatibility viewpoint, old packages aren't affected as we're introducing the &quot;forward slash&quot; in whatever future python version. Whoever uses this feature won't be compatible with older python versions.&lt;/li&gt;
+	&lt;li&gt;Windows users and *nix users might argue over whether or not to allow backslashes, I think it's not that important. Though the internet has forward slashes, so that makes it 2 platforms against 1.&lt;/li&gt;
+	&lt;li&gt;It's uglier (though today's relative imports are just as ugly and harder to learn).&lt;/li&gt;
+	&lt;li&gt;People might ask for absolute imports.&lt;/li&gt;
+	&lt;li&gt;Dividing the community and its packages into &quot;file-system-importers&quot; and &quot;package-search-importers&quot;.&lt;/li&gt;
+	&lt;li&gt;*reserved for complaints in the comments*&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;&lt;span class=&quot;Apple-style-span&quot; style=&quot;font-size:20px;&quot;&gt;Summary&lt;/span&gt;&lt;/h2&gt;
+I've tried to do packages the existing python way and I think we can do better. The __init__.py based search mechanism works great for whatever is in sys.path, though I believe its pains outweigh its gains for organizing code. Here's to hoping there's a chance for relative-file-system imports in standard python.
+&lt;h2&gt;&lt;span class=&quot;Apple-style-span&quot; style=&quot;font-size:20px;&quot;&gt;References&lt;/span&gt;&lt;/h2&gt;
+&lt;a href=&quot;http://www.python.org/dev/peps/pep-0328/&quot;&gt;http://www.python.org/dev/peps/pep-0328/&lt;/a&gt;
+
+&lt;a href=&quot;http://en.cppreference.com/w/cpp/preprocessor/include&quot;&gt;http://en.cppreference.com/w/cpp/preprocessor/include&lt;/a&gt;
+
+&lt;a href=&quot;http://effbot.org/zone/import-confusion.htm&quot;&gt;http://effbot.org/zone/import-confusion.htm&lt;/a&gt; - January 07, 1999 - &quot;There are Many Ways to Import a Module&quot; - &quot;The &lt;em&gt;import&lt;/em&gt; and &lt;em&gt;from-import&lt;/em&gt; statements are a constant cause of serious confusion for newcomers to Python&quot;
+
+&lt;a href=&quot;http://stackoverflow.com/questions/448271/what-is-init-py-for&quot;&gt;http://stackoverflow.com/questions/448271/what-is-init-py-for
+&lt;/a&gt;
+
+&lt;a href=&quot;http://stackoverflow.com/questions/1260792/python-import-a-file-from-a-subdirectory&quot;&gt;http://stackoverflow.com/questions/1260792/python-import-a-file-from-a-subdirectory&lt;/a&gt;&lt;a href=&quot;http://stackoverflow.com/questions/448271/what-is-init-py-for&quot;&gt; &lt;/a&gt;
+
+&lt;a href=&quot;http://docs.python.org/tutorial/modules.html&quot;&gt;http://docs.python.org/tutorial/modules.html&lt;/a&gt;
+
+&lt;a href=&quot;http://www.slideshare.net/stuartmitchell/python-relative-imports-just-let-me-use-the-file-system-please&quot;&gt;http://www.slideshare.net/stuartmitchell/python-relative-imports-just-let-me-use-the-file-system-please&lt;/a&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>A new module - import_file</title>
+   <link href="http://yuvalg.com/2011/06/08/a-new-module-import_file"/>
+   <updated>2011-06-08T21:43:55+00:00</updated>
+   <id>http://yuvalg.com/2011/06/08/a-new-module-import_file</id>
+   <content type="html">So I had this python web server and I wanted to write a script that does some maintenance. The problem was, if the maintenance script isn't part of the &quot;__init__.py&quot; package tree, it couldn't use any of the web server modules. A hacky way to get around this is to add the target module's directory to the path:
+&lt;pre&gt;    import sys
+    sys.path.append('/usr/wherever_that_module_is')
+    import your_module&lt;/pre&gt;
+Another trick is using &lt;code&gt;os.chdir&lt;/code&gt;. Even when importing modules from the same package things can become confusing as can be learned from &lt;a href=&quot;http://www.python.org/dev/peps/pep-0328/&quot;&gt;PEP 328&lt;/a&gt;, &lt;a href=&quot;http://www.python.org/dev/peps/pep-0366/&quot;&gt;PEP 366&lt;/a&gt;, an &lt;a href=&quot;http://www.google.com/search?sourceid=chrome&amp;amp;ie=UTF-8&amp;amp;q=import+file+python+site%3Astackoverflow.com&quot;&gt;abundance of stackoverflow questions on the subject&lt;/a&gt; and many more. I'd like to quote The Zen of Python:
+&lt;pre&gt;    Simple is better than complex.
+    There should be one-- and preferably only one --obvious way to do it.
+    If the implementation is hard to explain, it's a bad idea.&lt;/pre&gt;
+I don't believe any of these can be said about python imports, at least not for anything past the trivial case of one-folder-with-all-the-modules. The moment you want to organize your project in folders it becomes complex if not complicated and unnatural.
+
+&quot;import math&quot; just works and that's great, I just wished there was an equivalent to the banal:
+&lt;pre&gt;#include &quot;path/to/module&quot;&lt;/pre&gt;
+From those inferior languages. So I wrote import_file which can be used like this:
+&lt;pre&gt;    &amp;gt;&amp;gt;&amp;gt;from import_file import import_file
+    &amp;gt;&amp;gt;&amp;gt;mylib = import_file('c:\\mylib.py')
+    &amp;gt;&amp;gt;&amp;gt;another = import_file('relative_subdir/another.py')&lt;/pre&gt;
+It's very similar to the imp module syntax, except the function requires one argument less. This is the way it should be imo. Enjoy &lt;a href=&quot;http://code.google.com/p/import-file/&quot;&gt;import_file at google code&lt;/a&gt;, from the &lt;a href=&quot;http://pypi.python.org/pypi/import_file&quot;&gt;cheese shop&lt;/a&gt;, &quot;easy_install import_file&quot; or pip, etc.</content>
+ </entry>
+ 
+ <entry>
+   <title>What python lacks</title>
+   <link href="http://yuvalg.com/2009/02/06/what-python-lacks"/>
+   <updated>2009-02-06T12:54:19+00:00</updated>
+   <id>http://yuvalg.com/2009/02/06/what-python-lacks</id>
+   <content type="html">I do like python a lot, but I feel some things are still missing. Correct me if I'm wrong.
+
+* How do I know what can I import? I can use help(os) but how do I know that 'os' exists (from within the interpreter). I want a command like dir that can search through the default import directories. &quot;mdir&quot; (like module dir) or &quot;pdir&quot; (package dir).
+* Tkinter sucks, why isn't wx or anything else included?
+* The php documentation really makes me jealous because the user contributed comments are VERY useful. Why doesn't python docs have some web 2.0 in it? Like digg's comment system.
+* So many crappy IDE's, I can't find one that's good for everything. At first I liked Wing but nowadays it's way too slow and heavy so I switched to SPE which is great except it can crash for no reason.
+* The GIL needs to be taken more seriously with a dedicated page explaining why it's in place, how to escape it's suckiness, and a roadmap to minimize the damage. Alot of people care about performance more than idiot-proof concurrency.
+
+And I think i have a few more rants to go on about this, I'll post 'em when I recall.</content>
+ </entry>
+ 
+</feed>

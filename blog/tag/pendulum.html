@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ <title>yuvalg/blog pendulum</title>
+ <link href="http://yuvalg.com/tag/pendulum.html" rel="self"/>
+ <link href="http://yuvalg.com/tag/pendulum.html"/>
+ <updated>2013-08-13T16:58:22+00:00</updated>
+ <id>http://yuvalg.com/tag/pendulum.html</id>
+ <author>
+   <name>Yuval Greenfield</name>
+ </author>
+ 
+ <entry>
+   <title>Pendulums, WebGL and three.js</title>
+   <link href="http://yuvalg.com/2011/12/02/pendulums-webgl-and-three-js"/>
+   <updated>2011-12-02T18:53:46+00:00</updated>
+   <id>http://yuvalg.com/2011/12/02/pendulums-webgl-and-three-js</id>
+   <content type="html">Here's the &lt;a title=&quot;Waves Pendulum Simulation&quot; href=&quot;http://toplessproductions.com/pendulum&quot;&gt;waves pendulum three.js simulation&lt;/a&gt; I made.
+&lt;div&gt; So I wanted to simulate a &lt;a title=&quot;Real Waves Pendulum&quot; href=&quot;http://www.youtube.com/watch?v=yVkdfJ9PkRQ&quot;&gt;magical pendulum with waves&lt;/a&gt; to prove my point that the shapes are the result of a dead simple arithmetic progression. I was almost correct.&lt;/div&gt;
+After testing, I saw that when the frequency is an arithmetic progression we get the awesome patterns. The problem is that achieving such a feat by modifying the length of the strings alone is a bit harder. Here's omega, or the angular frequency from &lt;a title=&quot;hyperphysics - pendulum physics equations&quot; href=&quot;http://hyperphysics.phy-astr.gsu.edu/hbase/pend.html&quot;&gt;hyperphysics&lt;/a&gt;:
+
+&lt;img style=&quot;background:#FFF;&quot; src=&quot;http://hyperphysics.phy-astr.gsu.edu/hbase/imgmec/pend5.gif&quot; alt=&quot;w = sqrt(g/L)&quot; /&gt;
+
+So all I had to do was choose omegas, increment them and from that calculate the string lengths. I got mixed up and solved the problem in a much more &lt;a title=&quot;python code which generates string lengths for wave pendulums&quot; href=&quot;http://codepad.org/HiS4wJAL&quot;&gt;complicated way&lt;/a&gt;.
+
+Anyhow, by faking it (choosing my omegas with bogus L's) I get a prettier result. Headache averted. I'm not sure these swing angles are simple pendulums anyway.
+
+WebGL and three.js are indeed awesome. It does have its gotchas but I was just so impressed with &lt;a title=&quot;Ellie Goulding Lights WebGL Video&quot; href=&quot;http://lights.elliegoulding.com/&quot;&gt;http://lights.elliegoulding.com/&lt;/a&gt; and other things in the three.js gallery. It's amazing how simple and accessible opengl is now that it's in the browser. The &quot;hello world&quot; of about 20 lines for a rotating cube was good though I think it should include the &lt;a title=&quot;Javascript WebGL detector class&quot; href=&quot;https://github.com/mrdoob/three.js/blob/master/examples/js/Detector.js&quot;&gt;WebGL detection &lt;/a&gt;in it.</content>
+ </entry>
+ 
+</feed>

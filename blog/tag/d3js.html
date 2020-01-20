@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ <title>yuvalg/blog d3js</title>
+ <link href="http://yuvalg.com/tag/d3js.html" rel="self"/>
+ <link href="http://yuvalg.com/tag/d3js.html"/>
+ <updated>2013-08-13T16:58:22+00:00</updated>
+ <id>http://yuvalg.com/tag/d3js.html</id>
+ <author>
+   <name>Yuval Greenfield</name>
+ </author>
+ 
+ <entry>
+   <title>Shape Projections with D3.js</title>
+   <link href="http://yuvalg.com/2013/08/13/d3js-shape-projections"/>
+   <updated>2013-08-13T14:30:51+00:00</updated>
+   <id>http://yuvalg.com/2013/08/13/d3js-shape-projections</id>
+   <content type="html">&lt;!--
+
+Inspired by
+    http://i.minus.com/ibj5yEgfOV3Ums.gif
+    http://www.reddit.com/r/gifs/comments/18s5b4/mathematics/
+
+--&gt;
+&lt;style&gt;
+.circle, .wave {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+.circle {
+  stroke: black;
+}
+#myshape {
+  stroke: black;
+  stroke-width: 1.5px;
+  fill: none;
+}
+.axis {
+  stroke: black;
+  stroke-width: 1px;
+}
+.edge {
+  stroke: #ccc;
+  stroke-width: 1px;
+}
+#xline {
+  stroke: #f00;
+  opacity: 0.5;
+  stroke-width: 2.0px;
+}
+#yline {
+  stroke: #00f;
+  opacity: 0.5;
+  stroke-width: 2.0px;
+}
+#dot {
+  fill: black;
+}
+
+#radius {
+  stroke: #0f0;
+  opacity: 0.5;
+  stroke-width: 2.0px;
+}
+
+.filler {
+  fill: white;
+}
+
+#ywave .wave {
+  stroke: #00f;
+}
+#xwave .wave {
+  stroke: #f00;
+}
+
+label {
+  margin: 1em;
+  display: inline-block;
+}
+&lt;/style&gt;
+&lt;body&gt;
+  &lt;h2&gt;d3js shape projections&lt;/h2&gt;
+  &lt;script src=&quot;http://cdnjs.cloudflare.com/ajax/libs/d3/2.10.0/d3.v2.min.js&quot;&gt;&lt;/script&gt;
+  &lt;!--script src=&quot;d3.min.js&quot;&gt;&lt;/script--&gt;
+  &lt;div id=&quot;vis&quot;&gt;
+  &lt;/div&gt;
+
+  &lt;h3&gt;Shapes&lt;/h3&gt;
+  &lt;label&gt;&lt;input name=&quot;shape&quot; type=&quot;radio&quot; id=&quot;circle&quot;&gt;Circle&lt;/label&gt;
+  &lt;label&gt;&lt;input name=&quot;shape&quot; type=&quot;radio&quot; id=&quot;square&quot;&gt;Square&lt;/label&gt;
+  &lt;label&gt;&lt;input name=&quot;shape&quot; type=&quot;radio&quot; id=&quot;diamond&quot;&gt;Diamond&lt;/label&gt;
+  &lt;label&gt;&lt;input name=&quot;shape&quot; type=&quot;radio&quot; id=&quot;polarAsin&quot;&gt;PolarZigZag&lt;/label&gt;
+  &lt;label&gt;&lt;input name=&quot;shape&quot; type=&quot;radio&quot; id=&quot;yourFunction&quot;&gt;&lt;textarea id=&quot;textFunction&quot; rows=&quot;2&quot; cols=&quot;20&quot;&gt;return t/5;&lt;/textarea&gt;&lt;/label&gt;
+  
+  &lt;br /&gt;
+  &lt;hr /&gt;
+  
+  &lt;!--h3&gt;Speed&lt;/h3&gt;
+  &lt;label&gt;&lt;input name=&quot;speed&quot; type=&quot;radio&quot; id=&quot;angular&quot;&gt;Constant Angular Speed&lt;/label&gt;
+  &lt;label&gt;&lt;input name=&quot;speed&quot; type=&quot;radio&quot; id=&quot;linear&quot;&gt;Constant Linear Speed&lt;/label--&gt;
+  
+  &lt;p&gt;
+    The graph needle rotates in constant angular velocity thanks to polar coordinates
+    versions of the shape functions. See the messy code in this html. The PolarZigZag
+    shape is me trying to make a polar coordinates function which has linear
+    projections. I wasn't yet able to design a function that will have
+    this effect on both coordinate projections.
+  &lt;/p&gt;
+  &lt;ul&gt;
+      &lt;li&gt;Made by &lt;a href=&quot;http://yuvalg.com/blog/&quot;&gt;ubershmekel&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;Inspired by this &lt;a href=&quot;http://www.reddit.com/r/gifs/comments/18s5b4/mathematics/&quot;&gt;gif&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;Made with &lt;a href=&quot;http://d3js.org/&quot;&gt;d3js&lt;/a&gt;
+  &lt;/ul&gt;
+
+
+
+&lt;script&gt;
+
+var INTERVAL = Math.PI / 65.0;
+var INTERVALS_OF_FOUR_CYCLES = Math.ceil(Math.PI * 8 / INTERVAL);
+
+var w = 600, h = 500,
+    x = d3.scale.linear().domain([-2, 10]).range([0, w]),
+    y = x,
+    r = (function(a, b) {
+  return Math.sqrt(a * a + b * b);
+})(x.invert(w), y.invert(h));
+
+var vis = d3.select(&quot;#vis&quot;).append(&quot;svg&quot;)
+    .attr(&quot;width&quot;, w).attr(&quot;height&quot;, h);
+
+var jaggyCos = function(t) {
+  // we just want to define from 0 to 2*pi
+  var part = (t / Math.PI) % 2.0;
+  if (part &lt; 1.0) {
+    return 2 * (0.5 - part);
+  }
+  if (part &lt; 2.0) {
+    return 2 * (-1.5 + part);
+  }
+  
+  console.log('Error, should be unreachable ' + t + '  -  ' + part);
+  return part;
+};
+
+var jaggySin = function(t) {
+  var part = (t / Math.PI) % 2.0;
+  if (part &lt; 0.5) {
+    return 2 * part;
+  }
+  if (part &lt; 1.5) {
+    return 2 * (1.0 - part);
+  }
+  if (part &lt; 2.0) {
+    return 2 * (-2.0 + part);
+  }
+  
+  console.log('Error, should be unreachable ' + t + '  -  ' + part);
+  //return part;
+};
+
+var sincify = function(t) {
+    // [0, 1] -&gt; [0, 1] like a sin function
+    return (1 + Math.sin(-Math.PI / 2 + t * Math.PI)) / 2;
+}
+
+var squareCos = function(t) {
+  // square Y
+  
+  var part = (t / Math.PI) % 2.0;
+  if (part &lt; 0.25) {
+    return 1.0;
+  }
+  if (part &lt; 0.75) {
+    var segment = (part - 0.25) * 2;
+    return 1.0 - sincify(segment) * 2;
+  }
+  if (part &lt; 1.25) {
+    //var segment = (part - 0.75) * 2;
+    return -1.0;
+  }
+  if (part &lt; 1.75) {
+    var segment = (part - 1.25) * 2;
+    return -1.0 + sincify(segment) * 2;
+  }
+  if (part &lt; 2.0) {
+    return 1.0;
+  }
+  
+  console.log('Error, should be unreachable ' + t + '  -  ' + part);
+  return part;
+}
+var squareSin = function(t) {
+  // X
+  
+  var part = (t / Math.PI) % 2.0;
+  if (part &lt; 0.25) {
+    return 4 * part;
+  }
+  if (part &lt; 0.75) {
+    return 1.0;
+  }
+  if (part &lt; 1.25) {
+    return 1.0 + 4 * (0.75 - part);
+  }
+  if (part &lt; 1.75) {
+    return -1.0;
+  }
+  if (part &lt; 2.0) {
+    return -1.0 + 4 * (part - 1.75);
+  }
+  
+  console.log('Error, should be unreachable ' + t + '  -  ' + part);
+};
+
+
+// Imagine that alpha is from the Y Axis towards the positive X axis
+var xFunc = Math.sin;
+var yFunc = Math.cos;
+//yFunc = Math.acos;
+//xFunc = jaggySin;
+//yFunc = jaggyCos;
+//xFunc = squareSin;
+//yFunc = squareCos;
+
+var polarCircle = function(t) {
+    return 1;
+}
+
+var quarterCircle = Math.PI / 2;
+var eigthCircle = Math.PI / 4;
+var squareDiagonal = Math.sqrt(2) / 2;
+var polarDiamond = function(t) {
+  var part = (t % quarterCircle) - quarterCircle / 2;
+  return squareDiagonal / Math.cos(part);
+}
+
+var polarSquare = function(t) {
+  var part = ((t + eigthCircle) % quarterCircle) - eigthCircle;
+  return 1 / Math.cos(part);
+}
+
+polarAsin = function(t) {
+  if (t % Math.PI &gt; quarterCircle) {
+    t = 2 * quarterCircle - (t % quarterCircle)
+  }
+  var part = (t % quarterCircle) - quarterCircle / 2;
+  return (squareDiagonal / Math.cos(part) + Math.acos(part) * 0.4) * 0.5;
+}
+
+
+
+xPolar = function(polarFunc) {
+    return function(t) {
+        return polarFunc(t) * Math.sin(t)
+    }
+}
+
+yPolar = function(polarFunc) {
+    return function(t) {
+        return polarFunc(t) * Math.cos(t)
+    }
+}
+
+
+var polarFunc;
+polarActive = polarCircle;
+//polarActive = polarSquare;
+polarActive = polarAsin;
+xFunc = xPolar(polarActive);
+yFunc = yPolar(polarActive);
+
+
+
+
+
+var yWave = vis.append(&quot;g&quot;)
+    .attr(&quot;id&quot;, &quot;ywave&quot;)
+    .attr(&quot;width&quot;, w)
+    .attr(&quot;height&quot;, h);
+var yWaveData = [];
+var yPath = yWave.selectAll(&quot;path&quot;)
+      .data([yWaveData]);
+    yPath.enter().append(&quot;path&quot;)
+      .attr(&quot;class&quot;, &quot;wave&quot;);
+
+var xWave = vis.append(&quot;g&quot;)
+    .attr(&quot;id&quot;, &quot;xwave&quot;)
+    .attr(&quot;width&quot;, w)
+    .attr(&quot;height&quot;, h);
+var xWaveData = [];
+var xPath = xWave.selectAll(&quot;path&quot;)
+      .data([xWaveData]);
+    xPath.enter().append(&quot;path&quot;)
+      .attr(&quot;class&quot;, &quot;wave&quot;);
+
+
+var drawMyShape = function() {
+  vis.select(&quot;#myshape&quot;).remove();
+  vis.append(&quot;g&quot;)
+      .attr(&quot;id&quot;, &quot;myshape&quot;)
+      .attr(&quot;width&quot;, w)
+      .attr(&quot;height&quot;, h)
+    .selectAll(&quot;path&quot;)
+      .data([d3.range(0, 2 * Math.PI, INTERVAL)])
+    .enter().append(&quot;path&quot;)
+      .attr(&quot;class&quot;, &quot;myshape&quot;)
+      .attr(&quot;d&quot;, d3.svg.line()
+        .x(function(d, i) { return x(xFunc(d)) })
+        .y(function(d) { return y(yFunc(d)) }));
+}
+drawMyShape();
+
+
+var line = function(e, x1, y1, x2, y2) {
+  return e.append(&quot;line&quot;)
+      .attr(&quot;class&quot;, &quot;line&quot;)
+      .attr(&quot;x1&quot;, x1)
+      .attr(&quot;y1&quot;, y1)
+      .attr(&quot;x2&quot;, x2)
+      .attr(&quot;y2&quot;, y2);
+}
+var axes = function(cx, cy, cls) {
+  cx = x(cx); cy = y(cy);
+  line(vis, cx, 0, cx, h).attr(&quot;class&quot;, cls || &quot;line&quot;)
+  line(vis, 0, cy, w, cy).attr(&quot;class&quot;, cls || &quot;line&quot;)
+}
+axes(0, 0, &quot;axis&quot;);
+axes(1, 1, &quot;edge&quot;);
+
+var dotRadius = 5
+
+line(vis, 0, y(0), w, y(0))
+    .attr(&quot;id&quot;, &quot;xline&quot;)
+line(vis, x(0), 0, x(0), h)
+    .attr(&quot;id&quot;, &quot;yline&quot;)
+var radiusLine = line(vis, x(0), y(0), x(0), y(1))
+    .attr(&quot;id&quot;, &quot;radius&quot;)
+vis.append(&quot;circle&quot;)
+    .attr(&quot;class&quot;, &quot;circle&quot;)
+    .attr(&quot;id&quot;, &quot;dot&quot;)
+    .attr(&quot;cx&quot;, x(0))
+    .attr(&quot;cy&quot;, y(0))
+    .attr(&quot;r&quot;, dotRadius)
+
+var offset = 0;
+var elapsedDelta = 0;
+var elapsedRadians = 0;
+var lastTime = 0;
+var milisecPerRadian = 500;
+d3.timer(function(elapsed) {
+  if (elapsed - lastTime &gt; 500) {
+    console.log('delay of over 0.5 seconds, may be stuttering or tab switch, reset viz progress');
+    // It would have been better if we had a better &quot;user viewing timer&quot;
+    elapsedDelta = elapsed - lastTime + elapsedDelta;
+  }
+  elapsedRadians = (elapsed - elapsedDelta) / milisecPerRadian;
+  offset = elapsedRadians % (2 * Math.PI);
+  lastTime = elapsed;
+  
+  vis.selectAll(&quot;#xwave&quot;)
+    .attr(&quot;transform&quot;, &quot;translate(&quot; + x(elapsedRadians - 1) + &quot;,0)&quot;)
+  vis.selectAll(&quot;#ywave&quot;)
+    .attr(&quot;transform&quot;, &quot;translate(0,&quot; + y(elapsedRadians - 1) + &quot;)&quot;)
+  var xline = y(yFunc(offset)) - y(0);
+  var yline = x(xFunc(offset)) - x(0);
+  var nowX = x(xFunc(offset));
+  var nowY = y(yFunc(offset));
+
+  yWaveData.push({x: nowX, y: y(-elapsedRadians)});
+  xWaveData.push({x: x(-elapsedRadians), y: nowY});
+  if(yWaveData.length &gt; INTERVALS_OF_FOUR_CYCLES) {
+    yWaveData.shift();
+    xWaveData.shift();
+  }
+  xPath.attr(&quot;d&quot;, d3.svg.line()
+      .x(function(d) { return d.x })
+      .y(function(d) { return d.y }));
+  yPath.attr(&quot;d&quot;, d3.svg.line()
+      .x(function(d) { return d.x })
+      .y(function(d) { return d.y }));
+
+  radiusLine.attr(&quot;x2&quot;, nowX);
+  radiusLine.attr(&quot;y2&quot;, nowY);
+  vis.selectAll(&quot;#dot&quot;)
+    .attr(&quot;transform&quot;, &quot;translate(&quot; + yline + &quot;,&quot; + xline + &quot;)&quot;)
+  vis.select(&quot;#xline&quot;)
+    .attr(&quot;transform&quot;, &quot;translate(0,&quot; + xline + &quot;)&quot;);
+  vis.select(&quot;#yline&quot;)
+    .attr(&quot;transform&quot;, &quot;translate(&quot; + yline + &quot;,0)&quot;);
+    
+});
+
+var change = function() {
+  console.log(arguments);
+}
+
+var newPolarFunc = function(func) {
+  polarActive = func;
+  xFunc = xPolar(polarActive);
+  yFunc = yPolar(polarActive);
+  drawMyShape();
+}
+
+d3.selectAll(&quot;#circle&quot;).on(&quot;change&quot;, function() { 
+  newPolarFunc(polarCircle);
+});
+
+d3.selectAll(&quot;#square&quot;).on(&quot;change&quot;, function() { 
+  newPolarFunc(polarSquare);
+});
+
+d3.selectAll(&quot;#diamond&quot;).on(&quot;change&quot;, function() { 
+  newPolarFunc(polarDiamond);
+});
+
+d3.selectAll(&quot;#polarAsin&quot;).on(&quot;change&quot;, function() { 
+  newPolarFunc(polarAsin);
+});
+
+d3.selectAll(&quot;#yourFunction&quot;).on(&quot;change&quot;, function() { 
+    text = document.getElementById(&quot;textFunction&quot;).value
+    newPolarFunc(Function(&quot;t&quot;, text));
+});
+
+
+&lt;/script&gt;
+</content>
+ </entry>
+ 
+</feed>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ <title>yuvalg/blog object</title>
+ <link href="http://yuvalg.com/tag/object.html" rel="self"/>
+ <link href="http://yuvalg.com/tag/object.html"/>
+ <updated>2013-08-13T16:58:22+00:00</updated>
+ <id>http://yuvalg.com/tag/object.html</id>
+ <author>
+   <name>Yuval Greenfield</name>
+ </author>
+ 
+ <entry>
+   <title>Python Programmers Writing Javascript Beware</title>
+   <link href="http://yuvalg.com/2009/11/09/python-programmers-writing-javascript-beware"/>
+   <updated>2009-11-09T07:38:33+00:00</updated>
+   <id>http://yuvalg.com/2009/11/09/python-programmers-writing-javascript-beware</id>
+   <content type="html">Call me silly for not reading the docs, but this bug was very hard to find. Dictionaries in python are NOT the same thing in javascript. The curly braces mean it's an &amp;quot;object literal&amp;quot; and the keys don't need the quotation marks. For example:
+
+var x = { NAME: 123, Something: &amp;quot;ok&amp;quot;}
+
+Is the same as the following code:
+
+var x = {}
+x[&amp;#39;NAME&amp;#39;] = 123
+x[&amp;#39;Something&amp;#39;] = &amp;quot;ok&amp;quot;
+
+Which means that if you had a variable named &amp;quot;NAME&amp;quot; and you expected it's contents to be the key, then you're going to have a royally hard to find bug (especially when developing for an already obfuscated framework such as Google Wave).
+
+This is even worse because JSON causes you to believe the quotation marks are needed. If there's a place to file a JS enhancement proposal, I would, but I doubt this inconsistency would annoy anyone but a pythonista.</content>
+ </entry>
+ 
+</feed>

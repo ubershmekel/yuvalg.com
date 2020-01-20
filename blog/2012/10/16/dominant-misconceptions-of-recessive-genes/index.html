@@ -1,0 +1,138 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>Dominant misconceptions of recessive genes</title>
+   <link rel="shortcut icon" href="/key_y.png" />
+   <meta name="author" content="Yuval Greenfield" />
+   <link href="http://feeds.feedburner.com/yuvalg/blog" rel="alternate" title="your title" type="application/atom+xml" />
+
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="http://yuvalg.com/blog/assets/themes/tom/css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="http://yuvalg.com/blog/assets/themes/tom/css/screen.css" type="text/css" media="screen, projection" />
+
+   <!-- Typekit 
+   <script type="text/javascript" src="http://use.typekit.com/jpd0pfm.js"></script>
+   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>-->
+</head>
+<body>
+
+  <div class="site">
+    <div class="title">
+      <ul class="nav">
+        <li>
+            <a id="brand" href="http://yuvalg.com/blog">yuvalg/blog</a>
+        </li>
+        
+        
+
+
+  
+    
+      
+      	
+      	<li><a href="http://yuvalg.com/blog/categories.html">categories</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="http://yuvalg.com/blog/tags.html">tags</a></li>
+      	
+      
+    
+  
+
+
+
+      </ul>
+      <!--a class="extra" href="http://yuvalg.com/blog/archive.html">Archive</a>
+      <a class="extra" href="http://yuvalg.com/blog">Pages</a>
+      <a class="extra" href="http://yuvalg.com/blog/categories.html">categories</a>
+      <a class="extra" href="http://yuvalg.com/blog/tags.html">tags</a-->
+    </div>
+  
+    
+
+<div class="post">
+  <h1>Dominant misconceptions of recessive genes</h1>
+  <p class="meta">
+    16 October 2012 
+    
+  </p>
+  I still remember my 10th grade Biology teacher explaining that because blonde hair is a recessive trait it will slowly vanish off the face of the earth. Recently I read a news article with a similar claim, and had an argument with a few biology and genetics majors. So I wrote a simulation.
+
+<a title="TraitSim" href="http://yuvalg.com/traitsim/">TraitSim</a> is an animated toy for exploring random, neutral gene proliferation with brown and blue eyes as an example. I also wrote a <a title="python simulation of genetic drift" href="https://github.com/ubershmekel/traitsim/blob/master/simulate.py">python version of the simulation</a> and ran it tens of thousands of times. Thanks <a title="PyPy" href="http://pypy.org/">pypy for the <strong>8.3x</strong> speedup</a>! Surprisingly the chance to win the gene-race is linear with the gene's initial prevalence as can be seen in the following graph thanks to <a title="Matplotlib" href="http://matplotlib.org/">matplotlib</a>.
+
+<img class="alignnone" title="chance of going extinct" alt="" src="http://i.imgur.com/jb4QN.png" height="615" width="815" />
+
+The thing with dominance is that it affects the gene expression which can be seen in the following graph:
+
+<img class="alignnone" title="prevalence of trait vs gene" alt="" src="http://i.imgur.com/Z4LM4.png" height="615" width="815" />
+
+And here's <a title="graph generating source matplotlib" href="https://github.com/ubershmekel/traitsim/blob/master/graphs.py">the source that generated these from the data</a>. There's more information in the <a title="TraitSim Page" href="http://ubershmekel.github.com/traitsim/">project page on github</a>. These github pages are strange creatures which I'm not sure how to work with yet. Can I modify the CSS or structure somehow without losing the benefit of the page generator?
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>13 Aug 2013</span> &raquo; <a href="http://yuvalg.com/blog/2013/08/13/d3js-shape-projections">Shape Projections with D3.js</a></li>
+    
+      <li><span>07 Aug 2013</span> &raquo; <a href="http://yuvalg.com/blog/2013/08/07/learning-some-lua">Learning Some Lua</a></li>
+    
+      <li><span>07 Oct 2012</span> &raquo; <a href="http://yuvalg.com/blog/2012/10/07/is-selling-placebos-ethical">Is selling placebos ethical?</a></li>
+    
+  </ul>
+</div>
+
+
+
+
+  <script>
+var idcomments_acct = '123abc';
+var idcomments_post_id;
+var idcomments_post_url;
+</script>
+<script type="text/javascript" src="http://www.intensedebate.com/js/genericLinkWrapperV2.js"></script>
+
+
+
+
+
+
+  
+    <div class="footer">
+      <div class="contact">
+        <p>
+          Yuval Greenfield<br />
+          Arts and bits<br />
+          <a href='mailto:ubershmekel@gmail.com'>ubershmekel@gmail.com</a>
+        </p>
+      </div>
+      <div class="contact">
+        <p>
+          <a href="http://yuvalg.com/">yuvalg.com/</a><br />
+          <a href="http://github.com/ubershmekel/">github.com/ubershmekel</a><br />
+          <a href="http://twitter.com/ubershmekel/">twitter.com/ubershmekel</a><br />
+        </p>
+      </div>
+      <div class="rss">
+        <a href="http://feeds.feedburner.com/yuvalg/blog">
+          <img src="http://yuvalg.com/blog/assets/themes/tom/images/rss.png" alt="Subscribe to RSS Feed" />
+        </a>
+      </div>
+    </div>
+  </div>
+  <!--a href="http://github.com/ubershmekel"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a-->
+
+  
+</body>
+</html>
+

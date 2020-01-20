@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ <title>yuvalg/blog audio</title>
+ <link href="http://yuvalg.com/tag/audio.html" rel="self"/>
+ <link href="http://yuvalg.com/tag/audio.html"/>
+ <updated>2013-08-13T16:58:22+00:00</updated>
+ <id>http://yuvalg.com/tag/audio.html</id>
+ <author>
+   <name>Yuval Greenfield</name>
+ </author>
+ 
+ <entry>
+   <title>Introducing Absolute Ratio</title>
+   <link href="http://yuvalg.com/2012/04/28/introducing-absolute-ratio"/>
+   <updated>2012-04-28T11:56:27+00:00</updated>
+   <id>http://yuvalg.com/2012/04/28/introducing-absolute-ratio</id>
+   <content type="html">Let's define the &lt;strong&gt;absolute ratio&lt;/strong&gt; for positive numbers:
+
+&lt;img class=&quot; alignnone&quot; title=&quot;Absolute Ratio&quot; src=&quot;http://i.imgur.com/TvspG.gif&quot; alt=&quot;abs_ratio(x) = 1 / x when x &amp;lt; 1, otherwise: x&quot; width=&quot;89&quot; height=&quot;55&quot; /&gt;
+
+When x is smaller than 1 return 1 / x, otherwise return x. Here are a few example values:
+&lt;table&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;th&gt;x&lt;/th&gt;
+&lt;th&gt;abs_ratio(x)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;0.5&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;0.2&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+And a graph:
+
+&lt;img class=&quot;alignnone&quot; title=&quot;Absolute Ratio Graph&quot; src=&quot;http://i.imgur.com/5OE27.gif&quot; alt=&quot;Absolute Ratio Graph&quot; width=&quot;300&quot; height=&quot;196&quot; /&gt;
+
+Another spelling for the same operator would take 2 positive numbers and give their absolute ratio:
+
+&lt;img class=&quot;alignnone&quot; title=&quot;Absolute ratio with two variables definition&quot; src=&quot;http://i.imgur.com/iOCZY.png&quot; alt=&quot;&quot; width=&quot;511&quot; height=&quot;160&quot; /&gt;
+
+And a graph:
+
+&lt;a href=&quot;http://imgur.com/a/YjoZA&quot;&gt;&lt;img class=&quot;alignnone&quot; title=&quot;Absolute ratio in 3D&quot; src=&quot;http://i.imgur.com/3PIjD.png&quot; alt=&quot;Absolute ratio in 3D&quot; width=&quot;489&quot; height=&quot;369&quot; /&gt;&lt;/a&gt;
+&lt;h2&gt;Use case examples&lt;/h2&gt;
+&lt;ul&gt;
+	&lt;li&gt;Music and audio - an octave of a frequency F is 2F. More generally a harmony of a frequency F is N*F where N is a natural number. To decide if one frequency is a harmony of another we just need to get their absolute ratio and see if it's whole. E.g. if abs_ratio(F1, F2) == 2 they're octaves. If abs_ratio(F1, F2) is whole - they're harmonies.&lt;/li&gt;
+	&lt;li&gt;Computer vision - to match shapes that have similar dimensions e.g. their width is only 10% larger or smaller. We don't care which is the bigger or smaller, we just want to know if 0.91 &amp;lt; W1 / W2 &amp;lt; 1.1 which may be easier to pronounce as abs_ratio(W1, W2) &amp;lt; 1.1&lt;/li&gt;
+	&lt;li&gt;Real life - when we see 2 comparable objects we're more likely to say one is &quot;three times the other&quot; vs &quot;one third the other&quot;. Either way in our brains both statements mean the same concept. We think in absolute ratios.&lt;/li&gt;
+	&lt;li&gt;General case - When you want to know if X is K times bigger than Y or vice versa and you don't care which is the bigger one.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Interesting Properties&lt;/h2&gt;
+&lt;div&gt;
+&lt;ul&gt;
+	&lt;li&gt;abs_ratio(Y / X) == abs_ratio(X / Y)&lt;/li&gt;
+	&lt;li&gt;log(abs_ratio(X)) = abs(log(X))&lt;/li&gt;
+	&lt;li&gt;log(abs_ratio(Y / X)) = abs(log(Y / X)) = abs(log(Y) - log(X))&lt;/li&gt;
+	&lt;li&gt;You can see from the above that absolute ratio is somewhat of an absolute value for log-space.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;What's next for absolute ratio&lt;/h2&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+	&lt;li&gt;I'd love to hear more use cases and relevant contexts.&lt;/li&gt;
+	&lt;li&gt;What would be the written symbol or notation?&lt;/li&gt;
+	&lt;li&gt;How can we get this operator famous enough to be of use to mainstream minds?&lt;/li&gt;
+	&lt;li&gt;About negative numbers and zero - right now that's undefined as I don't see a use case for that domain.&lt;/li&gt;
+	&lt;li&gt;For some code and graphs in python checkout &lt;a href=&quot;https://github.com/ubershmekel/abs_ratio&quot;&gt;https://github.com/ubershmekel/abs_ratio&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+EDIT - I'm growing to like the binary form of the operator more so from now on let's call it like this in python:
+&lt;pre&gt;def abs_ratio(a, b):
+    return a / b if a &amp;gt; b else b / a&lt;/pre&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Android API Bugs - AudioRecord</title>
+   <link href="http://yuvalg.com/2011/12/10/android-api-bugs-audiorecord"/>
+   <updated>2011-12-10T19:52:33+00:00</updated>
+   <id>http://yuvalg.com/2011/12/10/android-api-bugs-audiorecord</id>
+   <content type="html">When asking android to record from the mic to a buffer you have to do something like:
+&lt;pre&gt;mRecorder = new AudioRecord(AudioSource.MIC, RATE, CHANNEL_MODE,
+ ENCODING, BUFFER_SIZE);
+if (mRecorder.getState() != AudioRecord.STATE_INITIALIZED) {
+    // fail and bail
+}
+mRecorder.startRecording();
+bytesRead = mRecorder.read(audioBuffer, offsetInBuffer, readSize);
+mRecorder.stop();
+mRecorder.release();&lt;/pre&gt;
+Now the bug that drove me mad was that read() returned zero when I left the application (using the home button) and immediately returned to it. Luckily I was toying around with BUFFER_SIZE when I noticed
+&lt;pre&gt;mRecorder.getState()&lt;/pre&gt;
+failed when BUFFER_SIZE was set to 0x100, I guessed it was too small and indeed one must call getMinBufferSize() to find out &lt;a title=&quot;AudioRecord instantiation documentation&quot; href=&quot;http://developer.android.com/reference/android/media/AudioRecord.html#AudioRecord(int, int, int, int, int)&quot;&gt;the limits of AudioRecord instantiation as documented&lt;/a&gt;.
+
+Don't use getMinBufferSize() + 1 btw as that throws an IllegalArgumentException at AudioRecorder construction:
+&lt;pre&gt;12-10 21:49:33.359: E/AndroidRuntime(28950): java.lang.IllegalArgumentException: Invalid audio buffer size.&lt;/pre&gt;
+Using something like &lt;strong&gt;getMinBufferSize() + 100&lt;/strong&gt; does work at first but when you use the home-button to leave and return it &lt;strong&gt;causes the read() returning zero bug from time to time&lt;/strong&gt;. Not always, but from time to time. Also make sure you release() the recorder because forgetting that will also allow you to construct the recorder but reads will fail.
+
+I can't begin to describe how frustrating finding that bug was.
+
+Now audio programmers should know they're supposed to read a size that's a divisor of the buffer size, yes. This doesn't excuse the API from behaving itself and throwing relevant exceptions and errors that are debuggable and documented. This was SdkLevel 8 btw. Things like this make you feel as though these are the guys that wrote the api:
+&lt;div&gt;&lt;/div&gt;
+&lt;img class=&quot;alignnone&quot; title=&quot;Running and firing anywhere&quot; src=&quot;http://i.imgur.com/E0iVN.gif&quot; alt=&quot;&quot; width=&quot;405&quot; height=&quot;228&quot; /&gt;
+
+Eventually the working code will be pushed to the &lt;a title=&quot;Android Tuner&quot; href=&quot;http://code.google.com/p/androidtuner/source/browse/&quot;&gt;android tuner google code project&lt;/a&gt; for your enjoyment.</content>
+ </entry>
+ 
+ <entry>
+   <title>Duplicating Streams of Audio with Python</title>
+   <link href="http://yuvalg.com/2011/12/07/duplicating-streams-of-audio-with-python"/>
+   <updated>2011-12-07T11:08:55+00:00</updated>
+   <id>http://yuvalg.com/2011/12/07/duplicating-streams-of-audio-with-python</id>
+   <content type="html">&lt;p&gt;This morning I made a &lt;a title=&quot;Duplicate or replicate audio streams using pyaudio&quot; href=&quot;http://codepad.org/vgEZbU3y&quot;&gt;python script that uses pyaudio to read from one audio device and pipe to the next, I call it replicate.py&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;This is a really old problem for me, ever since I first had 4.1 speakers and winamp only played on the front 2. Nowadays I just want VLC to play on both the TV and the computer speakers without switching between audio output modules in the preferences or fiddling with the default audio output in Windows 7.&lt;/p&gt;&lt;p&gt;&lt;a title=&quot;PyAudio&quot; href=&quot;http://people.csail.mit.edu/hubert/pyaudio/&quot;&gt;PyAudio&lt;/a&gt; was really nice and easy to use, I just wish asynch io was added so I could lower the latency a bit as I'm getting 240 ms right now which is very far from perfect.&lt;/p&gt;</content>
+ </entry>
+ 
+</feed>

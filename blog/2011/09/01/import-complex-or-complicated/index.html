@@ -1,0 +1,268 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>import - complex or complicated?</title>
+   <link rel="shortcut icon" href="/key_y.png" />
+   <meta name="author" content="Yuval Greenfield" />
+   <link href="http://feeds.feedburner.com/yuvalg/blog" rel="alternate" title="your title" type="application/atom+xml" />
+
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="http://yuvalg.com/blog/assets/themes/tom/css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="http://yuvalg.com/blog/assets/themes/tom/css/screen.css" type="text/css" media="screen, projection" />
+
+   <!-- Typekit 
+   <script type="text/javascript" src="http://use.typekit.com/jpd0pfm.js"></script>
+   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>-->
+</head>
+<body>
+
+  <div class="site">
+    <div class="title">
+      <ul class="nav">
+        <li>
+            <a id="brand" href="http://yuvalg.com/blog">yuvalg/blog</a>
+        </li>
+        
+        
+
+
+  
+    
+      
+      	
+      	<li><a href="http://yuvalg.com/blog/categories.html">categories</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="http://yuvalg.com/blog/tags.html">tags</a></li>
+      	
+      
+    
+  
+
+
+
+      </ul>
+      <!--a class="extra" href="http://yuvalg.com/blog/archive.html">Archive</a>
+      <a class="extra" href="http://yuvalg.com/blog">Pages</a>
+      <a class="extra" href="http://yuvalg.com/blog/categories.html">categories</a>
+      <a class="extra" href="http://yuvalg.com/blog/tags.html">tags</a-->
+    </div>
+  
+    
+
+<div class="post">
+  <h1>import - complex or complicated?</h1>
+  <p class="meta">
+    01 September 2011 
+    
+  </p>
+  In Python, life is really easy when all your .py files are in one directory. The moment you want to organize your code into folders there's a wall of challenges you have to climb. I believe this is an issue that can be alleviated with one small fix.
+
+Here's a comparison of how a developer shares code across a project in C/C++ and Python:
+<table>
+<tbody>
+<tr>
+<td></td>
+<td><strong>C/C++</strong></td>
+<td><strong>Python</strong></td>
+</tr>
+<tr>
+<td><strong>Forms</strong></td>
+<td>#include&nbsp;&lt;from_env_dirs_first&gt;
+#include&nbsp;"from_local_dir_first"
+#include&nbsp;"abs_or_rel_file_system_path"</td>
+<td>import module
+import module as alias
+from module import var
+from module import *
+from ..package_relative_path import module
+from package.absolute_path import module
+try:
+&nbsp;&nbsp;&nbsp;&nbsp;import one_thing
+except ImportError:
+&nbsp;&nbsp;&nbsp;&nbsp;import another as one_thing</td>
+</tr>
+<tr>
+<td><strong>Namespacing</strong></td>
+<td><a title="JavaScript’s global scope is a public toilet. You can’t avoid going in there but try to limit your contact with surfaces when you do." href="http://uberpython.wordpress.com/2009/11/13/javascripts-global-scope-and-google-wave/">Public toilet</a> - everything included is global.</td>
+<td>"Namespaces are one honking great idea -- let's do more of those!"
+Seriously, module encapsulation is fantastic.</td>
+</tr>
+<tr>
+<td><strong>Helpful extra knowledge</strong></td>
+<td>Makefiles/vcproj configurations of paths
+#ifdef</td>
+<td>sys.path
+__all__
+__path__</td>
+</tr>
+<tr>
+<td><strong>Mandatory extra</strong>
+<strong> knowledge ("Gotchas")</strong></td>
+<td>#pragma once (or the equivalent #ifdef)
+certain things aren't allowed in .h files
+please don't use absolute paths</td>
+<td>__init__.py
+syntax for intra-package imports
+modules intended for use as the main module of a Python application must always use absolute imports.</td>
+</tr>
+</tbody>
+</table>
+Now this isn't an exhaustive list as I want to discuss just a small subset from the above table. Also note that I didn't go into "ctypes", "#pragma comment(lib...)", etc. as we're talking about sharing code, not binaries.
+
+For the 6 years of keyboard tapping I've done in C and Python, I never once was confused as to how to access code between directories in C; Python on the other hand has gotten me quite a few times and I always need to rertfm. And I consider myself far more interested and fluent in Python than in C/C++. This may be just a problem with my head, but I'd like to vent either way.
+<h2>Blah, blah, what's the problem?</h2>
+Skip this section if you've already had experience with said problem, I'm sure it's as painful to read as it was to write.
+
+Python has this really elegant solution for one-folder-mode, "import x" just gives you what you expected, either from the standard library (sys.path, etc) or your local directory. If you have "os.py" in that local directory then you shadow out the standard "import os". Once you mix directories in there, python is suddenly afraid of shadowing and you can't import things from a folder named "os" unless it has an "__init__.py". So shadowing here is allowed and there not. If you want to access modules from the outside (dot dot and beyond), then you have to be in a package, use sys.path, os.chdir or maybe <a title="import_file" href="http://uberpython.wordpress.com/2011/06/08/a-new-module-import_file/">implement file-system-imports</a> on your own.
+
+Personally, I find myself doing this design pattern a lot:
+<ol>
+	<li>The App directory</li>
+<ol>
+	<li>main_app_entry.py</li>
+	<li>framework</li>
+<ol>
+	<li>general_useful_things.py</li>
+	<li>more_frameworkey_goodness.py</li>
+</ol>
+	<li>components</li>
+<ol>
+	<li>this_solves_a_problem.py</li>
+	<li>another_tool.py</li>
+</ol>
+</ol>
+</ol>
+I usually have an "if __name__ == '__main__':" in my modules and there I have some sort of test, utility function, or a train of code-thought not yet organized.
+
+How can another_tool.py access general_useful_things.py? First things first - __init__.py everywhere! After trying a few ways to do the import - <a title="attempting to import" href="http://codepad.org/dQo20KGr">here are a few results</a>.
+
+So what's needed for another_tool to import general_useful_things:
+<ul>
+	<li>"from framework import general_useful_things" works in another_tool.py if we only use main_app_entry.py, it <strong>does not work</strong> if we run another_tool.py directly. Does this mean __name__ == "__main__" is a useless feature I should ignore?</li>
+	<li>Here's the rest of the list of failed attempts:
+<pre>#from app.framework import general_useful_things
+#from .app.framework import general_useful_things
+#from ..framework import general_useful_things
+#from .framework import general_useful_things
+#from . import framework
+#from .. import framework</pre>
+</li>
+	<li>And this little recipe works in most cases:
+<pre>SRC_DIR = os.path.dirname(os.path.abspath(__file__))
+os.sys.path.append(os.path.join(SRC_DIR, '..', 'framework'))
+import general_useful_things</pre>
+</li>
+</ul>
+If you want to tinker around with that example directory structure here you go: <a title="A simple placeholder package/app" href="http://dl.dropbox.com/u/440522/importing%20is%20hard.zip">http://dl.dropbox.com/u/440522/importing%20is%20hard.zip</a>
+<h2><span class="Apple-style-span" style="font-size:20px;">Python doesn't have file-system imports</span></h2>
+To summarize my rant - python has this mantra that your import lines should be concise and thus a complex searching import mechanism was built to avoid filesystem-path-like imports. The price we pay for that searching import mechanism is that you really need to learn how to use its implicit kinks and even then it's not that fun to use.
+<h2>The theoretical ideal solution</h2>
+"import x" always imports from sys.path etc, if you want to import something local you use "import ./local_dir_module", the forward slash signals the parser and the developer that a file-system import is taking place. "local_dir_module.py" needs to be in the current folder for the above example to work. Just in case it isn't clear, the module "local_dir_module" will be accessed as usual, without the ".py", dots or slashes. The import statement is the only place where slashes are allowed and the result of the import is a module in the stater's namespace.
+
+That's as explicit, simple, concise and useful as it gets.
+<h2>The practical solution</h2>
+I don't mind if "import x" still works as it does today, the main point is that now you can do things like "import ../../that_module_from_far_away". So you can actually keep python 100% backwards compatible and still add this feature.
+
+Concerning the backslash/forwardslash debate - I'm a windows guy and I don't mind using the forward slash for Python, Windows doesn't mind it either ("/" only fails in a few specific scenarios like cmd autocomplete). Another fun fact is you can avoid littering your app with __init__.py if you aren't going to be accessed using that big old search-import-package mechanism.
+
+I realize this whole fiasco might raise the question of absolute path imports, in my opinion these shouldn't be allowed. Absolue includes in C/C++ destroy portability, impose annoying folder structure constraints and they're ever-so tempting at late hours where you don't really want to calculate the amount of ".." needed. For the special cases that might still need this, the instrumentation existing in python and e.g. <a title="import_file to import python modules from a path" href="http://uberpython.wordpress.com/2011/06/08/a-new-module-import_file/">import_file</a> are enough.
+<h2>The good things about __init__.py</h2>
+Many packages use __init__.py as a way to organize their API's to the outside world. Your package folder can have tons of scripts and only what you included in __init__.py is exposed when your folder is imported directly (eg <a title="json in the python standard library" href="http://hg.python.org/cpython/file/7b83d2c1aad9/Lib/json">json </a>in the std-library). So don't take this as an attack on __init__.py, it's just that the import mechanism seems incomplete in my eyes. Just to be a bit specific - package maintainers don't need to do stuff like "import os as _os" to avoid littering their module namespace when they use __init__.py as their API, that's a nice thing to have.
+
+Also, I'd like to hear other justifications as I'm sure more than a few exist.
+<h2>The drawbacks of slashes and file-system-imports</h2>
+<ol>
+	<li>From a compatibility viewpoint, old packages aren't affected as we're introducing the "forward slash" in whatever future python version. Whoever uses this feature won't be compatible with older python versions.</li>
+	<li>Windows users and *nix users might argue over whether or not to allow backslashes, I think it's not that important. Though the internet has forward slashes, so that makes it 2 platforms against 1.</li>
+	<li>It's uglier (though today's relative imports are just as ugly and harder to learn).</li>
+	<li>People might ask for absolute imports.</li>
+	<li>Dividing the community and its packages into "file-system-importers" and "package-search-importers".</li>
+	<li>*reserved for complaints in the comments*</li>
+</ol>
+<h2><span class="Apple-style-span" style="font-size:20px;">Summary</span></h2>
+I've tried to do packages the existing python way and I think we can do better. The __init__.py based search mechanism works great for whatever is in sys.path, though I believe its pains outweigh its gains for organizing code. Here's to hoping there's a chance for relative-file-system imports in standard python.
+<h2><span class="Apple-style-span" style="font-size:20px;">References</span></h2>
+<a href="http://www.python.org/dev/peps/pep-0328/">http://www.python.org/dev/peps/pep-0328/</a>
+
+<a href="http://en.cppreference.com/w/cpp/preprocessor/include">http://en.cppreference.com/w/cpp/preprocessor/include</a>
+
+<a href="http://effbot.org/zone/import-confusion.htm">http://effbot.org/zone/import-confusion.htm</a> - January 07, 1999 - "There are Many Ways to Import a Module" - "The <em>import</em> and <em>from-import</em> statements are a constant cause of serious confusion for newcomers to Python"
+
+<a href="http://stackoverflow.com/questions/448271/what-is-init-py-for">http://stackoverflow.com/questions/448271/what-is-init-py-for
+</a>
+
+<a href="http://stackoverflow.com/questions/1260792/python-import-a-file-from-a-subdirectory">http://stackoverflow.com/questions/1260792/python-import-a-file-from-a-subdirectory</a><a href="http://stackoverflow.com/questions/448271/what-is-init-py-for"> </a>
+
+<a href="http://docs.python.org/tutorial/modules.html">http://docs.python.org/tutorial/modules.html</a>
+
+<a href="http://www.slideshare.net/stuartmitchell/python-relative-imports-just-let-me-use-the-file-system-please">http://www.slideshare.net/stuartmitchell/python-relative-imports-just-let-me-use-the-file-system-please</a>
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>13 Aug 2013</span> &raquo; <a href="http://yuvalg.com/blog/2013/08/13/d3js-shape-projections">Shape Projections with D3.js</a></li>
+    
+      <li><span>07 Aug 2013</span> &raquo; <a href="http://yuvalg.com/blog/2013/08/07/learning-some-lua">Learning Some Lua</a></li>
+    
+      <li><span>16 Oct 2012</span> &raquo; <a href="http://yuvalg.com/blog/2012/10/16/dominant-misconceptions-of-recessive-genes">Dominant misconceptions of recessive genes</a></li>
+    
+  </ul>
+</div>
+
+
+
+
+  <script>
+var idcomments_acct = '123abc';
+var idcomments_post_id;
+var idcomments_post_url;
+</script>
+<script type="text/javascript" src="http://www.intensedebate.com/js/genericLinkWrapperV2.js"></script>
+
+
+
+
+
+
+  
+    <div class="footer">
+      <div class="contact">
+        <p>
+          Yuval Greenfield<br />
+          Arts and bits<br />
+          <a href='mailto:ubershmekel@gmail.com'>ubershmekel@gmail.com</a>
+        </p>
+      </div>
+      <div class="contact">
+        <p>
+          <a href="http://yuvalg.com/">yuvalg.com/</a><br />
+          <a href="http://github.com/ubershmekel/">github.com/ubershmekel</a><br />
+          <a href="http://twitter.com/ubershmekel/">twitter.com/ubershmekel</a><br />
+        </p>
+      </div>
+      <div class="rss">
+        <a href="http://feeds.feedburner.com/yuvalg/blog">
+          <img src="http://yuvalg.com/blog/assets/themes/tom/images/rss.png" alt="Subscribe to RSS Feed" />
+        </a>
+      </div>
+    </div>
+  </div>
+  <!--a href="http://github.com/ubershmekel"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a-->
+
+  
+</body>
+</html>
+

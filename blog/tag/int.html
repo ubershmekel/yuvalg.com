@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ <title>yuvalg/blog int</title>
+ <link href="http://yuvalg.com/tag/int.html" rel="self"/>
+ <link href="http://yuvalg.com/tag/int.html"/>
+ <updated>2013-08-13T16:58:22+00:00</updated>
+ <id>http://yuvalg.com/tag/int.html</id>
+ <author>
+   <name>Yuval Greenfield</name>
+ </author>
+ 
+ <entry>
+   <title>Where's toString?</title>
+   <link href="http://yuvalg.com/2009/08/25/wheres-tostring"/>
+   <updated>2009-08-25T19:38:35+00:00</updated>
+   <id>http://yuvalg.com/2009/08/25/wheres-tostring</id>
+   <content type="html">Why don't python integers have a smart toString method like java/javascript? It's easy to convert strings into numbers using int(str_whatever) or float(str_whatever) but to convert them back you have only the decimal system (using str(number) or &quot;%d&quot; % number). In case you want to convert to binary, base32, base36, base64, you're gonna have to write your own conversion function. Batteries included?
+
+Use either:
+&lt;a style=&quot;text-decoration:none;&quot; title=&quot;radix base change python&quot; href=&quot;http://pastebin.com/f54dd69d6&quot;&gt; http://pastebin.com/f54dd69d6&lt;/a&gt;
+
+&lt;a title=&quot;radix base change python&quot; href=&quot;http://code.activestate.com/recipes/65212/&quot;&gt; http://code.activestate.com/recipes/65212/&lt;/a&gt;
+
+&lt;a href=&quot;http://code.activestate.com/recipes/111286/&quot;&gt;http://code.activestate.com/recipes/111286/&lt;/a&gt;
+
+I added a feature request, lets see if it gets completely shot down:
+
+&lt;a href=&quot;http://bugs.python.org/issue6783&quot;&gt;http://bugs.python.org/issue6783&lt;/a&gt;</content>
+ </entry>
+ 
+</feed>

@@ -1,0 +1,350 @@
+/* CSS RESET
+   http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0b1 | 201101 
+   NOTE: WORK IN PROGRESS
+   USE WITH CAUTION AND TEST WITH ABANDON */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: disc;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+/* remember to define visible focus styles! */
+:focus {
+	outline: 4px dotted #666;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+	text-decoration: none;
+}
+del {
+	text-decoration: line-through;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/***************************************************************************/
+
+/*****************************************************************************/
+/*
+/* Common
+/*
+/*****************************************************************************/
+
+/* Global Reset */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background-color: white;
+    font: 13.34px helvetica, arial, clean, sans-serif;
+    *font-size: small;
+    text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 0.5em;
+    margin-top: 1.5em;
+}
+
+h1 {
+    font-size: 200%;
+}
+
+h2 {
+    font-size: 150%;
+}
+
+p {
+    margin: 1em 0;
+}
+
+a {
+    color: #00a;
+}
+
+a:hover {
+    color: black;
+}
+
+a:visited {
+    color: #a0a;
+}
+
+table {
+    font-size: inherit;
+    font: 100%;
+    border: 3px solid #FFF;
+    padding: 0.5em;
+    border-collapse: collapse;
+}
+
+table tr td, th {
+    padding: 0.5em;
+    border: 1px dotted;
+}
+
+/*****************************************************************************/
+/*
+/* Home
+/*
+/*****************************************************************************/
+
+ul.posts {
+    list-style-type: none;
+    margin-bottom: 2em;
+}
+
+ul.posts li {
+    line-height: 1.75em;
+}
+
+ul.posts span {
+    color: #666;
+    font-family: Monaco, "Courier New", monospace;
+    font-size: 80%;
+}
+
+/*****************************************************************************/
+/*
+/* Site
+/*
+/*****************************************************************************/
+
+.site {
+    font-size: 110%;
+    text-align: justify;
+    width: 40em;
+    margin: 3em auto 2em auto;
+    line-height: 1.5;
+}
+
+.nav {
+    float: left;
+}
+
+.nav li {
+    list-style: none;
+    padding-right: 20px;
+    float: left;
+}
+
+.title {
+    color: #a00;
+    font-weight: bold;
+    margin-bottom: 2em;
+    height: 1em;
+}
+
+#brand {
+    color: #a00;
+    text-decoration: none;
+}
+
+#brand:hover {
+    color: black;
+}
+
+.site .title ul li a {
+    color: #aaa;
+    text-decoration: none;
+}
+
+.site .title ul li a:hover {
+    color: black;
+}
+
+.site .meta {
+    color: #999;
+}
+
+.site .footer {
+    font-size: 80%;
+    color: #666;
+    border-top: 4px solid #eee;
+    margin-top: 2em;
+    overflow: hidden;
+}
+
+.site .footer .contact {
+    float: left;
+    margin-right: 3em;
+}
+
+.site .footer .contact a {
+    color: #8085C1;
+}
+
+.site .footer .rss {
+    margin-top: 1.1em;
+    margin-right: -.2em;
+    float: right;
+}
+
+.site .footer .rss img {
+    border: 0;
+}
+
+.site .title ul li.active a {
+    color: #444;
+}
+
+/*****************************************************************************/
+/*
+/* Posts
+/*
+/*****************************************************************************/
+
+.post {
+    border-bottom: 1px dotted black;
+    padding-bottom: 1em;
+    text-align: left;
+}
+
+  /* standard */
+
+.post pre {
+    border: 2px dashed #ccc;
+    padding: 0 .4em;
+    margin: 10px;
+    font-family: monospace;
+}
+
+
+.post ul, .post ol, .content ul, .content ol {
+    margin-left: 2em;
+}
+
+.post code {
+    border: 1px solid #ddd;
+    background-color: #eef;
+    font-size: 85%;
+    padding: 0 .2em;
+}
+
+.post pre code {
+    border: none;
+}
+
+.post img {
+    max-width: 97%;
+    height: auto;
+    display: block;
+    margin: 1em;
+}
+
+  /* terminal */
+
+.post pre.terminal {
+    border: 1px solid black;
+    background-color: #333;
+    color: white;
+}
+
+.post pre.terminal code {
+    background-color: #333;
+}
+
+#related {
+    margin-top: 2em;
+}
+
+#related h2 {
+    margin-bottom: 1em;
+}
+
+blockquote {
+    background: #f0f0f0;
+    border-left: 4px solid #666;
+    margin: 10px;
+    padding: 10px;
+    font-style: italic;
+}
+
+
+/** tags.html **/
+
+ul.tag_box {
+    list-style: none;
+    margin: 0;
+    padding: 5px 0;
+    overflow: hidden;
+}
+
+.tag_box.inline li {
+    margin: 0;
+    float: left;
+}
+
+.tag_box a {
+    padding: 3px 6px;
+    margin: 2px;
+    background: #EEE;
+    color: #005F6B;
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+.tag_box a:hover {
+    background-color: #FEE;
+}
+
+.tag_box a span {
+    vertical-align: super;
+    font-size: 0.8em;
+}
+
+
+h3 {
+    font-weight: bold;
+    font-size: 120%;
+}
+
+ul li {
+    margin: 0.5em;
+}

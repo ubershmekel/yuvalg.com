@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ <title>yuvalg/blog lua</title>
+ <link href="http://yuvalg.com/tag/lua.html" rel="self"/>
+ <link href="http://yuvalg.com/tag/lua.html"/>
+ <updated>2013-08-13T16:58:22+00:00</updated>
+ <id>http://yuvalg.com/tag/lua.html</id>
+ <author>
+   <name>Yuval Greenfield</name>
+ </author>
+ 
+ <entry>
+   <title>Learning Some Lua</title>
+   <link href="http://yuvalg.com/2013/08/07/learning-some-lua"/>
+   <updated>2013-08-07T18:30:46+00:00</updated>
+   <id>http://yuvalg.com/2013/08/07/learning-some-lua</id>
+   <content type="html">Dec 2012 I got into &lt;a href=&quot;http://www.lua.org/&quot;&gt;lua&lt;/a&gt; for some multiplatform (android/iOS) programming with &lt;a href=&quot;http://getmoai.com/&quot;&gt;MOAI&lt;/a&gt;. I was making a flood-it like game called &lt;a href=&quot;https://github.com/ubershmekel/omgcheese&quot;&gt;Gopher's Birthday&lt;/a&gt;. Though I abandoned the project for the time being, this was my experience with Lua.
+
+Lua did quite a few great things:
+&lt;ul&gt;
+	&lt;li&gt;Amazingly &lt;strong&gt;small&lt;/strong&gt; and minimalistic in an almost criminal fashion. This is part of what makes it so &lt;strong&gt;embeddable&lt;/strong&gt;. Some of the &quot;trivial&quot; missing things:
+&lt;ul&gt;
+	&lt;li&gt;No default recursive &quot;tostring&quot; for tables (kinda like dicts in python)&lt;/li&gt;
+	&lt;li&gt;No default recursive comparison of tables ({&quot;a&quot;:3} != {&quot;a&quot;:3})&lt;/li&gt;
+	&lt;li&gt;No default inheritance mechanism, roll out your own!&lt;/li&gt;
+	&lt;li&gt;No sets, no heaps, nothing, just tables.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+	&lt;li&gt;&lt;b&gt;Very fast&lt;/b&gt;, LuaJIT was pretty dominant on The Computer Language Benchmarks Game before the game removed alternative implementations.&lt;/li&gt;
+	&lt;li&gt;Metatables are a very smart solution for an oh-so complex problem. You can have all the fun of a fully dynamic language and keep the bare bones clean and simple for JIT optimizers.&lt;/li&gt;
+&lt;/ul&gt;
+But aside the great things this language has, there are quite a few nefarious warts.
+&lt;ul&gt;
+	&lt;li&gt;Undefined variables are defaulted as &lt;em&gt;nil&lt;/em&gt;. In Lua you might execute a typo and not even notice because &lt;em&gt;nil&lt;/em&gt; was a possible value for that variable. This can cause really sneaky bugs. E.g. it took me an hour to figure out that &lt;a title=&quot;Renaming of screen resolution variable&quot; href=&quot;https://github.com/moai/moai-dev/commit/23d7ac66678cc1db26db0ff8e88e36027ec50007&quot;&gt;MOAI renamed a certain value&lt;/a&gt; in its api, this bug would have been silly easy to debug if a MissingKeyError exploded.&lt;/li&gt;
+	&lt;li&gt;When you forget an &quot;end&quot; in a big lua file, may god have mercy on your soul. You're going to have to work very hard to find it because the compiler figures it out only at the end of the file. I do like braces btw so I think compilers should warn/error when the indentation seems silly.&lt;/li&gt;
+	&lt;li&gt;Two parameters to a function with the same name is allowed.
+&lt;pre&gt;
+&amp;gt; function f(x, x)
+&amp;gt;&amp;gt; print(x)
+&amp;gt;&amp;gt; end
+&amp;gt; f(1, 2)
+2
+&lt;/pre&gt;
+	&lt;/li&gt;
+	&lt;li&gt;Tuples, they sort of have them but don't. You can have multiple return values, though you can't assign them to a single object. At times their semantics are mind boggling, e.g. paint(color, getXY()) works but paint(getXY(), color) doesn't because multiple return value unpacking only happens for the last parameter. Go figure.&lt;/li&gt;
+&lt;/ul&gt;
+
+I wrote this rant 8 months ago so I hope I haven't presented anything wrong or outdated.
+
+In general, lua won't stop you from coding like an idiot. Errors pass silently in many unexpected places. But it is a small, wonderful, and useful little language.</content>
+ </entry>
+ 
+</feed>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ <title>yuvalg/blog google</title>
+ <link href="http://yuvalg.com/tag/google.html" rel="self"/>
+ <link href="http://yuvalg.com/tag/google.html"/>
+ <updated>2013-08-13T16:58:22+00:00</updated>
+ <id>http://yuvalg.com/tag/google.html</id>
+ <author>
+   <name>Yuval Greenfield</name>
+ </author>
+ 
+ <entry>
+   <title>The Google App Engine Glass Ceiling</title>
+   <link href="http://yuvalg.com/2012/01/06/gae-glass-ceiling"/>
+   <updated>2012-01-06T13:27:31+00:00</updated>
+   <id>http://yuvalg.com/2012/01/06/gae-glass-ceiling</id>
+   <content type="html">With the new billing arrangements, &lt;a title=&quot;Google app engine is expensive when you first start paying&quot; href=&quot;http://code.google.com/appengine/docs/billing.html&quot;&gt;each and every paid GAE app costs at least $2.10 per week which is supposedly $9 per month&lt;/a&gt; ($9.125 by my calculation) &lt;strong&gt;regardless of quota usage&lt;/strong&gt;. This cost does cover whatever quotas your app consumes and the regular free quotas are still &quot;free&quot;.
+
+Now I have a GAE app that sends 70-80 emails per day where the free limit is 100. I'd gladly switch over to the paid side of GAE just to be sure that if it ever passes the 100 mark I don't have any failed email requests but the price of that is 9$ per month. &lt;strong&gt;GAE is extremely expensive for apps that just barely brush the end of their free quotas&lt;/strong&gt;. In order to actually use the $9 per month minimum I'd have to send out 3000 emails per day (at $0.0001 per email).
+
+I don't know if the &lt;a title=&quot;Free email recipients has an extremely low cap&quot; href=&quot;http://code.google.com/appengine/docs/quotas.html#Mail&quot;&gt;free quota on email recipients is really low&lt;/a&gt; or if sending out an email is extremely cheap. Either way, &lt;strong&gt;GAE expects me to scale from 100 to 3000 while paying the price of 3000&lt;/strong&gt;. Who knows if I'll ever even reach that mark?
+
+If google keeps with this plan, I'm probably never going to start another GAE app that has a chance to grow. Every time I have a chance of hitting the quota limits I have 2 choices:
+&lt;ul&gt;
+	&lt;li&gt;Pay google and be screwed over for an indefinite amount of time until I reach the next landmark.&lt;/li&gt;
+	&lt;li&gt;Migrate to a cheaper shared hosting option until I reach the next landmark.&lt;/li&gt;
+&lt;/ul&gt;
+Thanks, but no thanks. That's the &lt;strong&gt;GAE glass ceiling.&lt;/strong&gt;
+&lt;h2&gt;Appendix&lt;/h2&gt;
+&lt;ul&gt;
+	&lt;li&gt;Other than this problem I do like GAE. It's a shame I have to leave it.&lt;/li&gt;
+	&lt;li&gt;I've made about 11 small python GAE apps. Only 2 of which ever reached the aforementioned glass ceiling.&lt;/li&gt;
+	&lt;li&gt;This issue shouldn't bother you if your app is already big enough to cost more than $9.&lt;/li&gt;
+	&lt;li&gt;Maybe google can't bill less than $9 per month? I doubt it, android apps can cost $0.99.&lt;/li&gt;
+	&lt;li&gt;A proposed solution: Google takes $9 of credit at a time from your google wallet and eats quotas out of that. When the $9 run out, it bills another 9. Sounds reasonable and &quot;don't be evil&quot; to me. Another thing that could be nice would be to allow multiple paid apps to feed from the same budget.&lt;/li&gt;
+&lt;/ul&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Youtube going to fullscreen skips bug</title>
+   <link href="http://yuvalg.com/2011/12/15/youtube-going-to-fullscreen-skips-bug"/>
+   <updated>2011-12-15T14:07:14+00:00</updated>
+   <id>http://yuvalg.com/2011/12/15/youtube-going-to-fullscreen-skips-bug</id>
+   <content type="html">Whenever I switch between fullscreen and back in this video &lt;a href=&quot;http://www.youtube.com/watch?v=lOTPCaItx3w&quot;&gt;http://www.youtube.com/watch?v=lOTPCaItx3w&lt;/a&gt; for example - youtube skips 2 seconds forward in time. Even while paused.
+
+I found two relevant issues:
+
+&lt;a href=&quot;http://www.google.com/support/forum/p/youtube/thread?tid=2960543d59021a08&amp;amp;hl=en&quot;&gt;http://www.google.com/support/forum/p/youtube/thread?tid=2960543d59021a08&amp;amp;hl=en&lt;/a&gt;
+
+&lt;a href=&quot;http://www.google.com/support/forum/p/youtube/thread?tid=134f7450b6d08d3c&amp;amp;hl=en&quot;&gt;http://www.google.com/support/forum/p/youtube/thread?tid=134f7450b6d08d3c&amp;amp;hl=en&lt;/a&gt;
+
+The first one suggests to disable flash's hardware acceleration which does work (right click the video and then click settings).
+
+But why should we do that?
+
+Also did I mention I dislike losing all the video I buffered in 360p when youtube auto-switches to 480p with fullscreen? I had to manually disable that too.
+
+¯\_(ಠ_ಠ)_/¯</content>
+ </entry>
+ 
+ <entry>
+   <title>The decline of google search</title>
+   <link href="http://yuvalg.com/2011/02/16/the-decline-of-google-search"/>
+   <updated>2011-02-16T01:26:39+00:00</updated>
+   <id>http://yuvalg.com/2011/02/16/the-decline-of-google-search</id>
+   <content type="html">So I revealed &lt;a href=&quot;http://python3wos.appspot.com&quot;&gt;the python 3 wall of shame&lt;/a&gt; a few days ago and immediately it was the best result in google when I searched for &quot;python wall of shame&quot; and &quot;python3wos&quot;. Seems to make sense as there was no wall of shame for python yet. Now lets look at results 3 days later:
+
+&lt;h3&gt;Search results for &quot;Python 3 Wall of Shame&quot;&lt;/h3&gt;
+&lt;a href=&quot;http://i.imgur.com/f91Uv.png&quot;&gt;&lt;img class=&quot; &quot; title=&quot;Search results for &amp;quot;Python 3 Wall of Shame&amp;quot;&quot; src=&quot;http://i.imgur.com/f91Uv.png&quot; alt=&quot;Search results for &amp;quot;Python 3 Wall of Shame&amp;quot;&quot; width=&quot;307&quot; height=&quot;270&quot; /&gt;&lt;/a&gt;
+
+You can see that on the first page of google results you can find a million references to the wall, but no links to the actual website or blog post. The same can be said about results for &quot;python3wos&quot; which isn't even a word but it's the subdomain of the site.
+
+&lt;h3&gt;Search results for &quot;python3wos&quot;&lt;/h3&gt;
+&lt;a href=&quot;http://i.imgur.com/yo3f2.png&quot;&gt;&lt;img class=&quot; &quot; title=&quot;Search results for &amp;quot;python3wos&amp;quot;&quot; src=&quot;http://i.imgur.com/yo3f2.png&quot; alt=&quot;Search results for &amp;quot;python3wos&amp;quot;&quot; width=&quot;267&quot; height=&quot;284&quot; /&gt;&lt;/a&gt;
+
+It's not too bad since in most of these results the real website is just a click away. I just really don't understand what happened, maybe I did something wrong?. Anyhow, it's pretty obvious that all the kids are only using facebook to communicate nowadays. Soon they'll just feel comfy with facebook's bing search, a few years of that and the game will be over. Here's to hoping google sharpen their edge.
+
+edit - a few hours after writing this article, the search &quot;python 3 wall of shame&quot; is now fixed, though &quot;python3wos&quot; still gets you only to links. Lets do an seo experiment, I'll add this link &lt;a title=&quot;Python3wos Python 3 wall of shame&quot; href=&quot;http://appspot.python3wos.com&quot;&gt;python3wos&lt;/a&gt; here and add the word &quot;python3wos&quot; on the wall.</content>
+ </entry>
+ 
+ <entry>
+   <title>Installing extensions on google wave</title>
+   <link href="http://yuvalg.com/2009/11/16/installing-extensions-on-google-wave"/>
+   <updated>2009-11-16T07:22:29+00:00</updated>
+   <id>http://yuvalg.com/2009/11/16/installing-extensions-on-google-wave</id>
+   <content type="html">Some tutorials proclaim to explain this but don't. In order to install G**gle Wave extensions you have to go to your first wave named &quot;Welcome to Google Wave&quot; and click on the &quot;Extensions Gallery&quot; link. There you'll find an extension named &quot;Extension Installer&quot;, install it, then when you're editing waves it's on the toolbar (yeah, where you change fonts is where you install wave extensions). This allows you to install any extension by url and not just those that are in the gallery.
+
+What a self referential headache that caused.
+
+I think this extension should be pre-installed by default just like the map gadget and yes/no/maybe. And it might be a good idea to just integrate the extension into the settings wave. I would tell google what I think but the forums on the subject don't seem like the right place to post a suggestion, they're more akin to tech support:
+
+&lt;a href=&quot;http://www.google.com/support/forum/p/wave?hl=en&quot;&gt;http://www.google.com/support/forum/p/wave?hl=en&lt;/a&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Javascript's Global Scope and Google Wave</title>
+   <link href="http://yuvalg.com/2009/11/13/javascripts-global-scope-and-google-wave"/>
+   <updated>2009-11-13T11:30:40+00:00</updated>
+   <id>http://yuvalg.com/2009/11/13/javascripts-global-scope-and-google-wave</id>
+   <content type="html">Dmitry Baranovskiy said something that bit me the other day:
+
+
+&lt;blockquote&gt;JavaScript’s global scope is a public toilet. You can’t avoid going in there but try to limit your contact with surfaces when you do.&lt;/blockquote&gt;
+
+
+
+Google wave stops calling your gadget callback functions if you do the following in your javascript:
+
+&lt;code&gt;name = &quot;something, anything really, it doesn't matter&quot;&lt;/code&gt;
+
+That's it, that's all it takes to break a gadget. This bug was very hard for me to find and fix. I now realize it's noobish not to place 'var' before every local variable and that the most polite thing would be to always use var and fight the scoping with only one uniquely named global. Javascript did a big nono when it decided that by default a variable is global and the special ones are local. Really that's just one insane design choice.
+
+What's in a &quot;name&quot; as one might ask is something like
+&quot;wgadget_iframe_8&quot; for which I didn't really care enough to dig any further. Just know that you can't touch it when making a gadget for google wave.
+
+Btw the gadget I made's called &quot;4 in a wave&quot; which allows you to play the classic game face to face (thumbnail to thumbnail) with your opponent. A bot for playing alone is coming soon. To use this gadget in a wave just click the puzzle piece and paste this url:
+
+&lt;a href=&quot;http://4inawave.googlecode.com/files/4inaawave.0.8.xml&quot;&gt;http://4inawave.googlecode.com/files/4inaawave.0.8.xml&lt;/a&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Google Code Doesn't Network</title>
+   <link href="http://yuvalg.com/2009/09/11/google-code-doesnt-network"/>
+   <updated>2009-09-11T11:26:57+00:00</updated>
+   <id>http://yuvalg.com/2009/09/11/google-code-doesnt-network</id>
+   <content type="html">When I search for &quot;pyopt&quot; on google the first result is the PyPI page which is pretty amazing considering it didn't exist before a few hours. The google code page for &lt;a href=&quot;http://code.google.com/p/pyopt/&quot;&gt;pyopt&lt;/a&gt; is nowhere to be seen, a search for &quot;pyopt site:google.com&quot; gives only some mathematical optimization module. Strange stuff google, strange. Maybe I should've went with &lt;a href=&quot;http://github.com/&quot;&gt;github&lt;/a&gt;.
+
+update 15-11-2009: now I do get the top ranking search result on google for pyopt but zero results on yahoo search's first page. Wtf is Peyote? So anyway the conclusion is it takes google at least a week to crawl google-code. Strange.</content>
+ </entry>
+ 
+ <entry>
+   <title>Word Connections</title>
+   <link href="http://yuvalg.com/2009/01/17/word-connections"/>
+   <updated>2009-01-17T15:38:11+00:00</updated>
+   <id>http://yuvalg.com/2009/01/17/word-connections</id>
+   <content type="html">After fiddling with google apps engine, I made this AJAX searcher that tells you how strongly related are 2 words, or at least how strongly related they are on the internet. Try it out:
+&lt;a title=&quot;http://word-word-search.appspot.com/&quot; href=&quot;http://word-word-search.appspot.com/&quot;&gt;http://word-word-search.appspot.com/&lt;/a&gt;</content>
+ </entry>
+ 
+</feed>

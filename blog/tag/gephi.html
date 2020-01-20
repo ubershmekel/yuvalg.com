@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ <title>yuvalg/blog gephi</title>
+ <link href="http://yuvalg.com/tag/gephi.html" rel="self"/>
+ <link href="http://yuvalg.com/tag/gephi.html"/>
+ <updated>2013-08-13T16:58:22+00:00</updated>
+ <id>http://yuvalg.com/tag/gephi.html</id>
+ <author>
+   <name>Yuval Greenfield</name>
+ </author>
+ 
+ <entry>
+   <title>Ah the old Reddit switch-a-roo analyzed</title>
+   <link href="http://yuvalg.com/2012/03/17/ah-the-old-reddit-switch-a-roo-analyzed"/>
+   <updated>2012-03-17T20:53:40+00:00</updated>
+   <id>http://yuvalg.com/2012/03/17/ah-the-old-reddit-switch-a-roo-analyzed</id>
+   <content type="html">So after clicking through what seemed an infinite amount of tabs from one of these &lt;a href=&quot;http://www.reddit.com/r/WTF/comments/qy31w/well_this_is_completely_disgusting/c41fntu?context=1&quot;&gt;switcheroo comments&lt;/a&gt; I finally wrote down &lt;a title=&quot;A script which crawls reddit for the old switcheroo&quot; href=&quot;http://codepad.org/rQJCLyxR&quot;&gt;the script which analyzed the graph&lt;/a&gt;. I'd suggest you ignore the following png and take a gander at the &lt;a href=&quot;http://uberpython.files.wordpress.com/2012/03/znetwork5.pdf&quot;&gt;network pdf of the switcharoo graph because you can click through to the links&lt;/a&gt;.
+
+&lt;img class=&quot;alignnone&quot; title=&quot;The old reddit switch-a-roo analyzed image&quot; src=&quot;http://i.imgur.com/Z1klR.png&quot; alt=&quot;The old reddit switch-a-roo analyzed image&quot; width=&quot;655&quot; height=&quot;926&quot; /&gt;
+
+To recap - 50 nodes, 52 edges, though there are probably more out there that point into some point of that chain. And here are the awards:
+&lt;ul&gt;
+	&lt;li&gt;&lt;a href=&quot;http://www.reddit.com/r/pics/comments/ia0ij/watching_fellowship_of_the_ring_tonight_and_never/c225zkg&quot;&gt;First comment by jun2san who started the shenanigans&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;http://www.reddit.com/r/aww/comments/mwxbg/my_sister_and_my_puppy_yes_she_is_a_puppy_d/c34ixoe&quot;&gt;Farthest down link which points to a cycle start&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;http://www.reddit.com/r/pics/comments/iw0el/my_cousin_has_leukemia_and_went_to_this_golf/c277gni?context=3&quot;&gt;Farthest down link if the graph weren't directed&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+There. I hope that didn't take away from the magic.
+&lt;h2&gt;Appendix - The hardships&lt;/h2&gt;
+This was overly hard to do - first of all NSFW links gave me the &quot;are you over 18?&quot; prompt which for some reason I wasn't able to solve by cookies. I eventually turned to the mobile version of the site (append &quot;.compact&quot;) to avoid the prompts completely. Also, matplotlib and networkx aren't that fun for drawing graphs it seems. To visualize and output the graph I eventually used &lt;a href=&quot;http://gephi.org/&quot;&gt;gephi&lt;/a&gt; which was somewhat easy although has it's clunkiness baggage.</content>
+ </entry>
+ 
+</feed>
