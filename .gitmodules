@@ -1,0 +1,3 @@
+[submodule "traitsim"]
+	path = traitsim
+	url = git@github.com:ubershmekel/traitsim.git
