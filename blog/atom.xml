@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
  
  <title>yuvalg/blog</title>
- <link href="http://yuvalg.com/blog/atom.xml" rel="self"/>
- <link href="http://yuvalg.com/blog"/>
+ <link href="https://yuvalg.com/blog/atom.xml" rel="self"/>
+ <link href="https://yuvalg.com/blog"/>
  <updated>2013-08-13T16:58:22+00:00</updated>
- <id>http://yuvalg.com/blog</id>
+ <id>https://yuvalg.com/blog</id>
  <author>
    <name>Yuval Greenfield</name>
    <email>ubershmekel@gmail.com</email>
@@ -14,9 +14,9 @@
  
  <entry>
    <title>Shape Projections with D3.js</title>
-   <link href="http://yuvalg.com/blog/2013/08/13/d3js-shape-projections"/>
+   <link href="https://yuvalg.com/blog/2013/08/13/d3js-shape-projections"/>
    <updated>2013-08-13T14:30:51+00:00</updated>
-   <id>http://yuvalg.com/blog/2013/08/13/d3js-shape-projections</id>
+   <id>https://yuvalg.com/blog/2013/08/13/d3js-shape-projections</id>
    <content type="html">&lt;!--
 
 Inspired by
@@ -111,7 +111,7 @@ label {
     this effect on both coordinate projections.
   &lt;/p&gt;
   &lt;ul&gt;
-      &lt;li&gt;Made by &lt;a href=&quot;http://yuvalg.com/blog/&quot;&gt;ubershmekel&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;Made by &lt;a href=&quot;https://yuvalg.com/blog/&quot;&gt;ubershmekel&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;Inspired by this &lt;a href=&quot;http://www.reddit.com/r/gifs/comments/18s5b4/mathematics/&quot;&gt;gif&lt;/a&gt;&lt;/li&gt;
       &lt;li&gt;Made with &lt;a href=&quot;http://d3js.org/&quot;&gt;d3js&lt;/a&gt;
   &lt;/ul&gt;
@@ -434,9 +434,9 @@ d3.selectAll(&quot;#yourFunction&quot;).on(&quot;change&quot;, function() {
  
  <entry>
    <title>Learning Some Lua</title>
-   <link href="http://yuvalg.com/blog/2013/08/07/learning-some-lua"/>
+   <link href="https://yuvalg.com/blog/2013/08/07/learning-some-lua"/>
    <updated>2013-08-07T18:30:46+00:00</updated>
-   <id>http://yuvalg.com/blog/2013/08/07/learning-some-lua</id>
+   <id>https://yuvalg.com/blog/2013/08/07/learning-some-lua</id>
    <content type="html">Dec 2012 I got into &lt;a href=&quot;http://www.lua.org/&quot;&gt;lua&lt;/a&gt; for some multiplatform (android/iOS) programming with &lt;a href=&quot;http://getmoai.com/&quot;&gt;MOAI&lt;/a&gt;. I was making a flood-it like game called &lt;a href=&quot;https://github.com/ubershmekel/omgcheese&quot;&gt;Gopher's Birthday&lt;/a&gt;. Though I abandoned the project for the time being, this was my experience with Lua.
 
 Lua did quite a few great things:
@@ -475,12 +475,12 @@ In general, lua won't stop you from coding like an idiot. Errors pass silently i
  
  <entry>
    <title>Dominant misconceptions of recessive genes</title>
-   <link href="http://yuvalg.com/blog/2012/10/16/dominant-misconceptions-of-recessive-genes"/>
+   <link href="https://yuvalg.com/blog/2012/10/16/dominant-misconceptions-of-recessive-genes"/>
    <updated>2012-10-16T21:30:46+00:00</updated>
-   <id>http://yuvalg.com/blog/2012/10/16/dominant-misconceptions-of-recessive-genes</id>
+   <id>https://yuvalg.com/blog/2012/10/16/dominant-misconceptions-of-recessive-genes</id>
    <content type="html">I still remember my 10th grade Biology teacher explaining that because blonde hair is a recessive trait it will slowly vanish off the face of the earth. Recently I read a news article with a similar claim, and had an argument with a few biology and genetics majors. So I wrote a simulation.
 
-&lt;a title=&quot;TraitSim&quot; href=&quot;http://yuvalg.com/traitsim/&quot;&gt;TraitSim&lt;/a&gt; is an animated toy for exploring random, neutral gene proliferation with brown and blue eyes as an example. I also wrote a &lt;a title=&quot;python simulation of genetic drift&quot; href=&quot;https://github.com/ubershmekel/traitsim/blob/master/simulate.py&quot;&gt;python version of the simulation&lt;/a&gt; and ran it tens of thousands of times. Thanks &lt;a title=&quot;PyPy&quot; href=&quot;http://pypy.org/&quot;&gt;pypy for the &lt;strong&gt;8.3x&lt;/strong&gt; speedup&lt;/a&gt;! Surprisingly the chance to win the gene-race is linear with the gene's initial prevalence as can be seen in the following graph thanks to &lt;a title=&quot;Matplotlib&quot; href=&quot;http://matplotlib.org/&quot;&gt;matplotlib&lt;/a&gt;.
+&lt;a title=&quot;TraitSim&quot; href=&quot;https://yuvalg.com/traitsim/&quot;&gt;TraitSim&lt;/a&gt; is an animated toy for exploring random, neutral gene proliferation with brown and blue eyes as an example. I also wrote a &lt;a title=&quot;python simulation of genetic drift&quot; href=&quot;https://github.com/ubershmekel/traitsim/blob/master/simulate.py&quot;&gt;python version of the simulation&lt;/a&gt; and ran it tens of thousands of times. Thanks &lt;a title=&quot;PyPy&quot; href=&quot;http://pypy.org/&quot;&gt;pypy for the &lt;strong&gt;8.3x&lt;/strong&gt; speedup&lt;/a&gt;! Surprisingly the chance to win the gene-race is linear with the gene's initial prevalence as can be seen in the following graph thanks to &lt;a title=&quot;Matplotlib&quot; href=&quot;http://matplotlib.org/&quot;&gt;matplotlib&lt;/a&gt;.
 
 &lt;img class=&quot;alignnone&quot; title=&quot;chance of going extinct&quot; alt=&quot;&quot; src=&quot;http://i.imgur.com/jb4QN.png&quot; height=&quot;615&quot; width=&quot;815&quot; /&gt;
 
@@ -493,9 +493,9 @@ And here's &lt;a title=&quot;graph generating source matplotlib&quot; href=&quot
  
  <entry>
    <title>Is selling placebos ethical?</title>
-   <link href="http://yuvalg.com/blog/2012/10/07/is-selling-placebos-ethical"/>
+   <link href="https://yuvalg.com/blog/2012/10/07/is-selling-placebos-ethical"/>
    <updated>2012-10-07T15:02:07+00:00</updated>
-   <id>http://yuvalg.com/blog/2012/10/07/is-selling-placebos-ethical</id>
+   <id>https://yuvalg.com/blog/2012/10/07/is-selling-placebos-ethical</id>
    <content type="html">Lying isn't murder but murder is such a good morality yardstick that I'll use it anyway. Imagine the truth as the victim, though people can and do actually die at the hands of disingenuity. &lt;a title=&quot;Degrees of murder&quot; href=&quot;http://en.wikipedia.org/wiki/Murder_(United_States_law)#Degrees_of_murder_in_the_United_States&quot;&gt;From the US justice system&lt;/a&gt;:
 &lt;ul&gt;
 	&lt;li&gt;&lt;strong&gt;First degree lie&lt;/strong&gt; is any lie that is willful and premeditated.&lt;/li&gt;
@@ -584,9 +584,9 @@ Treatments statistically shown ineffective or detrimental should be prohibited 
  
  <entry>
    <title>Why I'm not leaving Python for Go</title>
-   <link href="http://yuvalg.com/blog/2012/09/23/why-im-not-leaving-python-for-go"/>
+   <link href="https://yuvalg.com/blog/2012/09/23/why-im-not-leaving-python-for-go"/>
    <updated>2012-09-23T21:45:25+00:00</updated>
-   <id>http://yuvalg.com/blog/2012/09/23/why-im-not-leaving-python-for-go</id>
+   <id>https://yuvalg.com/blog/2012/09/23/why-im-not-leaving-python-for-go</id>
    <content type="html">First of all, Go seems like a great language. It has an &lt;a title=&quot;Tutorial of go&quot; href=&quot;http://tour.golang.org/&quot;&gt;excellent tutorial&lt;/a&gt; which I joyfully went through and found:
 &lt;ul&gt;
 	&lt;li&gt;Go is Fast.&lt;/li&gt;
@@ -629,9 +629,9 @@ I'm still waiting for that open source, concurrent, &lt;a title=&quot;quad core 
  
  <entry>
    <title>Secret societies of reddit</title>
-   <link href="http://yuvalg.com/blog/2012/08/24/secret-societies-of-reddit"/>
+   <link href="https://yuvalg.com/blog/2012/08/24/secret-societies-of-reddit"/>
    <updated>2012-08-24T12:44:43+00:00</updated>
-   <id>http://yuvalg.com/blog/2012/08/24/secret-societies-of-reddit</id>
+   <id>https://yuvalg.com/blog/2012/08/24/secret-societies-of-reddit</id>
    <content type="html">Out there in the wild internet there are many dark corridors and places we'll never be able to visit. Understandably. But on reddit?! I think the people deserve to at least vaguely know the inner workings of their contentocracy. Here's a list of a few most of us can only see the closed door of:
 &lt;ul&gt;
 	&lt;li&gt;&lt;a href=&quot;http://www.reddit.com/r/lounge&quot;&gt;http://www.reddit.com/r/lounge&lt;/a&gt; - A secret community open to whoever has reddit gold or has the &quot;Charter Member&quot; trophy. I'd describe it as a monoclejerk.&lt;/li&gt;
@@ -646,9 +646,9 @@ What are we voting for? What's running this &lt;a href=&quot;http://i.imgur.com
  
  <entry>
    <title>Anal About Analogies and Concurrency</title>
-   <link href="http://yuvalg.com/blog/2012/07/17/anal-about-analogies-and-concurrency"/>
+   <link href="https://yuvalg.com/blog/2012/07/17/anal-about-analogies-and-concurrency"/>
    <updated>2012-07-17T09:22:52+00:00</updated>
-   <id>http://yuvalg.com/blog/2012/07/17/anal-about-analogies-and-concurrency</id>
+   <id>https://yuvalg.com/blog/2012/07/17/anal-about-analogies-and-concurrency</id>
    <content type="html">Analogies are tools, they can add intuition, fun and functional value to thoughts and concepts. Here are a few:
 &lt;ul&gt;
 	&lt;li&gt;Learning quadratic equations is more fun when thinking of balls and rockets flying around.&lt;/li&gt;
@@ -694,9 +694,9 @@ Now that we have better names/analogies, designing a concurrent system becomes a
  
  <entry>
    <title>redditp - a fullscreen presentation with reddit</title>
-   <link href="http://yuvalg.com/blog/2012/07/04/redditp-a-fullscreen-presentation-with-reddit"/>
+   <link href="https://yuvalg.com/blog/2012/07/04/redditp-a-fullscreen-presentation-with-reddit"/>
    <updated>2012-07-04T15:03:26+00:00</updated>
-   <id>http://yuvalg.com/blog/2012/07/04/redditp-a-fullscreen-presentation-with-reddit</id>
+   <id>https://yuvalg.com/blog/2012/07/04/redditp-a-fullscreen-presentation-with-reddit</id>
    <content type="html">tl;dr - add a &quot;p&quot; before the &quot;.com&quot; to any subreddit you visit and voila, you have a fullscreen presentation of all the images.
 
 I like to show my friends cool stuff on the internet but browsing is a real conversation killer. You can't really lean back, talk and have fun with friends while operating a website, surely not one as clunky as reddit. Even though RES does help.
@@ -723,9 +723,9 @@ I guess not too surprisingly the first 200 visits were mostly to gonewild. You i
  
  <entry>
    <title>Introducing Absolute Ratio</title>
-   <link href="http://yuvalg.com/blog/2012/04/28/introducing-absolute-ratio"/>
+   <link href="https://yuvalg.com/blog/2012/04/28/introducing-absolute-ratio"/>
    <updated>2012-04-28T11:56:27+00:00</updated>
-   <id>http://yuvalg.com/blog/2012/04/28/introducing-absolute-ratio</id>
+   <id>https://yuvalg.com/blog/2012/04/28/introducing-absolute-ratio</id>
    <content type="html">Let's define the &lt;strong&gt;absolute ratio&lt;/strong&gt; for positive numbers:
 
 &lt;img class=&quot; alignnone&quot; title=&quot;Absolute Ratio&quot; src=&quot;http://i.imgur.com/TvspG.gif&quot; alt=&quot;abs_ratio(x) = 1 / x when x &amp;lt; 1, otherwise: x&quot; width=&quot;89&quot; height=&quot;55&quot; /&gt;
@@ -797,9 +797,9 @@ EDIT - I'm growing to like the binary form of the operator more so from now on l
  
  <entry>
    <title>Ah the old Reddit switch-a-roo analyzed</title>
-   <link href="http://yuvalg.com/blog/2012/03/17/ah-the-old-reddit-switch-a-roo-analyzed"/>
+   <link href="https://yuvalg.com/blog/2012/03/17/ah-the-old-reddit-switch-a-roo-analyzed"/>
    <updated>2012-03-17T20:53:40+00:00</updated>
-   <id>http://yuvalg.com/blog/2012/03/17/ah-the-old-reddit-switch-a-roo-analyzed</id>
+   <id>https://yuvalg.com/blog/2012/03/17/ah-the-old-reddit-switch-a-roo-analyzed</id>
    <content type="html">So after clicking through what seemed an infinite amount of tabs from one of these &lt;a href=&quot;http://www.reddit.com/r/WTF/comments/qy31w/well_this_is_completely_disgusting/c41fntu?context=1&quot;&gt;switcheroo comments&lt;/a&gt; I finally wrote down &lt;a title=&quot;A script which crawls reddit for the old switcheroo&quot; href=&quot;http://codepad.org/rQJCLyxR&quot;&gt;the script which analyzed the graph&lt;/a&gt;. I'd suggest you ignore the following png and take a gander at the &lt;a href=&quot;http://uberpython.files.wordpress.com/2012/03/znetwork5.pdf&quot;&gt;network pdf of the switcharoo graph because you can click through to the links&lt;/a&gt;.
 
 &lt;img class=&quot;alignnone&quot; title=&quot;The old reddit switch-a-roo analyzed image&quot; src=&quot;http://i.imgur.com/Z1klR.png&quot; alt=&quot;The old reddit switch-a-roo analyzed image&quot; width=&quot;655&quot; height=&quot;926&quot; /&gt;
@@ -817,9 +817,9 @@ This was overly hard to do - first of all NSFW links gave me the &quot;are you o
  
  <entry>
    <title>Python isn't English and iterator "labels"</title>
-   <link href="http://yuvalg.com/blog/2012/02/13/python-isnt-english-and-iterator-labels"/>
+   <link href="https://yuvalg.com/blog/2012/02/13/python-isnt-english-and-iterator-labels"/>
    <updated>2012-02-13T22:28:39+00:00</updated>
-   <id>http://yuvalg.com/blog/2012/02/13/python-isnt-english-and-iterator-labels</id>
+   <id>https://yuvalg.com/blog/2012/02/13/python-isnt-english-and-iterator-labels</id>
    <content type="html">Us python fanboys like to think of python as similar to English and thus more readable. Let's examine a simple piece of code:
 &lt;pre&gt;for item in big_list:
     if item.cost &amp;gt; 5:
@@ -883,9 +883,9 @@ I think this could be nice. Although many times I found myself using nested loop
  
  <entry>
    <title>Statistics on reddit's top 10,000 titles with NLTK</title>
-   <link href="http://yuvalg.com/blog/2012/02/07/statistics-on-reddits-top-10000-titles-with-nltk"/>
+   <link href="https://yuvalg.com/blog/2012/02/07/statistics-on-reddits-top-10000-titles-with-nltk"/>
    <updated>2012-02-07T15:24:58+00:00</updated>
-   <id>http://yuvalg.com/blog/2012/02/07/statistics-on-reddits-top-10000-titles-with-nltk</id>
+   <id>https://yuvalg.com/blog/2012/02/07/statistics-on-reddits-top-10000-titles-with-nltk</id>
    <content type="html">Drawing inspiration from this blog post on &lt;a title=&quot;Are Your Titles Irresistibly Click Worthy &amp;amp; Viral?!&quot; href=&quot;http://www.seomoz.org/blog/are-your-titles-irresistibly-click-worthy-viral&quot;&gt;title virality&lt;/a&gt; I wanted to investigate what makes these top 10,000 titles the best of their breed. Which are the best superlatives? Who/what's the most popular subject? Let's start with some statistics:
 &lt;ul&gt;
 	&lt;li&gt;On Feb. 03, 14:10:45 (UTC) the all-time top 10,000 submissions on reddit (/r/all) had a total of 82,751,429 upvotes and 62,655,532 downvotes (56.9% liked it).&lt;/li&gt;
@@ -977,9 +977,9 @@ This is my first time using NLTK and though I'm ok at coding I most certainly ha
  
  <entry>
    <title>The Google App Engine Glass Ceiling</title>
-   <link href="http://yuvalg.com/blog/2012/01/06/gae-glass-ceiling"/>
+   <link href="https://yuvalg.com/blog/2012/01/06/gae-glass-ceiling"/>
    <updated>2012-01-06T13:27:31+00:00</updated>
-   <id>http://yuvalg.com/blog/2012/01/06/gae-glass-ceiling</id>
+   <id>https://yuvalg.com/blog/2012/01/06/gae-glass-ceiling</id>
    <content type="html">With the new billing arrangements, &lt;a title=&quot;Google app engine is expensive when you first start paying&quot; href=&quot;http://code.google.com/appengine/docs/billing.html&quot;&gt;each and every paid GAE app costs at least $2.10 per week which is supposedly $9 per month&lt;/a&gt; ($9.125 by my calculation) &lt;strong&gt;regardless of quota usage&lt;/strong&gt;. This cost does cover whatever quotas your app consumes and the regular free quotas are still &quot;free&quot;.
 
 Now I have a GAE app that sends 70-80 emails per day where the free limit is 100. I'd gladly switch over to the paid side of GAE just to be sure that if it ever passes the 100 mark I don't have any failed email requests but the price of that is 9$ per month. &lt;strong&gt;GAE is extremely expensive for apps that just barely brush the end of their free quotas&lt;/strong&gt;. In order to actually use the $9 per month minimum I'd have to send out 3000 emails per day (at $0.0001 per email).
@@ -1004,9 +1004,9 @@ Thanks, but no thanks. That's the &lt;strong&gt;GAE glass ceiling.&lt;/strong&gt
  
  <entry>
    <title>Precision, recall, sensitivity and specificity</title>
-   <link href="http://yuvalg.com/blog/2012/01/01/precision-recall-sensitivity-and-specificity"/>
+   <link href="https://yuvalg.com/blog/2012/01/01/precision-recall-sensitivity-and-specificity"/>
    <updated>2012-01-01T20:00:16+00:00</updated>
-   <id>http://yuvalg.com/blog/2012/01/01/precision-recall-sensitivity-and-specificity</id>
+   <id>https://yuvalg.com/blog/2012/01/01/precision-recall-sensitivity-and-specificity</id>
    <content type="html">Nowadays I work for a medical device company where in a medical test the big indicators of success are &lt;strong&gt;specificity&lt;/strong&gt; and &lt;strong&gt;sensitivity&lt;/strong&gt;. Every medical test strives to reach 100% in both criteria. Imagine my surprise today when I found out that other fields use different metrics for the exact same problem. To analyze this I present to you the &lt;strong&gt;confusion matrix&lt;/strong&gt;:
 
 &lt;h3&gt;Confusion Matrix&lt;/h3&gt;
@@ -1109,9 +1109,9 @@ Finally the punchline:
  
  <entry>
    <title>Python 3 Wall of Shame Updates</title>
-   <link href="http://yuvalg.com/blog/2011/12/25/python-3-wall-of-shame-updates"/>
+   <link href="https://yuvalg.com/blog/2011/12/25/python-3-wall-of-shame-updates"/>
    <updated>2011-12-25T20:08:25+00:00</updated>
-   <id>http://yuvalg.com/blog/2011/12/25/python-3-wall-of-shame-updates</id>
+   <id>https://yuvalg.com/blog/2011/12/25/python-3-wall-of-shame-updates</id>
    <content type="html">Earlier in December I was approached by Chris McDonough with a reddit pm asking if I could or would implement some kind of behavior regarding a  &quot;Python 2 only&quot; classifier on &lt;a title=&quot;Python 3 WOS&quot; href=&quot;http://python3wos.appspot.com&quot;&gt;the wall of shame&lt;/a&gt;. After some aggressive googling I found the &lt;a href=&quot;http://mail.python.org/pipermail/catalog-sig/2011-December/004077.html&quot;&gt;original discussion in catalog-sig&lt;/a&gt;. The idea was to add a classifier that signified &quot;the authors have no current intention to port this code to Python 3&quot;. By declaring such an intent, Chris explained, a python package should be erased from the wall of shame. Not that I completely understood this intuition but still I tried to somehow apply myself to the effort of improving the WOS. So here's what's new:
 &lt;ul&gt;
 	&lt;li&gt;Packages with the &quot;Programming Language :: Python :: 2 :: Only&quot; trove classifier will have a lock next to their package with a mouse over explaining their intent.&lt;/li&gt;
@@ -1126,17 +1126,17 @@ Ps, we're at 57/200, so maybe by this time next year we can have that Python 3 W
  
  <entry>
    <title>Google App Engine costs the same as any shared hosting</title>
-   <link href="http://yuvalg.com/blog/2011/12/24/google-app-engine-costs-the-same-as-any-shared-hosting"/>
+   <link href="https://yuvalg.com/blog/2011/12/24/google-app-engine-costs-the-same-as-any-shared-hosting"/>
    <updated>2011-12-24T18:05:26+00:00</updated>
-   <id>http://yuvalg.com/blog/2011/12/24/google-app-engine-costs-the-same-as-any-shared-hosting</id>
+   <id>https://yuvalg.com/blog/2011/12/24/google-app-engine-costs-the-same-as-any-shared-hosting</id>
    <content type="html">&lt;p&gt;There are many good and &lt;a href=&quot;http://blog.ugorji.net/2011/09/google-app-engine-new-pricing-sucks.html&quot;&gt;b&lt;/a&gt;a&lt;a href=&quot;http://blog.ugorji.net/2011/09/objective-gripes-with-new-google-app.html&quot;&gt;d&lt;/a&gt; &lt;a href=&quot;http://3.14.by/en/read/why-google-appengine-sucks&quot;&gt;th&lt;/a&gt;in&lt;a href=&quot;https://www.google.com/search?q=google+app+engine+sucks&quot;&gt;gs&lt;/a&gt; about GAE but this issue with the new pricing is just strange in my eyes:&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Every paid app must pay google at least $9 each month regardless of usage.&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;The main awesome thing about GAE has always been the pay-as-you-need pricing model. This concept is completely shattered now for a certain scale of apps. The &lt;a title=&quot;Python 3 Wall Of Shame&quot; href=&quot;http://python3wos.appspot.com&quot;&gt;Python 3 Wall of Shame&lt;/a&gt; needed a few extra DB writes to finish the day nicely which would have cost roughly 10 cents a day. But now google will be rounding that up to 30 cents a day.&lt;/p&gt;&lt;p&gt;Apps that grow to use $1 worth of quotas a month are much better off heading to some form of shared &lt;a href=&quot;http://www.webfaction.com/services/hosting&quot;&gt;hosting for $5.50&lt;/a&gt; a month until they hit that $9 a month necessity. That's the case with the Python3WOS and another one of my apps. I can't move the wall of shame as I don't have the time to do the porting (locked in ಠ_ಠ), but that other app is simple enough. So google will never find out if it could have been an app that's actually worth $9 monthly.&lt;/p&gt;</content>
  </entry>
  
  <entry>
    <title>Youtube going to fullscreen skips bug</title>
-   <link href="http://yuvalg.com/blog/2011/12/15/youtube-going-to-fullscreen-skips-bug"/>
+   <link href="https://yuvalg.com/blog/2011/12/15/youtube-going-to-fullscreen-skips-bug"/>
    <updated>2011-12-15T14:07:14+00:00</updated>
-   <id>http://yuvalg.com/blog/2011/12/15/youtube-going-to-fullscreen-skips-bug</id>
+   <id>https://yuvalg.com/blog/2011/12/15/youtube-going-to-fullscreen-skips-bug</id>
    <content type="html">Whenever I switch between fullscreen and back in this video &lt;a href=&quot;http://www.youtube.com/watch?v=lOTPCaItx3w&quot;&gt;http://www.youtube.com/watch?v=lOTPCaItx3w&lt;/a&gt; for example - youtube skips 2 seconds forward in time. Even while paused.
 
 I found two relevant issues:
@@ -1156,9 +1156,9 @@ Also did I mention I dislike losing all the video I buffered in 360p when youtub
  
  <entry>
    <title>Android API Bugs - AudioRecord</title>
-   <link href="http://yuvalg.com/blog/2011/12/10/android-api-bugs-audiorecord"/>
+   <link href="https://yuvalg.com/blog/2011/12/10/android-api-bugs-audiorecord"/>
    <updated>2011-12-10T19:52:33+00:00</updated>
-   <id>http://yuvalg.com/blog/2011/12/10/android-api-bugs-audiorecord</id>
+   <id>https://yuvalg.com/blog/2011/12/10/android-api-bugs-audiorecord</id>
    <content type="html">When asking android to record from the mic to a buffer you have to do something like:
 &lt;pre&gt;mRecorder = new AudioRecord(AudioSource.MIC, RATE, CHANNEL_MODE,
  ENCODING, BUFFER_SIZE);
@@ -1188,17 +1188,17 @@ Eventually the working code will be pushed to the &lt;a title=&quot;Android Tune
  
  <entry>
    <title>Duplicating Streams of Audio with Python</title>
-   <link href="http://yuvalg.com/blog/2011/12/07/duplicating-streams-of-audio-with-python"/>
+   <link href="https://yuvalg.com/blog/2011/12/07/duplicating-streams-of-audio-with-python"/>
    <updated>2011-12-07T11:08:55+00:00</updated>
-   <id>http://yuvalg.com/blog/2011/12/07/duplicating-streams-of-audio-with-python</id>
+   <id>https://yuvalg.com/blog/2011/12/07/duplicating-streams-of-audio-with-python</id>
    <content type="html">&lt;p&gt;This morning I made a &lt;a title=&quot;Duplicate or replicate audio streams using pyaudio&quot; href=&quot;http://codepad.org/vgEZbU3y&quot;&gt;python script that uses pyaudio to read from one audio device and pipe to the next, I call it replicate.py&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;This is a really old problem for me, ever since I first had 4.1 speakers and winamp only played on the front 2. Nowadays I just want VLC to play on both the TV and the computer speakers without switching between audio output modules in the preferences or fiddling with the default audio output in Windows 7.&lt;/p&gt;&lt;p&gt;&lt;a title=&quot;PyAudio&quot; href=&quot;http://people.csail.mit.edu/hubert/pyaudio/&quot;&gt;PyAudio&lt;/a&gt; was really nice and easy to use, I just wish asynch io was added so I could lower the latency a bit as I'm getting 240 ms right now which is very far from perfect.&lt;/p&gt;</content>
  </entry>
  
  <entry>
    <title>Pendulums, WebGL and three.js</title>
-   <link href="http://yuvalg.com/blog/2011/12/02/pendulums-webgl-and-three-js"/>
+   <link href="https://yuvalg.com/blog/2011/12/02/pendulums-webgl-and-three-js"/>
    <updated>2011-12-02T18:53:46+00:00</updated>
-   <id>http://yuvalg.com/blog/2011/12/02/pendulums-webgl-and-three-js</id>
+   <id>https://yuvalg.com/blog/2011/12/02/pendulums-webgl-and-three-js</id>
    <content type="html">Here's the &lt;a title=&quot;Waves Pendulum Simulation&quot; href=&quot;http://toplessproductions.com/pendulum&quot;&gt;waves pendulum three.js simulation&lt;/a&gt; I made.
 &lt;div&gt; So I wanted to simulate a &lt;a title=&quot;Real Waves Pendulum&quot; href=&quot;http://www.youtube.com/watch?v=yVkdfJ9PkRQ&quot;&gt;magical pendulum with waves&lt;/a&gt; to prove my point that the shapes are the result of a dead simple arithmetic progression. I was almost correct.&lt;/div&gt;
 After testing, I saw that when the frequency is an arithmetic progression we get the awesome patterns. The problem is that achieving such a feat by modifying the length of the strings alone is a bit harder. Here's omega, or the angular frequency from &lt;a title=&quot;hyperphysics - pendulum physics equations&quot; href=&quot;http://hyperphysics.phy-astr.gsu.edu/hbase/pend.html&quot;&gt;hyperphysics&lt;/a&gt;:
@@ -1214,9 +1214,9 @@ WebGL and three.js are indeed awesome. It does have its gotchas but I was just s
  
  <entry>
    <title>Android api quirk number 5</title>
-   <link href="http://yuvalg.com/blog/2011/11/19/android-api-quirk-number-5"/>
+   <link href="https://yuvalg.com/blog/2011/11/19/android-api-quirk-number-5"/>
    <updated>2011-11-19T02:52:04+00:00</updated>
-   <id>http://yuvalg.com/blog/2011/11/19/android-api-quirk-number-5</id>
+   <id>https://yuvalg.com/blog/2011/11/19/android-api-quirk-number-5</id>
    <content type="html">Wow this is silly.
 
 public void drawRect(float left, float top, float right, float bottom, Paint paint)
@@ -1232,9 +1232,9 @@ ZOMG that was a hard bug to figure out....</content>
  
  <entry>
    <title>Python 2/3 and unicode file paths</title>
-   <link href="http://yuvalg.com/blog/2011/10/21/python-23-and-unicode-file-paths"/>
+   <link href="https://yuvalg.com/blog/2011/10/21/python-23-and-unicode-file-paths"/>
    <updated>2011-10-21T10:23:09+00:00</updated>
-   <id>http://yuvalg.com/blog/2011/10/21/python-23-and-unicode-file-paths</id>
+   <id>https://yuvalg.com/blog/2011/10/21/python-23-and-unicode-file-paths</id>
    <content type="html">This bug popped up in a script of &lt;a href=&quot;http://pypi.python.org/pypi/import_file&quot;&gt;mine&lt;/a&gt;:
 
 For Python 2:
@@ -1255,9 +1255,9 @@ The solution is to always use unicode strings with path functions. A bit of a pa
  
  <entry>
    <title>import - complex or complicated?</title>
-   <link href="http://yuvalg.com/blog/2011/09/01/import-complex-or-complicated"/>
+   <link href="https://yuvalg.com/blog/2011/09/01/import-complex-or-complicated"/>
    <updated>2011-09-01T16:46:24+00:00</updated>
-   <id>http://yuvalg.com/blog/2011/09/01/import-complex-or-complicated</id>
+   <id>https://yuvalg.com/blog/2011/09/01/import-complex-or-complicated</id>
    <content type="html">In Python, life is really easy when all your .py files are in one directory. The moment you want to organize your code into folders there's a wall of challenges you have to climb. I believe this is an issue that can be alleviated with one small fix.
 
 Here's a comparison of how a developer shares code across a project in C/C++ and Python:
@@ -1403,9 +1403,9 @@ I've tried to do packages the existing python way and I think we can do better. 
  
  <entry>
    <title>The GIL Detector</title>
-   <link href="http://yuvalg.com/blog/2011/08/09/the-gil-detector"/>
+   <link href="https://yuvalg.com/blog/2011/08/09/the-gil-detector"/>
    <updated>2011-08-09T06:15:55+00:00</updated>
-   <id>http://yuvalg.com/blog/2011/08/09/the-gil-detector</id>
+   <id>https://yuvalg.com/blog/2011/08/09/the-gil-detector</id>
    <content type="html">Ever wonder if your flavor of python has a Global Interpreter Lock? The recipe &lt;a title=&quot;GIL detector&quot; href=&quot;http://codepad.org/CeI6gJLk&quot;&gt;gil_detector.py&lt;/a&gt; checks that.
 
 In this day and age CPython is still core-locked; though we are seeing improvements thanks to Antoine Pitrou and other great people of the Python community. Wanting to measure just how bad the problem is - my way of looking at it was through a number I call the &quot;python effective core count&quot;.
@@ -1458,9 +1458,9 @@ Edit - updated gil_detector.py as corrected at &lt;a title=&quot;The GIL Detect
  
  <entry>
    <title>A new module - import_file</title>
-   <link href="http://yuvalg.com/blog/2011/06/08/a-new-module-import_file"/>
+   <link href="https://yuvalg.com/blog/2011/06/08/a-new-module-import_file"/>
    <updated>2011-06-08T21:43:55+00:00</updated>
-   <id>http://yuvalg.com/blog/2011/06/08/a-new-module-import_file</id>
+   <id>https://yuvalg.com/blog/2011/06/08/a-new-module-import_file</id>
    <content type="html">So I had this python web server and I wanted to write a script that does some maintenance. The problem was, if the maintenance script isn't part of the &quot;__init__.py&quot; package tree, it couldn't use any of the web server modules. A hacky way to get around this is to add the target module's directory to the path:
 &lt;pre&gt;    import sys
     sys.path.append('/usr/wherever_that_module_is')
@@ -1482,9 +1482,9 @@ It's very similar to the imp module syntax, except the function requires one arg
  
  <entry>
    <title>Scrolla - A Javascript Scroller</title>
-   <link href="http://yuvalg.com/blog/2011/06/05/scrolla-a-javascript-scroller"/>
+   <link href="https://yuvalg.com/blog/2011/06/05/scrolla-a-javascript-scroller"/>
    <updated>2011-06-05T07:08:25+00:00</updated>
-   <id>http://yuvalg.com/blog/2011/06/05/scrolla-a-javascript-scroller</id>
+   <id>https://yuvalg.com/blog/2011/06/05/scrolla-a-javascript-scroller</id>
    <content type="html">Here it is - &lt;a title=&quot;Scrolla Queen Bohemian Rhapsody Scrolling Rage Comic&quot; href=&quot;http://toplessproductions.com/scrolla/&quot;&gt;Scrolla for Queen's Bohemian Rhapsody&lt;/a&gt;.
 
 This was a fairly straightforward project. Reddit's &lt;a href=&quot;http://www.reddit.com/r/fffffffuuuuuuuuuuuu/duplicates/hicox/bohemian_rhapsody_all_of_it/&quot;&gt;graulund &lt;/a&gt;made a beautiful comic depicting one of my favorite songs - Queen - Bohemian Rhapsody. Because I believe in lazy people I made this auto-scrolling javascript. The youtube videos doing the scrolling just weren't awesome enough. jQuery's &quot;animate&quot; is used to scroll, swfobject to embed a chromeless youtube player that's pushed out of the frame. Please do &quot;view source&quot;.
@@ -1494,9 +1494,9 @@ I tried to make it easy to reuse &quot;scrolla&quot; so all the important variab
  
  <entry>
    <title>Pythonistas use chrome</title>
-   <link href="http://yuvalg.com/blog/2011/02/16/pythonistas-use-chrome"/>
+   <link href="https://yuvalg.com/blog/2011/02/16/pythonistas-use-chrome"/>
    <updated>2011-02-16T17:56:29+00:00</updated>
-   <id>http://yuvalg.com/blog/2011/02/16/pythonistas-use-chrome</id>
+   <id>https://yuvalg.com/blog/2011/02/16/pythonistas-use-chrome</id>
    <content type="html">I was very happy to see the wall of shame got so much attention. To my surprise, an extraordinary amount of visitors use the google browser as can be seen by the &lt;a href=&quot;http://imgur.com/a/4ga9x&quot;&gt;analytics data&lt;/a&gt;. Out of 24,000 visitors:
 
 48.1% - Chrome
@@ -1511,9 +1511,9 @@ Most of the visitors were unique (you guys aren't coming back?) and it is a pret
  
  <entry>
    <title>The decline of google search</title>
-   <link href="http://yuvalg.com/blog/2011/02/16/the-decline-of-google-search"/>
+   <link href="https://yuvalg.com/blog/2011/02/16/the-decline-of-google-search"/>
    <updated>2011-02-16T01:26:39+00:00</updated>
-   <id>http://yuvalg.com/blog/2011/02/16/the-decline-of-google-search</id>
+   <id>https://yuvalg.com/blog/2011/02/16/the-decline-of-google-search</id>
    <content type="html">So I revealed &lt;a href=&quot;http://python3wos.appspot.com&quot;&gt;the python 3 wall of shame&lt;/a&gt; a few days ago and immediately it was the best result in google when I searched for &quot;python wall of shame&quot; and &quot;python3wos&quot;. Seems to make sense as there was no wall of shame for python yet. Now lets look at results 3 days later:
 
 &lt;h3&gt;Search results for &quot;Python 3 Wall of Shame&quot;&lt;/h3&gt;
@@ -1531,9 +1531,9 @@ edit - a few hours after writing this article, the search &quot;python 3 wall of
  
  <entry>
    <title>The Python 3 Wall of Shame</title>
-   <link href="http://yuvalg.com/blog/2011/02/12/the-python-3-wall-of-shame"/>
+   <link href="https://yuvalg.com/blog/2011/02/12/the-python-3-wall-of-shame"/>
    <updated>2011-02-12T18:23:57+00:00</updated>
-   <id>http://yuvalg.com/blog/2011/02/12/the-python-3-wall-of-shame</id>
+   <id>https://yuvalg.com/blog/2011/02/12/the-python-3-wall-of-shame</id>
    <content type="html">Here's my attempt at &lt;a href=&quot;http://python3wos.appspot.com&quot;&gt;motivating package maintainers to port to python 3&lt;/a&gt; and you can check out&lt;a href=&quot;http://code.google.com/p/python3wos/&quot;&gt; the code that generates the chart&lt;/a&gt;. I basically scraped PyPI (13,000 webpages) for this info and formatted it into an HTML table which is uploaded to appspot. I added a 'cron' task on my PC to recrawl PyPI every Sunday so the chart stays fresh. When developing the WOS I used &lt;a href=&quot;http://code.google.com/p/filecache/&quot;&gt;filecache &lt;/a&gt;(from the previous blog post) so I could just write the code that parses the crawl as though it just now scraped PyPI while infact everything was cached to disk. Without filecache I would have had to either wait for ages, or write code that stores the scrapes, and reparses them. About 10 lines turn into an import and a decorator, now that's magic.
 
 I hope no one takes offense from this. The situation we're starting at is pretty bad. Only 11 out of the top 100 packages on PyPI are labeled as supporting python3. There are a few glitches (e.g. multiprocessing) where the developers simply haven't yet labeled the package as python 3 compliant.
@@ -1543,17 +1543,17 @@ Once we pass the 50% mark I guess we can change it from &quot;Wall of Shame&quot
  
  <entry>
    <title>Filecache</title>
-   <link href="http://yuvalg.com/blog/2011/02/12/filecache"/>
+   <link href="https://yuvalg.com/blog/2011/02/12/filecache"/>
    <updated>2011-02-12T15:04:08+00:00</updated>
-   <id>http://yuvalg.com/blog/2011/02/12/filecache</id>
+   <id>https://yuvalg.com/blog/2011/02/12/filecache</id>
    <content type="html">Working on a project that needed some web scraping, I made &lt;a href=&quot;http://pypi.python.org/pypi/filecache&quot;&gt;filecache&lt;/a&gt;. I just wanted a simple decorator that would save the results of a function to disk. Memcache and other recipes seemed to be either overly complex or just plain memory caching (without persistence). If you want to help improve it then check out the &lt;a href=&quot;http://code.google.com/p/filecache/&quot;&gt;google code filecache project&lt;/a&gt;.</content>
  </entry>
  
  <entry>
    <title>Life Recording</title>
-   <link href="http://yuvalg.com/blog/2009/12/23/life-recording"/>
+   <link href="https://yuvalg.com/blog/2009/12/23/life-recording"/>
    <updated>2009-12-23T00:18:54+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/12/23/life-recording</id>
+   <id>https://yuvalg.com/blog/2009/12/23/life-recording</id>
    <content type="html">If a baby born today was given a necklace with 2 mics and a camera, can we record its entire lifetime? At what quality? Lets assume dvdrip quality with xvid4, excellent compression with great sound and visuals for 700 MB per 2 hours. If we assume an 80 year life expectancy then we have 80 * 365 * 24 = 700,800 hours in a lifetime. This amounts to about 240 terabytes. Let's say we cut off the boring half of the day and take a lower quality recording (1/5 file size as in YouTube for example) and we're down to 24 terabytes. Using smart VBR we might even be able to get some hi-def for the important parts.
 
 So according to hard drive capacity trends, this is feasible by 2015 (hard drive capacity multiplies by 10 every 5 years, see at: &lt;a href=&quot;http://en.m.wikipedia.org/wiki/File:Hard_drive_capacity_over_time.svg&quot;&gt;http://en.m.wikipedia.org/wiki/File:Hard_drive_capacity_over_time.svg&lt;/a&gt; ).
@@ -1565,9 +1565,9 @@ Ok, so how do we tap into our bodies energy supplies? Please answer this questio
  
  <entry>
    <title>Google URL Shortener</title>
-   <link href="http://yuvalg.com/blog/2009/12/14/google-url-shortener"/>
+   <link href="https://yuvalg.com/blog/2009/12/14/google-url-shortener"/>
    <updated>2009-12-14T23:57:33+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/12/14/google-url-shortener</id>
+   <id>https://yuvalg.com/blog/2009/12/14/google-url-shortener</id>
    <content type="html">&lt;a href=&quot;http://goo.gl/&quot;&gt;http://goo.gl/&lt;/a&gt;
 
 It sounds interesting, though there still isn't any info on it. We'll see.</content>
@@ -1575,9 +1575,9 @@ It sounds interesting, though there still isn't any info on it. We'll see.</cont
  
  <entry>
    <title>Python Graphbin - A place to share graphs</title>
-   <link href="http://yuvalg.com/blog/2009/11/21/python-graphbin-a-place-to-share-graphs"/>
+   <link href="https://yuvalg.com/blog/2009/11/21/python-graphbin-a-place-to-share-graphs"/>
    <updated>2009-11-21T09:55:19+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/11/21/python-graphbin-a-place-to-share-graphs</id>
+   <id>https://yuvalg.com/blog/2009/11/21/python-graphbin-a-place-to-share-graphs</id>
    <content type="html">A week ago I found out some strange stuff was going on when I searched for &quot;aaaaaaaaaaa&quot;. So I made a python script
 &lt;a href=&quot;http://pastebin.com/f35806f8f&quot;&gt;http://pastebin.com/f35806f8f&lt;/a&gt; for gathering the search results and wanted to plot a nice graph. The problem was I couldn't find a nice place to show and store the data. So I made a pastebin esque graphbin at &lt;a href=&quot;http://graphbin.appspot.com&quot;&gt;http://graphbin.appspot.com&lt;/a&gt; and you can see the google search results:
 
@@ -1592,9 +1592,9 @@ Maybe some paste-lover can dazzle me with some info on how paste compares/differ
  
  <entry>
    <title>Leaving Wordpress.com</title>
-   <link href="http://yuvalg.com/blog/2009/11/20/leaving-wordpress-com"/>
+   <link href="https://yuvalg.com/blog/2009/11/20/leaving-wordpress-com"/>
    <updated>2009-11-20T00:49:47+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/11/20/leaving-wordpress-com</id>
+   <id>https://yuvalg.com/blog/2009/11/20/leaving-wordpress-com</id>
    <content type="html">I don't like wordpress taking ownership of links
 &lt;a href=&quot;http://en.forums.wordpress.com/topic/link-redirection-through-go2wordpresscom?replies=12#post-404181&quot;&gt;http://en.forums.wordpress.com/topic/link-redirection-through-go2wordpresscom?replies=12#post-404181&lt;/a&gt; so I'm breaking off. I use wordpress partly as a link pastebin and archive so not being able to just copy-n-paste links is a real deal breaker for me.
 
@@ -1609,9 +1609,9 @@ Hurrah for the export/import tool.
  
  <entry>
    <title>Installing extensions on google wave</title>
-   <link href="http://yuvalg.com/blog/2009/11/16/installing-extensions-on-google-wave"/>
+   <link href="https://yuvalg.com/blog/2009/11/16/installing-extensions-on-google-wave"/>
    <updated>2009-11-16T07:22:29+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/11/16/installing-extensions-on-google-wave</id>
+   <id>https://yuvalg.com/blog/2009/11/16/installing-extensions-on-google-wave</id>
    <content type="html">Some tutorials proclaim to explain this but don't. In order to install G**gle Wave extensions you have to go to your first wave named &quot;Welcome to Google Wave&quot; and click on the &quot;Extensions Gallery&quot; link. There you'll find an extension named &quot;Extension Installer&quot;, install it, then when you're editing waves it's on the toolbar (yeah, where you change fonts is where you install wave extensions). This allows you to install any extension by url and not just those that are in the gallery.
 
 What a self referential headache that caused.
@@ -1623,9 +1623,9 @@ I think this extension should be pre-installed by default just like the map gadg
  
  <entry>
    <title>Javascript's Global Scope and Google Wave</title>
-   <link href="http://yuvalg.com/blog/2009/11/13/javascripts-global-scope-and-google-wave"/>
+   <link href="https://yuvalg.com/blog/2009/11/13/javascripts-global-scope-and-google-wave"/>
    <updated>2009-11-13T11:30:40+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/11/13/javascripts-global-scope-and-google-wave</id>
+   <id>https://yuvalg.com/blog/2009/11/13/javascripts-global-scope-and-google-wave</id>
    <content type="html">Dmitry Baranovskiy said something that bit me the other day:
 
 
@@ -1649,9 +1649,9 @@ Btw the gadget I made's called &quot;4 in a wave&quot; which allows you to play 
  
  <entry>
    <title>Python Programmers Writing Javascript Beware</title>
-   <link href="http://yuvalg.com/blog/2009/11/09/python-programmers-writing-javascript-beware"/>
+   <link href="https://yuvalg.com/blog/2009/11/09/python-programmers-writing-javascript-beware"/>
    <updated>2009-11-09T07:38:33+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/11/09/python-programmers-writing-javascript-beware</id>
+   <id>https://yuvalg.com/blog/2009/11/09/python-programmers-writing-javascript-beware</id>
    <content type="html">Call me silly for not reading the docs, but this bug was very hard to find. Dictionaries in python are NOT the same thing in javascript. The curly braces mean it's an &amp;quot;object literal&amp;quot; and the keys don't need the quotation marks. For example:
 
 var x = { NAME: 123, Something: &amp;quot;ok&amp;quot;}
@@ -1669,9 +1669,9 @@ This is even worse because JSON causes you to believe the quotation marks are ne
  
  <entry>
    <title>Projects I'd Like To Do</title>
-   <link href="http://yuvalg.com/blog/2009/11/05/projects-id-like-to-do"/>
+   <link href="https://yuvalg.com/blog/2009/11/05/projects-id-like-to-do"/>
    <updated>2009-11-05T17:45:03+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/11/05/projects-id-like-to-do</id>
+   <id>https://yuvalg.com/blog/2009/11/05/projects-id-like-to-do</id>
    <content type="html">I've got too many things on my mind, I was thinking of doing the following:
 &lt;ol&gt;
 	&lt;li&gt;Help improve 3to2, sounds like it could help bridge the PyPI gap and allow for writing &quot;backwards compatible&quot; libraries, using the newest of technologies (it's alot better than imitating decorator behavior using the silly syntax it's sugar for).&lt;/li&gt;
@@ -1688,9 +1688,9 @@ I think that's it. I wonder how much of the above I'll be able to complete by ne
  
  <entry>
    <title>Dr. Jekyll And Mr. Hyde</title>
-   <link href="http://yuvalg.com/blog/2009/11/01/dr-jekyll-and-mr-hyde"/>
+   <link href="https://yuvalg.com/blog/2009/11/01/dr-jekyll-and-mr-hyde"/>
    <updated>2009-11-01T23:46:08+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/11/01/dr-jekyll-and-mr-hyde</id>
+   <id>https://yuvalg.com/blog/2009/11/01/dr-jekyll-and-mr-hyde</id>
    <content type="html">Books are assembly and movies are python. To me, books are an outdated medium that's just not worth the hassle. Movies on the other hand I enjoy watching and creating. Of course just like there will always be people optimizing assembly, there will always be the paper text lovers, they can enjoy their pretentious fun ride for all I care.
 
 Of course I don't dismiss text as a medium completely, but story books are just java bytecode that's waiting to be JIT compiled into a movie if it's worth the machine's effort.
@@ -1704,9 +1704,9 @@ May god have mercy on religious fud tactics.
  
  <entry>
    <title>Python Regular Expressions Evaluator</title>
-   <link href="http://yuvalg.com/blog/2009/10/27/python-regular-expressions-evaluator"/>
+   <link href="https://yuvalg.com/blog/2009/10/27/python-regular-expressions-evaluator"/>
    <updated>2009-10-27T01:54:49+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/10/27/python-regular-expressions-evaluator</id>
+   <id>https://yuvalg.com/blog/2009/10/27/python-regular-expressions-evaluator</id>
    <content type="html">I wanted to try out Django over App Engine so I made an online regular expressions evaluator:
 
 &lt;a href=&quot;http://pythonre.appspot.com&quot;&gt;http://pythonre.appspot.com&lt;/a&gt;
@@ -1716,9 +1716,9 @@ At first I thought it's strange that there's no online python regular expression
  
  <entry>
    <title>Python and the Blogroll</title>
-   <link href="http://yuvalg.com/blog/2009/10/03/python-and-the-blogroll"/>
+   <link href="https://yuvalg.com/blog/2009/10/03/python-and-the-blogroll"/>
    <updated>2009-10-03T17:30:57+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/10/03/python-and-the-blogroll</id>
+   <id>https://yuvalg.com/blog/2009/10/03/python-and-the-blogroll</id>
    <content type="html">How come every self respecting python web framework has a tutorial on implementing a blog yet everybody uses PHP wordpress?
 
 So, does anybody know good python blog projects? (No, pinax isn't a blogging app, sorry)</content>
@@ -1726,9 +1726,9 @@ So, does anybody know good python blog projects? (No, pinax isn't a blogging app
  
  <entry>
    <title>php to eat, python to grow!</title>
-   <link href="http://yuvalg.com/blog/2009/09/30/php-to-eat-python-to-grow"/>
+   <link href="https://yuvalg.com/blog/2009/09/30/php-to-eat-python-to-grow"/>
    <updated>2009-09-30T23:07:43+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/09/30/php-to-eat-python-to-grow</id>
+   <id>https://yuvalg.com/blog/2009/09/30/php-to-eat-python-to-grow</id>
    <content type="html">Just saw this gem on reddit: &lt;a href=&quot;http://www.reddit.com/r/Python/comments/9pd33/dear_redditpy_could_you_help_me_convince_myself/c0dt5wa&quot;&gt;http://www.reddit.com/r/Python/comments/9pd33/dear_redditpy_could_you_help_me_convince_myself/c0dt5wa&lt;/a&gt;
 
 Also, good luck on implementing an http-proxy in PHP, the damn thing would have to be huge, ugly and would require at least one PEAR lib to do it the right way.
@@ -1738,9 +1738,9 @@ And for some reason &lt;a href=&quot;http://en.support.wordpress.com/post-by-ema
  
  <entry>
    <title>Language Performance Analysis</title>
-   <link href="http://yuvalg.com/blog/2009/09/29/language-performance-analysis"/>
+   <link href="https://yuvalg.com/blog/2009/09/29/language-performance-analysis"/>
    <updated>2009-09-29T01:52:16+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/09/29/language-performance-analysis</id>
+   <id>https://yuvalg.com/blog/2009/09/29/language-performance-analysis</id>
    <content type="html">These have to be some of the most interesting things I've seen recently:
 &lt;ol&gt;
 	&lt;li&gt;&lt;a href=&quot;http://shootout.alioth.debian.org/&quot;&gt;The Computer Language Benchmarks Game&lt;/a&gt; - compare how cpu, memory footprint and source size of all your favorite languages. Also tested is multi-core vs single core and 32 vs 64 bit.&lt;/li&gt;
@@ -1751,9 +1751,9 @@ It's really interesting to see this information so plainly so one could learn a 
  
  <entry>
    <title>Standard library granularity in python, argparse vs getopt</title>
-   <link href="http://yuvalg.com/blog/2009/09/28/standard-library-granularity-in-python-argparse-vs-getopt"/>
+   <link href="https://yuvalg.com/blog/2009/09/28/standard-library-granularity-in-python-argparse-vs-getopt"/>
    <updated>2009-09-28T20:45:13+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/09/28/standard-library-granularity-in-python-argparse-vs-getopt</id>
+   <id>https://yuvalg.com/blog/2009/09/28/standard-library-granularity-in-python-argparse-vs-getopt</id>
    <content type="html">Is it ok that python has 2 modules for option parsing, 3-4 xml packages, 3 HTTPServer modules, etc? This issue hit me when contemplating the deprecation of getopt as a part of the inclusion of argparse. Whenever I want to parse xml/html I get overwhelmed by the options in the std-lib. I remember myself annoyed and confused by getopt/optparse both showing me 2 different ways of doing something so similar. As a newcomer to python, I wanted python to show me the right way of doing things.
 
 So following that line of thought, getopt is the ugly way of doing option parsing. It imitates an option parsing flow that came from the old C days (and thus unpythonic), making it very attractive for people familiar with getopt/xgetopt. So what's more important: easy learning curve or enforcing best practices?
@@ -1778,9 +1778,9 @@ At first I thought the learning curve thing was important, but in the end, getop
  
  <entry>
    <title>My First Python Contribution</title>
-   <link href="http://yuvalg.com/blog/2009/09/19/my-first-python-contribution"/>
+   <link href="https://yuvalg.com/blog/2009/09/19/my-first-python-contribution"/>
    <updated>2009-09-19T09:25:29+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/09/19/my-first-python-contribution</id>
+   <id>https://yuvalg.com/blog/2009/09/19/my-first-python-contribution</id>
    <content type="html">This might be a bit silly, but I'm pretty proud of &lt;a title=&quot;It's only an error message, but still...&quot; href=&quot;http://svn.python.org/view/python/trunk/Lib/inspect.py?r1=74285&amp;amp;r2=74901&quot;&gt;my first diff in the python trunk&lt;/a&gt;. This is &lt;a title=&quot;Maybe cfunctions should be treated better and given their own error message?&quot; href=&quot;http://bugs.python.org/issue6905&quot;&gt;the ticket&lt;/a&gt; where all the magic happened.
 
 I think I'm content. No need to be working too hard getting pyopt into the standard library, etc...</content>
@@ -1788,9 +1788,9 @@ I think I'm content. No need to be working too hard getting pyopt into the stand
  
  <entry>
    <title>Thoughts On Ecosystems And If There Is No Cold</title>
-   <link href="http://yuvalg.com/blog/2009/09/19/thoughts-on-ecosystems-and-if-there-is-no-cold"/>
+   <link href="https://yuvalg.com/blog/2009/09/19/thoughts-on-ecosystems-and-if-there-is-no-cold"/>
    <updated>2009-09-19T00:06:15+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/09/19/thoughts-on-ecosystems-and-if-there-is-no-cold</id>
+   <id>https://yuvalg.com/blog/2009/09/19/thoughts-on-ecosystems-and-if-there-is-no-cold</id>
    <content type="html">&lt;ol&gt;
 &lt;li&gt;Does a self sustaining ecosystem aquarium/zoo exist? I mean like a closed space with a few different kinds of animals that sustains itself without an external food supply. Of course I've heard of a few lakes that only have water coming in and out, but what is the minimum size of a body of water or piece of land that can sustain a non-trivial amount of life?&lt;/li&gt;
 &lt;li&gt;We like to think of 'cold' as the lack of heat. Why? Because there is a minimum of heat, or you could say a maximum of cold. But actually there's also a maximum of heat, though it probably would be hard to reproduce in a lab. The maximum temperature is what you get when you make all the particles in the world explode thus summing up all their energies into one particle. That one last surviving particle that contains all of the universe's energy, it's temperature is MAX_T. So maybe this whole 'there is no cold' fiasco was a simplification of the real situation. Hot/cold is just a scalar with two end-points, call it heat, call it coolness, whatever.&lt;/li&gt;
@@ -1799,9 +1799,9 @@ I think I'm content. No need to be working too hard getting pyopt into the stand
  
  <entry>
    <title>Google Code Doesn't Network</title>
-   <link href="http://yuvalg.com/blog/2009/09/11/google-code-doesnt-network"/>
+   <link href="https://yuvalg.com/blog/2009/09/11/google-code-doesnt-network"/>
    <updated>2009-09-11T11:26:57+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/09/11/google-code-doesnt-network</id>
+   <id>https://yuvalg.com/blog/2009/09/11/google-code-doesnt-network</id>
    <content type="html">When I search for &quot;pyopt&quot; on google the first result is the PyPI page which is pretty amazing considering it didn't exist before a few hours. The google code page for &lt;a href=&quot;http://code.google.com/p/pyopt/&quot;&gt;pyopt&lt;/a&gt; is nowhere to be seen, a search for &quot;pyopt site:google.com&quot; gives only some mathematical optimization module. Strange stuff google, strange. Maybe I should've went with &lt;a href=&quot;http://github.com/&quot;&gt;github&lt;/a&gt;.
 
 update 15-11-2009: now I do get the top ranking search result on google for pyopt but zero results on yahoo search's first page. Wtf is Peyote? So anyway the conclusion is it takes google at least a week to crawl google-code. Strange.</content>
@@ -1809,17 +1809,17 @@ update 15-11-2009: now I do get the top ranking search result on google for pyop
  
  <entry>
    <title>You Think You Know Pi...</title>
-   <link href="http://yuvalg.com/blog/2009/09/10/you-think-you-know-pi"/>
+   <link href="https://yuvalg.com/blog/2009/09/10/you-think-you-know-pi"/>
    <updated>2009-09-10T20:46:17+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/09/10/you-think-you-know-pi</id>
+   <id>https://yuvalg.com/blog/2009/09/10/you-think-you-know-pi</id>
    <content type="html">Did you ever think you could compute pi to whatever digit you like? Given a computer, there is no algorithm that can infinitely print out the next digit of pi for ever. Any and all algorithms will eventually run out of memory and break. Sorry. Because your computer is a finite machine with a finite amount of states, eventually your algorithm must repeat itself and pi doesn't. When I thought this up I was like &quot;holy shit&quot; at first but then I calmed down after realizing knowing pi to any digit was only for people with OCD's anyway...</content>
  </entry>
  
  <entry>
    <title>pyopt, a python optparse with class</title>
-   <link href="http://yuvalg.com/blog/2009/09/05/pyopt-a-python-optparse-with-class"/>
+   <link href="https://yuvalg.com/blog/2009/09/05/pyopt-a-python-optparse-with-class"/>
    <updated>2009-09-05T23:18:39+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/09/05/pyopt-a-python-optparse-with-class</id>
+   <id>https://yuvalg.com/blog/2009/09/05/pyopt-a-python-optparse-with-class</id>
    <content type="html">I made a python option parser, I wonder what python-ideas will think of it...
 
 &lt;a title=&quot;Pyopt - A Pythonic optparse&quot; href=&quot;http://code.google.com/p/pyopt/&quot;&gt;http://code.google.com/p/pyopt/&lt;/a&gt;</content>
@@ -1827,9 +1827,9 @@ update 15-11-2009: now I do get the top ranking search result on google for pyop
  
  <entry>
    <title>I broke the python interpreter today</title>
-   <link href="http://yuvalg.com/blog/2009/09/05/i-broke-the-python-interpreter-today"/>
+   <link href="https://yuvalg.com/blog/2009/09/05/i-broke-the-python-interpreter-today"/>
    <updated>2009-09-05T17:15:23+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/09/05/i-broke-the-python-interpreter-today</id>
+   <id>https://yuvalg.com/blog/2009/09/05/i-broke-the-python-interpreter-today</id>
    <content type="html">locals() can let you add non-strings to your local namespace, check it out...
 
 &amp;gt;&amp;gt;&amp;gt; locals().update({3:2})
@@ -1843,9 +1843,9 @@ TypeError: unorderable types: int() &amp;lt; str()
  
  <entry>
    <title>Where's toString?</title>
-   <link href="http://yuvalg.com/blog/2009/08/25/wheres-tostring"/>
+   <link href="https://yuvalg.com/blog/2009/08/25/wheres-tostring"/>
    <updated>2009-08-25T19:38:35+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/08/25/wheres-tostring</id>
+   <id>https://yuvalg.com/blog/2009/08/25/wheres-tostring</id>
    <content type="html">Why don't python integers have a smart toString method like java/javascript? It's easy to convert strings into numbers using int(str_whatever) or float(str_whatever) but to convert them back you have only the decimal system (using str(number) or &quot;%d&quot; % number). In case you want to convert to binary, base32, base36, base64, you're gonna have to write your own conversion function. Batteries included?
 
 Use either:
@@ -1862,17 +1862,17 @@ I added a feature request, lets see if it gets completely shot down:
  
  <entry>
    <title>Irrational Mathematics</title>
-   <link href="http://yuvalg.com/blog/2009/07/24/irrational-mathematics"/>
+   <link href="https://yuvalg.com/blog/2009/07/24/irrational-mathematics"/>
    <updated>2009-07-24T23:34:02+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/07/24/irrational-mathematics</id>
+   <id>https://yuvalg.com/blog/2009/07/24/irrational-mathematics</id>
    <content type="html">Did I ever mention the &lt;a title=&quot;Greenfield Lemma, Once a fraction, always a fraction&quot; href=&quot;http://planetmath.org/encyclopedia/SquareOfAFractionIsAlwaysAFraction.html&quot;&gt;Greenfield Lemma&lt;/a&gt;?</content>
  </entry>
  
  <entry>
    <title>Mirror's Edge Review</title>
-   <link href="http://yuvalg.com/blog/2009/07/10/mirrors-edge-review"/>
+   <link href="https://yuvalg.com/blog/2009/07/10/mirrors-edge-review"/>
    <updated>2009-07-10T02:21:38+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/07/10/mirrors-edge-review</id>
+   <id>https://yuvalg.com/blog/2009/07/10/mirrors-edge-review</id>
    <content type="html">I just finished this parkour-free-running-shooter game and it was insanely polished visually and mechanically. The only gripe I can say is that it gets old real quick, the gameplay has no depth and it's always the same wall-jump puzzle. It starts out very promising because you learn every single cool thing about the game in a well thought out tutorialish first level. There are about 4 visual styles in the game, daytime rooftops, daytime streets, bright indoors and dark indoors. The story's cute, but not too convincing. Did I mention the main character's hot and has a matching hot sister?
 
 It was a good game but next time around I'd like EA to give me something I can enjoy chewing. Maybe add a tricks/turbo system that helps you run/jump/fight. Oh and one more thing, there's a slow-motion-matrix button which is absolutely useless, shoulda been removed from the game if it isn't relevant.</content>
@@ -1880,17 +1880,17 @@ It was a good game but next time around I'd like EA to give me something I can e
  
  <entry>
    <title>biroking is a Myspace spoof phish worm </title>
-   <link href="http://yuvalg.com/blog/2009/06/27/biroking-is-a-myspace-spoof-phish-worm"/>
+   <link href="https://yuvalg.com/blog/2009/06/27/biroking-is-a-myspace-spoof-phish-worm"/>
    <updated>2009-06-27T21:46:00+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/06/27/biroking-is-a-myspace-spoof-phish-worm</id>
+   <id>https://yuvalg.com/blog/2009/06/27/biroking-is-a-myspace-spoof-phish-worm</id>
    <content type="html">I googled this and it appears no one noticed yet so I had to write about it specifically... biroking.com looks exactly like the myspace login. How does the phish work? Well all I know is i got a message that only had a link in it to biroking.com so I checked it and voila holy fuck. I assume that once they get your user/pass from the fake login they just message all your friends with nothing but www.biroking.com what assholes.</content>
  </entry>
  
  <entry>
    <title>Reporting phishing</title>
-   <link href="http://yuvalg.com/blog/2009/06/24/reporting-phishing"/>
+   <link href="https://yuvalg.com/blog/2009/06/24/reporting-phishing"/>
    <updated>2009-06-24T18:56:37+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/06/24/reporting-phishing</id>
+   <id>https://yuvalg.com/blog/2009/06/24/reporting-phishing</id>
    <content type="html">It's not as easy as I thought, most websites actually want you to e-mail them a phish report. Naturally, google did it almost right.
 
 This is how you check if a site was reported or not (notice you have to modify the url to use this):
@@ -1902,9 +1902,9 @@ This is how you report phishers:
  
  <entry>
    <title>Reversing Hebrew Text For Premiere/Photoshop</title>
-   <link href="http://yuvalg.com/blog/2009/06/21/reversing-hebrew-text-for-premierephotoshop"/>
+   <link href="https://yuvalg.com/blog/2009/06/21/reversing-hebrew-text-for-premierephotoshop"/>
    <updated>2009-06-21T23:10:20+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/06/21/reversing-hebrew-text-for-premierephotoshop</id>
+   <id>https://yuvalg.com/blog/2009/06/21/reversing-hebrew-text-for-premierephotoshop</id>
    <content type="html">I made a python script that does this with utf-8, but a much more elegant solution of course is javascript. So I made this little ugly google app engine that does the job:
 
 &lt;a title=&quot;Reverse text להפוך טקסט בעברית&quot; href=&quot;http://textreverse.appspot.com/&quot;&gt; http://textreverse.appspot.com/&lt;/a&gt;
@@ -1917,9 +1917,9 @@ If you're still interested in the utf-8 python script:
  
  <entry>
    <title>CPU Stats</title>
-   <link href="http://yuvalg.com/blog/2009/06/07/cpu-stats"/>
+   <link href="https://yuvalg.com/blog/2009/06/07/cpu-stats"/>
    <updated>2009-06-07T22:42:30+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/06/07/cpu-stats</id>
+   <id>https://yuvalg.com/blog/2009/06/07/cpu-stats</id>
    <content type="html">I got an intel quad core 9450 and an Asus p5q deluxe mb. These are my temperature stats:
 Idle With Case Closed: CPU 43 C, MB 45 C.
 4x100% means
@@ -1929,17 +1929,17 @@ cpu 64 C, mb 47 C if the case is open.
  
  <entry>
    <title>Awesome link previews on wordpress, I like it.</title>
-   <link href="http://yuvalg.com/blog/2009/06/06/awesome-link-previews-on-wordpress-i-like-it"/>
+   <link href="https://yuvalg.com/blog/2009/06/06/awesome-link-previews-on-wordpress-i-like-it"/>
    <updated>2009-06-06T17:54:35+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/06/06/awesome-link-previews-on-wordpress-i-like-it</id>
+   <id>https://yuvalg.com/blog/2009/06/06/awesome-link-previews-on-wordpress-i-like-it</id>
    <content type="html">I really liked the links preview widget wordpress installed. &lt;a href=&quot;http://www.snap.com&quot;&gt;http://www.snap.com&lt;/a&gt; are the guys to hold responsible for this neat thing.</content>
  </entry>
  
  <entry>
    <title>48 Hour Film Project Winners Wiki</title>
-   <link href="http://yuvalg.com/blog/2009/06/06/48-hour-film-project-winners-wiki"/>
+   <link href="https://yuvalg.com/blog/2009/06/06/48-hour-film-project-winners-wiki"/>
    <updated>2009-06-06T17:44:27+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/06/06/48-hour-film-project-winners-wiki</id>
+   <id>https://yuvalg.com/blog/2009/06/06/48-hour-film-project-winners-wiki</id>
    <content type="html">Lets see if this works...
 
 &lt;a title=&quot;48 Hour Film Project Winners Wiki&quot; href=&quot;http://www.picowiki.com/48hfpwinners/&quot;&gt;48 Hour Film Project Winners Wiki&lt;/a&gt;</content>
@@ -1947,9 +1947,9 @@ cpu 64 C, mb 47 C if the case is open.
  
  <entry>
    <title>Nice dancing</title>
-   <link href="http://yuvalg.com/blog/2009/06/06/nice-dancing"/>
+   <link href="https://yuvalg.com/blog/2009/06/06/nice-dancing"/>
    <updated>2009-06-06T17:17:46+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/06/06/nice-dancing</id>
+   <id>https://yuvalg.com/blog/2009/06/06/nice-dancing</id>
    <content type="html">Diversity just rock it out.
 &lt;br /&gt;
 &lt;a href=&quot;http://www.youtube.com/watch?v=KJIz8BgRQc0&amp;amp;feature=popw00us01&quot;&gt;http://www.youtube.com/watch?v=KJIz8BgRQc0&amp;amp;feature=popw00us01&lt;/a&gt;
@@ -1960,9 +1960,9 @@ It's creative in a mind blowing way....
  
  <entry>
    <title>new website</title>
-   <link href="http://yuvalg.com/blog/2009/04/26/new-website"/>
+   <link href="https://yuvalg.com/blog/2009/04/26/new-website"/>
    <updated>2009-04-26T00:57:29+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/04/26/new-website</id>
+   <id>https://yuvalg.com/blog/2009/04/26/new-website</id>
    <content type="html">&lt;a title=&quot;חזק&quot; href=&quot;http://hzk.co.il&quot;&gt;http://hzk.co.il&lt;/a&gt;
 
 Social bookmarking for the hebrews, can it get any better?
@@ -1971,9 +1971,9 @@ Social bookmarking for the hebrews, can it get any better?
  
  <entry>
    <title>טרמינולוגיה בהיי טק</title>
-   <link href="http://yuvalg.com/blog/2009/04/22/d798d7a8d79ed799d7a0d795d79cd795d792d799d794-d791d794d799d799-d798d7a7"/>
+   <link href="https://yuvalg.com/blog/2009/04/22/d798d7a8d79ed799d7a0d795d79cd795d792d799d794-d791d794d799d799-d798d7a7"/>
    <updated>2009-04-22T19:20:52+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/04/22/d798d7a8d79ed799d7a0d795d79cd795d792d799d794-d791d794d799d799-d798d7a7</id>
+   <id>https://yuvalg.com/blog/2009/04/22/d798d7a8d79ed799d7a0d795d79cd795d792d799d794-d791d794d799d799-d798d7a7</id>
    <content type="html">קיבלתי את זה בדואר מאחותי, די נחמד:
 
 &lt;a href=&quot;http://uberpython.files.wordpress.com/2009/04/hi-tech-terminology.pdf&quot;&gt;hi-tech-terminology&lt;/a&gt;</content>
@@ -1981,9 +1981,9 @@ Social bookmarking for the hebrews, can it get any better?
  
  <entry>
    <title>Innocent vs Guilty</title>
-   <link href="http://yuvalg.com/blog/2009/04/13/innocent-vs-guilty"/>
+   <link href="https://yuvalg.com/blog/2009/04/13/innocent-vs-guilty"/>
    <updated>2009-04-13T16:18:33+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/04/13/innocent-vs-guilty</id>
+   <id>https://yuvalg.com/blog/2009/04/13/innocent-vs-guilty</id>
    <content type="html">It seems there are alot more innocent people in english, than there are in hebrew.
 
 Results 1 - 10 of about 8,690,000 for guilty [definition]. (0.14 seconds)
@@ -2001,9 +2001,9 @@ Results 1 - 10 of about 437,000 for חפים מפשע.‎ (0.08 seconds)</conten
  
  <entry>
    <title>Online Whiteboard</title>
-   <link href="http://yuvalg.com/blog/2009/02/13/online-whiteboard"/>
+   <link href="https://yuvalg.com/blog/2009/02/13/online-whiteboard"/>
    <updated>2009-02-13T16:51:35+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/02/13/online-whiteboard</id>
+   <id>https://yuvalg.com/blog/2009/02/13/online-whiteboard</id>
    <content type="html">&lt;p&gt;Really useful one...&lt;br /&gt;
 &lt;a href=&quot;http://www.dabbleboard.com/draw&quot;&gt;http://www.dabbleboard.com/draw&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The interface isn't exactly straightforward, but it's good once you get used to it. (You have to work slow, can't just drag things around, you first single click and only then can you drag).&lt;/p&gt;
@@ -2013,9 +2013,9 @@ Results 1 - 10 of about 437,000 for חפים מפשע.‎ (0.08 seconds)</conten
  
  <entry>
    <title>The internet is...</title>
-   <link href="http://yuvalg.com/blog/2009/02/09/the-internet-is"/>
+   <link href="https://yuvalg.com/blog/2009/02/09/the-internet-is"/>
    <updated>2009-02-09T22:37:58+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/02/09/the-internet-is</id>
+   <id>https://yuvalg.com/blog/2009/02/09/the-internet-is</id>
    <content type="html">The internet's &lt;a title=&quot;As in never dies.&quot; href=&quot;http://i40.tinypic.com/2u6h35j.png&quot;&gt;immortal&lt;/a&gt;.
 
 The internet's a &lt;a title=&quot;Internet is not cliche&quot; href=&quot;http://i43.tinypic.com/2ibdf5x.png&quot;&gt;smartass&lt;/a&gt;.
@@ -2037,9 +2037,9 @@ The information above was indexed by Google Inc.
  
  <entry>
    <title>What python lacks</title>
-   <link href="http://yuvalg.com/blog/2009/02/06/what-python-lacks"/>
+   <link href="https://yuvalg.com/blog/2009/02/06/what-python-lacks"/>
    <updated>2009-02-06T12:54:19+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/02/06/what-python-lacks</id>
+   <id>https://yuvalg.com/blog/2009/02/06/what-python-lacks</id>
    <content type="html">I do like python a lot, but I feel some things are still missing. Correct me if I'm wrong.
 
 * How do I know what can I import? I can use help(os) but how do I know that 'os' exists (from within the interpreter). I want a command like dir that can search through the default import directories. &quot;mdir&quot; (like module dir) or &quot;pdir&quot; (package dir).
@@ -2053,18 +2053,18 @@ And I think i have a few more rants to go on about this, I'll post 'em when I re
  
  <entry>
    <title>Word Connections</title>
-   <link href="http://yuvalg.com/blog/2009/01/17/word-connections"/>
+   <link href="https://yuvalg.com/blog/2009/01/17/word-connections"/>
    <updated>2009-01-17T15:38:11+00:00</updated>
-   <id>http://yuvalg.com/blog/2009/01/17/word-connections</id>
+   <id>https://yuvalg.com/blog/2009/01/17/word-connections</id>
    <content type="html">After fiddling with google apps engine, I made this AJAX searcher that tells you how strongly related are 2 words, or at least how strongly related they are on the internet. Try it out:
 &lt;a title=&quot;http://word-word-search.appspot.com/&quot; href=&quot;http://word-word-search.appspot.com/&quot;&gt;http://word-word-search.appspot.com/&lt;/a&gt;</content>
  </entry>
  
  <entry>
    <title>flash mp3 player with javascript</title>
-   <link href="http://yuvalg.com/blog/2008/12/26/flash-mp3-player-with-javascript"/>
+   <link href="https://yuvalg.com/blog/2008/12/26/flash-mp3-player-with-javascript"/>
    <updated>2008-12-26T11:10:31+00:00</updated>
-   <id>http://yuvalg.com/blog/2008/12/26/flash-mp3-player-with-javascript</id>
+   <id>https://yuvalg.com/blog/2008/12/26/flash-mp3-player-with-javascript</id>
    <content type="html">NiftyPlayer is one cute little mp3 player, I made this php code so I can browse a given directory using php, and give people the chance to play/pause/download a song.
 the code: &lt;a title=&quot;http://pastebin.com/f7d909185&quot; href=&quot;http://pastebin.com/f7d909185&quot;&gt;http://pastebin.com/f7d909185&lt;/a&gt;
 
@@ -2074,9 +2074,9 @@ the resulting webpage: &lt;a title=&quot;mp3 list&quot; href=&quot;http://baseme
  
  <entry>
    <title>Internet Speed Metrics (Mbps sucks)</title>
-   <link href="http://yuvalg.com/blog/2008/10/31/internet-speed-metrics-mbps-sucks"/>
+   <link href="https://yuvalg.com/blog/2008/10/31/internet-speed-metrics-mbps-sucks"/>
    <updated>2008-10-31T12:08:53+00:00</updated>
-   <id>http://yuvalg.com/blog/2008/10/31/internet-speed-metrics-mbps-sucks</id>
+   <id>https://yuvalg.com/blog/2008/10/31/internet-speed-metrics-mbps-sucks</id>
    <content type="html">Been shopping for an internet connections recently?
 
 I say we need 2 more metrics: average ping and GB per day (gaming and downloading movies).
@@ -2090,9 +2090,9 @@ Average ping should come from pings to 3-5 stable, well known, and geographicall
  
  <entry>
    <title>Trouble with prproj file</title>
-   <link href="http://yuvalg.com/blog/2008/08/23/trouble-with-prproj-file"/>
+   <link href="https://yuvalg.com/blog/2008/08/23/trouble-with-prproj-file"/>
    <updated>2008-08-23T11:29:52+00:00</updated>
-   <id>http://yuvalg.com/blog/2008/08/23/trouble-with-prproj-file</id>
+   <id>https://yuvalg.com/blog/2008/08/23/trouble-with-prproj-file</id>
    <content type="html">While trying to make the srt to premiere script:
 
 prpoj is xml, prtl (premiere title) is also xml. I think inside prproj, the prtl is not in xml form, but rather compressed somehow. I think this because I couldn't find the text from the title inside the prproj file. Anyways there's this base64 file in the prproj xml which I think contains the title because after i decode it there is a string at the beginning of the binary &quot;CompressedTitle&quot;, but I don't know how to decompress it...
@@ -2102,9 +2102,9 @@ here is the file after decoding the base64: &lt;a title=&quot;Compressed Title&q
  
  <entry>
    <title>Python Premiere Subtitles Tool</title>
-   <link href="http://yuvalg.com/blog/2008/08/23/python-premiere-subtitles-tool"/>
+   <link href="https://yuvalg.com/blog/2008/08/23/python-premiere-subtitles-tool"/>
    <updated>2008-08-23T07:59:16+00:00</updated>
-   <id>http://yuvalg.com/blog/2008/08/23/python-premiere-subtitles-tool</id>
+   <id>https://yuvalg.com/blog/2008/08/23/python-premiere-subtitles-tool</id>
    <content type="html">&lt;div class=&quot;entry&quot;&gt;
 &lt;div class=&quot;snap_preview&quot;&gt;
 
@@ -2116,9 +2116,9 @@ Download here: &lt;a title=&quot;Python Subtitler For Premiere&quot; href=&quot;
  
  <entry>
    <title>Python with prompt</title>
-   <link href="http://yuvalg.com/blog/2008/08/20/python-with-prompt"/>
+   <link href="https://yuvalg.com/blog/2008/08/20/python-with-prompt"/>
    <updated>2008-08-20T18:50:35+00:00</updated>
-   <id>http://yuvalg.com/blog/2008/08/20/python-with-prompt</id>
+   <id>https://yuvalg.com/blog/2008/08/20/python-with-prompt</id>
    <content type="html">Ever run a python script in windows and it just doesn't work and doesn't tell you why?
 
 This is for when exceptions are thrown but Windows closes your python interpreter, I came up with a shell extension called &quot;open with prompt&quot; where the interpreter sticks around so you can toy around with your python script after it's done.
@@ -2142,9 +2142,9 @@ The reg file contains (it's really simple, just add -i to the regular running):
  
  <entry>
    <title>Hello world!</title>
-   <link href="http://yuvalg.com/blog/2008/08/20/hello-world"/>
+   <link href="https://yuvalg.com/blog/2008/08/20/hello-world"/>
    <updated>2008-08-20T18:33:52+00:00</updated>
-   <id>http://yuvalg.com/blog/2008/08/20/hello-world</id>
+   <id>https://yuvalg.com/blog/2008/08/20/hello-world</id>
    <content type="html">Welcome to &lt;a href=&quot;http://wordpress.com/&quot;&gt;Wordpress.com&lt;/a&gt;. This is your first post. Edit or delete it and start blogging!</content>
  </entry>
  

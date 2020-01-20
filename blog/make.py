@@ -11,7 +11,7 @@ task = raw_input().strip().lower()
 
 if task == 'j':
     os.system('jekyll')
-    print('check http://yuvalg.com/draftblog')
+    print('check https://yuvalg.com/draftblog')
 
 if task == 'g':
     backup_fn = 'backup%s' % time.strftime('%Y-%m')

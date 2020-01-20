@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
  <title>yuvalg/blog standard library</title>
- <link href="http://yuvalg.com/tag/standard library.html" rel="self"/>
- <link href="http://yuvalg.com/tag/standard library.html"/>
+ <link href="https://yuvalg.com/tag/standard library.html" rel="self"/>
+ <link href="https://yuvalg.com/tag/standard library.html"/>
  <updated>2013-08-13T16:58:22+00:00</updated>
- <id>http://yuvalg.com/tag/standard library.html</id>
+ <id>https://yuvalg.com/tag/standard library.html</id>
  <author>
    <name>Yuval Greenfield</name>
  </author>
  
  <entry>
    <title>Standard library granularity in python, argparse vs getopt</title>
-   <link href="http://yuvalg.com/2009/09/28/standard-library-granularity-in-python-argparse-vs-getopt"/>
+   <link href="https://yuvalg.com/2009/09/28/standard-library-granularity-in-python-argparse-vs-getopt"/>
    <updated>2009-09-28T20:45:13+00:00</updated>
-   <id>http://yuvalg.com/2009/09/28/standard-library-granularity-in-python-argparse-vs-getopt</id>
+   <id>https://yuvalg.com/2009/09/28/standard-library-granularity-in-python-argparse-vs-getopt</id>
    <content type="html">Is it ok that python has 2 modules for option parsing, 3-4 xml packages, 3 HTTPServer modules, etc? This issue hit me when contemplating the deprecation of getopt as a part of the inclusion of argparse. Whenever I want to parse xml/html I get overwhelmed by the options in the std-lib. I remember myself annoyed and confused by getopt/optparse both showing me 2 different ways of doing something so similar. As a newcomer to python, I wanted python to show me the right way of doing things.
 
 So following that line of thought, getopt is the ugly way of doing option parsing. It imitates an option parsing flow that came from the old C days (and thus unpythonic), making it very attractive for people familiar with getopt/xgetopt. So what's more important: easy learning curve or enforcing best practices?
