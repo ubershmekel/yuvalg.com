@@ -1,498 +1,70 @@
-<!DOCTYPE html>
+<!doctype html>
+<html>
 
-<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]> <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
     <meta charset="utf-8" />
 
-    <!-- Set the viewport width to device width for mobile -->
-    <meta name="viewport" content="width=device-width" />
-
     <title>Yuval Greenfield</title>
+    <meta name="description" content="How did you find this text? Please return it.">
+    <meta name="keywords" content="personal page yuval greenfield">
 
-    <!-- Included CSS Files (Uncompressed) -->
-    <!--
-    <link rel="stylesheet" href="stylesheets/foundation.css">
-    -->
-    
-    <!-- Included CSS Files (Compressed) -->
-    <link rel="stylesheet" href="/stylesheets/foundation.min.css">
-    <!--link rel="stylesheet" href="stylesheets/app.css"-->
-    <style>
-    body {
-        background-color: #F2F2F2;
-    }
-
-    a.brand {
-        color: #08c;
-    }
-
-    a.brand:hover {
-        color: #fa3 !important;
-    }
-
-    .panel h5 {
-        color: #08C;
-    }
-
-    .panel p {
-        color: #666;
-    }
-
-    .panel {
-        background-color: #FFF;
-        border: 1px solid #DDD;
-        border-radius: 3px;
-        border-top: 1px solid #EEE;
-    }
-
-    .panel:hover > p {;
-    }
-
-    .panel:hover {
-        border-right: 4px solid #777;
-        -moz-box-shadow: 0px 4px 0px #ccc; /* Firefox 3.6 and earlier */
-        -webkit-box-shadow: 0px 4px 0px #ccc; /* Safari and Chrome */
-        box-shadow: 0px 4px 0px #ccc;
-        background: #ffffff; /* Old browsers */
-        background: -moz-linear-gradient(top, #ffffff 0%, #ffffaa 100%); /* FF3.6+ */
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#ffffaa)); /* Chrome,Safari4+ */
-        background: -webkit-linear-gradient(top,    #ffffff 0%,#ffffaa 100%); /* Chrome10+,Safari5.1+ */
-        background: -o-linear-gradient(top,    #ffffff 0%,#ffffaa 100%); /* Opera 11.10+ */
-        background: -ms-linear-gradient(top,    #ffffff 0%,#ffffaa 100%); /* IE10+ */
-        background: linear-gradient(to bottom,    #ffffff 0%,#ffffaa 100%); /* W3C */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffaa',GradientType=0 ); /* IE6-9 */
-    }
-
-    #myCanvas {
-        position: absolute;
-        z-index: -100;
-    }
-    </style>
-
-    <!--script src="javascripts/modernizr.foundation.js"></script-->
     <link rel="shortcut icon" href="key_y.png" />
 
+    <!-- Google Analytics -->
     <script type="text/javascript">
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-4533496-16']);
         _gaq.push(['_trackPageview']);
 
-        (function() {
+        (function () {
             var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
     </script>
+
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata&display=swap" rel="stylesheet">
+    <style>
+        html {
+            background-color: #3f0082;
+            color: #f2f;
+            text-shadow: 2px 2px 5px #ff2975;
+            font-size: 2em;
+        }
+
+        /* pre {
+            font-family: 'Inconsolata', monospace;
+        } */
+
+        a {
+            text-decoration: none;
+            color: #fd1;
+            transition: color 0.5s;
+        }
+
+        a:hover {
+            color: #f90;
+        }
+    </style>
+
 </head>
+
 <body>
-    <canvas id="myCanvas" resize="true"></canvas>
-    <!-- Header and Nav -->
+    <pre>
+Yuval Greenfield
 
-    <nav class="top-bar">
-        <ul>
-            <!-- Title Area -->
-            <li class="name">
-                <h1>
-                    <a href="mailto:ubershmekel@gmail.com" class="brand">Yuval Greenfield</a>
-                </h1>
-            </li>
-            <!--li class="toggle-topbar"><a href="#"></a></li-->
-        </ul>
-    </nav>
+<a href="mailto:ubershmekel@gmail.com">ubershmekel@gmail.com</a>
 
+<a href="https://twitter.com/ubershmekel/">https://twitter.com/ubershmekel/</a>
 
-    <!-- End Header and Nav -->
+<a href="https://www.linkedin.com/in/yuv/">https://www.linkedin.com/in/yuv/</a>
 
-    <!-- Main Grid Section -->
+<a href="https://medium.com/@ubershmekel/">https://medium.com/@ubershmekel/</a>
 
-    <div class="row">
-        <div class="six columns">
-            <a href="https://github.com/ubershmekel/">
-                <div class="panel">
-                    <h5>github</h5>
-                    <p>Open source stuff</p>
-                </div>
-            </a>
-        </div>
+<a href="https://github.com/ubershmekel/">https://github.com/ubershmekel/</a>
 
-        <div class="six columns">
-            <a href="https://ubershmekel.github.io/gfilter/?dl=testData/TechCrunchcontinentalUSA.csv">
-                <div class="panel">
-                    <h5>gfilter</h5>
-                    <p>Interactive cross filter any csv</p>
-                </div>
-            </a>
-        </div>
-
-        <div class="six columns">
-            <!-- yuvalg.com -->
-            <a href="/blog/">
-                <div class="panel">
-                    <h5>blog</h5>
-                    <p>Programming blog</p>
-                </div>
-            </a>
-        </div>
-
-        <div class="six columns">
-            <a href="http://redditp.com">
-                <div class="panel">
-                    <h5>redditp</h5>
-                    <p>Turn any subreddit into a slideshow</p>
-                </div>
-            </a>
-        </div>
-
-        <div class="six columns">
-            <a href="https://twitter.com/ubershmekel">
-                <div class="panel">
-                    <h5>twitter</h5>
-                    <p>Thoughts and tweets</p>
-                </div>
-            </a>
-        </div>
-
-        <div class="six columns">
-            <a href="http://python3wos.appspot.com">
-                <div class="panel">
-                    <h5>Python3WOS</h5>
-                    <p>Status of python packages migrating from 2 to 3</p>
-                </div>
-            </a>
-        </div>
-
-        <div class="six columns">
-            <a href="https://play.google.com/store/apps/developer?id=Andluck">
-                <div class="panel">
-                    <h5>andluck</h5>
-                    <p>Android development</p>
-                </div>
-            </a>
-        </div>
-
-        <div class="six columns">
-            <a href="http://ubershmekel.github.io/freeball/">
-                <div class="panel">
-                    <h5>freeball</h5>
-                    <p>Multiplayer WebGL flying soccer balls</p>
-                </div>
-            </a>
-        </div>        
-        
-        <div class="six columns">
-            <a href="http://ubershmekel.github.io/mine3js/">
-                <div class="panel">
-                    <h5>Mine3js</h5>
-                    <p>WebGL minecraft that stores blocks placed in the URL</p>
-                </div>
-            </a>
-        </div>        
-        
-        <div class="six columns">
-            <a href="https://pypi.python.org/pypi/filecache">
-                <div class="panel">
-                    <h5>filecache</h5>
-                    <p>Python decorator for caching function calls to disk</p>
-                </div>
-            </a>
-        </div>        
-        
-        <div class="six columns">
-            <a href="http://toplessproductions.com">
-                <div class="panel">
-                    <h5>Top Less Productions</h5>
-                    <p>Making movies in 48 hours</p>
-                </div>
-            </a>
-        </div>
-
-        <div class="six columns">
-            <a href="http://code.google.com/u/ubershmekel/">
-                <div class="panel">
-                    <h5>google code</h5>
-                    <p>Older open source stuff</p>
-                </div>
-            </a>
-        </div>
-
-        <div class="six columns">
-            <a href="https://bitbucket.org/ubershmekel">
-                <div class="panel">
-                    <h5>bitbucket</h5>
-                    <p>Older open source stuff</p>
-                </div>
-            </a>
-        </div>
-
-        <div class="six columns">
-            <a href="http://toplessproductions.com/pendulum/">
-                <div class="panel">
-                    <h5>Pendulum Waves</h5>
-                    <p>A webgl experiment</p>
-                </div>
-            </a>
-        </div>
-        
-        <div class="six columns">
-            <!-- yuvalg.com -->
-            <a href="/traitsim/">
-                <div class="panel">
-                    <h5>Traitsim</h5>
-                    <p>Recessive genes aren't more likely to go extinct</p>
-                </div>
-            </a>
-        </div>
-
-        <div class="six columns">
-            <a href="http://toplessproductions.com/biotet/">
-                <div class="panel">
-                    <h5>biotet</h5>
-                    <p>Circular tetris flex game</p>
-                </div>
-            </a>
-        </div>
-    </div>
-
-
-    <!-- End Grid Section -->
-
-
-
-    <!-- Footer -->
-
-    <footer class="row">
-        <div class="twelve columns">
-            <hr />
-            <div class="row">
-                <div class="six columns">
-                </div>
-                <div class="six columns">
-                    <ul class="link-list right">
-                        <li><a href="mailto:ubershmekel@gmail.com" class="brand">Yuval Greenfield</a></li>
-                        <!--li><a href="#">Section 2</a></li>
-                        <li><a href="#">Section 3</a></li>
-                        <li><a href="#">Section 4</a></li-->
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Included JS Files (Compressed) -->
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script src="/javascripts/foundation.min.js "></script>
-    
-    <script>
-        var ie = false;
-    </script>
-    <!--[if IE8]>
-        <script>
-            ie = true;
-        </script>
-    <![endif]-->
-    <script type="text/paperscript" canvas="myCanvas">
-        // Adapted from the following Processing example:
-        // http://processing.org/learning/topics/follow3.html
-        
-        var isAnimationStarted = false;
-        var path = null;
-        var snakeLinkCount = 20;
-        var chain = [];
-        var snake = new Path();
-        var lights = [];
-        var lightWidth = 100;
-        var lightCount = 6;
-
-        function animationInit() {
-                isAnimationStarted = true;
-                
-                initStars();
-                
-                var styleSnake = {
-                    strokeColor: '#6464fb',
-                    strokeWidth: 20,
-                    strokeCap: 'round'
-                };
-
-                var styleLight = {
-                    strokeColor: '#e4e41b',
-                    fillColor: '#f0f02',
-                    strokeWidth: 5,
-                    strokeCap: 'round'
-                };
-
-                var start = view.center / [10, 1];
-                snake.style = styleSnake;
-                snake.opacity = 0.7
-                for (var i = 0; i < snakeLinkCount; i++) {
-                    snake.add(start + new Point(i * 100, 0));
-                }
-
-                var spacing = 200;
-                var lightHeight = 200;
-                start = view.center / [10, 1];
-                start.y = view.bounds.bottom
-
-                for (var i = 0; i < lightCount; i++) {
-                    path = new Path();
-                    path.style = styleLight;
-                    path.opacity = 0.3
-                    path.add(start + new Point(i * spacing, 0));
-                    path.add(start + new Point((i + 1) * lightWidth, -lightHeight));
-                    path.add(start + new Point((i - 1) * lightWidth, -lightHeight));
-                    path.closed = true;
-                    lights.push(path)
-                }
-        }
-        
-        
-        var starCount = 30;
-        var stars = [];
-        var initStars = function() {
-                // Create a symbol, which we will use to place instances of later:
-                var path = new Path.Circle(new Point(0, 0), 5);
-                path.style = {
-                        fillColor: 'white',
-                        strokeColor: 'black'
-                };
-
-                var symbol = new Symbol(path);
-
-                // Place the instances of the symbol:
-                for (var i = 0; i < starCount; i++) {
-                        // The center position is a random point in the view:
-                        var center = Point.random() * view.size;
-                        var placed = symbol.place(center);
-                        placed.scale(i / starCount + 0.01);
-                        placed.data = {};
-                        placed.data.vector = new Point({
-                                angle: Math.random() * 360,
-                                length : (i / starCount) * Math.random() / 5
-                        });
-                        stars.push(placed);
-                }
-        };
-        
-        var keepInView = function(item) {
-                var position = item.position;
-                var viewBounds = view.bounds;
-                if (position.isInside(viewBounds))
-                        return;
-                var itemBounds = item.bounds;
-                if (position.x > viewBounds.width + 5) {
-                        position.x = -item.bounds.width;
-                }
-
-                if (position.x < -itemBounds.width - 5) {
-                        position.x = viewBounds.width;
-                }
-
-                if (position.y > viewBounds.height + 5) {
-                        position.y = -itemBounds.height;
-                }
-
-                if (position.y < -itemBounds.height - 5) {
-                        position.y = viewBounds.height
-                }
-        }
-        
-        var moveStars = function(vector) {
-                // Run through the active layer's children list and change
-                // the position of the placed symbols:
-                var layer = project.activeLayer;
-                for (var i = 0; i < stars.length; i++) {
-                        var item = stars[i];
-                        var size = item.bounds.size;
-                        var length = vector.length / 10.0 * size.width / 10.0;
-                        item.position += vector.normalize(length) + item.data.vector;
-                        keepInView(item);
-                }
-        };
-        
-
-        var target = null;
-        function onFrame(event) {
-            if (target == null) {
-                return;
-            }
-            if (path == null) {
-                return;
-            }
-            
-            var starsVector = (view.center - position) / 80.0;
-            moveStars(starsVector * 3);
-            
-            var head = snake.segments[0];
-            var halfWay = (target + head.point * 8) / 9
-            head.point = halfWay;
-            var nextSegment;
-
-            for (var i = 0; i < snakeLinkCount - 1; i++) {
-                nextSegment = snake.segments[i + 1];
-                var thisSegment = snake.segments[i]
-                var position = thisSegment.point;
-                var angle = (position - nextSegment.point);
-                angle.length = 35
-                nextSegment.point = position - angle;
-            }
-            //chain[snakeLinkCount - 1].segments[1].point = nextSegment.point
-            snake.smooth();
-            
-            for (var i = 0; i < lightCount; i++) {
-                var base = lights[i].segments[0]
-                var tipA = lights[i].segments[1]
-                var tipB = lights[i].segments[2]
-                var angle = (base.point - head.point);
-                angle.angle = angle.angle + 90;
-                angle.length = lightWidth;
-                var focus = base.point + (head.point - base.point) * 0.7
-                tipA.point = focus - angle;
-                tipB.point = focus + angle;
-                lights[i].smooth()
-            }
-        }
-        function onMouseMove(event) {
-            target = event.point;
-        }
-
-        function onMouseDown(event) {
-            path.fullySelected = true;
-            path.strokeColor = '#e08285';
-        }
-
-        function onMouseUp(event) {
-            path.selected = false;
-            path.strokeColor = '#1414eb';
-        }
-        
-        animationInit();
-        
-    </script>
-    <script>
-        var loadedPaper = false;
-        $(function () {
-            $('body').keyup(function (event) {
-                if(event.which == 76) { // "L"
-                    if((!ie) && (!loadedPaper)) {
-                        // paperjs crashes IE 8 :(
-                        loadedPaper = true;
-                        $.getScript('http://cdnjs.cloudflare.com/ajax/libs/paper.js/0.22/paper.js', function() {
-                            $('body').css({"background-color": "#000"});
-                            $('.six').css({opacity:0.6})
-                            paper.PaperScript.load();
-                        });
-                    }
-                }
-            });
-            var er = function () {
-                $.getScript('http://cdnjs.cloudflare.com/ajax/libs/paper.js/0.22/paper.js')
-            }
-            setTimeout(er, 1000);
-        });
-    </script>
+<a href="./old-stuff.html">.</a>
+    </pre>
 </body>
+
 </html>
