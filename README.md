@@ -1,3 +1,5 @@
-# Nuxt TypeScript with Composition API (minimal)
+# You're probably looking for https://yuvalg.com/ 
 
-https://typescript.nuxtjs.org/examples/composition-api/minimal
+https://yuvalg.com/
+
+Was made with [Nuxt](https://typescript.nuxtjs.org/examples/composition-api/minimal).
