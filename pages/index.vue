@@ -59,7 +59,7 @@ const projects = [
   },
   {
     name: "Cook Magic",
-    desc: "An text message chat bot that searches for recipes",
+    desc: "Text messaging Slack bot that searches for recipes",
     link: "https://www.producthunt.com/posts/cook-magic",
     date: "2020-04"
   },
