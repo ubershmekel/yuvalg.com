@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ <title>yuvalg/blog breaks</title>
+ <link href="https://yuvalg.com/tag/breaks.html" rel="self"/>
+ <link href="https://yuvalg.com/tag/breaks.html"/>
+ <updated>2013-08-13T16:58:22+00:00</updated>
+ <id>https://yuvalg.com/tag/breaks.html</id>
+ <author>
+   <name>Yuval Greenfield</name>
+ </author>
+ 
+ <entry>
+   <title>I broke the python interpreter today</title>
+   <link href="https://yuvalg.com/2009/09/05/i-broke-the-python-interpreter-today"/>
+   <updated>2009-09-05T17:15:23+00:00</updated>
+   <id>https://yuvalg.com/2009/09/05/i-broke-the-python-interpreter-today</id>
+   <content type="html">locals() can let you add non-strings to your local namespace, check it out...
+
+&amp;gt;&amp;gt;&amp;gt; locals().update({3:2})
+&amp;gt;&amp;gt;&amp;gt; dir()
+Traceback (most recent call last):
+  File &quot;&quot;, line 1, in 
+TypeError: unorderable types: int() &amp;lt; str()
+
+</content>
+ </entry>
+ 
+</feed>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ <title>yuvalg/blog unicode</title>
+ <link href="https://yuvalg.com/tag/unicode.html" rel="self"/>
+ <link href="https://yuvalg.com/tag/unicode.html"/>
+ <updated>2013-08-13T16:58:22+00:00</updated>
+ <id>https://yuvalg.com/tag/unicode.html</id>
+ <author>
+   <name>Yuval Greenfield</name>
+ </author>
+ 
+ <entry>
+   <title>Python 2/3 and unicode file paths</title>
+   <link href="https://yuvalg.com/2011/10/21/python-23-and-unicode-file-paths"/>
+   <updated>2011-10-21T10:23:09+00:00</updated>
+   <id>https://yuvalg.com/2011/10/21/python-23-and-unicode-file-paths</id>
+   <content type="html">This bug popped up in a script of &lt;a href=&quot;http://pypi.python.org/pypi/import_file&quot;&gt;mine&lt;/a&gt;:
+
+For Python 2:
+&lt;pre&gt;&amp;gt;&amp;gt;&amp;gt; os.path.abspath('.')
+'C:\\Users\\yuv\\Desktop\\YuvDesktop\\??????'
+&amp;gt;&amp;gt;&amp;gt; os.path.abspath(u'.')
+u'C:\\Users\\yuv\\Desktop\\YuvDesktop\\\u05d0\u05d1\u05d2\u05d3\u05d4\u05d5'&lt;/pre&gt;
+For Python 3:
+&lt;pre&gt;
+&amp;gt;&amp;gt;&amp;gt; os.path.abspath('.')
+'C:\\Users\\yuv\\Desktop\\YuvDesktop\\\u05d0\u05d1\u05d2\u05d3\u05d4\u05d5'
+&amp;gt;&amp;gt;&amp;gt; os.path.abspath(b'.')
+b'C:\\Users\\yuv\\Desktop\\YuvDesktop\\??????'&lt;/pre&gt;
+That odd set of question marks is a completely useless and invalid path in case you were wondering. The windows cmd prompt sometimes has question marks that aren't garbage, but I assure you, these are useless and wrong question marks.
+
+The solution is to always use unicode strings with path functions. A bit of a pain. Am I the only one who thinks this is failing silently? I'll file it in the bug tracker and we'll see.</content>
+ </entry>
+ 
+</feed>

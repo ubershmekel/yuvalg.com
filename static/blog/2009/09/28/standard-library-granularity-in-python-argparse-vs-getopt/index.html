@@ -1,0 +1,147 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>Standard library granularity in python, argparse vs getopt</title>
+   <link rel="shortcut icon" href="/key_y.png" />
+   <meta name="author" content="Yuval Greenfield" />
+   <link href="http://feeds.feedburner.com/yuvalg/blog" rel="alternate" title="your title" type="application/atom+xml" />
+
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="https://yuvalg.com/blog/assets/themes/tom/css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="https://yuvalg.com/blog/assets/themes/tom/css/screen.css" type="text/css" media="screen, projection" />
+
+   <!-- Typekit 
+   <script type="text/javascript" src="http://use.typekit.com/jpd0pfm.js"></script>
+   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>-->
+</head>
+<body>
+
+  <div class="site">
+    <div class="title">
+      <ul class="nav">
+        <li>
+            <a id="brand" href="https://yuvalg.com/blog">yuvalg/blog</a>
+        </li>
+        
+        
+
+
+  
+    
+      
+      	
+      	<li><a href="https://yuvalg.com/blog/categories.html">categories</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="https://yuvalg.com/blog/tags.html">tags</a></li>
+      	
+      
+    
+  
+
+
+
+      </ul>
+      <!--a class="extra" href="https://yuvalg.com/blog/archive.html">Archive</a>
+      <a class="extra" href="https://yuvalg.com/blog">Pages</a>
+      <a class="extra" href="https://yuvalg.com/blog/categories.html">categories</a>
+      <a class="extra" href="https://yuvalg.com/blog/tags.html">tags</a-->
+    </div>
+  
+    
+
+<div class="post">
+  <h1>Standard library granularity in python, argparse vs getopt</h1>
+  <p class="meta">
+    28 September 2009 
+    
+  </p>
+  Is it ok that python has 2 modules for option parsing, 3-4 xml packages, 3 HTTPServer modules, etc? This issue hit me when contemplating the deprecation of getopt as a part of the inclusion of argparse. Whenever I want to parse xml/html I get overwhelmed by the options in the std-lib. I remember myself annoyed and confused by getopt/optparse both showing me 2 different ways of doing something so similar. As a newcomer to python, I wanted python to show me the right way of doing things.
+
+So following that line of thought, getopt is the ugly way of doing option parsing. It imitates an option parsing flow that came from the old C days (and thus unpythonic), making it very attractive for people familiar with getopt/xgetopt. So what's more important: easy learning curve or enforcing best practices?
+
+I wanted to see how ugly getopt code looks so using <a title="pretty nice code searching" href="http://www.google.com/codesearch?hl=en">google code search</a> I found a few real life usage examples.
+
+getopt sample code, or <a title="getopt usage" href="http://www.google.com/codesearch?hl=en&amp;q=getopt+%22import+getopt%22+file:\.py$">check out the search results yourself</a>:
+<ul>
+	<li><a title="nice usage of getopt" href="http://www.google.com/codesearch/p?hl=en&amp;sa=N&amp;cd=6&amp;ct=rc#_hWFOhGz9lE/mezzo/scons/sconsign.py&amp;q=getopt%20%22import%20getopt%22%20file:%5C.py$&amp;l=264">a very clean and complete usage of getopt, with a help string.</a></li>
+	<li><a title="from http://openfmi.net/ a switch emulated with ifs" href="http://www.google.com/codesearch/p?hl=en&amp;sa=N&amp;cd=1&amp;ct=rc#2A-6s48EZNk/plugins/scmsvn/cgi-bin/viewcvs.cgi/*checkout*/pytodo/pytodo.py%3Fcontent-type%3Dtext%252Fplain&amp;rev%3D16&amp;root%3Dpytodo&amp;q=import%20getopt%20file:%5C*.py&amp;l=12">a switch emulated with if's</a></li>
+	<li><a title="switch" href="http://www.google.com/codesearch/p?hl=en&amp;sa=N&amp;cd=2&amp;ct=rc#jAG3XMYHpWA/ver/*checkout*/pyslide%3Frev%3D13&amp;amp;root%3Dpyslide&amp;q=import%20getopt%20file:%5C*.py&amp;l=43">a switch emulated with elif's</a></li>
+	<li><a title="switch and elif" href="http://www.google.com/codesearch/p?hl=en&amp;sa=N&amp;cd=3&amp;ct=rc#BuJNSIcfuQo/cgi-bin/viewcvs.cgi/*checkout*/pykota/trunk/pykota/tool.py%3Fcontent-type%3Dtext%252Fplain&amp;amp;rev%3D328&amp;q=getopt%20%22import%20getopt%22%20file:%5C*.py&amp;l=256">another switch the elif's </a></li>
+	<li><a title="short and easy" href="http://www.google.com/codesearch/p?hl=en&amp;sa=N&amp;cd=2&amp;ct=rc#4Wqoij9clTg/docs/pythfilter.py&amp;q=getopt%20%22import%20getopt%22%20file:%5C.py$&amp;l=632">and another switch</a></li>
+</ul>
+optparse sample code:
+<ul>
+	<li><a href="http://www.google.com/codesearch/p?hl=en&amp;sa=N&amp;cd=3&amp;ct=rc#4K6RW7rvMW0/Zope-3.1.0b1/Dependencies/zope.app-Zope-3.1.0b1/zope.app/testing/dochttp.py&amp;q=optparse%20%22import%20optparse%22%20file:%5C.py$&amp;l=33">options are parsed and then used like a regular dict</a></li>
+	<li><a href="http://www.google.com/codesearch/p?hl=en&amp;sa=N&amp;cd=13&amp;ct=rc#E_RiYu-BgrU/moin-1.5.8/MoinMoin/script/_util.py&amp;q=optparse%20%22import%20optparse%22%20file:%5C.py$&amp;l=52">options are parsed and then used like a regular dict as part of a class</a></li>
+</ul>
+At first I thought the learning curve thing was important, but in the end, getopt is a very unpythonic module that I would rather not see any of my colleagues use at all, except for rare cases where an awful lot of flexibility is needed. For example, getopt could be an easy way to implement optparse, or a completely different alternative. For example <a title="pyopt - python 3 option parsing decorator" href="http://code.google.com/p/pyopt/">pyopt </a>uses getopt in such a way. So IMHO getopt should be in the std-lib, but the documentation should have a very big sign saying "use the awesome optparse/argparse, this is a very simple parser with barely any of the features you probably need".
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>13 Aug 2013</span> &raquo; <a href="https://yuvalg.com/blog/2013/08/13/d3js-shape-projections">Shape Projections with D3.js</a></li>
+    
+      <li><span>07 Aug 2013</span> &raquo; <a href="https://yuvalg.com/blog/2013/08/07/learning-some-lua">Learning Some Lua</a></li>
+    
+      <li><span>16 Oct 2012</span> &raquo; <a href="https://yuvalg.com/blog/2012/10/16/dominant-misconceptions-of-recessive-genes">Dominant misconceptions of recessive genes</a></li>
+    
+  </ul>
+</div>
+
+
+
+
+  <script>
+var idcomments_acct = '123abc';
+var idcomments_post_id;
+var idcomments_post_url;
+</script>
+<script type="text/javascript" src="http://www.intensedebate.com/js/genericLinkWrapperV2.js"></script>
+
+
+
+
+
+
+  
+    <div class="footer">
+      <div class="contact">
+        <p>
+          Yuval Greenfield<br />
+          Arts and bits<br />
+          <a href='mailto:ubershmekel@gmail.com'>ubershmekel@gmail.com</a>
+        </p>
+      </div>
+      <div class="contact">
+        <p>
+          <a href="https://yuvalg.com/">yuvalg.com/</a><br />
+          <a href="http://github.com/ubershmekel/">github.com/ubershmekel</a><br />
+          <a href="http://twitter.com/ubershmekel/">twitter.com/ubershmekel</a><br />
+        </p>
+      </div>
+      <div class="rss">
+        <a href="http://feeds.feedburner.com/yuvalg/blog">
+          <img src="https://yuvalg.com/blog/assets/themes/tom/images/rss.png" alt="Subscribe to RSS Feed" />
+        </a>
+      </div>
+    </div>
+  </div>
+  <!--a href="http://github.com/ubershmekel"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a-->
+
+  
+</body>
+</html>
+

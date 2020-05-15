@@ -1,0 +1,905 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ <title>yuvalg/blog python</title>
+ <link href="https://yuvalg.com/tag/python.html" rel="self"/>
+ <link href="https://yuvalg.com/tag/python.html"/>
+ <updated>2013-08-13T16:58:22+00:00</updated>
+ <id>https://yuvalg.com/tag/python.html</id>
+ <author>
+   <name>Yuval Greenfield</name>
+ </author>
+ 
+ <entry>
+   <title>Dominant misconceptions of recessive genes</title>
+   <link href="https://yuvalg.com/2012/10/16/dominant-misconceptions-of-recessive-genes"/>
+   <updated>2012-10-16T21:30:46+00:00</updated>
+   <id>https://yuvalg.com/2012/10/16/dominant-misconceptions-of-recessive-genes</id>
+   <content type="html">I still remember my 10th grade Biology teacher explaining that because blonde hair is a recessive trait it will slowly vanish off the face of the earth. Recently I read a news article with a similar claim, and had an argument with a few biology and genetics majors. So I wrote a simulation.
+
+&lt;a title=&quot;TraitSim&quot; href=&quot;https://yuvalg.com/traitsim/&quot;&gt;TraitSim&lt;/a&gt; is an animated toy for exploring random, neutral gene proliferation with brown and blue eyes as an example. I also wrote a &lt;a title=&quot;python simulation of genetic drift&quot; href=&quot;https://github.com/ubershmekel/traitsim/blob/master/simulate.py&quot;&gt;python version of the simulation&lt;/a&gt; and ran it tens of thousands of times. Thanks &lt;a title=&quot;PyPy&quot; href=&quot;http://pypy.org/&quot;&gt;pypy for the &lt;strong&gt;8.3x&lt;/strong&gt; speedup&lt;/a&gt;! Surprisingly the chance to win the gene-race is linear with the gene's initial prevalence as can be seen in the following graph thanks to &lt;a title=&quot;Matplotlib&quot; href=&quot;http://matplotlib.org/&quot;&gt;matplotlib&lt;/a&gt;.
+
+&lt;img class=&quot;alignnone&quot; title=&quot;chance of going extinct&quot; alt=&quot;&quot; src=&quot;http://i.imgur.com/jb4QN.png&quot; height=&quot;615&quot; width=&quot;815&quot; /&gt;
+
+The thing with dominance is that it affects the gene expression which can be seen in the following graph:
+
+&lt;img class=&quot;alignnone&quot; title=&quot;prevalence of trait vs gene&quot; alt=&quot;&quot; src=&quot;http://i.imgur.com/Z4LM4.png&quot; height=&quot;615&quot; width=&quot;815&quot; /&gt;
+
+And here's &lt;a title=&quot;graph generating source matplotlib&quot; href=&quot;https://github.com/ubershmekel/traitsim/blob/master/graphs.py&quot;&gt;the source that generated these from the data&lt;/a&gt;. There's more information in the &lt;a title=&quot;TraitSim Page&quot; href=&quot;http://ubershmekel.github.com/traitsim/&quot;&gt;project page on github&lt;/a&gt;. These github pages are strange creatures which I'm not sure how to work with yet. Can I modify the CSS or structure somehow without losing the benefit of the page generator?</content>
+ </entry>
+ 
+ <entry>
+   <title>Why I'm not leaving Python for Go</title>
+   <link href="https://yuvalg.com/2012/09/23/why-im-not-leaving-python-for-go"/>
+   <updated>2012-09-23T21:45:25+00:00</updated>
+   <id>https://yuvalg.com/2012/09/23/why-im-not-leaving-python-for-go</id>
+   <content type="html">First of all, Go seems like a great language. It has an &lt;a title=&quot;Tutorial of go&quot; href=&quot;http://tour.golang.org/&quot;&gt;excellent tutorial&lt;/a&gt; which I joyfully went through and found:
+&lt;ul&gt;
+	&lt;li&gt;Go is Fast.&lt;/li&gt;
+	&lt;li&gt;Concurrent by design.&lt;/li&gt;
+	&lt;li&gt;Typed (important for JIT and IDE's) but not cumbersome and ugly like C or C++'s &lt;a title=&quot;C spiral parsing&quot; href=&quot;http://c-faq.com/decl/spiral.anderson.html&quot;&gt;spirals&lt;/a&gt;.&lt;/li&gt;
+	&lt;li&gt;Duck-type-esque interfaces.&lt;/li&gt;
+	&lt;li&gt;The &lt;a title=&quot;defer&quot; href=&quot;http://golang.org/doc/effective_go.html#defer&quot;&gt;defer&lt;/a&gt; mechanism is really nifty.&lt;/li&gt;
+&lt;/ul&gt;
+But there's one problem I can't live with. Which is a shame as I was eager to make the leap of faith in the name of concurrency. That problem is &lt;strong&gt;errors are handled in return values&lt;/strong&gt;. 70's style.
+&lt;h2&gt;Verbose and repetitive error handling&lt;/h2&gt;
+The &lt;a title=&quot;Error handling&quot; href=&quot;http://blog.golang.org/2011/07/error-handling-and-go.html&quot;&gt;designers of go consider this a virtue&lt;/a&gt;.
+&lt;blockquote&gt;In Go, error handling is important. The language's design and conventions encourage you to explicitly check for errors where they occur (as distinct from the convention in other languages of throwing exceptions and sometimes catching them). In some cases this makes Go code &lt;strong&gt;verbose&lt;/strong&gt;, but fortunately there are some techniques you can use to minimize &lt;strong&gt;repetitive&lt;/strong&gt; error handling.&lt;/blockquote&gt;
+This is one of the things I can't stand in C. &lt;strong&gt;Every single line requires an if statement &lt;/strong&gt;to prevent programs from doing crazy things. This is an official, canonical example from the aforementioned link with perhaps &quot;minimal repetitive error handling&quot;:
+&lt;pre&gt;    if err := datastore.Get(c, key, record); err != nil {
+        return &amp;amp;appError{err, &quot;Record not found&quot;, 404}
+    }
+    if err := viewTemplate.Execute(w, record); err != nil {
+        return &amp;amp;appError{err, &quot;Can't display record&quot;, 500}
+    }&lt;/pre&gt;
+The correct way to call a function in Go is to wrap it in an if statement. Even &lt;a title=&quot;Println error&quot; href=&quot;http://golang.org/pkg/fmt/#Println&quot;&gt;Println&lt;/a&gt; returns an error value that I'm sure most on the planet will never check. Which brings me to...
+&lt;h2&gt;Errors passing silently - ticking time bombs to go&lt;/h2&gt;
+To quote Tim Peters:
+&lt;blockquote&gt;Errors should never pass silently
+Unless explicitly silenced&lt;/blockquote&gt;
+Go isn't just stuck with verbose and repetitive error handling. It also makes it easy and tempting to ignore errors. In the following program we would trigger the doomsday device even if we failed protecting the presidential staff.
+&lt;pre&gt;func main() {
+    http.Get(&quot;http://www.nuke.gov/seal_presidential_bunker&quot;)
+    http.Get(&quot;http://www.nuke.gov/trigger_doomsday_device&quot;)
+}&lt;/pre&gt;
+What a shame. Oops.
+
+&lt;address&gt;In theory we could require the programmer never ignore returned errors. By static analysis or convention. In practice it'd be a pain worth enduring only in the most error critical programming tasks. Perhaps that's Go's purpose.&lt;/address&gt;
+&lt;h2&gt;panic/recover&lt;/h2&gt;
+Panic and recover aren't good enough as long as the standard library rarely uses them. Why is an array out of bounds any more cause for panic than a bad format string or a broken connection? Go wanted to avoid exceptions entirely but realizing they can't - a few exceptions were tacked on here and there, leaving me confused as to which error happens when.
+&lt;h2&gt;Perhaps another time&lt;/h2&gt;
+So I say this with much regret because Go has a lot of amazing ideas and features, but without modern error handling - I'm not &lt;strong&gt;go&lt;/strong&gt;ing.
+
+I'm still waiting for that open source, concurrent, &lt;a title=&quot;quad core code shape benchmarks&quot; href=&quot;http://shootout.alioth.debian.org/u64q/code-used-time-used-shapes.php&quot;&gt;bottom left language&lt;/a&gt; to come along. Any suggestions are more than welcome.</content>
+ </entry>
+ 
+ <entry>
+   <title>Introducing Absolute Ratio</title>
+   <link href="https://yuvalg.com/2012/04/28/introducing-absolute-ratio"/>
+   <updated>2012-04-28T11:56:27+00:00</updated>
+   <id>https://yuvalg.com/2012/04/28/introducing-absolute-ratio</id>
+   <content type="html">Let's define the &lt;strong&gt;absolute ratio&lt;/strong&gt; for positive numbers:
+
+&lt;img class=&quot; alignnone&quot; title=&quot;Absolute Ratio&quot; src=&quot;http://i.imgur.com/TvspG.gif&quot; alt=&quot;abs_ratio(x) = 1 / x when x &amp;lt; 1, otherwise: x&quot; width=&quot;89&quot; height=&quot;55&quot; /&gt;
+
+When x is smaller than 1 return 1 / x, otherwise return x. Here are a few example values:
+&lt;table&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;th&gt;x&lt;/th&gt;
+&lt;th&gt;abs_ratio(x)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;0.5&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;0.2&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+And a graph:
+
+&lt;img class=&quot;alignnone&quot; title=&quot;Absolute Ratio Graph&quot; src=&quot;http://i.imgur.com/5OE27.gif&quot; alt=&quot;Absolute Ratio Graph&quot; width=&quot;300&quot; height=&quot;196&quot; /&gt;
+
+Another spelling for the same operator would take 2 positive numbers and give their absolute ratio:
+
+&lt;img class=&quot;alignnone&quot; title=&quot;Absolute ratio with two variables definition&quot; src=&quot;http://i.imgur.com/iOCZY.png&quot; alt=&quot;&quot; width=&quot;511&quot; height=&quot;160&quot; /&gt;
+
+And a graph:
+
+&lt;a href=&quot;http://imgur.com/a/YjoZA&quot;&gt;&lt;img class=&quot;alignnone&quot; title=&quot;Absolute ratio in 3D&quot; src=&quot;http://i.imgur.com/3PIjD.png&quot; alt=&quot;Absolute ratio in 3D&quot; width=&quot;489&quot; height=&quot;369&quot; /&gt;&lt;/a&gt;
+&lt;h2&gt;Use case examples&lt;/h2&gt;
+&lt;ul&gt;
+	&lt;li&gt;Music and audio - an octave of a frequency F is 2F. More generally a harmony of a frequency F is N*F where N is a natural number. To decide if one frequency is a harmony of another we just need to get their absolute ratio and see if it's whole. E.g. if abs_ratio(F1, F2) == 2 they're octaves. If abs_ratio(F1, F2) is whole - they're harmonies.&lt;/li&gt;
+	&lt;li&gt;Computer vision - to match shapes that have similar dimensions e.g. their width is only 10% larger or smaller. We don't care which is the bigger or smaller, we just want to know if 0.91 &amp;lt; W1 / W2 &amp;lt; 1.1 which may be easier to pronounce as abs_ratio(W1, W2) &amp;lt; 1.1&lt;/li&gt;
+	&lt;li&gt;Real life - when we see 2 comparable objects we're more likely to say one is &quot;three times the other&quot; vs &quot;one third the other&quot;. Either way in our brains both statements mean the same concept. We think in absolute ratios.&lt;/li&gt;
+	&lt;li&gt;General case - When you want to know if X is K times bigger than Y or vice versa and you don't care which is the bigger one.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Interesting Properties&lt;/h2&gt;
+&lt;div&gt;
+&lt;ul&gt;
+	&lt;li&gt;abs_ratio(Y / X) == abs_ratio(X / Y)&lt;/li&gt;
+	&lt;li&gt;log(abs_ratio(X)) = abs(log(X))&lt;/li&gt;
+	&lt;li&gt;log(abs_ratio(Y / X)) = abs(log(Y / X)) = abs(log(Y) - log(X))&lt;/li&gt;
+	&lt;li&gt;You can see from the above that absolute ratio is somewhat of an absolute value for log-space.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;What's next for absolute ratio&lt;/h2&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+	&lt;li&gt;I'd love to hear more use cases and relevant contexts.&lt;/li&gt;
+	&lt;li&gt;What would be the written symbol or notation?&lt;/li&gt;
+	&lt;li&gt;How can we get this operator famous enough to be of use to mainstream minds?&lt;/li&gt;
+	&lt;li&gt;About negative numbers and zero - right now that's undefined as I don't see a use case for that domain.&lt;/li&gt;
+	&lt;li&gt;For some code and graphs in python checkout &lt;a href=&quot;https://github.com/ubershmekel/abs_ratio&quot;&gt;https://github.com/ubershmekel/abs_ratio&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+EDIT - I'm growing to like the binary form of the operator more so from now on let's call it like this in python:
+&lt;pre&gt;def abs_ratio(a, b):
+    return a / b if a &amp;gt; b else b / a&lt;/pre&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Ah the old Reddit switch-a-roo analyzed</title>
+   <link href="https://yuvalg.com/2012/03/17/ah-the-old-reddit-switch-a-roo-analyzed"/>
+   <updated>2012-03-17T20:53:40+00:00</updated>
+   <id>https://yuvalg.com/2012/03/17/ah-the-old-reddit-switch-a-roo-analyzed</id>
+   <content type="html">So after clicking through what seemed an infinite amount of tabs from one of these &lt;a href=&quot;http://www.reddit.com/r/WTF/comments/qy31w/well_this_is_completely_disgusting/c41fntu?context=1&quot;&gt;switcheroo comments&lt;/a&gt; I finally wrote down &lt;a title=&quot;A script which crawls reddit for the old switcheroo&quot; href=&quot;http://codepad.org/rQJCLyxR&quot;&gt;the script which analyzed the graph&lt;/a&gt;. I'd suggest you ignore the following png and take a gander at the &lt;a href=&quot;http://uberpython.files.wordpress.com/2012/03/znetwork5.pdf&quot;&gt;network pdf of the switcharoo graph because you can click through to the links&lt;/a&gt;.
+
+&lt;img class=&quot;alignnone&quot; title=&quot;The old reddit switch-a-roo analyzed image&quot; src=&quot;http://i.imgur.com/Z1klR.png&quot; alt=&quot;The old reddit switch-a-roo analyzed image&quot; width=&quot;655&quot; height=&quot;926&quot; /&gt;
+
+To recap - 50 nodes, 52 edges, though there are probably more out there that point into some point of that chain. And here are the awards:
+&lt;ul&gt;
+	&lt;li&gt;&lt;a href=&quot;http://www.reddit.com/r/pics/comments/ia0ij/watching_fellowship_of_the_ring_tonight_and_never/c225zkg&quot;&gt;First comment by jun2san who started the shenanigans&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;http://www.reddit.com/r/aww/comments/mwxbg/my_sister_and_my_puppy_yes_she_is_a_puppy_d/c34ixoe&quot;&gt;Farthest down link which points to a cycle start&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;http://www.reddit.com/r/pics/comments/iw0el/my_cousin_has_leukemia_and_went_to_this_golf/c277gni?context=3&quot;&gt;Farthest down link if the graph weren't directed&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+There. I hope that didn't take away from the magic.
+&lt;h2&gt;Appendix - The hardships&lt;/h2&gt;
+This was overly hard to do - first of all NSFW links gave me the &quot;are you over 18?&quot; prompt which for some reason I wasn't able to solve by cookies. I eventually turned to the mobile version of the site (append &quot;.compact&quot;) to avoid the prompts completely. Also, matplotlib and networkx aren't that fun for drawing graphs it seems. To visualize and output the graph I eventually used &lt;a href=&quot;http://gephi.org/&quot;&gt;gephi&lt;/a&gt; which was somewhat easy although has it's clunkiness baggage.</content>
+ </entry>
+ 
+ <entry>
+   <title>Python isn't English and iterator "labels"</title>
+   <link href="https://yuvalg.com/2012/02/13/python-isnt-english-and-iterator-labels"/>
+   <updated>2012-02-13T22:28:39+00:00</updated>
+   <id>https://yuvalg.com/2012/02/13/python-isnt-english-and-iterator-labels</id>
+   <content type="html">Us python fanboys like to think of python as similar to English and thus more readable. Let's examine a simple piece of code:
+&lt;pre&gt;for item in big_list:
+    if item.cost &amp;gt; 5:
+        continue
+    item.purchase()&lt;/pre&gt;
+For our discussion there are only 3 kinds of people:
+&lt;ol&gt;
+	&lt;li&gt;People who have never seen a line of code in their life.&lt;/li&gt;
+	&lt;li&gt;Have programmed in other languages but have never seen python.&lt;/li&gt;
+	&lt;li&gt;Python programmers.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div&gt;We'll dabble between the first 2 groups and how they parse the above. Let's try to forget what we know about python or programming and read that in English:&lt;/div&gt;
+&lt;ul&gt;
+	&lt;li&gt;&quot;for item in big_list&quot; - either we're talking about doing something for a specific item in a big_list or we're talking about every single item. Ambiguous but the first option doesn't really make sense so that's fine.&lt;/li&gt;
+	&lt;li&gt;&quot;if item.cost &amp;gt; 5&quot; - non-programmers are going to talk about the period being in a strange place, but programmers will know exactly what's up.&lt;/li&gt;
+	&lt;li&gt;
+&lt;div&gt;&quot;continue&quot; - That's fine, keep going. English speakers are going to get the completely wrong idea. As programmers we've grown used to this convention though its meaning in English is very specifically equivalent to what pythonistas call &quot;pass&quot; or &quot;nop&quot; in assembly. We really should have called this &quot;&lt;strong&gt;skip&lt;/strong&gt;&quot; or something.&lt;/div&gt;&lt;/li&gt;
+	&lt;li&gt;&quot;item.purchase()&quot; - non-programmers are going to ask about the period and the parentheses but the rest grok that easily.&lt;/li&gt;
+&lt;/ul&gt;
+So I'm pretty sure this isn't English. But it's fairly readable for a programmer. I believe programmers of any of the &lt;a title=&quot;tiobe index&quot; href=&quot;http://www.tiobe.com/content/paperinfo/tpci/index.html&quot;&gt;top 8 languages on the TIOBE index&lt;/a&gt; can understand simple python. I definitely can't say the same for Lisp and Haskell. Not that there's anything wrong with Lisp/Haskell, these languages have specialized syntax for their honorable reasons.
+&lt;h2&gt;Continue is a silly word, what about iterator labels?&lt;/h2&gt;
+Let's say I want to break out of an outer loop from a nested loop, eg:
+&lt;pre&gt;for item in big_list:
+    for review in item.reviews:
+        if review &amp;lt; 3.0:
+            # next item or next review?
+            continue
+        if review &amp;gt; 9.0:
+            # stop reading reviews or stop looking for items?
+            break&lt;/pre&gt;
+Java supports &lt;strong&gt;specific breaks and continues&lt;/strong&gt; by adding labels to the for loops but I think we can do better. How about this:
+&lt;pre&gt;items_gen = (i for i in big_list)
+for item in items_gen:
+    for review in item.reviews:
+        if review &amp;lt; 3.0:
+            items_gen.continue()
+        if review &amp;gt; 9.0:
+            items_gen.break()&lt;/pre&gt;
+But how can that even be possible you may ask? Well, nowadays it isn't but maybe one day if &lt;a title=&quot;python ideas&quot; href=&quot;http://mail.python.org/mailman/listinfo/python-ideas&quot;&gt;python-ideas&lt;/a&gt; like this idea we can have nice things. Here's how I thought it could work: a for-loop on a generator can theoretically look like this:
+&lt;pre&gt;while True:
+    try:
+        item = next(gen)
+        # do stuff with item
+    except StopIteration:
+        break&lt;/pre&gt;
+But if it worked like I propose below we can support the specific breaks and continues:
+&lt;pre&gt;while True:
+    try:
+        item = next(gen)
+        # do stuff with item
+    except gen.ContinueIteration:
+        pass
+    except gen.StopIteration:
+        break
+    except StopIteration:
+        break&lt;/pre&gt;
+So every generator could have a method which throws its relevant exception and we could write specific breaks and continues. Or if you prefer a different spelling could be &quot;break from mygen&quot; or &quot;continue from mygen&quot; as continue and break aren't allowed as method names normally.
+
+I think this could be nice. Although many times I found myself using nested loops I actually preferred to break the monster into 2 functions with one loop each. That way I could use the return value to do whatever I need in the outer loop (break/continue/etc). So perhaps it's a good thing the language doesn't help me build monstrosity's and forces me to flatten my code. I wonder.</content>
+ </entry>
+ 
+ <entry>
+   <title>Statistics on reddit's top 10,000 titles with NLTK</title>
+   <link href="https://yuvalg.com/2012/02/07/statistics-on-reddits-top-10000-titles-with-nltk"/>
+   <updated>2012-02-07T15:24:58+00:00</updated>
+   <id>https://yuvalg.com/2012/02/07/statistics-on-reddits-top-10000-titles-with-nltk</id>
+   <content type="html">Drawing inspiration from this blog post on &lt;a title=&quot;Are Your Titles Irresistibly Click Worthy &amp;amp; Viral?!&quot; href=&quot;http://www.seomoz.org/blog/are-your-titles-irresistibly-click-worthy-viral&quot;&gt;title virality&lt;/a&gt; I wanted to investigate what makes these top 10,000 titles the best of their breed. Which are the best superlatives? Who/what's the most popular subject? Let's start with some statistics:
+&lt;ul&gt;
+	&lt;li&gt;On Feb. 03, 14:10:45 (UTC) the all-time top 10,000 submissions on reddit (/r/all) had a total of 82,751,429 upvotes and 62,655,532 downvotes (56.9% liked it).&lt;/li&gt;
+	&lt;li&gt;5.2 years between the &lt;a href=&quot;http://www.reddit.com/r/reddit.com/comments/oi65/poll_vote_up_if_you_are_male_ down_if_you_are/&quot;&gt;oldest &lt;/a&gt;and &lt;a href=&quot;http://www.reddit.com/r/pics/comments/p8mo1/if_you_didnt_realize_how_large_wha les_were_already/&quot;&gt;newest&lt;/a&gt; submission&lt;/li&gt;
+	&lt;li&gt;8,331,382 comments. That's about 833 comments per submission.&lt;/li&gt;
+	&lt;li&gt;The &lt;a title=&quot;test link&quot; href=&quot;http://www.reddit.com/r/pics/comments/92dd8/test_post_please_ignore/&quot;&gt;#1 post&lt;/a&gt; has 26,758 - 4,882 = 21,876 points&lt;/li&gt;
+	&lt;li&gt;The &lt;a title=&quot;dog oscar&quot; href=&quot;http://www.reddit.com/r/funny/comments/opfm2/this_dog_deserves_an_oscar/&quot;&gt;#10,000&lt;/a&gt; post has 15,166 - 13,679 = 1,487 points&lt;/li&gt;
+	&lt;li&gt;And now some graphs....&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;h2&gt;Adjectives - reddit loves &quot;new&quot;, &quot;old&quot;, &quot;good&quot; and &quot;right&quot;&lt;/h2&gt;
+&lt;ul&gt;
+	&lt;li&gt;&lt;a href=&quot;http://www.reddit.com/r/fffffffuuuuuuuuuuuu/comments/kio1p/president_obamas_n ew_campaign_poster/&quot;&gt;President Obama's &lt;strong&gt;new&lt;/strong&gt; campaign poster&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;http://www.reddit.com/r/trees/comments/g38r1/upvoting_everything_just_to_see_ the_new/&quot;&gt;Upvoting everything just to see the &lt;strong&gt;new&lt;/strong&gt; pineapples :D&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;http://www.reddit.com/r/programming/comments/aouv5/new_approach_to_china/&quot;&gt;&lt;strong&gt;New&lt;/strong&gt; approach to China&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div&gt;&lt;a href=&quot;http://imgur.com/cAcoj.png&quot;&gt;&lt;img class=&quot;alignnone&quot; title=&quot;Adjectives&quot; src=&quot;http://imgur.com/cAcoj.png&quot; alt=&quot;Adjectives&quot; width=&quot;1387&quot; height=&quot;689&quot; /&gt;&lt;/a&gt;&lt;/div&gt;
+&lt;div&gt;&lt;/div&gt;
+&lt;h2&gt;&lt;/h2&gt;
+&lt;h2&gt;Top Adjective, Superlative - &quot;Best&quot; is the best&lt;/h2&gt;
+&lt;ul&gt;
+	&lt;li&gt;&lt;a href=&quot;http://www.reddit.com/r/reddit.com/comments/k7y1j/ricky_gervais_has_an_idea_that _would_not_only/&quot;&gt;Ricky Gervais has an idea that would not only make the Golden Globes watchable, it would make it the &lt;strong&gt;best&lt;/strong&gt; show of the year&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;http://www.reddit.com/r/pics/comments/bicy4/best_picture_of_a_dog_getting_hit_in _the_crotch/&quot;&gt;&lt;strong&gt;Best&lt;/strong&gt; picture of a dog getting hit in the crotch with a tennis ball you will see all day. Yup that's my dog.&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;http://www.reddit.com/r/funny/comments/9vzvc/csi_modern_computer_technology_at_i ts_best/&quot;&gt;CSI: Modern computer technology at its &lt;strong&gt;best&lt;/strong&gt;.&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;a href=&quot;http://imgur.com/lCGMN.png&quot;&gt;&lt;img class=&quot;alignnone&quot; title=&quot;adjective superlative&quot; src=&quot;http://imgur.com/lCGMN.png&quot; alt=&quot;&quot; width=&quot;849&quot; height=&quot;429&quot; /&gt;&lt;/a&gt;
+&lt;h2&gt;&lt;/h2&gt;
+&lt;h2&gt;Questions reddit loves how?&lt;/h2&gt;
+&lt;ul&gt;
+	&lt;li&gt;&lt;a href=&quot;http://www.reddit.com/r/reddit.com/comments/9ed3b/dear_old_people_we_dont_want_t o_kill_you_youre/&quot;&gt;Dear Old People. We don't want to kill you. You're our parents and grandparents and we love you. But if you throw a cranky fit and keep us from getting decent, affordable health care, you can figure out &lt;strong&gt;how&lt;/strong&gt; to work your own goddamn PCs and cable boxes and remote controls from now on.&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;http://www.reddit.com/r/funny/comments/em01h/how_i_got_an_uncooperative_ebay_buy er_to_pay_for/&quot;&gt;&lt;strong&gt;How&lt;/strong&gt; I got an uncooperative eBay buyer to pay for her purchase. Was it unethical?&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;http://www.reddit.com/r/funny/comments/av84c/how_to_report_the_news/&quot;&gt;&lt;strong&gt;How&lt;/strong&gt; to report the News&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;a href=&quot;http://imgur.com/5zn7H.png&quot;&gt;&lt;img class=&quot;alignnone  wp-image-556&quot; title=&quot;Questions&quot; src=&quot;http://imgur.com/5zn7H.png&quot; alt=&quot;Questions&quot; width=&quot;777&quot; height=&quot;489&quot; /&gt;&lt;/a&gt;
+&lt;h2&gt;&lt;/h2&gt;
+&lt;h2&gt;What's reddit talking about? People.&lt;/h2&gt;
+&lt;ul&gt;
+	&lt;li&gt;&lt;a href=&quot;http://www.reddit.com/r/politics/comments/aseuv/supreme_court_ruling_comes_down_ corporations_are/&quot;&gt;Supreme Court ruling comes down - Corporations are &lt;strong&gt;people&lt;/strong&gt; with free speech and the protected right to bribe politicians. Let's not even pretend anymore folks, democracy in America is dead.&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;http://www.reddit.com/r/politics/comments/atbsv/we_the_people_of_the_united_stat es_of_america/&quot;&gt;We, the &lt;strong&gt;People&lt;/strong&gt; of the United States of America, reject the U.S. Supreme Court's ruling in Citizens United, and move to amend our Constitution to firmly establish that money is not speech, and that human beings, not corporations, are persons entitled to constitutional rights.&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;http://www.reddit.com/r/funny/comments/atewe/14_out_of_14_people_found_this_revi ew_helpful_pic/&quot;&gt;14 out of 14 &lt;strong&gt;people&lt;/strong&gt; found this review helpful (PIC)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;a href=&quot;http://imgur.com/NzhHW.png&quot;&gt;&lt;img class=&quot;alignnone&quot; title=&quot;Noun plural common&quot; src=&quot;http://imgur.com/NzhHW.png&quot; alt=&quot;&quot; width=&quot;797&quot; height=&quot;501&quot; /&gt;&lt;/a&gt;
+&lt;h2&gt;&lt;/h2&gt;
+&lt;h2&gt;Or news, the president, man...&lt;/h2&gt;
+&lt;ul&gt;
+	&lt;li&gt;&lt;a href=&quot;http://www.reddit.com/r/science/comments/djexe/this_is_a_news_website_article_ab out_a_scientific/&quot;&gt;This is a news website article about a scientific finding&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;http://www.reddit.com/r/technology/comments/ngd4r/i_work_in_news_this_is_how_you _stop_sopa/&quot;&gt;I work in News. This is how you stop SOPA.&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;http://www.reddit.com/r/pics/comments/8vbpn/can_we_all_agree_that_this_is_not_an _accident/&quot;&gt;Can we all agree, that this is NOT an accident? Fuck you, Fox News. [pic]&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;a href=&quot;http://imgur.com/leIfB.png&quot;&gt;&lt;img class=&quot;alignnone&quot; title=&quot;noun singular common titles&quot; src=&quot;http://imgur.com/leIfB.png&quot; alt=&quot;&quot; width=&quot;1111&quot; height=&quot;507&quot; /&gt;&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;/h2&gt;
+&lt;h2&gt;Reddit appreciates personal content about you, this, it and I.&lt;/h2&gt;
+&lt;ul&gt;
+	&lt;li&gt;&lt;a href=&quot;http://www.reddit.com/r/funny/comments/97jht/i_hate_my_job/&quot;&gt;I hate my job...&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;http://www.reddit.com/r/reddit.com/comments/9mvs6/reddit_i_dont_give_a_damn_abou t_your_aunt_uncle/&quot;&gt;Reddit, I don't give a damn about your aunt, uncle, boyfriend, girlfriend, boss or toothless rabies infested dog who reads Reddit. Less personal crap and more a rticles please.&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;http://www.reddit.com/r/politics/comments/d7ntl/ive_had_a_vision_and_i_cant_shak e_it_colbert/&quot;&gt;I've had a vision and I can't shake it: Colbert needs to hold a satirical rally in DC.&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;http://www.reddit.com/r/pics/comments/h4cv1/im_the_only_caucasian_in_my_part_of_ town_i_found/&quot;&gt;I'm the only Caucasian in my part of town. I found this note on my windshield today...&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;a href=&quot;http://imgur.com/yl4vw.png&quot;&gt;&lt;img class=&quot;alignnone&quot; title=&quot;pronouns&quot; src=&quot;http://imgur.com/yl4vw.png&quot; alt=&quot;&quot; width=&quot;891&quot; height=&quot;503&quot; /&gt;&lt;/a&gt;
+&lt;h2&gt;&lt;/h2&gt;
+&lt;h2&gt;Even NLTK doesn't understand these...&lt;/h2&gt;
+I'm pretty sure you don't need example links for these...
+
+&lt;a href=&quot;http://imgur.com/1Xjzs.png&quot;&gt;&lt;img class=&quot;alignnone&quot; title=&quot;failed to parse&quot; src=&quot;http://imgur.com/1Xjzs.png&quot; alt=&quot;&quot; width=&quot;1135&quot; height=&quot;491&quot; /&gt;&lt;/a&gt;
+&lt;h2&gt;&lt;/h2&gt;
+&lt;h2&gt;The top 10,000 seem to come mostly from 17:00 UTC and rarely from around 12:00 UTC&lt;/h2&gt;
+This isn't exactly the probability of succeeding to hit the front page as it's not clear at what time submission count is highest. But it's something.
+
+&lt;a href=&quot;http://uberpython.files.wordpress.com/2012/02/when-to-submit.png&quot;&gt;&lt;img class=&quot;alignnone size-full wp-image-562&quot; title=&quot;When to submit&quot; src=&quot;http://uberpython.files.wordpress.com/2012/02/when-to-submit.png&quot; alt=&quot;&quot; width=&quot;584&quot; height=&quot;457&quot; /&gt;&lt;/a&gt;
+&lt;h2&gt;&lt;/h2&gt;
+&lt;h2&gt;An apology&lt;/h2&gt;
+This is my first time using NLTK and though I'm ok at coding I most certainly have no idea how to parse natural language. Here's hoping this was somewhat insightful.
+
+&lt;img class=&quot; alignnone&quot; title=&quot;I have no idea what I'm doing&quot; src=&quot;http://i.imgur.com/uaXjq.jpg&quot; alt=&quot;I have no idea what I'm doing&quot; width=&quot;500&quot; height=&quot;282&quot; /&gt;
+&lt;div&gt;
+&lt;h2&gt;More graphs and data&lt;/h2&gt;
+&lt;ul&gt;
+	&lt;li&gt;&lt;a title=&quot;NLTK Reddit Graphs&quot; href=&quot;http://imgur.com/a/ao2PH&quot;&gt;Imgur album with a total of 11 more bar graphs&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a title=&quot;Top Reddit NLTK parsing of top post titles&quot; href=&quot;https://github.com/ubershmekel/topreddit&quot;&gt;The source code to continue parsing the data yourself&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;h2&gt;Appendix&lt;/h2&gt;
+&lt;ul&gt;
+	&lt;li&gt;&lt;a title=&quot;Python reddit api&quot; href=&quot;https://github.com/mellort/reddit_api/&quot;&gt;Python Reddit API&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a title=&quot;Python Natural Language Toolkit&quot; href=&quot;http://www.nltk.org/&quot;&gt;Python Natural Language Toolkit&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/questions/526469/practical-examples-of-nltk-use&quot;&gt;http://stackoverflow.com/questions/526469/practical-examples-of-nltk-use&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>The Google App Engine Glass Ceiling</title>
+   <link href="https://yuvalg.com/2012/01/06/gae-glass-ceiling"/>
+   <updated>2012-01-06T13:27:31+00:00</updated>
+   <id>https://yuvalg.com/2012/01/06/gae-glass-ceiling</id>
+   <content type="html">With the new billing arrangements, &lt;a title=&quot;Google app engine is expensive when you first start paying&quot; href=&quot;http://code.google.com/appengine/docs/billing.html&quot;&gt;each and every paid GAE app costs at least $2.10 per week which is supposedly $9 per month&lt;/a&gt; ($9.125 by my calculation) &lt;strong&gt;regardless of quota usage&lt;/strong&gt;. This cost does cover whatever quotas your app consumes and the regular free quotas are still &quot;free&quot;.
+
+Now I have a GAE app that sends 70-80 emails per day where the free limit is 100. I'd gladly switch over to the paid side of GAE just to be sure that if it ever passes the 100 mark I don't have any failed email requests but the price of that is 9$ per month. &lt;strong&gt;GAE is extremely expensive for apps that just barely brush the end of their free quotas&lt;/strong&gt;. In order to actually use the $9 per month minimum I'd have to send out 3000 emails per day (at $0.0001 per email).
+
+I don't know if the &lt;a title=&quot;Free email recipients has an extremely low cap&quot; href=&quot;http://code.google.com/appengine/docs/quotas.html#Mail&quot;&gt;free quota on email recipients is really low&lt;/a&gt; or if sending out an email is extremely cheap. Either way, &lt;strong&gt;GAE expects me to scale from 100 to 3000 while paying the price of 3000&lt;/strong&gt;. Who knows if I'll ever even reach that mark?
+
+If google keeps with this plan, I'm probably never going to start another GAE app that has a chance to grow. Every time I have a chance of hitting the quota limits I have 2 choices:
+&lt;ul&gt;
+	&lt;li&gt;Pay google and be screwed over for an indefinite amount of time until I reach the next landmark.&lt;/li&gt;
+	&lt;li&gt;Migrate to a cheaper shared hosting option until I reach the next landmark.&lt;/li&gt;
+&lt;/ul&gt;
+Thanks, but no thanks. That's the &lt;strong&gt;GAE glass ceiling.&lt;/strong&gt;
+&lt;h2&gt;Appendix&lt;/h2&gt;
+&lt;ul&gt;
+	&lt;li&gt;Other than this problem I do like GAE. It's a shame I have to leave it.&lt;/li&gt;
+	&lt;li&gt;I've made about 11 small python GAE apps. Only 2 of which ever reached the aforementioned glass ceiling.&lt;/li&gt;
+	&lt;li&gt;This issue shouldn't bother you if your app is already big enough to cost more than $9.&lt;/li&gt;
+	&lt;li&gt;Maybe google can't bill less than $9 per month? I doubt it, android apps can cost $0.99.&lt;/li&gt;
+	&lt;li&gt;A proposed solution: Google takes $9 of credit at a time from your google wallet and eats quotas out of that. When the $9 run out, it bills another 9. Sounds reasonable and &quot;don't be evil&quot; to me. Another thing that could be nice would be to allow multiple paid apps to feed from the same budget.&lt;/li&gt;
+&lt;/ul&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Python 3 Wall of Shame Updates</title>
+   <link href="https://yuvalg.com/2011/12/25/python-3-wall-of-shame-updates"/>
+   <updated>2011-12-25T20:08:25+00:00</updated>
+   <id>https://yuvalg.com/2011/12/25/python-3-wall-of-shame-updates</id>
+   <content type="html">Earlier in December I was approached by Chris McDonough with a reddit pm asking if I could or would implement some kind of behavior regarding a  &quot;Python 2 only&quot; classifier on &lt;a title=&quot;Python 3 WOS&quot; href=&quot;http://python3wos.appspot.com&quot;&gt;the wall of shame&lt;/a&gt;. After some aggressive googling I found the &lt;a href=&quot;http://mail.python.org/pipermail/catalog-sig/2011-December/004077.html&quot;&gt;original discussion in catalog-sig&lt;/a&gt;. The idea was to add a classifier that signified &quot;the authors have no current intention to port this code to Python 3&quot;. By declaring such an intent, Chris explained, a python package should be erased from the wall of shame. Not that I completely understood this intuition but still I tried to somehow apply myself to the effort of improving the WOS. So here's what's new:
+&lt;ul&gt;
+	&lt;li&gt;Packages with the &quot;Programming Language :: Python :: 2 :: Only&quot; trove classifier will have a lock next to their package with a mouse over explaining their intent.&lt;/li&gt;
+	&lt;li&gt;Packages that have an equivalent py3k package are now not erased from the wall but rather show a link to the equivalent package. This rightfully boosts the compatibles count by 4. Note that packages that would doubly boost the count are still erased (eg Jinja is erased because Jinja2 is in the top 200).&lt;/li&gt;
+	&lt;li&gt;Packages that are python 3 compatible but lack the trove classifier won't stay red if brought to my attention. I've always stated the WOS can only be as good as pypi, not better. Hoping that in time PyPI would become more accurate, this move saddens me a bit. To keep a bit of the spirit the artificially green packages have a red triangle signifying the maintainer's lack of trove classifiers (again with a relevant mouse over).&lt;/li&gt;
+	&lt;li&gt;The WOS is now written for python 2.7 and migrated to the HRD, woohoo!&lt;/li&gt;
+&lt;/ul&gt;
+Please  do contact me if there are any more inaccuracies or mistakes. I'm reachable at ubershmekel at gmail and by comments on this blog.
+
+Ps, we're at 57/200, so maybe by this time next year we can have that Python 3 Wall of Superpowers party! Amen to that...</content>
+ </entry>
+ 
+ <entry>
+   <title>Duplicating Streams of Audio with Python</title>
+   <link href="https://yuvalg.com/2011/12/07/duplicating-streams-of-audio-with-python"/>
+   <updated>2011-12-07T11:08:55+00:00</updated>
+   <id>https://yuvalg.com/2011/12/07/duplicating-streams-of-audio-with-python</id>
+   <content type="html">&lt;p&gt;This morning I made a &lt;a title=&quot;Duplicate or replicate audio streams using pyaudio&quot; href=&quot;http://codepad.org/vgEZbU3y&quot;&gt;python script that uses pyaudio to read from one audio device and pipe to the next, I call it replicate.py&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;This is a really old problem for me, ever since I first had 4.1 speakers and winamp only played on the front 2. Nowadays I just want VLC to play on both the TV and the computer speakers without switching between audio output modules in the preferences or fiddling with the default audio output in Windows 7.&lt;/p&gt;&lt;p&gt;&lt;a title=&quot;PyAudio&quot; href=&quot;http://people.csail.mit.edu/hubert/pyaudio/&quot;&gt;PyAudio&lt;/a&gt; was really nice and easy to use, I just wish asynch io was added so I could lower the latency a bit as I'm getting 240 ms right now which is very far from perfect.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Python 2/3 and unicode file paths</title>
+   <link href="https://yuvalg.com/2011/10/21/python-23-and-unicode-file-paths"/>
+   <updated>2011-10-21T10:23:09+00:00</updated>
+   <id>https://yuvalg.com/2011/10/21/python-23-and-unicode-file-paths</id>
+   <content type="html">This bug popped up in a script of &lt;a href=&quot;http://pypi.python.org/pypi/import_file&quot;&gt;mine&lt;/a&gt;:
+
+For Python 2:
+&lt;pre&gt;&amp;gt;&amp;gt;&amp;gt; os.path.abspath('.')
+'C:\\Users\\yuv\\Desktop\\YuvDesktop\\??????'
+&amp;gt;&amp;gt;&amp;gt; os.path.abspath(u'.')
+u'C:\\Users\\yuv\\Desktop\\YuvDesktop\\\u05d0\u05d1\u05d2\u05d3\u05d4\u05d5'&lt;/pre&gt;
+For Python 3:
+&lt;pre&gt;
+&amp;gt;&amp;gt;&amp;gt; os.path.abspath('.')
+'C:\\Users\\yuv\\Desktop\\YuvDesktop\\\u05d0\u05d1\u05d2\u05d3\u05d4\u05d5'
+&amp;gt;&amp;gt;&amp;gt; os.path.abspath(b'.')
+b'C:\\Users\\yuv\\Desktop\\YuvDesktop\\??????'&lt;/pre&gt;
+That odd set of question marks is a completely useless and invalid path in case you were wondering. The windows cmd prompt sometimes has question marks that aren't garbage, but I assure you, these are useless and wrong question marks.
+
+The solution is to always use unicode strings with path functions. A bit of a pain. Am I the only one who thinks this is failing silently? I'll file it in the bug tracker and we'll see.</content>
+ </entry>
+ 
+ <entry>
+   <title>import - complex or complicated?</title>
+   <link href="https://yuvalg.com/2011/09/01/import-complex-or-complicated"/>
+   <updated>2011-09-01T16:46:24+00:00</updated>
+   <id>https://yuvalg.com/2011/09/01/import-complex-or-complicated</id>
+   <content type="html">In Python, life is really easy when all your .py files are in one directory. The moment you want to organize your code into folders there's a wall of challenges you have to climb. I believe this is an issue that can be alleviated with one small fix.
+
+Here's a comparison of how a developer shares code across a project in C/C++ and Python:
+&lt;table&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;C/C++&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;Python&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Forms&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;#include&amp;nbsp;&amp;lt;from_env_dirs_first&amp;gt;
+#include&amp;nbsp;&quot;from_local_dir_first&quot;
+#include&amp;nbsp;&quot;abs_or_rel_file_system_path&quot;&lt;/td&gt;
+&lt;td&gt;import module
+import module as alias
+from module import var
+from module import *
+from ..package_relative_path import module
+from package.absolute_path import module
+try:
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;import one_thing
+except ImportError:
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;import another as one_thing&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Namespacing&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a title=&quot;JavaScript’s global scope is a public toilet. You can’t avoid going in there but try to limit your contact with surfaces when you do.&quot; href=&quot;http://uberpython.wordpress.com/2009/11/13/javascripts-global-scope-and-google-wave/&quot;&gt;Public toilet&lt;/a&gt; - everything included is global.&lt;/td&gt;
+&lt;td&gt;&quot;Namespaces are one honking great idea -- let's do more of those!&quot;
+Seriously, module encapsulation is fantastic.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Helpful extra knowledge&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Makefiles/vcproj configurations of paths
+#ifdef&lt;/td&gt;
+&lt;td&gt;sys.path
+__all__
+__path__&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Mandatory extra&lt;/strong&gt;
+&lt;strong&gt; knowledge (&quot;Gotchas&quot;)&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;#pragma once (or the equivalent #ifdef)
+certain things aren't allowed in .h files
+please don't use absolute paths&lt;/td&gt;
+&lt;td&gt;__init__.py
+syntax for intra-package imports
+modules intended for use as the main module of a Python application must always use absolute imports.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+Now this isn't an exhaustive list as I want to discuss just a small subset from the above table. Also note that I didn't go into &quot;ctypes&quot;, &quot;#pragma comment(lib...)&quot;, etc. as we're talking about sharing code, not binaries.
+
+For the 6 years of keyboard tapping I've done in C and Python, I never once was confused as to how to access code between directories in C; Python on the other hand has gotten me quite a few times and I always need to rertfm. And I consider myself far more interested and fluent in Python than in C/C++. This may be just a problem with my head, but I'd like to vent either way.
+&lt;h2&gt;Blah, blah, what's the problem?&lt;/h2&gt;
+Skip this section if you've already had experience with said problem, I'm sure it's as painful to read as it was to write.
+
+Python has this really elegant solution for one-folder-mode, &quot;import x&quot; just gives you what you expected, either from the standard library (sys.path, etc) or your local directory. If you have &quot;os.py&quot; in that local directory then you shadow out the standard &quot;import os&quot;. Once you mix directories in there, python is suddenly afraid of shadowing and you can't import things from a folder named &quot;os&quot; unless it has an &quot;__init__.py&quot;. So shadowing here is allowed and there not. If you want to access modules from the outside (dot dot and beyond), then you have to be in a package, use sys.path, os.chdir or maybe &lt;a title=&quot;import_file&quot; href=&quot;http://uberpython.wordpress.com/2011/06/08/a-new-module-import_file/&quot;&gt;implement file-system-imports&lt;/a&gt; on your own.
+
+Personally, I find myself doing this design pattern a lot:
+&lt;ol&gt;
+	&lt;li&gt;The App directory&lt;/li&gt;
+&lt;ol&gt;
+	&lt;li&gt;main_app_entry.py&lt;/li&gt;
+	&lt;li&gt;framework&lt;/li&gt;
+&lt;ol&gt;
+	&lt;li&gt;general_useful_things.py&lt;/li&gt;
+	&lt;li&gt;more_frameworkey_goodness.py&lt;/li&gt;
+&lt;/ol&gt;
+	&lt;li&gt;components&lt;/li&gt;
+&lt;ol&gt;
+	&lt;li&gt;this_solves_a_problem.py&lt;/li&gt;
+	&lt;li&gt;another_tool.py&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/ol&gt;
+&lt;/ol&gt;
+I usually have an &quot;if __name__ == '__main__':&quot; in my modules and there I have some sort of test, utility function, or a train of code-thought not yet organized.
+
+How can another_tool.py access general_useful_things.py? First things first - __init__.py everywhere! After trying a few ways to do the import - &lt;a title=&quot;attempting to import&quot; href=&quot;http://codepad.org/dQo20KGr&quot;&gt;here are a few results&lt;/a&gt;.
+
+So what's needed for another_tool to import general_useful_things:
+&lt;ul&gt;
+	&lt;li&gt;&quot;from framework import general_useful_things&quot; works in another_tool.py if we only use main_app_entry.py, it &lt;strong&gt;does not work&lt;/strong&gt; if we run another_tool.py directly. Does this mean __name__ == &quot;__main__&quot; is a useless feature I should ignore?&lt;/li&gt;
+	&lt;li&gt;Here's the rest of the list of failed attempts:
+&lt;pre&gt;#from app.framework import general_useful_things
+#from .app.framework import general_useful_things
+#from ..framework import general_useful_things
+#from .framework import general_useful_things
+#from . import framework
+#from .. import framework&lt;/pre&gt;
+&lt;/li&gt;
+	&lt;li&gt;And this little recipe works in most cases:
+&lt;pre&gt;SRC_DIR = os.path.dirname(os.path.abspath(__file__))
+os.sys.path.append(os.path.join(SRC_DIR, '..', 'framework'))
+import general_useful_things&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+If you want to tinker around with that example directory structure here you go: &lt;a title=&quot;A simple placeholder package/app&quot; href=&quot;http://dl.dropbox.com/u/440522/importing%20is%20hard.zip&quot;&gt;http://dl.dropbox.com/u/440522/importing%20is%20hard.zip&lt;/a&gt;
+&lt;h2&gt;&lt;span class=&quot;Apple-style-span&quot; style=&quot;font-size:20px;&quot;&gt;Python doesn't have file-system imports&lt;/span&gt;&lt;/h2&gt;
+To summarize my rant - python has this mantra that your import lines should be concise and thus a complex searching import mechanism was built to avoid filesystem-path-like imports. The price we pay for that searching import mechanism is that you really need to learn how to use its implicit kinks and even then it's not that fun to use.
+&lt;h2&gt;The theoretical ideal solution&lt;/h2&gt;
+&quot;import x&quot; always imports from sys.path etc, if you want to import something local you use &quot;import ./local_dir_module&quot;, the forward slash signals the parser and the developer that a file-system import is taking place. &quot;local_dir_module.py&quot; needs to be in the current folder for the above example to work. Just in case it isn't clear, the module &quot;local_dir_module&quot; will be accessed as usual, without the &quot;.py&quot;, dots or slashes. The import statement is the only place where slashes are allowed and the result of the import is a module in the stater's namespace.
+
+That's as explicit, simple, concise and useful as it gets.
+&lt;h2&gt;The practical solution&lt;/h2&gt;
+I don't mind if &quot;import x&quot; still works as it does today, the main point is that now you can do things like &quot;import ../../that_module_from_far_away&quot;. So you can actually keep python 100% backwards compatible and still add this feature.
+
+Concerning the backslash/forwardslash debate - I'm a windows guy and I don't mind using the forward slash for Python, Windows doesn't mind it either (&quot;/&quot; only fails in a few specific scenarios like cmd autocomplete). Another fun fact is you can avoid littering your app with __init__.py if you aren't going to be accessed using that big old search-import-package mechanism.
+
+I realize this whole fiasco might raise the question of absolute path imports, in my opinion these shouldn't be allowed. Absolue includes in C/C++ destroy portability, impose annoying folder structure constraints and they're ever-so tempting at late hours where you don't really want to calculate the amount of &quot;..&quot; needed. For the special cases that might still need this, the instrumentation existing in python and e.g. &lt;a title=&quot;import_file to import python modules from a path&quot; href=&quot;http://uberpython.wordpress.com/2011/06/08/a-new-module-import_file/&quot;&gt;import_file&lt;/a&gt; are enough.
+&lt;h2&gt;The good things about __init__.py&lt;/h2&gt;
+Many packages use __init__.py as a way to organize their API's to the outside world. Your package folder can have tons of scripts and only what you included in __init__.py is exposed when your folder is imported directly (eg &lt;a title=&quot;json in the python standard library&quot; href=&quot;http://hg.python.org/cpython/file/7b83d2c1aad9/Lib/json&quot;&gt;json &lt;/a&gt;in the std-library). So don't take this as an attack on __init__.py, it's just that the import mechanism seems incomplete in my eyes. Just to be a bit specific - package maintainers don't need to do stuff like &quot;import os as _os&quot; to avoid littering their module namespace when they use __init__.py as their API, that's a nice thing to have.
+
+Also, I'd like to hear other justifications as I'm sure more than a few exist.
+&lt;h2&gt;The drawbacks of slashes and file-system-imports&lt;/h2&gt;
+&lt;ol&gt;
+	&lt;li&gt;From a compatibility viewpoint, old packages aren't affected as we're introducing the &quot;forward slash&quot; in whatever future python version. Whoever uses this feature won't be compatible with older python versions.&lt;/li&gt;
+	&lt;li&gt;Windows users and *nix users might argue over whether or not to allow backslashes, I think it's not that important. Though the internet has forward slashes, so that makes it 2 platforms against 1.&lt;/li&gt;
+	&lt;li&gt;It's uglier (though today's relative imports are just as ugly and harder to learn).&lt;/li&gt;
+	&lt;li&gt;People might ask for absolute imports.&lt;/li&gt;
+	&lt;li&gt;Dividing the community and its packages into &quot;file-system-importers&quot; and &quot;package-search-importers&quot;.&lt;/li&gt;
+	&lt;li&gt;*reserved for complaints in the comments*&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;&lt;span class=&quot;Apple-style-span&quot; style=&quot;font-size:20px;&quot;&gt;Summary&lt;/span&gt;&lt;/h2&gt;
+I've tried to do packages the existing python way and I think we can do better. The __init__.py based search mechanism works great for whatever is in sys.path, though I believe its pains outweigh its gains for organizing code. Here's to hoping there's a chance for relative-file-system imports in standard python.
+&lt;h2&gt;&lt;span class=&quot;Apple-style-span&quot; style=&quot;font-size:20px;&quot;&gt;References&lt;/span&gt;&lt;/h2&gt;
+&lt;a href=&quot;http://www.python.org/dev/peps/pep-0328/&quot;&gt;http://www.python.org/dev/peps/pep-0328/&lt;/a&gt;
+
+&lt;a href=&quot;http://en.cppreference.com/w/cpp/preprocessor/include&quot;&gt;http://en.cppreference.com/w/cpp/preprocessor/include&lt;/a&gt;
+
+&lt;a href=&quot;http://effbot.org/zone/import-confusion.htm&quot;&gt;http://effbot.org/zone/import-confusion.htm&lt;/a&gt; - January 07, 1999 - &quot;There are Many Ways to Import a Module&quot; - &quot;The &lt;em&gt;import&lt;/em&gt; and &lt;em&gt;from-import&lt;/em&gt; statements are a constant cause of serious confusion for newcomers to Python&quot;
+
+&lt;a href=&quot;http://stackoverflow.com/questions/448271/what-is-init-py-for&quot;&gt;http://stackoverflow.com/questions/448271/what-is-init-py-for
+&lt;/a&gt;
+
+&lt;a href=&quot;http://stackoverflow.com/questions/1260792/python-import-a-file-from-a-subdirectory&quot;&gt;http://stackoverflow.com/questions/1260792/python-import-a-file-from-a-subdirectory&lt;/a&gt;&lt;a href=&quot;http://stackoverflow.com/questions/448271/what-is-init-py-for&quot;&gt; &lt;/a&gt;
+
+&lt;a href=&quot;http://docs.python.org/tutorial/modules.html&quot;&gt;http://docs.python.org/tutorial/modules.html&lt;/a&gt;
+
+&lt;a href=&quot;http://www.slideshare.net/stuartmitchell/python-relative-imports-just-let-me-use-the-file-system-please&quot;&gt;http://www.slideshare.net/stuartmitchell/python-relative-imports-just-let-me-use-the-file-system-please&lt;/a&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>The GIL Detector</title>
+   <link href="https://yuvalg.com/2011/08/09/the-gil-detector"/>
+   <updated>2011-08-09T06:15:55+00:00</updated>
+   <id>https://yuvalg.com/2011/08/09/the-gil-detector</id>
+   <content type="html">Ever wonder if your flavor of python has a Global Interpreter Lock? The recipe &lt;a title=&quot;GIL detector&quot; href=&quot;http://codepad.org/CeI6gJLk&quot;&gt;gil_detector.py&lt;/a&gt; checks that.
+
+In this day and age CPython is still core-locked; though we are seeing improvements thanks to Antoine Pitrou and other great people of the Python community. Wanting to measure just how bad the problem is - my way of looking at it was through a number I call the &quot;python effective core count&quot;.
+&lt;h3&gt;Python Effective Core Count&lt;/h3&gt;
+How many cores does python see? If you bought a quad core, how many cores can each python process utilize? Measuring how long it takes to complete a given amount of work, W, then measuring how long it takes for python to run 2W using 2 threads, 3W on 3 threads, etc. The script &lt;a title=&quot;GIL detector&quot; href=&quot;http://codepad.org/CeI6gJLk&quot;&gt;gil_detector.py&lt;/a&gt; calculates:
+
+&lt;code&gt;effective_cpus = amount_of_work / (time_to_finish / baseline)&lt;/code&gt;
+
+&lt;code&gt;&lt;/code&gt;Where the baseline is the &lt;code&gt;time_to_finish&lt;/code&gt; for 1 work unit. E.g. if it took the same amount of time to finish 4W (&lt;code&gt;amount_of_work = 4&lt;/code&gt;) on 4 threads as it took 1W on 1 thread - python is utilizing 4 cores.
+&lt;h3&gt;Results&lt;/h3&gt;
+I recommend &lt;a title=&quot;results of gil detector&quot; href=&quot;http://codepad.org/JOyh6dYd&quot;&gt;reading the whole output&lt;/a&gt; to see the exact numbers.
+&lt;table style=&quot;text-align:center;&quot;&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Implementation&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;Effective Core Count&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Jython 2.5.2&lt;/td&gt;
+&lt;td&gt;3.8/4 cores&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;IronPython 2.7&lt;/td&gt;
+&lt;td&gt;3.2/4 cores&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;PyPy-1.5&lt;/td&gt;
+&lt;td&gt;1.0/4 cores&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Stackless Python 3.2&lt;/td&gt;
+&lt;td&gt;1.0/4 cores&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CPython 3.2&lt;/td&gt;
+&lt;td&gt;1.0/4 cores&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CPython 2.7&lt;/td&gt;
+&lt;td&gt;0.2/4 cores&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+Basically, Jython has the best multithreading with IronPython not too far behind. I know multiprocessing is really easy in python, but it's still harder. We have to solve this before 8 core CPU's become the standard at grandma's house. Those other languages (C/C++) utilize 3.9-4.0 cores of a quad core machine easily, why can't we? An honorable mention goes to PyPy which by far was the fastest to execute the benchmark (10x faster). PyPy is definitely the future of Python, hopefully they can save us all. A note about CPython 2.7 - yes that number is under 1 because adding threads on python-cpu-intensive tasks hurt performance badly on older versions of the GIL, &lt;a title=&quot;[Python-Dev] Reworking the GIL&quot; href=&quot;http://mail.python.org/pipermail/python-dev/2009-October/093321.html&quot;&gt;Antoine&lt;/a&gt; fixed that on CPython 3.2.
+
+In my opinion the community should call this a bug and have a unittest in there yelling at us until we fix it, though it's easy for me to complain when I'm not the core-dev. Maybe I can join PyPy and see what I can do when I find some free time. Hopefully so.
+
+Edit - updated gil_detector.py as corrected at &lt;a title=&quot;The GIL Detector reddit post&quot; href=&quot;http://www.reddit.com/r/Python/comments/jd90y/the_gil_detector/&quot;&gt;reddit&lt;/a&gt;.</content>
+ </entry>
+ 
+ <entry>
+   <title>A new module - import_file</title>
+   <link href="https://yuvalg.com/2011/06/08/a-new-module-import_file"/>
+   <updated>2011-06-08T21:43:55+00:00</updated>
+   <id>https://yuvalg.com/2011/06/08/a-new-module-import_file</id>
+   <content type="html">So I had this python web server and I wanted to write a script that does some maintenance. The problem was, if the maintenance script isn't part of the &quot;__init__.py&quot; package tree, it couldn't use any of the web server modules. A hacky way to get around this is to add the target module's directory to the path:
+&lt;pre&gt;    import sys
+    sys.path.append('/usr/wherever_that_module_is')
+    import your_module&lt;/pre&gt;
+Another trick is using &lt;code&gt;os.chdir&lt;/code&gt;. Even when importing modules from the same package things can become confusing as can be learned from &lt;a href=&quot;http://www.python.org/dev/peps/pep-0328/&quot;&gt;PEP 328&lt;/a&gt;, &lt;a href=&quot;http://www.python.org/dev/peps/pep-0366/&quot;&gt;PEP 366&lt;/a&gt;, an &lt;a href=&quot;http://www.google.com/search?sourceid=chrome&amp;amp;ie=UTF-8&amp;amp;q=import+file+python+site%3Astackoverflow.com&quot;&gt;abundance of stackoverflow questions on the subject&lt;/a&gt; and many more. I'd like to quote The Zen of Python:
+&lt;pre&gt;    Simple is better than complex.
+    There should be one-- and preferably only one --obvious way to do it.
+    If the implementation is hard to explain, it's a bad idea.&lt;/pre&gt;
+I don't believe any of these can be said about python imports, at least not for anything past the trivial case of one-folder-with-all-the-modules. The moment you want to organize your project in folders it becomes complex if not complicated and unnatural.
+
+&quot;import math&quot; just works and that's great, I just wished there was an equivalent to the banal:
+&lt;pre&gt;#include &quot;path/to/module&quot;&lt;/pre&gt;
+From those inferior languages. So I wrote import_file which can be used like this:
+&lt;pre&gt;    &amp;gt;&amp;gt;&amp;gt;from import_file import import_file
+    &amp;gt;&amp;gt;&amp;gt;mylib = import_file('c:\\mylib.py')
+    &amp;gt;&amp;gt;&amp;gt;another = import_file('relative_subdir/another.py')&lt;/pre&gt;
+It's very similar to the imp module syntax, except the function requires one argument less. This is the way it should be imo. Enjoy &lt;a href=&quot;http://code.google.com/p/import-file/&quot;&gt;import_file at google code&lt;/a&gt;, from the &lt;a href=&quot;http://pypi.python.org/pypi/import_file&quot;&gt;cheese shop&lt;/a&gt;, &quot;easy_install import_file&quot; or pip, etc.</content>
+ </entry>
+ 
+ <entry>
+   <title>Pythonistas use chrome</title>
+   <link href="https://yuvalg.com/2011/02/16/pythonistas-use-chrome"/>
+   <updated>2011-02-16T17:56:29+00:00</updated>
+   <id>https://yuvalg.com/2011/02/16/pythonistas-use-chrome</id>
+   <content type="html">I was very happy to see the wall of shame got so much attention. To my surprise, an extraordinary amount of visitors use the google browser as can be seen by the &lt;a href=&quot;http://imgur.com/a/4ga9x&quot;&gt;analytics data&lt;/a&gt;. Out of 24,000 visitors:
+
+48.1% - Chrome
+31.61% - Firefox
+10.9% - Safari
+3.95% - Mozilla compatible (what is this?)
+2.35% - Internet Explorer
+2.19% - Opera
+
+Most of the visitors were unique (you guys aren't coming back?) and it is a pretty technical, python programming related topic. So I can assume most of these are &amp;quot;pythonistas&amp;quot;. Imo just like how porn decides who wins the media battles, programmers are the ones who decide who wins the browser battles. You know their grandparents/aunts/kids/uncles/etc are all going to ask &lt;strong&gt;them &lt;/strong&gt;which browser to use. So expect a very bright future for google chrome.</content>
+ </entry>
+ 
+ <entry>
+   <title>The Python 3 Wall of Shame</title>
+   <link href="https://yuvalg.com/2011/02/12/the-python-3-wall-of-shame"/>
+   <updated>2011-02-12T18:23:57+00:00</updated>
+   <id>https://yuvalg.com/2011/02/12/the-python-3-wall-of-shame</id>
+   <content type="html">Here's my attempt at &lt;a href=&quot;http://python3wos.appspot.com&quot;&gt;motivating package maintainers to port to python 3&lt;/a&gt; and you can check out&lt;a href=&quot;http://code.google.com/p/python3wos/&quot;&gt; the code that generates the chart&lt;/a&gt;. I basically scraped PyPI (13,000 webpages) for this info and formatted it into an HTML table which is uploaded to appspot. I added a 'cron' task on my PC to recrawl PyPI every Sunday so the chart stays fresh. When developing the WOS I used &lt;a href=&quot;http://code.google.com/p/filecache/&quot;&gt;filecache &lt;/a&gt;(from the previous blog post) so I could just write the code that parses the crawl as though it just now scraped PyPI while infact everything was cached to disk. Without filecache I would have had to either wait for ages, or write code that stores the scrapes, and reparses them. About 10 lines turn into an import and a decorator, now that's magic.
+
+I hope no one takes offense from this. The situation we're starting at is pretty bad. Only 11 out of the top 100 packages on PyPI are labeled as supporting python3. There are a few glitches (e.g. multiprocessing) where the developers simply haven't yet labeled the package as python 3 compliant.
+
+Once we pass the 50% mark I guess we can change it from &quot;Wall of Shame&quot; to &quot;World of Strength&quot; or something because the subdomain is &quot;wos&quot;.</content>
+ </entry>
+ 
+ <entry>
+   <title>Filecache</title>
+   <link href="https://yuvalg.com/2011/02/12/filecache"/>
+   <updated>2011-02-12T15:04:08+00:00</updated>
+   <id>https://yuvalg.com/2011/02/12/filecache</id>
+   <content type="html">Working on a project that needed some web scraping, I made &lt;a href=&quot;http://pypi.python.org/pypi/filecache&quot;&gt;filecache&lt;/a&gt;. I just wanted a simple decorator that would save the results of a function to disk. Memcache and other recipes seemed to be either overly complex or just plain memory caching (without persistence). If you want to help improve it then check out the &lt;a href=&quot;http://code.google.com/p/filecache/&quot;&gt;google code filecache project&lt;/a&gt;.</content>
+ </entry>
+ 
+ <entry>
+   <title>Python Graphbin - A place to share graphs</title>
+   <link href="https://yuvalg.com/2009/11/21/python-graphbin-a-place-to-share-graphs"/>
+   <updated>2009-11-21T09:55:19+00:00</updated>
+   <id>https://yuvalg.com/2009/11/21/python-graphbin-a-place-to-share-graphs</id>
+   <content type="html">A week ago I found out some strange stuff was going on when I searched for &quot;aaaaaaaaaaa&quot;. So I made a python script
+&lt;a href=&quot;http://pastebin.com/f35806f8f&quot;&gt;http://pastebin.com/f35806f8f&lt;/a&gt; for gathering the search results and wanted to plot a nice graph. The problem was I couldn't find a nice place to show and store the data. So I made a pastebin esque graphbin at &lt;a href=&quot;http://graphbin.appspot.com&quot;&gt;http://graphbin.appspot.com&lt;/a&gt; and you can see the google search results:
+
+&lt;a href=&quot;http://graphbin.appspot.com/g/bedequP4&quot;&gt;http://graphbin.appspot.com/g/bedequP4&lt;/a&gt;
+
+I used &quot;Paste-It&quot; (&lt;a href=&quot;http://paste-it.appspot.com/&quot;&gt;http://paste-it.appspot.com/&lt;/a&gt;) as the base for graphbin so I got a bit familiar with the &quot;Paste&quot;
+(&lt;a href=&quot;http://pythonpaste.org&quot;&gt;http://pythonpaste.org&lt;/a&gt;) framework. Sadly, this wasn't a pleasant journey. A lot of the connected things are just scattered all over the place and yet seem heavily entangled (ie main.py uses
+page/pasties/add.py which outputs the relevant template page in line 125 out of 342 after a flow that was no fun to follow). I'm not sure if this is a problem with &quot;Paste&quot; or a problem with the &quot;Paste-It&quot; implementation, but it got a bit ugly. Not to mention some bad naming (the &quot;paste&quot; folder holds the &quot;web&quot; framework folder and all the models, why not name the folder &quot;models&quot; and move the framework out? Why are pages &quot;pasties&quot;?).
+
+Maybe some paste-lover can dazzle me with some info on how paste compares/differs to/from django. Drop a comment.</content>
+ </entry>
+ 
+ <entry>
+   <title>Python Programmers Writing Javascript Beware</title>
+   <link href="https://yuvalg.com/2009/11/09/python-programmers-writing-javascript-beware"/>
+   <updated>2009-11-09T07:38:33+00:00</updated>
+   <id>https://yuvalg.com/2009/11/09/python-programmers-writing-javascript-beware</id>
+   <content type="html">Call me silly for not reading the docs, but this bug was very hard to find. Dictionaries in python are NOT the same thing in javascript. The curly braces mean it's an &amp;quot;object literal&amp;quot; and the keys don't need the quotation marks. For example:
+
+var x = { NAME: 123, Something: &amp;quot;ok&amp;quot;}
+
+Is the same as the following code:
+
+var x = {}
+x[&amp;#39;NAME&amp;#39;] = 123
+x[&amp;#39;Something&amp;#39;] = &amp;quot;ok&amp;quot;
+
+Which means that if you had a variable named &amp;quot;NAME&amp;quot; and you expected it's contents to be the key, then you're going to have a royally hard to find bug (especially when developing for an already obfuscated framework such as Google Wave).
+
+This is even worse because JSON causes you to believe the quotation marks are needed. If there's a place to file a JS enhancement proposal, I would, but I doubt this inconsistency would annoy anyone but a pythonista.</content>
+ </entry>
+ 
+ <entry>
+   <title>Projects I'd Like To Do</title>
+   <link href="https://yuvalg.com/2009/11/05/projects-id-like-to-do"/>
+   <updated>2009-11-05T17:45:03+00:00</updated>
+   <id>https://yuvalg.com/2009/11/05/projects-id-like-to-do</id>
+   <content type="html">I've got too many things on my mind, I was thinking of doing the following:
+&lt;ol&gt;
+	&lt;li&gt;Help improve 3to2, sounds like it could help bridge the PyPI gap and allow for writing &quot;backwards compatible&quot; libraries, using the newest of technologies (it's alot better than imitating decorator behavior using the silly syntax it's sugar for).&lt;/li&gt;
+	&lt;li&gt;Help port Numpy to py3k&lt;/li&gt;
+	&lt;li&gt;Help port Django to py3k&lt;/li&gt;
+	&lt;li&gt;Build a small script that'll crawl &lt;a href=&quot;http://svn.python.org&quot;&gt;svn.python.org&lt;/a&gt; and give points to developers. [update: &lt;a title=&quot;python contributors rankning&quot; href=&quot;http://www.ohloh.net/p/python/contributors&quot;&gt;ohloh did it&lt;/a&gt;]&lt;/li&gt;
+	&lt;li&gt;Build a python ascii art lib (not one that does the greyscale trick, one that actually tests for lines etc).&lt;/li&gt;
+	&lt;li&gt;Build a pinax captcha app&lt;/li&gt;
+	&lt;li&gt;Make a py2exe, Freeze, py2app mashup that can easily compile on all platforms.&lt;/li&gt;
+&lt;/ol&gt;
+I think that's it. I wonder how much of the above I'll be able to complete by next month considering I'm really not good enough in Rock Band 2 drums yet.
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Python Regular Expressions Evaluator</title>
+   <link href="https://yuvalg.com/2009/10/27/python-regular-expressions-evaluator"/>
+   <updated>2009-10-27T01:54:49+00:00</updated>
+   <id>https://yuvalg.com/2009/10/27/python-regular-expressions-evaluator</id>
+   <content type="html">I wanted to try out Django over App Engine so I made an online regular expressions evaluator:
+
+&lt;a href=&quot;http://pythonre.appspot.com&quot;&gt;http://pythonre.appspot.com&lt;/a&gt;
+
+At first I thought it's strange that there's no online python regular expression checker. This might not be surprising considering how easy it is to test stuff with the python interpreter as opposed to php which can be a PITA for just testing one or two lines. Either way I thought this might be useful for quick checks and as a teaching tool.</content>
+ </entry>
+ 
+ <entry>
+   <title>Python and the Blogroll</title>
+   <link href="https://yuvalg.com/2009/10/03/python-and-the-blogroll"/>
+   <updated>2009-10-03T17:30:57+00:00</updated>
+   <id>https://yuvalg.com/2009/10/03/python-and-the-blogroll</id>
+   <content type="html">How come every self respecting python web framework has a tutorial on implementing a blog yet everybody uses PHP wordpress?
+
+So, does anybody know good python blog projects? (No, pinax isn't a blogging app, sorry)</content>
+ </entry>
+ 
+ <entry>
+   <title>php to eat, python to grow!</title>
+   <link href="https://yuvalg.com/2009/09/30/php-to-eat-python-to-grow"/>
+   <updated>2009-09-30T23:07:43+00:00</updated>
+   <id>https://yuvalg.com/2009/09/30/php-to-eat-python-to-grow</id>
+   <content type="html">Just saw this gem on reddit: &lt;a href=&quot;http://www.reddit.com/r/Python/comments/9pd33/dear_redditpy_could_you_help_me_convince_myself/c0dt5wa&quot;&gt;http://www.reddit.com/r/Python/comments/9pd33/dear_redditpy_could_you_help_me_convince_myself/c0dt5wa&lt;/a&gt;
+
+Also, good luck on implementing an http-proxy in PHP, the damn thing would have to be huge, ugly and would require at least one PEAR lib to do it the right way.
+
+And for some reason &lt;a href=&quot;http://en.support.wordpress.com/post-by-email/&quot;&gt;wordpress post by e-mail&lt;/a&gt; has a low google ranking, so I thought I should +1 that. Though I personally prefer a clunky interface to an ajax one any day.</content>
+ </entry>
+ 
+ <entry>
+   <title>Standard library granularity in python, argparse vs getopt</title>
+   <link href="https://yuvalg.com/2009/09/28/standard-library-granularity-in-python-argparse-vs-getopt"/>
+   <updated>2009-09-28T20:45:13+00:00</updated>
+   <id>https://yuvalg.com/2009/09/28/standard-library-granularity-in-python-argparse-vs-getopt</id>
+   <content type="html">Is it ok that python has 2 modules for option parsing, 3-4 xml packages, 3 HTTPServer modules, etc? This issue hit me when contemplating the deprecation of getopt as a part of the inclusion of argparse. Whenever I want to parse xml/html I get overwhelmed by the options in the std-lib. I remember myself annoyed and confused by getopt/optparse both showing me 2 different ways of doing something so similar. As a newcomer to python, I wanted python to show me the right way of doing things.
+
+So following that line of thought, getopt is the ugly way of doing option parsing. It imitates an option parsing flow that came from the old C days (and thus unpythonic), making it very attractive for people familiar with getopt/xgetopt. So what's more important: easy learning curve or enforcing best practices?
+
+I wanted to see how ugly getopt code looks so using &lt;a title=&quot;pretty nice code searching&quot; href=&quot;http://www.google.com/codesearch?hl=en&quot;&gt;google code search&lt;/a&gt; I found a few real life usage examples.
+
+getopt sample code, or &lt;a title=&quot;getopt usage&quot; href=&quot;http://www.google.com/codesearch?hl=en&amp;amp;q=getopt+%22import+getopt%22+file:\.py$&quot;&gt;check out the search results yourself&lt;/a&gt;:
+&lt;ul&gt;
+	&lt;li&gt;&lt;a title=&quot;nice usage of getopt&quot; href=&quot;http://www.google.com/codesearch/p?hl=en&amp;amp;sa=N&amp;amp;cd=6&amp;amp;ct=rc#_hWFOhGz9lE/mezzo/scons/sconsign.py&amp;amp;q=getopt%20%22import%20getopt%22%20file:%5C.py$&amp;amp;l=264&quot;&gt;a very clean and complete usage of getopt, with a help string.&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a title=&quot;from http://openfmi.net/ a switch emulated with ifs&quot; href=&quot;http://www.google.com/codesearch/p?hl=en&amp;amp;sa=N&amp;amp;cd=1&amp;amp;ct=rc#2A-6s48EZNk/plugins/scmsvn/cgi-bin/viewcvs.cgi/*checkout*/pytodo/pytodo.py%3Fcontent-type%3Dtext%252Fplain&amp;amp;rev%3D16&amp;amp;root%3Dpytodo&amp;amp;q=import%20getopt%20file:%5C*.py&amp;amp;l=12&quot;&gt;a switch emulated with if's&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a title=&quot;switch&quot; href=&quot;http://www.google.com/codesearch/p?hl=en&amp;amp;sa=N&amp;amp;cd=2&amp;amp;ct=rc#jAG3XMYHpWA/ver/*checkout*/pyslide%3Frev%3D13&amp;amp;amp;root%3Dpyslide&amp;amp;q=import%20getopt%20file:%5C*.py&amp;amp;l=43&quot;&gt;a switch emulated with elif's&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a title=&quot;switch and elif&quot; href=&quot;http://www.google.com/codesearch/p?hl=en&amp;amp;sa=N&amp;amp;cd=3&amp;amp;ct=rc#BuJNSIcfuQo/cgi-bin/viewcvs.cgi/*checkout*/pykota/trunk/pykota/tool.py%3Fcontent-type%3Dtext%252Fplain&amp;amp;amp;rev%3D328&amp;amp;q=getopt%20%22import%20getopt%22%20file:%5C*.py&amp;amp;l=256&quot;&gt;another switch the elif's &lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a title=&quot;short and easy&quot; href=&quot;http://www.google.com/codesearch/p?hl=en&amp;amp;sa=N&amp;amp;cd=2&amp;amp;ct=rc#4Wqoij9clTg/docs/pythfilter.py&amp;amp;q=getopt%20%22import%20getopt%22%20file:%5C.py$&amp;amp;l=632&quot;&gt;and another switch&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+optparse sample code:
+&lt;ul&gt;
+	&lt;li&gt;&lt;a href=&quot;http://www.google.com/codesearch/p?hl=en&amp;amp;sa=N&amp;amp;cd=3&amp;amp;ct=rc#4K6RW7rvMW0/Zope-3.1.0b1/Dependencies/zope.app-Zope-3.1.0b1/zope.app/testing/dochttp.py&amp;amp;q=optparse%20%22import%20optparse%22%20file:%5C.py$&amp;amp;l=33&quot;&gt;options are parsed and then used like a regular dict&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;http://www.google.com/codesearch/p?hl=en&amp;amp;sa=N&amp;amp;cd=13&amp;amp;ct=rc#E_RiYu-BgrU/moin-1.5.8/MoinMoin/script/_util.py&amp;amp;q=optparse%20%22import%20optparse%22%20file:%5C.py$&amp;amp;l=52&quot;&gt;options are parsed and then used like a regular dict as part of a class&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+At first I thought the learning curve thing was important, but in the end, getopt is a very unpythonic module that I would rather not see any of my colleagues use at all, except for rare cases where an awful lot of flexibility is needed. For example, getopt could be an easy way to implement optparse, or a completely different alternative. For example &lt;a title=&quot;pyopt - python 3 option parsing decorator&quot; href=&quot;http://code.google.com/p/pyopt/&quot;&gt;pyopt &lt;/a&gt;uses getopt in such a way. So IMHO getopt should be in the std-lib, but the documentation should have a very big sign saying &quot;use the awesome optparse/argparse, this is a very simple parser with barely any of the features you probably need&quot;.</content>
+ </entry>
+ 
+ <entry>
+   <title>My First Python Contribution</title>
+   <link href="https://yuvalg.com/2009/09/19/my-first-python-contribution"/>
+   <updated>2009-09-19T09:25:29+00:00</updated>
+   <id>https://yuvalg.com/2009/09/19/my-first-python-contribution</id>
+   <content type="html">This might be a bit silly, but I'm pretty proud of &lt;a title=&quot;It's only an error message, but still...&quot; href=&quot;http://svn.python.org/view/python/trunk/Lib/inspect.py?r1=74285&amp;amp;r2=74901&quot;&gt;my first diff in the python trunk&lt;/a&gt;. This is &lt;a title=&quot;Maybe cfunctions should be treated better and given their own error message?&quot; href=&quot;http://bugs.python.org/issue6905&quot;&gt;the ticket&lt;/a&gt; where all the magic happened.
+
+I think I'm content. No need to be working too hard getting pyopt into the standard library, etc...</content>
+ </entry>
+ 
+ <entry>
+   <title>pyopt, a python optparse with class</title>
+   <link href="https://yuvalg.com/2009/09/05/pyopt-a-python-optparse-with-class"/>
+   <updated>2009-09-05T23:18:39+00:00</updated>
+   <id>https://yuvalg.com/2009/09/05/pyopt-a-python-optparse-with-class</id>
+   <content type="html">I made a python option parser, I wonder what python-ideas will think of it...
+
+&lt;a title=&quot;Pyopt - A Pythonic optparse&quot; href=&quot;http://code.google.com/p/pyopt/&quot;&gt;http://code.google.com/p/pyopt/&lt;/a&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>I broke the python interpreter today</title>
+   <link href="https://yuvalg.com/2009/09/05/i-broke-the-python-interpreter-today"/>
+   <updated>2009-09-05T17:15:23+00:00</updated>
+   <id>https://yuvalg.com/2009/09/05/i-broke-the-python-interpreter-today</id>
+   <content type="html">locals() can let you add non-strings to your local namespace, check it out...
+
+&amp;gt;&amp;gt;&amp;gt; locals().update({3:2})
+&amp;gt;&amp;gt;&amp;gt; dir()
+Traceback (most recent call last):
+  File &quot;&quot;, line 1, in 
+TypeError: unorderable types: int() &amp;lt; str()
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Where's toString?</title>
+   <link href="https://yuvalg.com/2009/08/25/wheres-tostring"/>
+   <updated>2009-08-25T19:38:35+00:00</updated>
+   <id>https://yuvalg.com/2009/08/25/wheres-tostring</id>
+   <content type="html">Why don't python integers have a smart toString method like java/javascript? It's easy to convert strings into numbers using int(str_whatever) or float(str_whatever) but to convert them back you have only the decimal system (using str(number) or &quot;%d&quot; % number). In case you want to convert to binary, base32, base36, base64, you're gonna have to write your own conversion function. Batteries included?
+
+Use either:
+&lt;a style=&quot;text-decoration:none;&quot; title=&quot;radix base change python&quot; href=&quot;http://pastebin.com/f54dd69d6&quot;&gt; http://pastebin.com/f54dd69d6&lt;/a&gt;
+
+&lt;a title=&quot;radix base change python&quot; href=&quot;http://code.activestate.com/recipes/65212/&quot;&gt; http://code.activestate.com/recipes/65212/&lt;/a&gt;
+
+&lt;a href=&quot;http://code.activestate.com/recipes/111286/&quot;&gt;http://code.activestate.com/recipes/111286/&lt;/a&gt;
+
+I added a feature request, lets see if it gets completely shot down:
+
+&lt;a href=&quot;http://bugs.python.org/issue6783&quot;&gt;http://bugs.python.org/issue6783&lt;/a&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>What python lacks</title>
+   <link href="https://yuvalg.com/2009/02/06/what-python-lacks"/>
+   <updated>2009-02-06T12:54:19+00:00</updated>
+   <id>https://yuvalg.com/2009/02/06/what-python-lacks</id>
+   <content type="html">I do like python a lot, but I feel some things are still missing. Correct me if I'm wrong.
+
+* How do I know what can I import? I can use help(os) but how do I know that 'os' exists (from within the interpreter). I want a command like dir that can search through the default import directories. &quot;mdir&quot; (like module dir) or &quot;pdir&quot; (package dir).
+* Tkinter sucks, why isn't wx or anything else included?
+* The php documentation really makes me jealous because the user contributed comments are VERY useful. Why doesn't python docs have some web 2.0 in it? Like digg's comment system.
+* So many crappy IDE's, I can't find one that's good for everything. At first I liked Wing but nowadays it's way too slow and heavy so I switched to SPE which is great except it can crash for no reason.
+* The GIL needs to be taken more seriously with a dedicated page explaining why it's in place, how to escape it's suckiness, and a roadmap to minimize the damage. Alot of people care about performance more than idiot-proof concurrency.
+
+And I think i have a few more rants to go on about this, I'll post 'em when I recall.</content>
+ </entry>
+ 
+ <entry>
+   <title>Word Connections</title>
+   <link href="https://yuvalg.com/2009/01/17/word-connections"/>
+   <updated>2009-01-17T15:38:11+00:00</updated>
+   <id>https://yuvalg.com/2009/01/17/word-connections</id>
+   <content type="html">After fiddling with google apps engine, I made this AJAX searcher that tells you how strongly related are 2 words, or at least how strongly related they are on the internet. Try it out:
+&lt;a title=&quot;http://word-word-search.appspot.com/&quot; href=&quot;http://word-word-search.appspot.com/&quot;&gt;http://word-word-search.appspot.com/&lt;/a&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Python Premiere Subtitles Tool</title>
+   <link href="https://yuvalg.com/2008/08/23/python-premiere-subtitles-tool"/>
+   <updated>2008-08-23T07:59:16+00:00</updated>
+   <id>https://yuvalg.com/2008/08/23/python-premiere-subtitles-tool</id>
+   <content type="html">&lt;div class=&quot;entry&quot;&gt;
+&lt;div class=&quot;snap_preview&quot;&gt;
+
+I want to make an srt to prproj converter, but I’m still not there yet. So for now, I made this script that can take a text file, parse it, and output prtl files which you can import into premiere, then you just have to worry about how to time them.
+
+Download here: &lt;a title=&quot;Python Subtitler For Premiere&quot; href=&quot;http://www.fileqube.com/hl/BxutZ86664/pytitle.zip&quot;&gt;[Zip file]&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Python with prompt</title>
+   <link href="https://yuvalg.com/2008/08/20/python-with-prompt"/>
+   <updated>2008-08-20T18:50:35+00:00</updated>
+   <id>https://yuvalg.com/2008/08/20/python-with-prompt</id>
+   <content type="html">Ever run a python script in windows and it just doesn't work and doesn't tell you why?
+
+This is for when exceptions are thrown but Windows closes your python interpreter, I came up with a shell extension called &quot;open with prompt&quot; where the interpreter sticks around so you can toy around with your python script after it's done.
+
+Just run this: &lt;a title=&quot;registry file&quot; href=&quot;http://www.fileqube.com/hl/KQqucDVqF85231/python with prompt.reg&quot;&gt;[reg file]&lt;/a&gt; (for python ver 2.5 installed in default location)&lt;a title=&quot;registry file&quot; href=&quot;http://www.fileqube.com/hl/KQqucDVqF85231/python with prompt.reg&quot;&gt;
+&lt;/a&gt;
+
+The reg file contains (it's really simple, just add -i to the regular running):
+&lt;blockquote&gt;Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Python.File\shell\Open with prompt]
+
+[HKEY_CLASSES_ROOT\Python.File\shell\Open with prompt\command]
+@=&quot;\&quot;C:\\Python25\\python.exe\&quot; -i \&quot;%1\&quot; %*&quot;
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Python.File\shell\Open with prompt]
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Python.File\shell\Open with prompt\command]
+@=&quot;\&quot;C:\\Python25\\python.exe\&quot; -i \&quot;%1\&quot; %*&quot;&lt;/blockquote&gt;</content>
+ </entry>
+ 
+</feed>

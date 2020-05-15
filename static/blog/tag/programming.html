@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ <title>yuvalg/blog programming</title>
+ <link href="https://yuvalg.com/tag/programming.html" rel="self"/>
+ <link href="https://yuvalg.com/tag/programming.html"/>
+ <updated>2013-08-13T16:58:22+00:00</updated>
+ <id>https://yuvalg.com/tag/programming.html</id>
+ <author>
+   <name>Yuval Greenfield</name>
+ </author>
+ 
+ <entry>
+   <title>Why I'm not leaving Python for Go</title>
+   <link href="https://yuvalg.com/2012/09/23/why-im-not-leaving-python-for-go"/>
+   <updated>2012-09-23T21:45:25+00:00</updated>
+   <id>https://yuvalg.com/2012/09/23/why-im-not-leaving-python-for-go</id>
+   <content type="html">First of all, Go seems like a great language. It has an &lt;a title=&quot;Tutorial of go&quot; href=&quot;http://tour.golang.org/&quot;&gt;excellent tutorial&lt;/a&gt; which I joyfully went through and found:
+&lt;ul&gt;
+	&lt;li&gt;Go is Fast.&lt;/li&gt;
+	&lt;li&gt;Concurrent by design.&lt;/li&gt;
+	&lt;li&gt;Typed (important for JIT and IDE's) but not cumbersome and ugly like C or C++'s &lt;a title=&quot;C spiral parsing&quot; href=&quot;http://c-faq.com/decl/spiral.anderson.html&quot;&gt;spirals&lt;/a&gt;.&lt;/li&gt;
+	&lt;li&gt;Duck-type-esque interfaces.&lt;/li&gt;
+	&lt;li&gt;The &lt;a title=&quot;defer&quot; href=&quot;http://golang.org/doc/effective_go.html#defer&quot;&gt;defer&lt;/a&gt; mechanism is really nifty.&lt;/li&gt;
+&lt;/ul&gt;
+But there's one problem I can't live with. Which is a shame as I was eager to make the leap of faith in the name of concurrency. That problem is &lt;strong&gt;errors are handled in return values&lt;/strong&gt;. 70's style.
+&lt;h2&gt;Verbose and repetitive error handling&lt;/h2&gt;
+The &lt;a title=&quot;Error handling&quot; href=&quot;http://blog.golang.org/2011/07/error-handling-and-go.html&quot;&gt;designers of go consider this a virtue&lt;/a&gt;.
+&lt;blockquote&gt;In Go, error handling is important. The language's design and conventions encourage you to explicitly check for errors where they occur (as distinct from the convention in other languages of throwing exceptions and sometimes catching them). In some cases this makes Go code &lt;strong&gt;verbose&lt;/strong&gt;, but fortunately there are some techniques you can use to minimize &lt;strong&gt;repetitive&lt;/strong&gt; error handling.&lt;/blockquote&gt;
+This is one of the things I can't stand in C. &lt;strong&gt;Every single line requires an if statement &lt;/strong&gt;to prevent programs from doing crazy things. This is an official, canonical example from the aforementioned link with perhaps &quot;minimal repetitive error handling&quot;:
+&lt;pre&gt;    if err := datastore.Get(c, key, record); err != nil {
+        return &amp;amp;appError{err, &quot;Record not found&quot;, 404}
+    }
+    if err := viewTemplate.Execute(w, record); err != nil {
+        return &amp;amp;appError{err, &quot;Can't display record&quot;, 500}
+    }&lt;/pre&gt;
+The correct way to call a function in Go is to wrap it in an if statement. Even &lt;a title=&quot;Println error&quot; href=&quot;http://golang.org/pkg/fmt/#Println&quot;&gt;Println&lt;/a&gt; returns an error value that I'm sure most on the planet will never check. Which brings me to...
+&lt;h2&gt;Errors passing silently - ticking time bombs to go&lt;/h2&gt;
+To quote Tim Peters:
+&lt;blockquote&gt;Errors should never pass silently
+Unless explicitly silenced&lt;/blockquote&gt;
+Go isn't just stuck with verbose and repetitive error handling. It also makes it easy and tempting to ignore errors. In the following program we would trigger the doomsday device even if we failed protecting the presidential staff.
+&lt;pre&gt;func main() {
+    http.Get(&quot;http://www.nuke.gov/seal_presidential_bunker&quot;)
+    http.Get(&quot;http://www.nuke.gov/trigger_doomsday_device&quot;)
+}&lt;/pre&gt;
+What a shame. Oops.
+
+&lt;address&gt;In theory we could require the programmer never ignore returned errors. By static analysis or convention. In practice it'd be a pain worth enduring only in the most error critical programming tasks. Perhaps that's Go's purpose.&lt;/address&gt;
+&lt;h2&gt;panic/recover&lt;/h2&gt;
+Panic and recover aren't good enough as long as the standard library rarely uses them. Why is an array out of bounds any more cause for panic than a bad format string or a broken connection? Go wanted to avoid exceptions entirely but realizing they can't - a few exceptions were tacked on here and there, leaving me confused as to which error happens when.
+&lt;h2&gt;Perhaps another time&lt;/h2&gt;
+So I say this with much regret because Go has a lot of amazing ideas and features, but without modern error handling - I'm not &lt;strong&gt;go&lt;/strong&gt;ing.
+
+I'm still waiting for that open source, concurrent, &lt;a title=&quot;quad core code shape benchmarks&quot; href=&quot;http://shootout.alioth.debian.org/u64q/code-used-time-used-shapes.php&quot;&gt;bottom left language&lt;/a&gt; to come along. Any suggestions are more than welcome.</content>
+ </entry>
+ 
+ <entry>
+   <title>Language Performance Analysis</title>
+   <link href="https://yuvalg.com/2009/09/29/language-performance-analysis"/>
+   <updated>2009-09-29T01:52:16+00:00</updated>
+   <id>https://yuvalg.com/2009/09/29/language-performance-analysis</id>
+   <content type="html">These have to be some of the most interesting things I've seen recently:
+&lt;ol&gt;
+	&lt;li&gt;&lt;a href=&quot;http://shootout.alioth.debian.org/&quot;&gt;The Computer Language Benchmarks Game&lt;/a&gt; - compare how cpu, memory footprint and source size of all your favorite languages. Also tested is multi-core vs single core and 32 vs 64 bit.&lt;/li&gt;
+	&lt;li&gt;&lt;a href=&quot;http://gmarceau.qc.ca/blog/2009/05/speed-size-and-dependability-of.html&quot;&gt;Meta analysis of the above game&lt;/a&gt; - visualizes all of the data from the above benchmark. No ground breaking conclusions, but the graphs are very nice to look at.&lt;/li&gt;
+&lt;/ol&gt;
+It's really interesting to see this information so plainly so one could learn a few ball park performance coefficients. There are a few things that the benchmarks don't measure ie readability, richness of library, strength and size of the developer  community, etc, but it's interesting none the less.</content>
+ </entry>
+ 
+</feed>

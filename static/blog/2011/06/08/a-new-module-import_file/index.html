@@ -1,0 +1,144 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>A new module - import_file</title>
+   <link rel="shortcut icon" href="/key_y.png" />
+   <meta name="author" content="Yuval Greenfield" />
+   <link href="http://feeds.feedburner.com/yuvalg/blog" rel="alternate" title="your title" type="application/atom+xml" />
+
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="https://yuvalg.com/blog/assets/themes/tom/css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="https://yuvalg.com/blog/assets/themes/tom/css/screen.css" type="text/css" media="screen, projection" />
+
+   <!-- Typekit 
+   <script type="text/javascript" src="http://use.typekit.com/jpd0pfm.js"></script>
+   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>-->
+</head>
+<body>
+
+  <div class="site">
+    <div class="title">
+      <ul class="nav">
+        <li>
+            <a id="brand" href="https://yuvalg.com/blog">yuvalg/blog</a>
+        </li>
+        
+        
+
+
+  
+    
+      
+      	
+      	<li><a href="https://yuvalg.com/blog/categories.html">categories</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="https://yuvalg.com/blog/tags.html">tags</a></li>
+      	
+      
+    
+  
+
+
+
+      </ul>
+      <!--a class="extra" href="https://yuvalg.com/blog/archive.html">Archive</a>
+      <a class="extra" href="https://yuvalg.com/blog">Pages</a>
+      <a class="extra" href="https://yuvalg.com/blog/categories.html">categories</a>
+      <a class="extra" href="https://yuvalg.com/blog/tags.html">tags</a-->
+    </div>
+  
+    
+
+<div class="post">
+  <h1>A new module - import_file</h1>
+  <p class="meta">
+    08 June 2011 
+    
+  </p>
+  So I had this python web server and I wanted to write a script that does some maintenance. The problem was, if the maintenance script isn't part of the "__init__.py" package tree, it couldn't use any of the web server modules. A hacky way to get around this is to add the target module's directory to the path:
+<pre>    import sys
+    sys.path.append('/usr/wherever_that_module_is')
+    import your_module</pre>
+Another trick is using <code>os.chdir</code>. Even when importing modules from the same package things can become confusing as can be learned from <a href="http://www.python.org/dev/peps/pep-0328/">PEP 328</a>, <a href="http://www.python.org/dev/peps/pep-0366/">PEP 366</a>, an <a href="http://www.google.com/search?sourceid=chrome&amp;ie=UTF-8&amp;q=import+file+python+site%3Astackoverflow.com">abundance of stackoverflow questions on the subject</a> and many more. I'd like to quote The Zen of Python:
+<pre>    Simple is better than complex.
+    There should be one-- and preferably only one --obvious way to do it.
+    If the implementation is hard to explain, it's a bad idea.</pre>
+I don't believe any of these can be said about python imports, at least not for anything past the trivial case of one-folder-with-all-the-modules. The moment you want to organize your project in folders it becomes complex if not complicated and unnatural.
+
+"import math" just works and that's great, I just wished there was an equivalent to the banal:
+<pre>#include "path/to/module"</pre>
+From those inferior languages. So I wrote import_file which can be used like this:
+<pre>    &gt;&gt;&gt;from import_file import import_file
+    &gt;&gt;&gt;mylib = import_file('c:\\mylib.py')
+    &gt;&gt;&gt;another = import_file('relative_subdir/another.py')</pre>
+It's very similar to the imp module syntax, except the function requires one argument less. This is the way it should be imo. Enjoy <a href="http://code.google.com/p/import-file/">import_file at google code</a>, from the <a href="http://pypi.python.org/pypi/import_file">cheese shop</a>, "easy_install import_file" or pip, etc.
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>13 Aug 2013</span> &raquo; <a href="https://yuvalg.com/blog/2013/08/13/d3js-shape-projections">Shape Projections with D3.js</a></li>
+    
+      <li><span>07 Aug 2013</span> &raquo; <a href="https://yuvalg.com/blog/2013/08/07/learning-some-lua">Learning Some Lua</a></li>
+    
+      <li><span>16 Oct 2012</span> &raquo; <a href="https://yuvalg.com/blog/2012/10/16/dominant-misconceptions-of-recessive-genes">Dominant misconceptions of recessive genes</a></li>
+    
+  </ul>
+</div>
+
+
+
+
+  <script>
+var idcomments_acct = '123abc';
+var idcomments_post_id;
+var idcomments_post_url;
+</script>
+<script type="text/javascript" src="http://www.intensedebate.com/js/genericLinkWrapperV2.js"></script>
+
+
+
+
+
+
+  
+    <div class="footer">
+      <div class="contact">
+        <p>
+          Yuval Greenfield<br />
+          Arts and bits<br />
+          <a href='mailto:ubershmekel@gmail.com'>ubershmekel@gmail.com</a>
+        </p>
+      </div>
+      <div class="contact">
+        <p>
+          <a href="https://yuvalg.com/">yuvalg.com/</a><br />
+          <a href="http://github.com/ubershmekel/">github.com/ubershmekel</a><br />
+          <a href="http://twitter.com/ubershmekel/">twitter.com/ubershmekel</a><br />
+        </p>
+      </div>
+      <div class="rss">
+        <a href="http://feeds.feedburner.com/yuvalg/blog">
+          <img src="https://yuvalg.com/blog/assets/themes/tom/images/rss.png" alt="Subscribe to RSS Feed" />
+        </a>
+      </div>
+    </div>
+  </div>
+  <!--a href="http://github.com/ubershmekel"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a-->
+
+  
+</body>
+</html>
+

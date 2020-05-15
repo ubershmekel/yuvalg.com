@@ -1,0 +1,225 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>Precision, recall, sensitivity and specificity</title>
+   <link rel="shortcut icon" href="/key_y.png" />
+   <meta name="author" content="Yuval Greenfield" />
+   <link href="http://feeds.feedburner.com/yuvalg/blog" rel="alternate" title="your title" type="application/atom+xml" />
+
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="https://yuvalg.com/blog/assets/themes/tom/css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="https://yuvalg.com/blog/assets/themes/tom/css/screen.css" type="text/css" media="screen, projection" />
+
+   <!-- Typekit 
+   <script type="text/javascript" src="http://use.typekit.com/jpd0pfm.js"></script>
+   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>-->
+</head>
+<body>
+
+  <div class="site">
+    <div class="title">
+      <ul class="nav">
+        <li>
+            <a id="brand" href="https://yuvalg.com/blog">yuvalg/blog</a>
+        </li>
+        
+        
+
+
+  
+    
+      
+      	
+      	<li><a href="https://yuvalg.com/blog/categories.html">categories</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="https://yuvalg.com/blog/tags.html">tags</a></li>
+      	
+      
+    
+  
+
+
+
+      </ul>
+      <!--a class="extra" href="https://yuvalg.com/blog/archive.html">Archive</a>
+      <a class="extra" href="https://yuvalg.com/blog">Pages</a>
+      <a class="extra" href="https://yuvalg.com/blog/categories.html">categories</a>
+      <a class="extra" href="https://yuvalg.com/blog/tags.html">tags</a-->
+    </div>
+  
+    
+
+<div class="post">
+  <h1>Precision, recall, sensitivity and specificity</h1>
+  <p class="meta">
+    01 January 2012 
+    
+  </p>
+  Nowadays I work for a medical device company where in a medical test the big indicators of success are <strong>specificity</strong> and <strong>sensitivity</strong>. Every medical test strives to reach 100% in both criteria. Imagine my surprise today when I found out that other fields use different metrics for the exact same problem. To analyze this I present to you the <strong>confusion matrix</strong>:
+
+<h3>Confusion Matrix</h3>
+<img title="Confusion Matrix" src="http://i.imgur.com/hftkt.png" alt="Confusion Matrix" width="691" height="345" />
+
+E.g. we have a pregnancy test that classifies people as pregnant (positive) or not pregnant (negative).
+<ul>
+	<li>True positive - a person we told is pregnant that really was.</li>
+	<li>True negative - a person we told is <span style="text-decoration:underline;"><strong>not</strong></span> pregnant, and really wasn't.</li>
+	<li>False negative - a person we told is <span style="text-decoration:underline;"><strong>not</strong></span> pregnant, though they really were. Ooops.</li>
+	<li>False positive - a person we told is pregnant, though they weren't. Oh snap.</li>
+</ul>
+And now some equations...
+<h2><strong>Sensitivity</strong> and <strong>specificity</strong> are statistical measures of the performance of a <a title="Binary classification" href="http://en.wikipedia.org/wiki/Binary_classification">binary classification</a> <a title="Classification rule" href="http://en.wikipedia.org/wiki/Classification_rule">test</a>:</h2>
+<img class="alignnone" title="Sensitivity" src="http://upload.wikimedia.org/wikipedia/en/math/3/b/b/3bba74d53b3134b2064c0f8f0c1c74a4.png" alt="Sensitivity" width="562" height="47" />
+
+<img class="alignnone" title="Specificity" src="http://upload.wikimedia.org/wikipedia/en/math/c/0/f/c0fa877e24585aee854d852f11f4e1e5.png" alt="Specificity" width="560" height="47" />
+
+<h3>Sensitivity in yellow, specificity in red</h3>
+<img title="sensitivity and specificity" src="http://i.imgur.com/0ofsf.png" alt="sensitivity and specificity" width="693" height="325" />
+
+<h2>In <a title="Pattern recognition" href="http://en.wikipedia.org/wiki/Pattern_recognition">pattern recognition</a> and <a title="Information retrieval" href="http://en.wikipedia.org/wiki/Information_retrieval">information retrieval</a>:</h2>
+<img class="alignnone" title="Precision" src="http://upload.wikimedia.org/wikipedia/en/math/5/3/1/531de241d25a02032bafe4fbceccf584.png" alt="Precision" width="514" height="47" />
+
+<img class="alignnone" title="Recall" src="http://upload.wikimedia.org/wikipedia/en/math/3/c/b/3cb5a8e4492f4b12fa87059b6ee18a80.png" alt="Recall" width="485" height="47" />
+
+Let's translate:
+<ul>
+	<li>Relevant documents are the positives</li>
+	<li>Retrieved documents are the classified as positives</li>
+	<li>Relevant and retrieved are the true positives.</li>
+</ul>
+<div></div>
+
+<h3>Precision in red, recall in yellow</h3>
+<img title="Precision, recall" src="http://i.imgur.com/cJDJU.png" alt="Precision, recall" width="705" height="361" />
+
+<h2>Standardized equations</h2>
+<ul>
+	<li>sensitivity = recall = tp / t = tp / (tp + fn)</li>
+	<li>specificity = tn / n = tn / (tn + fp)</li>
+	<li>precision = tp / p = tp / (tp + fp)</li>
+</ul>
+<h2>Equations explained</h2>
+<ul>
+	<li>Sensitivity/recall - how good a test is at detecting the positives. A test can cheat and maximize this by always returning "positive".</li>
+	<li>Specificity - how good a test is at avoiding false alarms. A test can cheat and maximize this by always returning "negative".</li>
+	<li>Precision - how many of the positively classified were relevant. A test can cheat and maximize this by only returning positive on one result it's most confident in.</li>
+	<li>The cheating is resolved by looking at both relevant metrics instead of just one. E.g. the cheating 100% sensitivity that always says "positive" has 0% specificity.</li>
+</ul>
+<div>
+<h2>More ways to cheat</h2>
+A Specificity buff - let's continue with our pregnancy test where our experiments resulted in the following confusion matrix:
+<table>
+<tbody>
+<tr>
+<td>8</td>
+<td>2</td>
+</tr>
+<tr>
+<td>10</td>
+<td>80</td>
+</tr>
+</tbody>
+</table>
+Our specificity is only 88% and we need 97% for our FDA approval. We can tell our patients to run the test twice and only double positives count (eg two red lines) so we suddenly have 98.7% specificity. Magic. This would only be kosher if the test results are proven as independent. Most tests are probably not as such (eg blood parasite tests that are triggered by antibodies may repeatedly give false positives from the same patient).
+
+A  less ethical (though IANAL) approach would be to add 300 men to our pregnancy test experiment. Of course, part of our test is to ask "are you male?" and mark these patients as "not pregnant". Thus we get a lot of easy true negatives and this is the resulting confusion matrix:
+<table>
+<tbody>
+<tr>
+<td>8</td>
+<td>2</td>
+</tr>
+<tr>
+<td>10</td>
+<td>380</td>
+</tr>
+</tbody>
+</table>
+Voila! 97.4% specificity with a single test. Have fun trying to get that FDA approval though, I doubt they'll overlook the 300 red herrings.
+
+</div>
+<h2>What does it mean, who won?</h2>
+Finally the punchline:
+<ul>
+	<li>A <strong>search engine</strong> only cares about the results it shows you. Are they relevant (tp) or are they spam (fp)? Did it miss any relevant results (fn)? The ocean of ignored (tn) results shouldn't affect how good or bad a search algorithm is. That's why <strong>true negatives can be ignored</strong>.</li>
+	<li>A <strong>doctor</strong> can tell a patient if they're pregnant or not or if they have cancer. Each decision may have grave consequences and thus true negatives are crucial. That's why <strong>all the cells in the confusion matrix must be taken into account</strong>.</li>
+</ul>
+<h2></h2>
+<h2>References</h2>
+<a href="http://en.wikipedia.org/wiki/Confusion_matrix">http://en.wikipedia.org/wiki/Confusion_matrix</a>
+
+<a href="http://en.wikipedia.org/wiki/Sensitivity_and_specificity">http://en.wikipedia.org/wiki/Sensitivity_and_specificity</a>
+
+<a href="http://en.wikipedia.org/wiki/Precision_and_recall">http://en.wikipedia.org/wiki/Precision_and_recall</a>
+
+<a href="http://en.wikipedia.org/wiki/Accuracy_and_precision">http://en.wikipedia.org/wiki/Accuracy_and_precision</a>
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>13 Aug 2013</span> &raquo; <a href="https://yuvalg.com/blog/2013/08/13/d3js-shape-projections">Shape Projections with D3.js</a></li>
+    
+      <li><span>07 Aug 2013</span> &raquo; <a href="https://yuvalg.com/blog/2013/08/07/learning-some-lua">Learning Some Lua</a></li>
+    
+      <li><span>16 Oct 2012</span> &raquo; <a href="https://yuvalg.com/blog/2012/10/16/dominant-misconceptions-of-recessive-genes">Dominant misconceptions of recessive genes</a></li>
+    
+  </ul>
+</div>
+
+
+
+
+  <script>
+var idcomments_acct = '123abc';
+var idcomments_post_id;
+var idcomments_post_url;
+</script>
+<script type="text/javascript" src="http://www.intensedebate.com/js/genericLinkWrapperV2.js"></script>
+
+
+
+
+
+
+  
+    <div class="footer">
+      <div class="contact">
+        <p>
+          Yuval Greenfield<br />
+          Arts and bits<br />
+          <a href='mailto:ubershmekel@gmail.com'>ubershmekel@gmail.com</a>
+        </p>
+      </div>
+      <div class="contact">
+        <p>
+          <a href="https://yuvalg.com/">yuvalg.com/</a><br />
+          <a href="http://github.com/ubershmekel/">github.com/ubershmekel</a><br />
+          <a href="http://twitter.com/ubershmekel/">twitter.com/ubershmekel</a><br />
+        </p>
+      </div>
+      <div class="rss">
+        <a href="http://feeds.feedburner.com/yuvalg/blog">
+          <img src="https://yuvalg.com/blog/assets/themes/tom/images/rss.png" alt="Subscribe to RSS Feed" />
+        </a>
+      </div>
+    </div>
+  </div>
+  <!--a href="http://github.com/ubershmekel"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a-->
+
+  
+</body>
+</html>
+

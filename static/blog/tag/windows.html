@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ <title>yuvalg/blog windows</title>
+ <link href="https://yuvalg.com/tag/windows.html" rel="self"/>
+ <link href="https://yuvalg.com/tag/windows.html"/>
+ <updated>2013-08-13T16:58:22+00:00</updated>
+ <id>https://yuvalg.com/tag/windows.html</id>
+ <author>
+   <name>Yuval Greenfield</name>
+ </author>
+ 
+ <entry>
+   <title>Python with prompt</title>
+   <link href="https://yuvalg.com/2008/08/20/python-with-prompt"/>
+   <updated>2008-08-20T18:50:35+00:00</updated>
+   <id>https://yuvalg.com/2008/08/20/python-with-prompt</id>
+   <content type="html">Ever run a python script in windows and it just doesn't work and doesn't tell you why?
+
+This is for when exceptions are thrown but Windows closes your python interpreter, I came up with a shell extension called &quot;open with prompt&quot; where the interpreter sticks around so you can toy around with your python script after it's done.
+
+Just run this: &lt;a title=&quot;registry file&quot; href=&quot;http://www.fileqube.com/hl/KQqucDVqF85231/python with prompt.reg&quot;&gt;[reg file]&lt;/a&gt; (for python ver 2.5 installed in default location)&lt;a title=&quot;registry file&quot; href=&quot;http://www.fileqube.com/hl/KQqucDVqF85231/python with prompt.reg&quot;&gt;
+&lt;/a&gt;
+
+The reg file contains (it's really simple, just add -i to the regular running):
+&lt;blockquote&gt;Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Python.File\shell\Open with prompt]
+
+[HKEY_CLASSES_ROOT\Python.File\shell\Open with prompt\command]
+@=&quot;\&quot;C:\\Python25\\python.exe\&quot; -i \&quot;%1\&quot; %*&quot;
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Python.File\shell\Open with prompt]
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Python.File\shell\Open with prompt\command]
+@=&quot;\&quot;C:\\Python25\\python.exe\&quot; -i \&quot;%1\&quot; %*&quot;&lt;/blockquote&gt;</content>
+ </entry>
+ 
+</feed>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ <title>yuvalg/blog quota usage</title>
+ <link href="https://yuvalg.com/tag/quota usage.html" rel="self"/>
+ <link href="https://yuvalg.com/tag/quota usage.html"/>
+ <updated>2013-08-13T16:58:22+00:00</updated>
+ <id>https://yuvalg.com/tag/quota usage.html</id>
+ <author>
+   <name>Yuval Greenfield</name>
+ </author>
+ 
+ <entry>
+   <title>The Google App Engine Glass Ceiling</title>
+   <link href="https://yuvalg.com/2012/01/06/gae-glass-ceiling"/>
+   <updated>2012-01-06T13:27:31+00:00</updated>
+   <id>https://yuvalg.com/2012/01/06/gae-glass-ceiling</id>
+   <content type="html">With the new billing arrangements, &lt;a title=&quot;Google app engine is expensive when you first start paying&quot; href=&quot;http://code.google.com/appengine/docs/billing.html&quot;&gt;each and every paid GAE app costs at least $2.10 per week which is supposedly $9 per month&lt;/a&gt; ($9.125 by my calculation) &lt;strong&gt;regardless of quota usage&lt;/strong&gt;. This cost does cover whatever quotas your app consumes and the regular free quotas are still &quot;free&quot;.
+
+Now I have a GAE app that sends 70-80 emails per day where the free limit is 100. I'd gladly switch over to the paid side of GAE just to be sure that if it ever passes the 100 mark I don't have any failed email requests but the price of that is 9$ per month. &lt;strong&gt;GAE is extremely expensive for apps that just barely brush the end of their free quotas&lt;/strong&gt;. In order to actually use the $9 per month minimum I'd have to send out 3000 emails per day (at $0.0001 per email).
+
+I don't know if the &lt;a title=&quot;Free email recipients has an extremely low cap&quot; href=&quot;http://code.google.com/appengine/docs/quotas.html#Mail&quot;&gt;free quota on email recipients is really low&lt;/a&gt; or if sending out an email is extremely cheap. Either way, &lt;strong&gt;GAE expects me to scale from 100 to 3000 while paying the price of 3000&lt;/strong&gt;. Who knows if I'll ever even reach that mark?
+
+If google keeps with this plan, I'm probably never going to start another GAE app that has a chance to grow. Every time I have a chance of hitting the quota limits I have 2 choices:
+&lt;ul&gt;
+	&lt;li&gt;Pay google and be screwed over for an indefinite amount of time until I reach the next landmark.&lt;/li&gt;
+	&lt;li&gt;Migrate to a cheaper shared hosting option until I reach the next landmark.&lt;/li&gt;
+&lt;/ul&gt;
+Thanks, but no thanks. That's the &lt;strong&gt;GAE glass ceiling.&lt;/strong&gt;
+&lt;h2&gt;Appendix&lt;/h2&gt;
+&lt;ul&gt;
+	&lt;li&gt;Other than this problem I do like GAE. It's a shame I have to leave it.&lt;/li&gt;
+	&lt;li&gt;I've made about 11 small python GAE apps. Only 2 of which ever reached the aforementioned glass ceiling.&lt;/li&gt;
+	&lt;li&gt;This issue shouldn't bother you if your app is already big enough to cost more than $9.&lt;/li&gt;
+	&lt;li&gt;Maybe google can't bill less than $9 per month? I doubt it, android apps can cost $0.99.&lt;/li&gt;
+	&lt;li&gt;A proposed solution: Google takes $9 of credit at a time from your google wallet and eats quotas out of that. When the $9 run out, it bills another 9. Sounds reasonable and &quot;don't be evil&quot; to me. Another thing that could be nice would be to allow multiple paid apps to feed from the same budget.&lt;/li&gt;
+&lt;/ul&gt;</content>
+ </entry>
+ 
+</feed>

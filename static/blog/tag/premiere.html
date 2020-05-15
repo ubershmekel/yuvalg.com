@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ <title>yuvalg/blog premiere</title>
+ <link href="https://yuvalg.com/tag/premiere.html" rel="self"/>
+ <link href="https://yuvalg.com/tag/premiere.html"/>
+ <updated>2013-08-13T16:58:22+00:00</updated>
+ <id>https://yuvalg.com/tag/premiere.html</id>
+ <author>
+   <name>Yuval Greenfield</name>
+ </author>
+ 
+ <entry>
+   <title>Trouble with prproj file</title>
+   <link href="https://yuvalg.com/2008/08/23/trouble-with-prproj-file"/>
+   <updated>2008-08-23T11:29:52+00:00</updated>
+   <id>https://yuvalg.com/2008/08/23/trouble-with-prproj-file</id>
+   <content type="html">While trying to make the srt to premiere script:
+
+prpoj is xml, prtl (premiere title) is also xml. I think inside prproj, the prtl is not in xml form, but rather compressed somehow. I think this because I couldn't find the text from the title inside the prproj file. Anyways there's this base64 file in the prproj xml which I think contains the title because after i decode it there is a string at the beginning of the binary &quot;CompressedTitle&quot;, but I don't know how to decompress it...
+
+here is the file after decoding the base64: &lt;a title=&quot;Compressed Title&quot; href=&quot;http://www.fileqube.com/hl/Chreg86715/titleA.un&quot;&gt;[decoded file that needs to be decompressed]&lt;/a&gt;</content>
+ </entry>
+ 
+</feed>

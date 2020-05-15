@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ <title>yuvalg/blog GIL</title>
+ <link href="https://yuvalg.com/tag/GIL.html" rel="self"/>
+ <link href="https://yuvalg.com/tag/GIL.html"/>
+ <updated>2013-08-13T16:58:22+00:00</updated>
+ <id>https://yuvalg.com/tag/GIL.html</id>
+ <author>
+   <name>Yuval Greenfield</name>
+ </author>
+ 
+ <entry>
+   <title>The GIL Detector</title>
+   <link href="https://yuvalg.com/2011/08/09/the-gil-detector"/>
+   <updated>2011-08-09T06:15:55+00:00</updated>
+   <id>https://yuvalg.com/2011/08/09/the-gil-detector</id>
+   <content type="html">Ever wonder if your flavor of python has a Global Interpreter Lock? The recipe &lt;a title=&quot;GIL detector&quot; href=&quot;http://codepad.org/CeI6gJLk&quot;&gt;gil_detector.py&lt;/a&gt; checks that.
+
+In this day and age CPython is still core-locked; though we are seeing improvements thanks to Antoine Pitrou and other great people of the Python community. Wanting to measure just how bad the problem is - my way of looking at it was through a number I call the &quot;python effective core count&quot;.
+&lt;h3&gt;Python Effective Core Count&lt;/h3&gt;
+How many cores does python see? If you bought a quad core, how many cores can each python process utilize? Measuring how long it takes to complete a given amount of work, W, then measuring how long it takes for python to run 2W using 2 threads, 3W on 3 threads, etc. The script &lt;a title=&quot;GIL detector&quot; href=&quot;http://codepad.org/CeI6gJLk&quot;&gt;gil_detector.py&lt;/a&gt; calculates:
+
+&lt;code&gt;effective_cpus = amount_of_work / (time_to_finish / baseline)&lt;/code&gt;
+
+&lt;code&gt;&lt;/code&gt;Where the baseline is the &lt;code&gt;time_to_finish&lt;/code&gt; for 1 work unit. E.g. if it took the same amount of time to finish 4W (&lt;code&gt;amount_of_work = 4&lt;/code&gt;) on 4 threads as it took 1W on 1 thread - python is utilizing 4 cores.
+&lt;h3&gt;Results&lt;/h3&gt;
+I recommend &lt;a title=&quot;results of gil detector&quot; href=&quot;http://codepad.org/JOyh6dYd&quot;&gt;reading the whole output&lt;/a&gt; to see the exact numbers.
+&lt;table style=&quot;text-align:center;&quot;&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Implementation&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;Effective Core Count&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Jython 2.5.2&lt;/td&gt;
+&lt;td&gt;3.8/4 cores&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;IronPython 2.7&lt;/td&gt;
+&lt;td&gt;3.2/4 cores&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;PyPy-1.5&lt;/td&gt;
+&lt;td&gt;1.0/4 cores&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Stackless Python 3.2&lt;/td&gt;
+&lt;td&gt;1.0/4 cores&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CPython 3.2&lt;/td&gt;
+&lt;td&gt;1.0/4 cores&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CPython 2.7&lt;/td&gt;
+&lt;td&gt;0.2/4 cores&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+Basically, Jython has the best multithreading with IronPython not too far behind. I know multiprocessing is really easy in python, but it's still harder. We have to solve this before 8 core CPU's become the standard at grandma's house. Those other languages (C/C++) utilize 3.9-4.0 cores of a quad core machine easily, why can't we? An honorable mention goes to PyPy which by far was the fastest to execute the benchmark (10x faster). PyPy is definitely the future of Python, hopefully they can save us all. A note about CPython 2.7 - yes that number is under 1 because adding threads on python-cpu-intensive tasks hurt performance badly on older versions of the GIL, &lt;a title=&quot;[Python-Dev] Reworking the GIL&quot; href=&quot;http://mail.python.org/pipermail/python-dev/2009-October/093321.html&quot;&gt;Antoine&lt;/a&gt; fixed that on CPython 3.2.
+
+In my opinion the community should call this a bug and have a unittest in there yelling at us until we fix it, though it's easy for me to complain when I'm not the core-dev. Maybe I can join PyPy and see what I can do when I find some free time. Hopefully so.
+
+Edit - updated gil_detector.py as corrected at &lt;a title=&quot;The GIL Detector reddit post&quot; href=&quot;http://www.reddit.com/r/Python/comments/jd90y/the_gil_detector/&quot;&gt;reddit&lt;/a&gt;.</content>
+ </entry>
+ 
+ <entry>
+   <title>What python lacks</title>
+   <link href="https://yuvalg.com/2009/02/06/what-python-lacks"/>
+   <updated>2009-02-06T12:54:19+00:00</updated>
+   <id>https://yuvalg.com/2009/02/06/what-python-lacks</id>
+   <content type="html">I do like python a lot, but I feel some things are still missing. Correct me if I'm wrong.
+
+* How do I know what can I import? I can use help(os) but how do I know that 'os' exists (from within the interpreter). I want a command like dir that can search through the default import directories. &quot;mdir&quot; (like module dir) or &quot;pdir&quot; (package dir).
+* Tkinter sucks, why isn't wx or anything else included?
+* The php documentation really makes me jealous because the user contributed comments are VERY useful. Why doesn't python docs have some web 2.0 in it? Like digg's comment system.
+* So many crappy IDE's, I can't find one that's good for everything. At first I liked Wing but nowadays it's way too slow and heavy so I switched to SPE which is great except it can crash for no reason.
+* The GIL needs to be taken more seriously with a dedicated page explaining why it's in place, how to escape it's suckiness, and a roadmap to minimize the damage. Alot of people care about performance more than idiot-proof concurrency.
+
+And I think i have a few more rants to go on about this, I'll post 'em when I recall.</content>
+ </entry>
+ 
+</feed>

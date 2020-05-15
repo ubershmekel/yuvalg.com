@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ <title>yuvalg/blog teaching</title>
+ <link href="https://yuvalg.com/tag/teaching.html" rel="self"/>
+ <link href="https://yuvalg.com/tag/teaching.html"/>
+ <updated>2013-08-13T16:58:22+00:00</updated>
+ <id>https://yuvalg.com/tag/teaching.html</id>
+ <author>
+   <name>Yuval Greenfield</name>
+ </author>
+ 
+ <entry>
+   <title>Anal About Analogies and Concurrency</title>
+   <link href="https://yuvalg.com/2012/07/17/anal-about-analogies-and-concurrency"/>
+   <updated>2012-07-17T09:22:52+00:00</updated>
+   <id>https://yuvalg.com/2012/07/17/anal-about-analogies-and-concurrency</id>
+   <content type="html">Analogies are tools, they can add intuition, fun and functional value to thoughts and concepts. Here are a few:
+&lt;ul&gt;
+	&lt;li&gt;Learning quadratic equations is more fun when thinking of balls and rockets flying around.&lt;/li&gt;
+	&lt;li&gt;Assembly can be thought of as an analogy for turing machines, C can be considered analogous to assembly.&lt;/li&gt;
+	&lt;li&gt;&lt;address&gt;Regular languages and finite automatons are equivalent, yet I personally would prefer solving an automaton problem over any regular language one.&lt;/address&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&quot;Lock&quot; is frothy&lt;/h2&gt;
+The word &quot;lock&quot; isn't the best at describing what it does for concurrency. From &lt;a title=&quot;simple wikipedia: lock&quot; href=&quot;http://simple.wikipedia.org/wiki/Lock&quot;&gt;simple wikipedia&lt;/a&gt;:
+&lt;blockquote&gt;A lock is a fastening device: a thing which keeps people from opening something, such as a door or a box.&lt;/blockquote&gt;
+But in concurrency locks don't just prevent access, most of the time they cause whoever touches the lock to just wait there until the lock is &quot;open&quot;. Locks in the real world mean &quot;you can't have this&quot; while locks in CS mean &quot;hold on a second, I'm busy here&quot;.
+&lt;h2&gt;A better analogy for locks - the waiting room&lt;/h2&gt;
+Every book on the planet uses the example of a waiting room to explain locks. Why don't we just call them waiting rooms? Here it goes:
+
+Let's say the resource we're protecting is a doctor which wouldn't be able to help 10 people (threads) at the same time because humans are terrible multitaskers. We invented the waiting room with a secretary (aka the operating system) that gives each person a ticket with some random number on it and when it's your turn, she calls out your number and hands you the key to the room with the doctor in it. Now that you have the key, be careful with it, you can open the door but if you have a heart attack before you return it - no one else will be able to access the doctor and all the poor saps in the waiting room will be stuck there for all eternity.
+&lt;h2&gt;Table of analogies&lt;/h2&gt;
+&lt;table&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Lock_(computer_science)&quot;&gt;Lock&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;A waiting room with one locked door&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Semaphore_(programming)&quot;&gt;Semaphore&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;A waiting room with multiple locked doors&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;http://msdn.microsoft.com/en-us/library/system.threading.manualresetevent.aspx&quot;&gt;Manual Reset Event&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;A waiting room with a big sign that tells everybody whether to wait or go&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Deadlock&quot;&gt;Deadlock&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Two dumbasses are each waiting for a key held by the other, you might expect the secretary to intervene but she's not that bright either.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2&gt;The fun part - what can we do with these&lt;/h2&gt;
+Now that we have better names/analogies, designing a concurrent system becomes an interior architecture problem. Build rooms and hallways to solve your computer problems. Check out this design for a &lt;a href=&quot;http://en.wikipedia.org/wiki/Readers%E2%80%93writer_lock&quot;&gt;Readers-Writer-Lock&lt;/a&gt; and imagine people walking around from room to room through the arrows. Try and figure out where people might get stuck or interfere with one another.
+
+&lt;a title=&quot;Readers-writer-lock google drawing&quot; href=&quot;https://docs.google.com/drawings/d/1NPPheCwICO-Hr1lQ-zGSOhTPmi8pK3DnGea-NukXkG4/edit&quot;&gt;The google docs drawing source&lt;/a&gt;
+
+&lt;a href=&quot;http://i.imgur.com/bON2R.png&quot;&gt;&lt;img class=&quot;alignnone&quot; title=&quot;I actually know this one as &amp;quot;Single reader multiple writer&amp;quot; but I stick with whatever wikipedia says.&quot; src=&quot;http://i.imgur.com/bON2R.png&quot; alt=&quot;&quot; width=&quot;500&quot; height=&quot;300&quot; /&gt;&lt;/a&gt;</content>
+ </entry>
+ 
+</feed>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ <title>yuvalg/blog Precision</title>
+ <link href="https://yuvalg.com/tag/Precision.html" rel="self"/>
+ <link href="https://yuvalg.com/tag/Precision.html"/>
+ <updated>2013-08-13T16:58:22+00:00</updated>
+ <id>https://yuvalg.com/tag/Precision.html</id>
+ <author>
+   <name>Yuval Greenfield</name>
+ </author>
+ 
+ <entry>
+   <title>Precision, recall, sensitivity and specificity</title>
+   <link href="https://yuvalg.com/2012/01/01/precision-recall-sensitivity-and-specificity"/>
+   <updated>2012-01-01T20:00:16+00:00</updated>
+   <id>https://yuvalg.com/2012/01/01/precision-recall-sensitivity-and-specificity</id>
+   <content type="html">Nowadays I work for a medical device company where in a medical test the big indicators of success are &lt;strong&gt;specificity&lt;/strong&gt; and &lt;strong&gt;sensitivity&lt;/strong&gt;. Every medical test strives to reach 100% in both criteria. Imagine my surprise today when I found out that other fields use different metrics for the exact same problem. To analyze this I present to you the &lt;strong&gt;confusion matrix&lt;/strong&gt;:
+
+&lt;h3&gt;Confusion Matrix&lt;/h3&gt;
+&lt;img title=&quot;Confusion Matrix&quot; src=&quot;http://i.imgur.com/hftkt.png&quot; alt=&quot;Confusion Matrix&quot; width=&quot;691&quot; height=&quot;345&quot; /&gt;
+
+E.g. we have a pregnancy test that classifies people as pregnant (positive) or not pregnant (negative).
+&lt;ul&gt;
+	&lt;li&gt;True positive - a person we told is pregnant that really was.&lt;/li&gt;
+	&lt;li&gt;True negative - a person we told is &lt;span style=&quot;text-decoration:underline;&quot;&gt;&lt;strong&gt;not&lt;/strong&gt;&lt;/span&gt; pregnant, and really wasn't.&lt;/li&gt;
+	&lt;li&gt;False negative - a person we told is &lt;span style=&quot;text-decoration:underline;&quot;&gt;&lt;strong&gt;not&lt;/strong&gt;&lt;/span&gt; pregnant, though they really were. Ooops.&lt;/li&gt;
+	&lt;li&gt;False positive - a person we told is pregnant, though they weren't. Oh snap.&lt;/li&gt;
+&lt;/ul&gt;
+And now some equations...
+&lt;h2&gt;&lt;strong&gt;Sensitivity&lt;/strong&gt; and &lt;strong&gt;specificity&lt;/strong&gt; are statistical measures of the performance of a &lt;a title=&quot;Binary classification&quot; href=&quot;http://en.wikipedia.org/wiki/Binary_classification&quot;&gt;binary classification&lt;/a&gt; &lt;a title=&quot;Classification rule&quot; href=&quot;http://en.wikipedia.org/wiki/Classification_rule&quot;&gt;test&lt;/a&gt;:&lt;/h2&gt;
+&lt;img class=&quot;alignnone&quot; title=&quot;Sensitivity&quot; src=&quot;http://upload.wikimedia.org/wikipedia/en/math/3/b/b/3bba74d53b3134b2064c0f8f0c1c74a4.png&quot; alt=&quot;Sensitivity&quot; width=&quot;562&quot; height=&quot;47&quot; /&gt;
+
+&lt;img class=&quot;alignnone&quot; title=&quot;Specificity&quot; src=&quot;http://upload.wikimedia.org/wikipedia/en/math/c/0/f/c0fa877e24585aee854d852f11f4e1e5.png&quot; alt=&quot;Specificity&quot; width=&quot;560&quot; height=&quot;47&quot; /&gt;
+
+&lt;h3&gt;Sensitivity in yellow, specificity in red&lt;/h3&gt;
+&lt;img title=&quot;sensitivity and specificity&quot; src=&quot;http://i.imgur.com/0ofsf.png&quot; alt=&quot;sensitivity and specificity&quot; width=&quot;693&quot; height=&quot;325&quot; /&gt;
+
+&lt;h2&gt;In &lt;a title=&quot;Pattern recognition&quot; href=&quot;http://en.wikipedia.org/wiki/Pattern_recognition&quot;&gt;pattern recognition&lt;/a&gt; and &lt;a title=&quot;Information retrieval&quot; href=&quot;http://en.wikipedia.org/wiki/Information_retrieval&quot;&gt;information retrieval&lt;/a&gt;:&lt;/h2&gt;
+&lt;img class=&quot;alignnone&quot; title=&quot;Precision&quot; src=&quot;http://upload.wikimedia.org/wikipedia/en/math/5/3/1/531de241d25a02032bafe4fbceccf584.png&quot; alt=&quot;Precision&quot; width=&quot;514&quot; height=&quot;47&quot; /&gt;
+
+&lt;img class=&quot;alignnone&quot; title=&quot;Recall&quot; src=&quot;http://upload.wikimedia.org/wikipedia/en/math/3/c/b/3cb5a8e4492f4b12fa87059b6ee18a80.png&quot; alt=&quot;Recall&quot; width=&quot;485&quot; height=&quot;47&quot; /&gt;
+
+Let's translate:
+&lt;ul&gt;
+	&lt;li&gt;Relevant documents are the positives&lt;/li&gt;
+	&lt;li&gt;Retrieved documents are the classified as positives&lt;/li&gt;
+	&lt;li&gt;Relevant and retrieved are the true positives.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div&gt;&lt;/div&gt;
+
+&lt;h3&gt;Precision in red, recall in yellow&lt;/h3&gt;
+&lt;img title=&quot;Precision, recall&quot; src=&quot;http://i.imgur.com/cJDJU.png&quot; alt=&quot;Precision, recall&quot; width=&quot;705&quot; height=&quot;361&quot; /&gt;
+
+&lt;h2&gt;Standardized equations&lt;/h2&gt;
+&lt;ul&gt;
+	&lt;li&gt;sensitivity = recall = tp / t = tp / (tp + fn)&lt;/li&gt;
+	&lt;li&gt;specificity = tn / n = tn / (tn + fp)&lt;/li&gt;
+	&lt;li&gt;precision = tp / p = tp / (tp + fp)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Equations explained&lt;/h2&gt;
+&lt;ul&gt;
+	&lt;li&gt;Sensitivity/recall - how good a test is at detecting the positives. A test can cheat and maximize this by always returning &quot;positive&quot;.&lt;/li&gt;
+	&lt;li&gt;Specificity - how good a test is at avoiding false alarms. A test can cheat and maximize this by always returning &quot;negative&quot;.&lt;/li&gt;
+	&lt;li&gt;Precision - how many of the positively classified were relevant. A test can cheat and maximize this by only returning positive on one result it's most confident in.&lt;/li&gt;
+	&lt;li&gt;The cheating is resolved by looking at both relevant metrics instead of just one. E.g. the cheating 100% sensitivity that always says &quot;positive&quot; has 0% specificity.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div&gt;
+&lt;h2&gt;More ways to cheat&lt;/h2&gt;
+A Specificity buff - let's continue with our pregnancy test where our experiments resulted in the following confusion matrix:
+&lt;table&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;8&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;10&lt;/td&gt;
+&lt;td&gt;80&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+Our specificity is only 88% and we need 97% for our FDA approval. We can tell our patients to run the test twice and only double positives count (eg two red lines) so we suddenly have 98.7% specificity. Magic. This would only be kosher if the test results are proven as independent. Most tests are probably not as such (eg blood parasite tests that are triggered by antibodies may repeatedly give false positives from the same patient).
+
+A  less ethical (though IANAL) approach would be to add 300 men to our pregnancy test experiment. Of course, part of our test is to ask &quot;are you male?&quot; and mark these patients as &quot;not pregnant&quot;. Thus we get a lot of easy true negatives and this is the resulting confusion matrix:
+&lt;table&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;8&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;10&lt;/td&gt;
+&lt;td&gt;380&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+Voila! 97.4% specificity with a single test. Have fun trying to get that FDA approval though, I doubt they'll overlook the 300 red herrings.
+
+&lt;/div&gt;
+&lt;h2&gt;What does it mean, who won?&lt;/h2&gt;
+Finally the punchline:
+&lt;ul&gt;
+	&lt;li&gt;A &lt;strong&gt;search engine&lt;/strong&gt; only cares about the results it shows you. Are they relevant (tp) or are they spam (fp)? Did it miss any relevant results (fn)? The ocean of ignored (tn) results shouldn't affect how good or bad a search algorithm is. That's why &lt;strong&gt;true negatives can be ignored&lt;/strong&gt;.&lt;/li&gt;
+	&lt;li&gt;A &lt;strong&gt;doctor&lt;/strong&gt; can tell a patient if they're pregnant or not or if they have cancer. Each decision may have grave consequences and thus true negatives are crucial. That's why &lt;strong&gt;all the cells in the confusion matrix must be taken into account&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;/h2&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;a href=&quot;http://en.wikipedia.org/wiki/Confusion_matrix&quot;&gt;http://en.wikipedia.org/wiki/Confusion_matrix&lt;/a&gt;
+
+&lt;a href=&quot;http://en.wikipedia.org/wiki/Sensitivity_and_specificity&quot;&gt;http://en.wikipedia.org/wiki/Sensitivity_and_specificity&lt;/a&gt;
+
+&lt;a href=&quot;http://en.wikipedia.org/wiki/Precision_and_recall&quot;&gt;http://en.wikipedia.org/wiki/Precision_and_recall&lt;/a&gt;
+
+&lt;a href=&quot;http://en.wikipedia.org/wiki/Accuracy_and_precision&quot;&gt;http://en.wikipedia.org/wiki/Accuracy_and_precision&lt;/a&gt;</content>
+ </entry>
+ 
+</feed>

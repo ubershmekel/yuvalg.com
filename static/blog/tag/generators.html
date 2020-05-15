@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ <title>yuvalg/blog generators</title>
+ <link href="https://yuvalg.com/tag/generators.html" rel="self"/>
+ <link href="https://yuvalg.com/tag/generators.html"/>
+ <updated>2013-08-13T16:58:22+00:00</updated>
+ <id>https://yuvalg.com/tag/generators.html</id>
+ <author>
+   <name>Yuval Greenfield</name>
+ </author>
+ 
+ <entry>
+   <title>Python isn't English and iterator "labels"</title>
+   <link href="https://yuvalg.com/2012/02/13/python-isnt-english-and-iterator-labels"/>
+   <updated>2012-02-13T22:28:39+00:00</updated>
+   <id>https://yuvalg.com/2012/02/13/python-isnt-english-and-iterator-labels</id>
+   <content type="html">Us python fanboys like to think of python as similar to English and thus more readable. Let's examine a simple piece of code:
+&lt;pre&gt;for item in big_list:
+    if item.cost &amp;gt; 5:
+        continue
+    item.purchase()&lt;/pre&gt;
+For our discussion there are only 3 kinds of people:
+&lt;ol&gt;
+	&lt;li&gt;People who have never seen a line of code in their life.&lt;/li&gt;
+	&lt;li&gt;Have programmed in other languages but have never seen python.&lt;/li&gt;
+	&lt;li&gt;Python programmers.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div&gt;We'll dabble between the first 2 groups and how they parse the above. Let's try to forget what we know about python or programming and read that in English:&lt;/div&gt;
+&lt;ul&gt;
+	&lt;li&gt;&quot;for item in big_list&quot; - either we're talking about doing something for a specific item in a big_list or we're talking about every single item. Ambiguous but the first option doesn't really make sense so that's fine.&lt;/li&gt;
+	&lt;li&gt;&quot;if item.cost &amp;gt; 5&quot; - non-programmers are going to talk about the period being in a strange place, but programmers will know exactly what's up.&lt;/li&gt;
+	&lt;li&gt;
+&lt;div&gt;&quot;continue&quot; - That's fine, keep going. English speakers are going to get the completely wrong idea. As programmers we've grown used to this convention though its meaning in English is very specifically equivalent to what pythonistas call &quot;pass&quot; or &quot;nop&quot; in assembly. We really should have called this &quot;&lt;strong&gt;skip&lt;/strong&gt;&quot; or something.&lt;/div&gt;&lt;/li&gt;
+	&lt;li&gt;&quot;item.purchase()&quot; - non-programmers are going to ask about the period and the parentheses but the rest grok that easily.&lt;/li&gt;
+&lt;/ul&gt;
+So I'm pretty sure this isn't English. But it's fairly readable for a programmer. I believe programmers of any of the &lt;a title=&quot;tiobe index&quot; href=&quot;http://www.tiobe.com/content/paperinfo/tpci/index.html&quot;&gt;top 8 languages on the TIOBE index&lt;/a&gt; can understand simple python. I definitely can't say the same for Lisp and Haskell. Not that there's anything wrong with Lisp/Haskell, these languages have specialized syntax for their honorable reasons.
+&lt;h2&gt;Continue is a silly word, what about iterator labels?&lt;/h2&gt;
+Let's say I want to break out of an outer loop from a nested loop, eg:
+&lt;pre&gt;for item in big_list:
+    for review in item.reviews:
+        if review &amp;lt; 3.0:
+            # next item or next review?
+            continue
+        if review &amp;gt; 9.0:
+            # stop reading reviews or stop looking for items?
+            break&lt;/pre&gt;
+Java supports &lt;strong&gt;specific breaks and continues&lt;/strong&gt; by adding labels to the for loops but I think we can do better. How about this:
+&lt;pre&gt;items_gen = (i for i in big_list)
+for item in items_gen:
+    for review in item.reviews:
+        if review &amp;lt; 3.0:
+            items_gen.continue()
+        if review &amp;gt; 9.0:
+            items_gen.break()&lt;/pre&gt;
+But how can that even be possible you may ask? Well, nowadays it isn't but maybe one day if &lt;a title=&quot;python ideas&quot; href=&quot;http://mail.python.org/mailman/listinfo/python-ideas&quot;&gt;python-ideas&lt;/a&gt; like this idea we can have nice things. Here's how I thought it could work: a for-loop on a generator can theoretically look like this:
+&lt;pre&gt;while True:
+    try:
+        item = next(gen)
+        # do stuff with item
+    except StopIteration:
+        break&lt;/pre&gt;
+But if it worked like I propose below we can support the specific breaks and continues:
+&lt;pre&gt;while True:
+    try:
+        item = next(gen)
+        # do stuff with item
+    except gen.ContinueIteration:
+        pass
+    except gen.StopIteration:
+        break
+    except StopIteration:
+        break&lt;/pre&gt;
+So every generator could have a method which throws its relevant exception and we could write specific breaks and continues. Or if you prefer a different spelling could be &quot;break from mygen&quot; or &quot;continue from mygen&quot; as continue and break aren't allowed as method names normally.
+
+I think this could be nice. Although many times I found myself using nested loops I actually preferred to break the monster into 2 functions with one loop each. That way I could use the return value to do whatever I need in the outer loop (break/continue/etc). So perhaps it's a good thing the language doesn't help me build monstrosity's and forces me to flatten my code. I wonder.</content>
+ </entry>
+ 
+</feed>

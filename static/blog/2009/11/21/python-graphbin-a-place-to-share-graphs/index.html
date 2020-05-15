@@ -1,0 +1,137 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>Python Graphbin - A place to share graphs</title>
+   <link rel="shortcut icon" href="/key_y.png" />
+   <meta name="author" content="Yuval Greenfield" />
+   <link href="http://feeds.feedburner.com/yuvalg/blog" rel="alternate" title="your title" type="application/atom+xml" />
+
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="https://yuvalg.com/blog/assets/themes/tom/css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="https://yuvalg.com/blog/assets/themes/tom/css/screen.css" type="text/css" media="screen, projection" />
+
+   <!-- Typekit 
+   <script type="text/javascript" src="http://use.typekit.com/jpd0pfm.js"></script>
+   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>-->
+</head>
+<body>
+
+  <div class="site">
+    <div class="title">
+      <ul class="nav">
+        <li>
+            <a id="brand" href="https://yuvalg.com/blog">yuvalg/blog</a>
+        </li>
+        
+        
+
+
+  
+    
+      
+      	
+      	<li><a href="https://yuvalg.com/blog/categories.html">categories</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="https://yuvalg.com/blog/tags.html">tags</a></li>
+      	
+      
+    
+  
+
+
+
+      </ul>
+      <!--a class="extra" href="https://yuvalg.com/blog/archive.html">Archive</a>
+      <a class="extra" href="https://yuvalg.com/blog">Pages</a>
+      <a class="extra" href="https://yuvalg.com/blog/categories.html">categories</a>
+      <a class="extra" href="https://yuvalg.com/blog/tags.html">tags</a-->
+    </div>
+  
+    
+
+<div class="post">
+  <h1>Python Graphbin - A place to share graphs</h1>
+  <p class="meta">
+    21 November 2009 
+    
+  </p>
+  A week ago I found out some strange stuff was going on when I searched for "aaaaaaaaaaa". So I made a python script
+<a href="http://pastebin.com/f35806f8f">http://pastebin.com/f35806f8f</a> for gathering the search results and wanted to plot a nice graph. The problem was I couldn't find a nice place to show and store the data. So I made a pastebin esque graphbin at <a href="http://graphbin.appspot.com">http://graphbin.appspot.com</a> and you can see the google search results:
+
+<a href="http://graphbin.appspot.com/g/bedequP4">http://graphbin.appspot.com/g/bedequP4</a>
+
+I used "Paste-It" (<a href="http://paste-it.appspot.com/">http://paste-it.appspot.com/</a>) as the base for graphbin so I got a bit familiar with the "Paste"
+(<a href="http://pythonpaste.org">http://pythonpaste.org</a>) framework. Sadly, this wasn't a pleasant journey. A lot of the connected things are just scattered all over the place and yet seem heavily entangled (ie main.py uses
+page/pasties/add.py which outputs the relevant template page in line 125 out of 342 after a flow that was no fun to follow). I'm not sure if this is a problem with "Paste" or a problem with the "Paste-It" implementation, but it got a bit ugly. Not to mention some bad naming (the "paste" folder holds the "web" framework folder and all the models, why not name the folder "models" and move the framework out? Why are pages "pasties"?).
+
+Maybe some paste-lover can dazzle me with some info on how paste compares/differs to/from django. Drop a comment.
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>13 Aug 2013</span> &raquo; <a href="https://yuvalg.com/blog/2013/08/13/d3js-shape-projections">Shape Projections with D3.js</a></li>
+    
+      <li><span>07 Aug 2013</span> &raquo; <a href="https://yuvalg.com/blog/2013/08/07/learning-some-lua">Learning Some Lua</a></li>
+    
+      <li><span>16 Oct 2012</span> &raquo; <a href="https://yuvalg.com/blog/2012/10/16/dominant-misconceptions-of-recessive-genes">Dominant misconceptions of recessive genes</a></li>
+    
+  </ul>
+</div>
+
+
+
+
+  <script>
+var idcomments_acct = '123abc';
+var idcomments_post_id;
+var idcomments_post_url;
+</script>
+<script type="text/javascript" src="http://www.intensedebate.com/js/genericLinkWrapperV2.js"></script>
+
+
+
+
+
+
+  
+    <div class="footer">
+      <div class="contact">
+        <p>
+          Yuval Greenfield<br />
+          Arts and bits<br />
+          <a href='mailto:ubershmekel@gmail.com'>ubershmekel@gmail.com</a>
+        </p>
+      </div>
+      <div class="contact">
+        <p>
+          <a href="https://yuvalg.com/">yuvalg.com/</a><br />
+          <a href="http://github.com/ubershmekel/">github.com/ubershmekel</a><br />
+          <a href="http://twitter.com/ubershmekel/">twitter.com/ubershmekel</a><br />
+        </p>
+      </div>
+      <div class="rss">
+        <a href="http://feeds.feedburner.com/yuvalg/blog">
+          <img src="https://yuvalg.com/blog/assets/themes/tom/images/rss.png" alt="Subscribe to RSS Feed" />
+        </a>
+      </div>
+    </div>
+  </div>
+  <!--a href="http://github.com/ubershmekel"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a-->
+
+  
+</body>
+</html>
+
