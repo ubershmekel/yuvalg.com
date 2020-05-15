@@ -72,7 +72,7 @@ const projects = [
   {
     name: "WebCard",
     desc: "Make a bookmark to use as a digital business card",
-    link: "https://github.com/ubershmekel/webcard",
+    link: "https://ubershmekel.github.io/webcard/",
     date: "2019-11"
   },
   {
