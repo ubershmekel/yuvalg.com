@@ -297,8 +297,8 @@ main {
  */
 .project a:hover:after {
   
-  animation: shine 10s ease-in-out infinite;
-  animation-fill-mode: forwards;  
+  /* animation: shine 10s ease-in-out infinite;
+  animation-fill-mode: forwards;   */
   content: "";
   position: absolute;
   top: 0%;
