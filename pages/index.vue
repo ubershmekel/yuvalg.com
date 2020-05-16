@@ -64,6 +64,12 @@ const projects = [
     date: "2020-04"
   },
   {
+    name: "Internet Leaderboard",
+    desc: "The top trending content from reddit, YouTube, and Twitter",
+    link: "https://www.internetleaderboard.com",
+    date: "2020-01"
+  },
+  {
     name: "dick-butt-fractal",
     desc: "Fractal animation experiment with JavaScript",
     link: "https://ubershmekel.github.io/dick-butt-fractal/",
@@ -90,9 +96,14 @@ const projects = [
     date: "2019-10"
   },
   {
+    name: "Tagsyo",
+    desc: "Use SQL to query what's trending on YouTube, Reddit, Instagram, and Twitter",
+    link: "https://www.tagsyo.com/",
+    date: "2019-07"
+  },
+  {
     name: "CSS Bed",
-    desc:
-      "Test bed for simple CSS resets that make your static page nice, without using classes",
+    desc: "Test bed for simple CSS resets that make your static page nice, without using classes",
     link: "https://www.cssbed.com/",
     date: "2019-05"
   },
