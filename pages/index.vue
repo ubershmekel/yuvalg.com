@@ -30,17 +30,18 @@ export default defineComponent({
     return {
       projects: ref(projects)
     };
-  }
+  },
 
-  // head () {
-  //   return {
-  //     title: "Yuval Greenfield",
-  //     meta: [
-  //       // hid is used as unique identifier. Do not use `vmid` for it as it will not work
-  //       { hid: 'description', name: 'description', content: "What I've been up to" }
-  //     ]
-  //   }
-  // }
+  head () {
+    return {
+      title: "Yuval Greenfield",
+      meta: [
+        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+        { name: 'description', hid: 'description', content: "What I've been up to" },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      ],
+    }
+  }
 });
 
 const projects = [
@@ -292,60 +293,9 @@ main {
   position: relative;
 }
 
-/**
- * The "shine" element
- */
-.project a:hover:after {
-  
-  /* animation: shine 10s ease-in-out infinite;
-  animation-fill-mode: forwards;   */
-  content: "";
-  position: absolute;
-  top: 0%;
-  left: 130%;
-  /* opacity: 0; */
-  width: 100%;
-  height: 100%;
-  /* width: 200%;
-  height: 200%;
-  transform: rotate(30deg); */
-  
-  background: rgba(255, 255, 255, 0.13);
-  background: linear-gradient(
-    to right, 
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.13) 5%,
-    rgba(255, 255, 255, 0.5) 8%,
-    rgba(255, 255, 255, 0.0) 40%
-  );
-}
+.project:hover {
+  background-image: url('/sparkle.gif');
+  background-size: 200px 100px;
+  background-position: -50px -50px;}
 
-/* Hover state - trigger effect */
-
-
-/* Active state */
-
-.icon:active:after {
-  opacity: 0;
-}
-
-@keyframes shine{
-  1% {
-    opacity: 1;
-    top: 0%;
-    left: 10%;
-    transition-property: left, top, opacity;
-    transition-duration: 0.7s, 0.7s, 0.15s;
-    transition-timing-function: ease;
-  }
-  9% {
-    opacity: 0;
-    top: 0%;
-    left: -30%;
-    transition-property: left, top, opacity;
-  }
-  99% {
-    opacity: 0;
-  }
-}
 </style>
