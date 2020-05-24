@@ -38,13 +38,7 @@ export default defineComponent({
       meta: [
         // hid is used as unique identifier. Do not use `vmid` for it as it will not work
         { name: 'description', hid: 'description', content: "What I've been up to" },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       ],
-      htmlAttrs: {
-        // Avoid light house error `<html> element does not have a [lang] attribute`
-        // Eg <html lang="en">
-        lang: 'en'
-      },
     }
   }
 });
