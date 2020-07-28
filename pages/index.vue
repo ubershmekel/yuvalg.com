@@ -169,6 +169,13 @@ const projects = [
     date: "2016-04"
   },
   {
+    name: "Balls vs Blocks",
+    desc: "Desktop web physics game to knock down blocks with your balls",
+    link:
+      "http://ubershmekel.github.io/ballsvsblocks/",
+    date: "2016-03"
+  },
+  {
     name: "Python3WOS",
     desc: "Status chart of Python packages migration from Python 2 to 3",
     link: "https://python3wos.appspot.com/",
