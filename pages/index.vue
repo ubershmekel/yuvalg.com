@@ -23,16 +23,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "@vue/composition-api";
+import { ref } from "@vue/composition-api";
 
-export default defineComponent({
+export default {
   setup() {
     return {
       projects: ref(projects)
     };
   },
 
-  head () {
+  head() {
     return {
       title: "Yuval Greenfield",
       meta: [
@@ -40,8 +40,8 @@ export default defineComponent({
         { name: 'description', hid: 'description', content: "What I've been up to" },
       ],
     }
-  }
-});
+  },
+};
 
 const projects = [
   {
@@ -288,7 +288,7 @@ hr {
   background: linear-gradient(to right, rgba(255, 255, 255, 0) 0px, #9df 100px, rgba(0, 0, 0, 0) 300px);
   height: 2px;
   border: none;
-  transition: background 0.5s;
+  transition: background 0.3s;
 }
 
 main {
@@ -300,8 +300,8 @@ main {
 }
 
 .project:hover {
-  background-image: url('/sparkle.gif');
-  background-size: 200px 100px;
-  background-position: -50px -50px;}
+  background: rgba(255, 255, 255, 0.1);
+  transition: background 0.3s;
+}
 
 </style>
