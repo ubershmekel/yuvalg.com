@@ -45,6 +45,48 @@ export default {
 
 const projects = [
   {
+    name: "You Are the Translator",
+    desc: "A game to learn a language while you drive",
+    link: "https://www.youarethetranslator.com/",
+    date: "2023-08"
+  },
+  {
+    name: "Nuke Tech Experiment Labs",
+    desc: "A red button game made in 48 hours that tests what kind of reinforcement motivates you",
+    link: "https://ubershmekel.github.io/ld51/",
+    date: "2022-10"
+  },
+  {
+    name: "I don't know how to code",
+    desc: "A card game made in 48 hours about your first software engineering role",
+    link: "https://ubershmekel.github.io/ld50/",
+    date: "2022-04"
+  },
+  {
+    name: "I don't know how to code",
+    desc: "A card game made in 48 hours about your first software engineering role",
+    link: "https://ubershmekel.github.io/ld50/",
+    date: "2022-04"
+  },
+  {
+    name: "Unstabable",
+    desc: "A game made in 48 hours about earning money by building a tall tower until you reach god",
+    link: "https://ubershmekel.github.io/ld49/",
+    date: "2021-10"
+  },
+  {
+    name: "Where is Bob?",
+    desc: "A game made in 48 hours about an ant climbing a poop pile, finding its friend through a musical radar",
+    link: "https://ubershmekel.github.io/ld48/",
+    date: "2021-04"
+  },
+  {
+    name: "don't go",
+    desc: "A game made in 48 A platformer where you can’t see anything. You have to explore and navigate using your sense of sound",
+    link: "https://dontgo.netlify.app/",
+    date: "2020-10"
+  },
+  {
     name: "Egg Rocket Unicorn",
     desc: "A game made in 48 hours for Ludum Dare 46",
     link: "https://ubershmekel.github.io/egg-rocket-unicorn/",
