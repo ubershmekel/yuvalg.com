@@ -28,7 +28,10 @@ import { ref } from "@vue/composition-api";
 export default {
   setup() {
     return {
-      projects: ref(projects)
+      // This was projects: ref(projects) for a while
+      // But that made no projects render at all at one point.
+      // I wonder what that was about.
+      projects: projects
     };
   },
 
