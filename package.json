@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@vue/composition-api": "latest",
-    "nuxt": "latest"
+    "nuxt": "^2.12.2"
   },
   "scripts": {
     "dev": "nuxt",
@@ -14,6 +14,6 @@
     "post-update": "yarn upgrade --latest"
   },
   "devDependencies": {
-    "@nuxt/typescript-build": "latest"
+    "@nuxt/typescript-build": "^3.0.2"
   }
 }
