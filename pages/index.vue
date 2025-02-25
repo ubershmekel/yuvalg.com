@@ -4,6 +4,7 @@
 
     <div class="contact">
       <div><a href="mailto:ubershmekel@gmail.com">email</a></div>
+      <div><a href="https://bsky.app/profile/ubershmekel.bsky.social">bsky</a></div>
       <div><a href="https://twitter.com/ubershmekel/">twitter</a></div>
       <div><a href="https://www.linkedin.com/in/yuv/">linkedin</a></div>
       <div><a href="https://medium.com/@ubershmekel/">medium</a></div>
@@ -47,6 +48,12 @@ export default {
 };
 
 const projects = [
+  {
+    name: "News Since When",
+    desc: "A slower news site to catch you up on the top items from the last 30 days",
+    link: "https://ubershmekel.github.io/news-analyzer/",
+    date: "2025-01"
+  },
   {
     name: "You Are the Translator",
     desc: "A game to learn a language while you drive",
@@ -277,8 +284,8 @@ const projects = [
 <style>
 html {
   /* background-color: #3f0082; */
-  background: rgb(16,0,16);
-  background: linear-gradient(179deg, rgba(32,4,111,1) 0%, rgba(57,9,73,1) 50vh, rgba(16,0,16,1) 100vh, rgba(32,4,111,1) 100%);
+  background: rgb(16, 0, 16);
+  background: linear-gradient(179deg, rgba(32, 4, 111, 1) 0%, rgba(57, 9, 73, 1) 50vh, rgba(16, 0, 16, 1) 100vh, rgba(32, 4, 111, 1) 100%);
 
   min-height: 100%;
 
@@ -323,7 +330,8 @@ a:hover {
   color: #f90;
 }
 
-.desc, .date {
+.desc,
+.date {
   color: #edf;
   text-shadow: 0px 0px 10px rgb(157, 216, 255);
   font-size: 1rem;
@@ -348,5 +356,4 @@ main {
   background: rgba(255, 255, 255, 0.1);
   transition: background 0.3s;
 }
-
 </style>
