@@ -20,6 +20,10 @@
       </a>
       <hr />
     </div>
+
+    <div>
+      The source for this page is at <a href="https://github.com/ubershmekel/yuvalg.com">github.com/ubershmekel/yuvalg.com</a>
+    </div>
   </main>
 </template>
 
