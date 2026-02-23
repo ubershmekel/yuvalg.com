@@ -53,6 +53,12 @@ export default {
 
 const projects = [
   {
+    name: "Kat and Noodles - Zensnake",
+    desc: "A chill one-button snake game",
+    link: "https://ubershmekel.github.io/zensnake/app/",
+    date: "2026-01"
+  },
+  {
     name: "News Since When",
     desc: "A slower news site to catch you up on the top items from the last 30 days",
     link: "https://ubershmekel.github.io/news-analyzer/",
