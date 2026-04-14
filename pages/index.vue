@@ -22,7 +22,8 @@
     </div>
 
     <div>
-      The source for this page is at <a href="https://github.com/ubershmekel/yuvalg.com">github.com/ubershmekel/yuvalg.com</a>
+      The source for this page is at <a
+        href="https://github.com/ubershmekel/yuvalg.com">github.com/ubershmekel/yuvalg.com</a>
     </div>
   </main>
 </template>
@@ -75,12 +76,6 @@ const projects = [
     desc: "A red button game made in 48 hours that tests what kind of reinforcement motivates you",
     link: "https://ubershmekel.github.io/ld51/",
     date: "2022-10"
-  },
-  {
-    name: "I don't know how to code",
-    desc: "A card game made in 48 hours about your first software engineering role",
-    link: "https://ubershmekel.github.io/ld50/",
-    date: "2022-04"
   },
   {
     name: "I don't know how to code",
