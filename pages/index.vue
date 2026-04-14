@@ -97,7 +97,7 @@ const projects = [
   },
   {
     name: "don't go",
-    desc: "A game made in 48 A platformer where you can’t see anything. You have to explore and navigate using your sense of sound",
+    desc: "A game made in 48 hours. A platformer where you can’t see anything. You have to explore and navigate using your sense of sound",
     link: "https://dontgo.netlify.app/",
     date: "2020-10"
   },
@@ -206,19 +206,6 @@ const projects = [
     date: "2016-04"
   },
   {
-    name: "redditp",
-    desc:
-      "Turn any reddit url to a slideshow. Gets a million page views a month",
-    link: "https://redditp.com/",
-    date: "2012"
-  },
-  {
-    name: "WordPress blog",
-    desc: "Mostly Python and Android blog, now defunct",
-    link: "https://uberpython.wordpress.com/",
-    date: "2008-2013"
-  },
-  {
     name: "gfilter",
     desc: "Drag in a csv to get an interactive cross filter dashboard",
     link:
@@ -233,6 +220,20 @@ const projects = [
     date: "2016-03"
   },
   {
+    name: "Mine3js",
+    desc:
+      "WebGL minecraft that stores the blocks placed in the URL so you can share your creation",
+    link: "https://ubershmekel.github.io/mine3js/",
+    date: "2013-05"
+  },
+  {
+    name: "redditp",
+    desc:
+      "Turn any reddit url to a slideshow. Gets a million page views a month",
+    link: "https://redditp.com/",
+    date: "2012"
+  },
+  {
     name: "Python3WOS",
     desc: "Status chart of Python packages migration from Python 2 to 3",
     link: "https://python3wos.appspot.com/",
@@ -244,13 +245,14 @@ const projects = [
     link: "https://ubershmekel.github.io/freeball/",
     date: "2011-02"
   },
+
   {
-    name: "Mine3js",
-    desc:
-      "WebGL minecraft that stores the blocks placed in the URL so you can share your creation",
-    link: "https://ubershmekel.github.io/mine3js/",
-    date: "2013-05"
+    name: "WordPress blog",
+    desc: "Mostly Python and Android blog, now defunct",
+    link: "https://uberpython.wordpress.com/",
+    date: "2008-2013"
   },
+
   {
     name: "Top Less Productions",
     desc: "Award winning 48 hour film production team",
@@ -261,7 +263,7 @@ const projects = [
   {
     name: "Pendulum Waves",
     desc: "WebGL experiment with a trippy rhythm",
-    link: "http://toplessproductions.com/pendulum/",
+    link: "https://toplessproductions.github.io/pendulum/",
     date: "2008-2013"
   },
   {
@@ -280,7 +282,7 @@ const projects = [
   {
     name: "biotet",
     desc: "Circular tetris flex (flash) game",
-    link: "http://toplessproductions.com/biotet/",
+    link: "https://toplessproductions.github.io/biotet/",
     date: "2011-01"
   }
 ];
