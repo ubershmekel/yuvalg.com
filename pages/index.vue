@@ -236,7 +236,7 @@ const projects = [
   {
     name: "Python3WOS",
     desc: "Status chart of Python packages migration from Python 2 to 3",
-    link: "https://python3wos.appspot.com/",
+    link: "https://web.archive.org/web/20200218173018/https://python3wos.appspot.com/",
     date: "2011-02"
   },
   {
