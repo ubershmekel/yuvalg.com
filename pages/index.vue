@@ -66,6 +66,18 @@ const projects = [
     date: "2025-01"
   },
   {
+    name: "Bell Curve Balls (Phaser)",
+    desc: "Experiment comparing Godot vs Phaser for web game dev — balls bouncing into a bell curve distribution, built in Phaser",
+    link: "https://ubershmekel.github.io/bell-curve-balls/",
+    date: "2024-12"
+  },
+  {
+    name: "Bell Curve Balls (Godot)",
+    desc: "Experiment comparing Godot vs Phaser for web game dev — balls bouncing into a bell curve distribution, built in Godot",
+    link: "https://ubershmekel.github.io/godot-bell-curve-balls/",
+    date: "2024-12"
+  },
+  {
     name: "You Are the Translator",
     desc: "A game to learn a language while you drive",
     link: "https://www.youarethetranslator.com/",
