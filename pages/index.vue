@@ -54,6 +54,18 @@ export default {
 
 const projects = [
   {
+    name: "Eye Brain Hand",
+    desc: "Measure your short term memory, reaction time, and letter finding skills",
+    link: "https://ubershmekel.github.io/eye-brain-hand/",
+    date: "2026-06-12"
+  },
+  {
+    name: "DidOne",
+    desc: "Tracking habits, mood and milestones on Android, iOS, and Web",
+    link: "https://aloyuv.github.io/didit/get/",
+    date: "2026-05-20"
+  },
+  {
     name: "Kat and Noodles - Zensnake",
     desc: "A chill one-button snake game",
     link: "https://ubershmekel.github.io/zensnake/app/",
