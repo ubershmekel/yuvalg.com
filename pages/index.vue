@@ -54,10 +54,28 @@ export default {
 
 const projects = [
   {
+    name: "Digger 2027",
+    desc: "A fan-made remake of the 1983 arcade game with 3D graphics, jazz music, and a switchable classic mode",
+    link: "https://ubershmekel.github.io/digger-2027/",
+    date: "2026-10"
+  },
+  {
+    name: "Language AI Bench",
+    desc: "An experiment comparing how programming languages and type checking affect AI coding agents on the same tasks",
+    link: "https://ubershmekel.github.io/language-ai-bench/",
+    date: "2026-08"
+  },
+  {
     name: "Eye Brain Hand",
     desc: "Measure your short term memory, reaction time, and letter finding skills",
     link: "https://ubershmekel.github.io/eye-brain-hand/",
     date: "2026-06-12"
+  },
+  {
+    name: "Cardio Rounds",
+    desc: "An open source heart rate monitoring app with workout charts, training zones, and recovery analysis for running and BJJ",
+    link: "https://ubershmekel.github.io/cardiorounds/",
+    date: "2026-06"
   },
   {
     name: "DidOne",
@@ -66,10 +84,28 @@ const projects = [
     date: "2026-05-20"
   },
   {
+    name: "PingDoctor",
+    desc: "A Chrome extension that tracks connection outages and latency to help figure out why your internet is acting up",
+    link: "https://chromewebstore.google.com/detail/pingdoctor/ilaoheokednfmlfjpnechahidgbhbcji",
+    date: "2026-03"
+  },
+  {
+    name: "Sitey",
+    desc: "A self-hosted deployment platform that deploys GitHub projects to your own server with automatic HTTPS and a dashboard",
+    link: "https://github.com/ubershmekel/sitey",
+    date: "2026-03"
+  },
+  {
     name: "Kat and Noodles - Zensnake",
     desc: "A chill one-button snake game",
     link: "https://ubershmekel.github.io/zensnake/app/",
     date: "2026-01"
+  },
+  {
+    name: "Caroushell",
+    desc: "A terminal shell with visual command history, arrow-key folder navigation, and optional AI command suggestions",
+    link: "https://github.com/ubershmekel/caroushell",
+    date: "2025-11"
   },
   {
     name: "News Since When",
@@ -90,6 +126,12 @@ const projects = [
     date: "2024-12"
   },
   {
+    name: "Sandy Simulation",
+    desc: "A zen garden physics experiment with a comb moving through 1,000 spheres, built with BabylonJS and Havok",
+    link: "https://ubershmekel.github.io/sand/",
+    date: "2023-11"
+  },
+  {
     name: "You Are the Translator",
     desc: "A game to learn a language while you drive",
     link: "https://www.youarethetranslator.com/",
@@ -108,10 +150,34 @@ const projects = [
     date: "2022-04"
   },
   {
+    name: "Unicode Debugger",
+    desc: "Paste text to inspect the Unicode characters hiding behind it",
+    link: "https://ubershmekel.github.io/unicode-debugger/",
+    date: "2022-03"
+  },
+  {
+    name: "Celebrate",
+    desc: "A tiny celebration app with a party popper and cheers for whatever you just accomplished",
+    link: "https://ubershmekel.github.io/celebrate/",
+    date: "2022-01"
+  },
+  {
     name: "Unstabable",
     desc: "A game made in 48 hours about earning money by building a tall tower until you reach god",
     link: "https://ubershmekel.github.io/ld49/",
     date: "2021-10"
+  },
+  {
+    name: "Nihongo Shooter",
+    desc: "A fast-paced space shooter for learning Japanese by shooting the correct word definitions",
+    link: "https://ubershmekel.github.io/nihongo-shooter/",
+    date: "2021-07"
+  },
+  {
+    name: "Vite Phaser TypeScript Starter",
+    desc: "An open source browser game starter with a game menu, TypeScript, Phaser, Vite, and GitHub Pages deployment",
+    link: "https://github.com/ubershmekel/vite-phaser-ts-starter",
+    date: "2021-04"
   },
   {
     name: "Where is Bob?",
@@ -124,6 +190,12 @@ const projects = [
     desc: "A game made in 48 hours. A platformer where you can’t see anything. You have to explore and navigate using your sense of sound",
     link: "https://dontgo.netlify.app/",
     date: "2020-10"
+  },
+  {
+    name: "2020 Police Brutality Navigator",
+    desc: "A web app for browsing the incidents documented by the 2020 Police Brutality tracking repository",
+    link: "https://2020policebrutality.netlify.app/",
+    date: "2020-06"
   },
   {
     name: "Egg Rocket Unicorn",
